@@ -1,0 +1,258 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /user/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if request.auth.uid == document;
+    }
+
+    match /produto/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /lojas/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /user/{parent}/carrinho/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /{path=**}/carrinho/{document} {
+      allow read: if true;
+    }
+
+
+    match /user/{parent}/enderecos/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /{path=**}/enderecos/{document} {
+      allow read: if true;
+    }
+
+
+    match /produto/{parent}/avaliacao/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /{path=**}/avaliacao/{document} {
+      allow read: if true;
+    }
+
+
+    match /produto/{parent}/variante/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /{path=**}/variante/{document} {
+      allow read: if true;
+    }
+
+
+    match /user/{parent}/cupom/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /{path=**}/cupom/{document} {
+      allow read: if true;
+    }
+
+
+    match /userList/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /categoria_produto/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /lojas/{parent}/avaliacao_loja/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /{path=**}/avaliacao_loja/{document} {
+      allow read: if true;
+    }
+
+
+    match /user/{parent}/cartao/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /user/{parent}/rastreio/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /{path=**}/rastreio/{document} {
+      allow read: if true;
+    }
+
+
+    match /pedidos_total/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /pedidos_total/{parent}/rastreio2/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /{path=**}/rastreio2/{document} {
+      allow read: if true;
+    }
+
+
+    match /rastreio_geral/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /pedidos_total/{parent}/cancelamento/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /{path=**}/cancelamento/{document} {
+      allow read: if true;
+    }
+
+
+    match /pastaTeste/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /user/{parent}/carrinhoFinal/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /{path=**}/carrinhoFinal/{document} {
+      allow read: if true;
+    }
+
+
+    match /lojas/{parent}/promoRelampago/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /{path=**}/promoRelampago/{document} {
+      allow read: if true;
+    }
+
+
+    match /user/{parent}/produtoAfiliado/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /{path=**}/produtoAfiliado/{document} {
+      allow read: if true;
+    }
+
+
+    match /pagamentoAfiliado/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /banner/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /link/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /midiaAfiliado/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /chat/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /textoVenda/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /ff_user_push_notifications/{id} {
+      allow read, update, delete: if false;
+      allow create: if /databases/$(database)/documents/user/$(request.auth.uid) == request.resource.data.sender;
+    }
+  }
+}

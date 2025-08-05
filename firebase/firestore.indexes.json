@@ -1,0 +1,262 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "produto",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "categoria",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "vendas",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "carrinho",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "nacional",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "lojaRef",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "carrinho",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "selecionado",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "lojaRef",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "pedidos_total",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "afiliadoRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "status_pagamento",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "data_pedido",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "pedidos_total",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "afiliadoRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "data_pedido",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "pagamentoAfiliado",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "afiliadoRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "dataPagamento",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "produto",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "lojaRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "preco",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "produto",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "lojaRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "preco",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "produto",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "lojaRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "data",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "produto",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "lojaRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "vendas",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "avaliacao",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        {
+          "fieldPath": "lojaRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "videoSet",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "pedidos_total",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "userRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "data_pedido",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "rastreio2",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        {
+          "fieldPath": "pedidoRef2",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "data",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "pedidos_total",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "lojaRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "data_pedido",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "pedidos_total",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "userRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "pedidos_list",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "fcm_tokens",
+      "fieldPath": "fcm_token",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "rastreio2",
+      "fieldPath": "pedidoRef2",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "promoRelampago",
+      "fieldPath": "userRef",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>882293791001-tbo5tvt2dq8a7l5br1rnmcseka3t2htg.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.882293791001-tbo5tvt2dq8a7l5br1rnmcseka3t2htg</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>882293791001-n2bi5e15vfl0bmfvjn4ed6uqvnbalel5.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCdBCugFHMJG9zYlnXlZC0xrc0Fs6R6T-Y</string>
+	<key>GCM_SENDER_ID</key>
+	<string>882293791001</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mycompany.rendashop</string>
+	<key>PROJECT_ID</key>
+	<string>renda-shop-sat8qr</string>
+	<key>STORAGE_BUCKET</key>
+	<string>renda-shop-sat8qr.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:882293791001:ios:e67c67e96f19a2fa8f8d88</string>
+</dict>
+</plist>

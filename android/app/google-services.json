@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "882293791001",
+    "project_id": "renda-shop-sat8qr",
+    "storage_bucket": "renda-shop-sat8qr.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:882293791001:android:64f233799deedae88f8d88",
+        "android_client_info": {
+          "package_name": "com.mycompany.rendashop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "882293791001-n2bi5e15vfl0bmfvjn4ed6uqvnbalel5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.rendashop",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "882293791001-ubj1b540unppnu4hh9ujnc4voj2e3bji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMj0J4PGQhbjm0FPXcw4GR-qPQerYUzf0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "882293791001-qi6p7m35aa9lsj3m2so49mh5pbaf7r6m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "882293791001-tbo5tvt2dq8a7l5br1rnmcseka3t2htg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.rendashop"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
