@@ -4,8 +4,10 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -125,13 +127,13 @@ class _CompartilharLucrarWidgetState extends State<CompartilharLucrarWidget> {
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
                         children: [
-                          if (widget.variante == false)
+                          if (widget!.variante == false)
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   5.0, 0.0, 5.0, 17.0),
                               child: StreamBuilder<ProdutoRecord>(
                                 stream: ProdutoRecord.getDocument(
-                                    widget.produtoRef!),
+                                    widget!.produtoRef!),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
                                   if (!snapshot.hasData) {
@@ -332,7 +334,7 @@ class _CompartilharLucrarWidgetState extends State<CompartilharLucrarWidget> {
                                                                       onTap:
                                                                           () async {
                                                                         if (FFAppState().comisaoAfiliado2 !=
-                                                                            widget.menorValorAfiliado) {
+                                                                            widget!.menorValorAfiliado) {
                                                                           FFAppState().comisaoAfiliado2 =
                                                                               FFAppState().comisaoAfiliado2 + -1.0;
                                                                           FFAppState().valorProduto =
@@ -467,7 +469,7 @@ class _CompartilharLucrarWidgetState extends State<CompartilharLucrarWidget> {
                                                                             .transparent,
                                                                     onTap:
                                                                         () async {
-                                                                      if (widget
+                                                                      if (widget!
                                                                               .maiorValorAfiliado !=
                                                                           FFAppState()
                                                                               .comisaoAfiliado2) {
@@ -650,13 +652,13 @@ class _CompartilharLucrarWidgetState extends State<CompartilharLucrarWidget> {
                                 },
                               ),
                             ),
-                          if (widget.variante == true)
+                          if (widget!.variante == true)
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   5.0, 0.0, 5.0, 17.0),
                               child: StreamBuilder<ProdutoRecord>(
                                 stream: ProdutoRecord.getDocument(
-                                    widget.produtoRef!),
+                                    widget!.produtoRef!),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
                                   if (!snapshot.hasData) {
@@ -907,7 +909,7 @@ class _CompartilharLucrarWidgetState extends State<CompartilharLucrarWidget> {
                                                                       onTap:
                                                                           () async {
                                                                         if (FFAppState().comisaoAfiliado2 !=
-                                                                            widget.menorValorAfiliado) {
+                                                                            widget!.menorValorAfiliado) {
                                                                           FFAppState().comisaoAfiliado2 =
                                                                               FFAppState().comisaoAfiliado2 + -1.0;
                                                                           FFAppState().varianteMediaValor =
@@ -1044,7 +1046,7 @@ class _CompartilharLucrarWidgetState extends State<CompartilharLucrarWidget> {
                                                                             .transparent,
                                                                     onTap:
                                                                         () async {
-                                                                      if (widget
+                                                                      if (widget!
                                                                               .maiorValorAfiliado !=
                                                                           FFAppState()
                                                                               .comisaoAfiliado2) {
@@ -1426,7 +1428,7 @@ class _CompartilharLucrarWidgetState extends State<CompartilharLucrarWidget> {
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
-                                        if (widget.variante == false)
+                                        if (widget!.variante == false)
                                           Text(
                                             'R\$${functions.valorDoubleEmString(FFAppState().valorProduto)}',
                                             style: FlutterFlowTheme.of(context)
@@ -1453,7 +1455,7 @@ class _CompartilharLucrarWidgetState extends State<CompartilharLucrarWidget> {
                                                           .fontStyle,
                                                 ),
                                           ),
-                                        if (widget.variante == true)
+                                        if (widget!.variante == true)
                                           Text(
                                             FFAppState().varianteMediaValor,
                                             style: FlutterFlowTheme.of(context)
@@ -1501,16 +1503,17 @@ class _CompartilharLucrarWidgetState extends State<CompartilharLucrarWidget> {
                               queryBuilder: (produtoAfiliadoRecord) =>
                                   produtoAfiliadoRecord.where(
                                 'produtoRef',
-                                isEqualTo: widget.produtoRef,
+                                isEqualTo: widget!.produtoRef,
                               ),
                               singleRecord: true,
                             ).then((s) => s.firstOrNull);
                             _shouldSetState = true;
                             if (_model.queryExiste?.reference != null) {
-                              if (FFAppState().varianteMediaValor != '') {
+                              if (FFAppState().varianteMediaValor != null &&
+                                  FFAppState().varianteMediaValor != '') {
                                 _model.listPorduct2 =
                                     await queryVarianteRecordOnce(
-                                  parent: widget.produtoRef,
+                                  parent: widget!.produtoRef,
                                 );
                                 _shouldSetState = true;
 
@@ -1550,10 +1553,11 @@ class _CompartilharLucrarWidgetState extends State<CompartilharLucrarWidget> {
                               if (_shouldSetState) safeSetState(() {});
                               return;
                             } else {
-                              if (FFAppState().varianteMediaValor != '') {
+                              if (FFAppState().varianteMediaValor != null &&
+                                  FFAppState().varianteMediaValor != '') {
                                 _model.listPorduct =
                                     await queryVarianteRecordOnce(
-                                  parent: widget.produtoRef,
+                                  parent: widget!.produtoRef,
                                 );
                                 _shouldSetState = true;
 
@@ -1562,12 +1566,12 @@ class _CompartilharLucrarWidgetState extends State<CompartilharLucrarWidget> {
                                         currentUserReference!);
                                 await produtoAfiliadoRecordReference1.set({
                                   ...createProdutoAfiliadoRecordData(
-                                    produtoRef: widget.produtoRef,
+                                    produtoRef: widget!.produtoRef,
                                     comissao: FFAppState().comisaoAfiliado2,
                                     menorPreco: functions.menorValorVatiente(
                                         _model.listPorduct!.toList()),
                                     ultimaAtualizacao:
-                                        widget.ultimaAtualizacao,
+                                        widget!.ultimaAtualizacao,
                                   ),
                                   ...mapToFirestore(
                                     {
@@ -1581,12 +1585,12 @@ class _CompartilharLucrarWidgetState extends State<CompartilharLucrarWidget> {
                                 _model.updateLink1 =
                                     ProdutoAfiliadoRecord.getDocumentFromData({
                                   ...createProdutoAfiliadoRecordData(
-                                    produtoRef: widget.produtoRef,
+                                    produtoRef: widget!.produtoRef,
                                     comissao: FFAppState().comisaoAfiliado2,
                                     menorPreco: functions.menorValorVatiente(
                                         _model.listPorduct!.toList()),
                                     ultimaAtualizacao:
-                                        widget.ultimaAtualizacao,
+                                        widget!.ultimaAtualizacao,
                                   ),
                                   ...mapToFirestore(
                                     {
@@ -1625,20 +1629,20 @@ class _CompartilharLucrarWidgetState extends State<CompartilharLucrarWidget> {
                                         currentUserReference!);
                                 await produtoAfiliadoRecordReference2
                                     .set(createProdutoAfiliadoRecordData(
-                                  produtoRef: widget.produtoRef,
+                                  produtoRef: widget!.produtoRef,
                                   valor: FFAppState().valorProduto,
                                   comissao: FFAppState().comisaoAfiliado2,
-                                  ultimaAtualizacao: widget.ultimaAtualizacao,
+                                  ultimaAtualizacao: widget!.ultimaAtualizacao,
                                 ));
                                 _model.updateLink11 =
                                     ProdutoAfiliadoRecord.getDocumentFromData(
                                         createProdutoAfiliadoRecordData(
-                                          produtoRef: widget.produtoRef,
+                                          produtoRef: widget!.produtoRef,
                                           valor: FFAppState().valorProduto,
                                           comissao:
                                               FFAppState().comisaoAfiliado2,
                                           ultimaAtualizacao:
-                                              widget.ultimaAtualizacao,
+                                              widget!.ultimaAtualizacao,
                                         ),
                                         produtoAfiliadoRecordReference2);
                                 _shouldSetState = true;

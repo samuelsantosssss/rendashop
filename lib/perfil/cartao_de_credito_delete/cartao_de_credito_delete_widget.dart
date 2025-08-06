@@ -3,10 +3,15 @@ import '/carregando/carregando8/carregando8_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/perfil/excluir_cartao/excluir_cartao_widget.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'cartao_de_credito_delete_model.dart';
 export 'cartao_de_credito_delete_model.dart';
 
@@ -50,7 +55,7 @@ class _CartaoDeCreditoDeleteWidgetState
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<CartaoRecord>(
-      stream: CartaoRecord.getDocument(widget.cardRef!),
+      stream: CartaoRecord.getDocument(widget!.cardRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -368,7 +373,7 @@ class _CartaoDeCreditoDeleteWidgetState
                                 child: Padding(
                                   padding: MediaQuery.viewInsetsOf(context),
                                   child: ExcluirCartaoWidget(
-                                    cartaoRef: widget.cardRef!,
+                                    cartaoRef: widget!.cardRef!,
                                   ),
                                 ),
                               );

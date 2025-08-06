@@ -1,6 +1,9 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'variacao11_model.dart';
@@ -147,13 +150,15 @@ class _Variacao11WidgetState extends State<Variacao11Widget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            if (FFAppState().titulo1 == '') {
+                            if (FFAppState().titulo1 == null ||
+                                FFAppState().titulo1 == '') {
                               FFAppState().titulo1 = 'Cor';
                               safeSetState(() {});
                               Navigator.pop(context);
                               return;
                             } else {
-                              if (FFAppState().titulo2 == '') {
+                              if (FFAppState().titulo2 == null ||
+                                  FFAppState().titulo2 == '') {
                                 FFAppState().titulo2 = 'Cor';
                                 safeSetState(() {});
                                 Navigator.pop(context);
@@ -223,13 +228,15 @@ class _Variacao11WidgetState extends State<Variacao11Widget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            if (FFAppState().titulo1 == '') {
+                            if (FFAppState().titulo1 == null ||
+                                FFAppState().titulo1 == '') {
                               FFAppState().titulo1 = 'Quantidade';
                               safeSetState(() {});
                               Navigator.pop(context);
                               return;
                             } else {
-                              if (FFAppState().titulo2 == '') {
+                              if (FFAppState().titulo2 == null ||
+                                  FFAppState().titulo2 == '') {
                                 FFAppState().titulo2 = 'Quantidade';
                                 safeSetState(() {});
                                 Navigator.pop(context);
@@ -299,13 +306,15 @@ class _Variacao11WidgetState extends State<Variacao11Widget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            if (FFAppState().titulo1 == '') {
+                            if (FFAppState().titulo1 == null ||
+                                FFAppState().titulo1 == '') {
                               FFAppState().titulo1 = 'Tamanho';
                               safeSetState(() {});
                               Navigator.pop(context);
                               return;
                             } else {
-                              if (FFAppState().titulo2 == '') {
+                              if (FFAppState().titulo2 == null ||
+                                  FFAppState().titulo2 == '') {
                                 FFAppState().titulo2 = 'Tamanho';
                                 safeSetState(() {});
                                 Navigator.pop(context);
@@ -375,13 +384,15 @@ class _Variacao11WidgetState extends State<Variacao11Widget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            if (FFAppState().titulo1 == '') {
+                            if (FFAppState().titulo1 == null ||
+                                FFAppState().titulo1 == '') {
                               FFAppState().titulo1 = '[titulo]';
                               safeSetState(() {});
                               Navigator.pop(context);
                               return;
                             } else {
-                              if (FFAppState().titulo2 == '') {
+                              if (FFAppState().titulo2 == null ||
+                                  FFAppState().titulo2 == '') {
                                 FFAppState().titulo2 = '[titulo]';
                                 safeSetState(() {});
                                 Navigator.pop(context);

@@ -2,8 +2,12 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:math' as math;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -63,7 +67,7 @@ class _MidiaVendaCompartilharWidgetState
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 2.5, 0.0),
               child: StreamBuilder<ProdutoAfiliadoRecord>(
-                stream: ProdutoAfiliadoRecord.getDocument(widget.afiliadoref!),
+                stream: ProdutoAfiliadoRecord.getDocument(widget!.afiliadoref!),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -957,7 +961,8 @@ class _MidiaVendaCompartilharWidgetState
                                                                   text: functions.porcentagemPromo2(
                                                                       stackProdutoRecord
                                                                           .precoAntes,
-                                                                      stackProdutoRecord.titulo1 !=
+                                                                      stackProdutoRecord.titulo1 != null &&
+                                                                              stackProdutoRecord.titulo1 !=
                                                                                   ''
                                                                           ? stackProdutoRecord
                                                                               .menorPrecoRevenda
@@ -1315,6 +1320,8 @@ class _MidiaVendaCompartilharWidgetState
                                                                     stackProdutoRecord
                                                                         .precoAntes,
                                                                     stackProdutoRecord.titulo1 !=
+                                                                                null &&
+                                                                            stackProdutoRecord.titulo1 !=
                                                                                 ''
                                                                         ? stackProdutoRecord
                                                                             .menorPrecoRevenda

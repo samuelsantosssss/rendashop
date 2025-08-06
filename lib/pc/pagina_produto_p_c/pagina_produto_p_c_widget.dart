@@ -1,3 +1,4 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
@@ -10,12 +11,15 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/loja/promocao_relampago/time_promo/time_promo_widget.dart';
 import '/loja/variante/variante_widget.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -23,6 +27,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'pagina_produto_p_c_model.dart';
 export 'pagina_produto_p_c_model.dart';
@@ -115,7 +120,7 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
             body: Stack(
               children: [
                 StreamBuilder<ProdutoRecord>(
-                  stream: ProdutoRecord.getDocument(widget.produtoRef!),
+                  stream: ProdutoRecord.getDocument(widget!.produtoRef!),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {
@@ -2273,8 +2278,12 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                           .max,
                                                                   children: [
                                                                     if ((valueOrDefault(currentUserDocument?.enderecoCompleto, '') ==
+                                                                                null ||
+                                                                            valueOrDefault(currentUserDocument?.enderecoCompleto, '') ==
                                                                                 '') &&
                                                                         (FFAppState().enderecoTemporario ==
+                                                                                null ||
+                                                                            FFAppState().enderecoTemporario ==
                                                                                 ''))
                                                                       AuthUserStreamWidget(
                                                                         builder:
@@ -2296,8 +2305,12 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                         ),
                                                                       ),
                                                                     if ((valueOrDefault(currentUserDocument?.enderecoCompleto, '') !=
+                                                                                null &&
+                                                                            valueOrDefault(currentUserDocument?.enderecoCompleto, '') !=
                                                                                 '') &&
                                                                         (FFAppState().enderecoTemporario ==
+                                                                                null ||
+                                                                            FFAppState().enderecoTemporario ==
                                                                                 ''))
                                                                       AuthUserStreamWidget(
                                                                         builder:
@@ -2321,6 +2334,8 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                         ),
                                                                       ),
                                                                     if (FFAppState().enderecoTemporario !=
+                                                                            null &&
+                                                                        FFAppState().enderecoTemporario !=
                                                                             '')
                                                                       Text(
                                                                         FFAppState()
@@ -2388,11 +2403,12 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                               Text(
                                                                         functions.frete(
                                                                             () {
-                                                                          if (FFAppState().enderecoTemporario !=
+                                                                          if (FFAppState().enderecoTemporario != null &&
+                                                                              FFAppState().enderecoTemporario !=
                                                                                   '') {
                                                                             return FFAppState().enderecoTemporario;
-                                                                          } else if ((valueOrDefault(currentUserDocument?.enderecoCompleto, '') != '') &&
-                                                                              (FFAppState().enderecoTemporario == '')) {
+                                                                          } else if ((valueOrDefault(currentUserDocument?.enderecoCompleto, '') != null && valueOrDefault(currentUserDocument?.enderecoCompleto, '') != '') &&
+                                                                              (FFAppState().enderecoTemporario == null || FFAppState().enderecoTemporario == '')) {
                                                                             return valueOrDefault(currentUserDocument?.enderecoCompleto,
                                                                                 '');
                                                                           } else {
@@ -2431,9 +2447,10 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                                 Text(
                                                                           functions.freteMaisDe20(functions.frete(
                                                                               () {
-                                                                            if (FFAppState().enderecoTemporario != '') {
+                                                                            if (FFAppState().enderecoTemporario != null &&
+                                                                                FFAppState().enderecoTemporario != '') {
                                                                               return FFAppState().enderecoTemporario;
-                                                                            } else if ((valueOrDefault(currentUserDocument?.enderecoCompleto, '') != '') && (FFAppState().enderecoTemporario == '')) {
+                                                                            } else if ((valueOrDefault(currentUserDocument?.enderecoCompleto, '') != null && valueOrDefault(currentUserDocument?.enderecoCompleto, '') != '') && (FFAppState().enderecoTemporario == null || FFAppState().enderecoTemporario == '')) {
                                                                               return valueOrDefault(currentUserDocument?.enderecoCompleto, '');
                                                                             } else {
                                                                               return valueOrDefault(currentUserDocument?.enderecoCompleto, '');
@@ -2555,6 +2572,9 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                       ),
                                                       if ((columnProdutoRecord
                                                                       .titulo2 ==
+                                                                  null ||
+                                                              columnProdutoRecord
+                                                                      .titulo2 ==
                                                                   '') &&
                                                           ((columnProdutoRecord
                                                                   .varianteImgList
@@ -2574,7 +2594,7 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                     VarianteRecord>>(
                                                               stream:
                                                                   queryVarianteRecord(
-                                                                parent: widget
+                                                                parent: widget!
                                                                     .produtoRef,
                                                                 queryBuilder:
                                                                     (varianteRecord) =>
@@ -2582,6 +2602,8 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                             .where(
                                                                   'foto',
                                                                   isEqualTo: FFAppState().selecionarVariante1foto !=
+                                                                              null &&
+                                                                          FFAppState().selecionarVariante1foto !=
                                                                               ''
                                                                       ? FFAppState()
                                                                           .selecionarVariante1foto
@@ -2672,7 +2694,7 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                                               child: Padding(
                                                                                                 padding: MediaQuery.viewInsetsOf(context),
                                                                                                 child: VarianteWidget(
-                                                                                                  produtoRef: widget.produtoRef!,
+                                                                                                  produtoRef: widget!.produtoRef!,
                                                                                                 ),
                                                                                               ),
                                                                                             );
@@ -3952,9 +3974,9 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                                   ),
                                                                                   Text(
                                                                                     valueOrDefault<String>(
-                                                                                      _model.cepTextController.text != ''
+                                                                                      _model.cepTextController.text != null && _model.cepTextController.text != ''
                                                                                           ? valueOrDefault<String>(
-                                                                                              '${FFAppState().cidade != '' ? FFAppState().cidade : 'Cidade'} - ${FFAppState().bairro != '' ? FFAppState().estado : 'Estado'}',
+                                                                                              '${FFAppState().cidade != null && FFAppState().cidade != '' ? FFAppState().cidade : 'Cidade'} - ${FFAppState().bairro != null && FFAppState().bairro != '' ? FFAppState().estado : 'Estado'}',
                                                                                               'Estado - Cidade',
                                                                                             )
                                                                                           : 'Procurando...',
@@ -4135,9 +4157,10 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                                 Text(
                                                                           functions.frete(
                                                                               () {
-                                                                            if (FFAppState().enderecoTemporario != '') {
+                                                                            if (FFAppState().enderecoTemporario != null &&
+                                                                                FFAppState().enderecoTemporario != '') {
                                                                               return FFAppState().enderecoTemporario;
-                                                                            } else if ((valueOrDefault(currentUserDocument?.enderecoCompleto, '') != '') && (FFAppState().enderecoTemporario == '')) {
+                                                                            } else if ((valueOrDefault(currentUserDocument?.enderecoCompleto, '') != null && valueOrDefault(currentUserDocument?.enderecoCompleto, '') != '') && (FFAppState().enderecoTemporario == null || FFAppState().enderecoTemporario == '')) {
                                                                               return valueOrDefault(currentUserDocument?.enderecoCompleto, '');
                                                                             } else {
                                                                               return valueOrDefault(currentUserDocument?.enderecoCompleto, '');
@@ -4173,9 +4196,9 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                               Text(
                                                                             functions.freteMaisDe20(functions.frete(
                                                                                 () {
-                                                                              if (FFAppState().enderecoTemporario != '') {
+                                                                              if (FFAppState().enderecoTemporario != null && FFAppState().enderecoTemporario != '') {
                                                                                 return FFAppState().enderecoTemporario;
-                                                                              } else if ((valueOrDefault(currentUserDocument?.enderecoCompleto, '') != '') && (FFAppState().enderecoTemporario == '')) {
+                                                                              } else if ((valueOrDefault(currentUserDocument?.enderecoCompleto, '') != null && valueOrDefault(currentUserDocument?.enderecoCompleto, '') != '') && (FFAppState().enderecoTemporario == null || FFAppState().enderecoTemporario == '')) {
                                                                                 return valueOrDefault(currentUserDocument?.enderecoCompleto, '');
                                                                               } else {
                                                                                 return valueOrDefault(currentUserDocument?.enderecoCompleto, '');
@@ -4269,12 +4292,18 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                               if (functions.freteMaisde20Boolean(functions.frete(
                                                                       () {
                                                                     if (FFAppState().enderecoTemporario !=
+                                                                            null &&
+                                                                        FFAppState().enderecoTemporario !=
                                                                             '') {
                                                                       return FFAppState()
                                                                           .enderecoTemporario;
                                                                     } else if ((valueOrDefault(currentUserDocument?.enderecoCompleto, '') !=
+                                                                                null &&
+                                                                            valueOrDefault(currentUserDocument?.enderecoCompleto, '') !=
                                                                                 '') &&
                                                                         (FFAppState().enderecoTemporario ==
+                                                                                null ||
+                                                                            FFAppState().enderecoTemporario ==
                                                                                 '')) {
                                                                       return valueOrDefault(
                                                                           currentUserDocument
@@ -4357,12 +4386,18 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                               if (functions.freteMaisde20Boolean(functions.frete(
                                                                       () {
                                                                     if (FFAppState().enderecoTemporario !=
+                                                                            null &&
+                                                                        FFAppState().enderecoTemporario !=
                                                                             '') {
                                                                       return FFAppState()
                                                                           .enderecoTemporario;
                                                                     } else if ((valueOrDefault(currentUserDocument?.enderecoCompleto, '') !=
+                                                                                null &&
+                                                                            valueOrDefault(currentUserDocument?.enderecoCompleto, '') !=
                                                                                 '') &&
                                                                         (FFAppState().enderecoTemporario ==
+                                                                                null ||
+                                                                            FFAppState().enderecoTemporario ==
                                                                                 '')) {
                                                                       return valueOrDefault(
                                                                           currentUserDocument
@@ -5385,13 +5420,13 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                               false;
                                                                           safeSetState(
                                                                               () {});
-                                                                          if ((currentUserDocument?.vistoRecente.toList() ?? []).length ==
+                                                                          if ((currentUserDocument?.vistoRecente?.toList() ?? []).length ==
                                                                               6) {
                                                                             await currentUserReference!.update({
                                                                               ...mapToFirestore(
                                                                                 {
                                                                                   'vistoRecente': FieldValue.arrayRemove([
-                                                                                    (currentUserDocument?.vistoRecente.toList() ?? []).firstOrNull
+                                                                                    (currentUserDocument?.vistoRecente?.toList() ?? []).firstOrNull
                                                                                   ]),
                                                                                 },
                                                                               ),
@@ -5467,7 +5502,7 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                                               alignment: Alignment(0.0, -1.0),
                                                                                             ),
                                                                                           ),
-                                                                                          if (containerProdutoRecord.video != '')
+                                                                                          if (containerProdutoRecord.video != null && containerProdutoRecord.video != '')
                                                                                             Align(
                                                                                               alignment: AlignmentDirectional(-1.0, 1.0),
                                                                                               child: Padding(
@@ -5487,7 +5522,7 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                             ),
-                                                                                          if (containerProdutoRecord.capsula1 != '')
+                                                                                          if (containerProdutoRecord.capsula1 != null && containerProdutoRecord.capsula1 != '')
                                                                                             Align(
                                                                                               alignment: AlignmentDirectional(1.0, 1.0),
                                                                                               child: Padding(
@@ -5532,7 +5567,7 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                                                             ),
                                                                                                           ),
                                                                                                         ),
-                                                                                                        if (containerProdutoRecord.capsula2 != '')
+                                                                                                        if (containerProdutoRecord.capsula2 != null && containerProdutoRecord.capsula2 != '')
                                                                                                           Padding(
                                                                                                             padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                                             child: Container(
@@ -5559,7 +5594,7 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                                                               ),
                                                                                                             ),
                                                                                                           ),
-                                                                                                        if (containerProdutoRecord.capsula3 != '')
+                                                                                                        if (containerProdutoRecord.capsula3 != null && containerProdutoRecord.capsula3 != '')
                                                                                                           Padding(
                                                                                                             padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                                             child: Container(
@@ -5586,7 +5621,7 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                                                               ),
                                                                                                             ),
                                                                                                           ),
-                                                                                                        if (containerProdutoRecord.capsulaExtra != '')
+                                                                                                        if (containerProdutoRecord.capsulaExtra != null && containerProdutoRecord.capsulaExtra != '')
                                                                                                           Padding(
                                                                                                             padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
                                                                                                             child: Text(
@@ -5627,40 +5662,41 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                                           Row(
                                                                                             mainAxisSize: MainAxisSize.max,
                                                                                             children: [
-                                                                                              Align(
-                                                                                                alignment: AlignmentDirectional(0.0, 1.0),
-                                                                                                child: Padding(
-                                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 3.0, 0.0),
-                                                                                                  child: Container(
-                                                                                                    width: 29.0,
-                                                                                                    height: 16.0,
-                                                                                                    decoration: BoxDecoration(
-                                                                                                      borderRadius: BorderRadius.circular(4.0),
-                                                                                                      border: Border.all(
-                                                                                                        color: FlutterFlowTheme.of(context).primary,
-                                                                                                        width: 0.7,
+                                                                                              if (containerProdutoRecord.precoAntes != null)
+                                                                                                Align(
+                                                                                                  alignment: AlignmentDirectional(0.0, 1.0),
+                                                                                                  child: Padding(
+                                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 3.0, 0.0),
+                                                                                                    child: Container(
+                                                                                                      width: 29.0,
+                                                                                                      height: 16.0,
+                                                                                                      decoration: BoxDecoration(
+                                                                                                        borderRadius: BorderRadius.circular(4.0),
+                                                                                                        border: Border.all(
+                                                                                                          color: FlutterFlowTheme.of(context).primary,
+                                                                                                          width: 0.7,
+                                                                                                        ),
                                                                                                       ),
-                                                                                                    ),
-                                                                                                    child: Align(
-                                                                                                      alignment: AlignmentDirectional(0.0, 0.0),
-                                                                                                      child: Text(
-                                                                                                        functions.porcentagemPromo(containerProdutoRecord.precoAntes, containerProdutoRecord.titulo1 != '' ? containerProdutoRecord.menorPrecoRevenda : containerProdutoRecord.preco),
-                                                                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                              font: GoogleFonts.inter(
+                                                                                                      child: Align(
+                                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                                        child: Text(
+                                                                                                          functions.porcentagemPromo(containerProdutoRecord.precoAntes, containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? containerProdutoRecord.menorPrecoRevenda : containerProdutoRecord.preco),
+                                                                                                          style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                                font: GoogleFonts.inter(
+                                                                                                                  fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                                                ),
+                                                                                                                color: FlutterFlowTheme.of(context).primary,
+                                                                                                                fontSize: 10.0,
+                                                                                                                letterSpacing: 0.0,
                                                                                                                 fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                                                                 fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                                               ),
-                                                                                                              color: FlutterFlowTheme.of(context).primary,
-                                                                                                              fontSize: 10.0,
-                                                                                                              letterSpacing: 0.0,
-                                                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                                            ),
+                                                                                                        ),
                                                                                                       ),
                                                                                                     ),
                                                                                                   ),
                                                                                                 ),
-                                                                                              ),
                                                                                               SelectionArea(
                                                                                                   child: Text(
                                                                                                 containerProdutoRecord.nome.maybeHandleOverflow(
@@ -5826,7 +5862,7 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                                                       ),
                                                                                                 ),
                                                                                                 Text(
-                                                                                                  containerProdutoRecord.titulo1 != '' ? functions.valorRealString(containerProdutoRecord.menorPrecoRevenda) : functions.valorRealString(containerProdutoRecord.preco),
+                                                                                                  containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? functions.valorRealString(containerProdutoRecord.menorPrecoRevenda) : functions.valorRealString(containerProdutoRecord.preco),
                                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                         font: GoogleFonts.inter(
                                                                                                           fontWeight: FontWeight.w600,
@@ -5840,7 +5876,7 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                                                       ),
                                                                                                 ),
                                                                                                 Text(
-                                                                                                  containerProdutoRecord.titulo1 != '' ? functions.valorCentavosEmString(containerProdutoRecord.menorPrecoRevenda) : functions.valorCentavosEmString(containerProdutoRecord.preco),
+                                                                                                  containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? functions.valorCentavosEmString(containerProdutoRecord.menorPrecoRevenda) : functions.valorCentavosEmString(containerProdutoRecord.preco),
                                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                         font: GoogleFonts.inter(
                                                                                                           fontWeight: FontWeight.w600,
@@ -6116,7 +6152,9 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                 if ((FFAppState().FeedAntes !=
                                                         FFAppState()
                                                             .FeedDepois) ||
-                                                    (FFAppState()
+                                                    (FFAppState().FeedAntes ==
+                                                            null ||
+                                                        FFAppState()
                                                                 .FeedAntes ==
                                                             ''))
                                                   Padding(
@@ -6143,22 +6181,22 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                     .toList(),
                                                                 (currentUserDocument
                                                                             ?.favorito
-                                                                            .toList() ??
+                                                                            ?.toList() ??
                                                                         [])
                                                                     .toList(),
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            .toList() ??
+                                                                            ?.toList() ??
                                                                         [])
                                                                     .toList(),
                                                                 (currentUserDocument
                                                                             ?.vistoRecente
-                                                                            .toList() ??
+                                                                            ?.toList() ??
                                                                         [])
                                                                     .toList(),
                                                                 (currentUserDocument
                                                                             ?.comprasHistoricoProdutos
-                                                                            .toList() ??
+                                                                            ?.toList() ??
                                                                         [])
                                                                     .toList(),
                                                                 FFAppState()
@@ -6179,22 +6217,22 @@ class _PaginaProdutoPCWidgetState extends State<PaginaProdutoPCWidget> {
                                                                     .toList(),
                                                                 (currentUserDocument
                                                                             ?.favorito
-                                                                            .toList() ??
+                                                                            ?.toList() ??
                                                                         [])
                                                                     .toList(),
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            .toList() ??
+                                                                            ?.toList() ??
                                                                         [])
                                                                     .toList(),
                                                                 (currentUserDocument
                                                                             ?.vistoRecente
-                                                                            .toList() ??
+                                                                            ?.toList() ??
                                                                         [])
                                                                     .toList(),
                                                                 (currentUserDocument
                                                                             ?.comprasHistoricoProdutos
-                                                                            .toList() ??
+                                                                            ?.toList() ??
                                                                         [])
                                                                     .toList(),
                                                                 FFAppState()

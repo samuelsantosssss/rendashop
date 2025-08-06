@@ -4,10 +4,16 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -125,7 +131,7 @@ class _LoginAfiliadoCardTemGoogleWidgetState
                     padding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 50.0, 0.0, 0.0),
                     child: StreamBuilder<UserRecord>(
-                      stream: UserRecord.getDocument(widget.userRef!),
+                      stream: UserRecord.getDocument(widget!.userRef!),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
                         if (!snapshot.hasData) {
@@ -372,6 +378,11 @@ class _LoginAfiliadoCardTemGoogleWidgetState
                                 FFAppState().FezLoginPeloAfiliado = true;
                                 safeSetState(() {});
                                 if (valueOrDefault(
+                                            currentUserDocument
+                                                ?.enderecoCompleto,
+                                            '') !=
+                                        null &&
+                                    valueOrDefault(
                                             currentUserDocument
                                                 ?.enderecoCompleto,
                                             '') !=

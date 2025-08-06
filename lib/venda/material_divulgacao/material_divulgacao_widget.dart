@@ -5,11 +5,14 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'dart:math' as math;
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -60,7 +63,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
     context.watch<FFAppState>();
 
     return StreamBuilder<ProdutoAfiliadoRecord>(
-      stream: ProdutoAfiliadoRecord.getDocument(widget.afiliadoref!),
+      stream: ProdutoAfiliadoRecord.getDocument(widget!.afiliadoref!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -190,7 +193,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                           child: Builder(
                             builder: (context) {
                               final banner = containerBannerRecord?.listaBanner
-                                      .toList() ??
+                                      ?.toList() ??
                                   [];
 
                               return Container(
@@ -276,6 +279,9 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                             (FFAppState().midiaFiltroAfiliado ==
                                                         'imagem') ||
                                                     (FFAppState()
+                                                                .midiaFiltroAfiliado ==
+                                                            null ||
+                                                        FFAppState()
                                                                 .midiaFiltroAfiliado ==
                                                             '')
                                                 ? 'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/Ainda%20n%C3%A3o%20Existem%20Pedidos%20(2)sdfsf.png?alt=media&token=7abc428d-2f53-4117-b78e-75fc9ac15401'
@@ -2490,7 +2496,8 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                         ),
                       ),
                     if ((FFAppState().midiaFiltroAfiliado == 'imagem') ||
-                        (FFAppState().midiaFiltroAfiliado == ''))
+                        (FFAppState().midiaFiltroAfiliado == null ||
+                            FFAppState().midiaFiltroAfiliado == ''))
                       Container(
                         width: double.infinity,
                         decoration: BoxDecoration(),
@@ -2992,7 +2999,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                                       queryParameters: {
                                                         'afiliadoref':
                                                             serializeParam(
-                                                          widget.afiliadoref,
+                                                          widget!.afiliadoref,
                                                           ParamType
                                                               .DocumentReference,
                                                         ),
@@ -3990,7 +3997,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                             CompatilharCodigoWidget.routeName,
                                             queryParameters: {
                                               'afiliadoref': serializeParam(
-                                                widget.afiliadoref,
+                                                widget!.afiliadoref,
                                                 ParamType.DocumentReference,
                                               ),
                                             }.withoutNulls,
@@ -4635,7 +4642,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                               CompatilharCodigoWidget.routeName,
                                               queryParameters: {
                                                 'afiliadoref': serializeParam(
-                                                  widget.afiliadoref,
+                                                  widget!.afiliadoref,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -4938,7 +4945,8 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                                                     text: functions.porcentagemPromo2(
                                                                         columnProdutoRecord
                                                                             .precoAntes,
-                                                                        columnProdutoRecord.titulo1 != ''
+                                                                        columnProdutoRecord.titulo1 != null &&
+                                                                                columnProdutoRecord.titulo1 != ''
                                                                             ? columnProdutoRecord.menorPrecoRevenda
                                                                             : columnProdutoRecord.preco),
                                                                     style:
@@ -5023,7 +5031,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                             CompatilharCodigoWidget.routeName,
                                             queryParameters: {
                                               'afiliadoref': serializeParam(
-                                                widget.afiliadoref,
+                                                widget!.afiliadoref,
                                                 ParamType.DocumentReference,
                                               ),
                                             }.withoutNulls,
@@ -5352,6 +5360,8 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                                                     columnProdutoRecord
                                                                         .precoAntes,
                                                                     columnProdutoRecord.titulo1 !=
+                                                                                null &&
+                                                                            columnProdutoRecord.titulo1 !=
                                                                                 ''
                                                                         ? columnProdutoRecord
                                                                             .menorPrecoRevenda
@@ -5452,7 +5462,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                               CompatilharCodigoWidget.routeName,
                                               queryParameters: {
                                                 'afiliadoref': serializeParam(
-                                                  widget.afiliadoref,
+                                                  widget!.afiliadoref,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -5836,7 +5846,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                             CompatilharCodigoWidget.routeName,
                                             queryParameters: {
                                               'afiliadoref': serializeParam(
-                                                widget.afiliadoref,
+                                                widget!.afiliadoref,
                                                 ParamType.DocumentReference,
                                               ),
                                             }.withoutNulls,
@@ -6269,7 +6279,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                               CompatilharCodigoWidget.routeName,
                                               queryParameters: {
                                                 'afiliadoref': serializeParam(
-                                                  widget.afiliadoref,
+                                                  widget!.afiliadoref,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -6345,7 +6355,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                             CompatilharCodigoWidget.routeName,
                                             queryParameters: {
                                               'afiliadoref': serializeParam(
-                                                widget.afiliadoref,
+                                                widget!.afiliadoref,
                                                 ParamType.DocumentReference,
                                               ),
                                             }.withoutNulls,
@@ -6628,7 +6638,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                               CompatilharCodigoWidget.routeName,
                                               queryParameters: {
                                                 'afiliadoref': serializeParam(
-                                                  widget.afiliadoref,
+                                                  widget!.afiliadoref,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -7252,7 +7262,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                             CompatilharCodigoWidget.routeName,
                                             queryParameters: {
                                               'afiliadoref': serializeParam(
-                                                widget.afiliadoref,
+                                                widget!.afiliadoref,
                                                 ParamType.DocumentReference,
                                               ),
                                             }.withoutNulls,
@@ -7608,7 +7618,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                               CompatilharCodigoWidget.routeName,
                                               queryParameters: {
                                                 'afiliadoref': serializeParam(
-                                                  widget.afiliadoref,
+                                                  widget!.afiliadoref,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -7796,7 +7806,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                             CompatilharCodigoWidget.routeName,
                                             queryParameters: {
                                               'afiliadoref': serializeParam(
-                                                widget.afiliadoref,
+                                                widget!.afiliadoref,
                                                 ParamType.DocumentReference,
                                               ),
                                             }.withoutNulls,
@@ -7980,7 +7990,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                               CompatilharCodigoWidget.routeName,
                                               queryParameters: {
                                                 'afiliadoref': serializeParam(
-                                                  widget.afiliadoref,
+                                                  widget!.afiliadoref,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -8287,7 +8297,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                             CompatilharCodigoWidget.routeName,
                                             queryParameters: {
                                               'afiliadoref': serializeParam(
-                                                widget.afiliadoref,
+                                                widget!.afiliadoref,
                                                 ParamType.DocumentReference,
                                               ),
                                             }.withoutNulls,
@@ -8537,7 +8547,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                               CompatilharCodigoWidget.routeName,
                                               queryParameters: {
                                                 'afiliadoref': serializeParam(
-                                                  widget.afiliadoref,
+                                                  widget!.afiliadoref,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -8856,7 +8866,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                             CompatilharCodigoWidget.routeName,
                                             queryParameters: {
                                               'afiliadoref': serializeParam(
-                                                widget.afiliadoref,
+                                                widget!.afiliadoref,
                                                 ParamType.DocumentReference,
                                               ),
                                             }.withoutNulls,
@@ -9130,7 +9140,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                               CompatilharCodigoWidget.routeName,
                                               queryParameters: {
                                                 'afiliadoref': serializeParam(
-                                                  widget.afiliadoref,
+                                                  widget!.afiliadoref,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -9410,7 +9420,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                             CompatilharCodigoWidget.routeName,
                                             queryParameters: {
                                               'afiliadoref': serializeParam(
-                                                widget.afiliadoref,
+                                                widget!.afiliadoref,
                                                 ParamType.DocumentReference,
                                               ),
                                             }.withoutNulls,
@@ -10028,7 +10038,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                               CompatilharCodigoWidget.routeName,
                                               queryParameters: {
                                                 'afiliadoref': serializeParam(
-                                                  widget.afiliadoref,
+                                                  widget!.afiliadoref,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -10423,7 +10433,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                             CompatilharCodigoWidget.routeName,
                                             queryParameters: {
                                               'afiliadoref': serializeParam(
-                                                widget.afiliadoref,
+                                                widget!.afiliadoref,
                                                 ParamType.DocumentReference,
                                               ),
                                             }.withoutNulls,
@@ -10645,7 +10655,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                               CompatilharCodigoWidget.routeName,
                                               queryParameters: {
                                                 'afiliadoref': serializeParam(
-                                                  widget.afiliadoref,
+                                                  widget!.afiliadoref,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -10910,7 +10920,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                             CompatilharCodigoWidget.routeName,
                                             queryParameters: {
                                               'afiliadoref': serializeParam(
-                                                widget.afiliadoref,
+                                                widget!.afiliadoref,
                                                 ParamType.DocumentReference,
                                               ),
                                             }.withoutNulls,
@@ -11278,7 +11288,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                               CompatilharCodigoWidget.routeName,
                                               queryParameters: {
                                                 'afiliadoref': serializeParam(
-                                                  widget.afiliadoref,
+                                                  widget!.afiliadoref,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -11598,7 +11608,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                             CompatilharCodigoWidget.routeName,
                                             queryParameters: {
                                               'afiliadoref': serializeParam(
-                                                widget.afiliadoref,
+                                                widget!.afiliadoref,
                                                 ParamType.DocumentReference,
                                               ),
                                             }.withoutNulls,
@@ -11782,7 +11792,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                               CompatilharCodigoWidget.routeName,
                                               queryParameters: {
                                                 'afiliadoref': serializeParam(
-                                                  widget.afiliadoref,
+                                                  widget!.afiliadoref,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -12455,7 +12465,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                                   queryParameters: {
                                                     'afiliadoref':
                                                         serializeParam(
-                                                      widget.afiliadoref,
+                                                      widget!.afiliadoref,
                                                       ParamType
                                                           .DocumentReference,
                                                     ),
@@ -13176,7 +13186,7 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                                                               ),
                                                                             ),
                                                                             TextSpan(
-                                                                              text: functions.porcentagemPromo2(columnProdutoRecord.precoAntes, columnProdutoRecord.titulo1 != '' ? columnProdutoRecord.menorPrecoRevenda : columnProdutoRecord.preco),
+                                                                              text: functions.porcentagemPromo2(columnProdutoRecord.precoAntes, columnProdutoRecord.titulo1 != null && columnProdutoRecord.titulo1 != '' ? columnProdutoRecord.menorPrecoRevenda : columnProdutoRecord.preco),
                                                                               style: TextStyle(
                                                                                 fontWeight: FontWeight.bold,
                                                                                 fontSize: 15.0,
@@ -13236,7 +13246,8 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            if ((columnProdutoRecord.video != '') &&
+                            if ((columnProdutoRecord.video != null &&
+                                    columnProdutoRecord.video != '') &&
                                 responsiveVisibility(
                                   context: context,
                                   phone: false,
@@ -13325,7 +13336,8 @@ class _MaterialDivulgacaoWidgetState extends State<MaterialDivulgacaoWidget> {
                                   ),
                                 ),
                               ),
-                            if ((columnProdutoRecord.video != '') &&
+                            if ((columnProdutoRecord.video != null &&
+                                    columnProdutoRecord.video != '') &&
                                 responsiveVisibility(
                                   context: context,
                                   phone: false,

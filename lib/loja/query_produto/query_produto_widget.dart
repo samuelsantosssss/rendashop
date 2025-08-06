@@ -1,8 +1,12 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'query_produto_model.dart';
 export 'query_produto_model.dart';
 
@@ -46,7 +50,7 @@ class _QueryProdutoWidgetState extends State<QueryProdutoWidget> {
   Widget build(BuildContext context) {
     return StreamBuilder<List<VarianteRecord>>(
       stream: queryVarianteRecord(
-        parent: widget.produtoRef,
+        parent: widget!.produtoRef,
         singleRecord: true,
       ),
       builder: (context, snapshot) {

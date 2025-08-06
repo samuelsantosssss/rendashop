@@ -4,9 +4,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:provider/provider.dart';
 import 'mudar_telefone_model.dart';
 export 'mudar_telefone_model.dart';
 
@@ -222,7 +226,8 @@ class _MudarTelefoneWidgetState extends State<MudarTelefoneWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(30.0, 20.0, 30.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if (_model.textController.text != '') {
+                    if (_model.textController.text != null &&
+                        _model.textController.text != '') {
                       await currentUserReference!.update(createUserRecordData(
                         phoneNumber: _model.textController.text,
                       ));
@@ -238,7 +243,8 @@ class _MudarTelefoneWidgetState extends State<MudarTelefoneWidget> {
                     iconPadding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: valueOrDefault<Color>(
-                      _model.textController.text != ''
+                      _model.textController.text != null &&
+                              _model.textController.text != ''
                           ? FlutterFlowTheme.of(context).primary
                           : Color(0xFFB2B2B2),
                       Color(0xFFB2B2B2),
@@ -251,7 +257,8 @@ class _MudarTelefoneWidgetState extends State<MudarTelefoneWidget> {
                                 .fontStyle,
                           ),
                           color: valueOrDefault<Color>(
-                            _model.textController.text != ''
+                            _model.textController.text != null &&
+                                    _model.textController.text != ''
                                 ? FlutterFlowTheme.of(context)
                                     .secondaryBackground
                                 : Color(0xFF727272),

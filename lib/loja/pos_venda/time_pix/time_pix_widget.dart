@@ -1,11 +1,14 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'time_pix_model.dart';
 export 'time_pix_model.dart';
 
@@ -53,7 +56,7 @@ class _TimePixWidgetState extends State<TimePixWidget> {
   @override
   Widget build(BuildContext context) {
     return FlutterFlowTimer(
-      initialTime: functions.timePix(widget.data!),
+      initialTime: functions.timePix(widget!.data!),
       getDisplayTime: (value) =>
           StopWatchTimer.getDisplayTime(value, milliSecond: false),
       controller: _model.timerController,

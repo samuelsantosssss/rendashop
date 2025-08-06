@@ -1,9 +1,13 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/loja_marktiplace/atualizar_produto/atualizar_foto_variente/atualizar_foto_variente_widget.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -73,7 +77,7 @@ class _EditarVarianteWidgetState extends State<EditarVarianteWidget> {
         child: Align(
           alignment: AlignmentDirectional(0.0, 0.0),
           child: StreamBuilder<VarianteRecord>(
-            stream: VarianteRecord.getDocument(widget.varianteRef!),
+            stream: VarianteRecord.getDocument(widget!.varianteRef!),
             builder: (context, snapshot) {
               // Customize what your widget looks like when it's loading.
               if (!snapshot.hasData) {
@@ -97,7 +101,7 @@ class _EditarVarianteWidgetState extends State<EditarVarianteWidget> {
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                 ),
                 child: StreamBuilder<ProdutoRecord>(
-                  stream: ProdutoRecord.getDocument(widget.produtoRef!),
+                  stream: ProdutoRecord.getDocument(widget!.produtoRef!),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {
@@ -121,7 +125,8 @@ class _EditarVarianteWidgetState extends State<EditarVarianteWidget> {
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            if (opcao1VarianteRecord.foto != '')
+                            if (opcao1VarianteRecord.foto != null &&
+                                opcao1VarianteRecord.foto != '')
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 10.0, 0.0, 0.0),
@@ -141,7 +146,7 @@ class _EditarVarianteWidgetState extends State<EditarVarianteWidget> {
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
                                           child: AtualizarFotoVarienteWidget(
-                                            produtoRef: widget.produtoRef!,
+                                            produtoRef: widget!.produtoRef!,
                                             varianteRef:
                                                 opcao1VarianteRecord.reference,
                                           ),
@@ -155,10 +160,15 @@ class _EditarVarianteWidgetState extends State<EditarVarianteWidget> {
                                       valueOrDefault<String>(
                                         () {
                                           if (FFAppState().imgUpdateVariante !=
+                                                  null &&
+                                              FFAppState().imgUpdateVariante !=
                                                   '') {
                                             return FFAppState()
                                                 .imgUpdateVariante;
-                                          } else if (FFAppState().imgUpdateVariante2 !=
+                                          } else if (FFAppState()
+                                                      .imgUpdateVariante2 !=
+                                                  null &&
+                                              FFAppState().imgUpdateVariante2 !=
                                                   '') {
                                             return FFAppState()
                                                 .imgUpdateVariante2;
@@ -182,7 +192,7 @@ class _EditarVarianteWidgetState extends State<EditarVarianteWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   10.0, 10.0, 0.0, 0.0),
                               child: Text(
-                                '${opcao1VarianteRecord.opcaoTitulo1}${opcao1VarianteRecord.opcaoTitulo2 != '' ? ', ' : ''}${opcao1VarianteRecord.opcaoTitulo2 != '' ? opcao1VarianteRecord.opcaoTitulo2 : ''}',
+                                '${opcao1VarianteRecord.opcaoTitulo1}${opcao1VarianteRecord.opcaoTitulo2 != null && opcao1VarianteRecord.opcaoTitulo2 != '' ? ', ' : ''}${opcao1VarianteRecord.opcaoTitulo2 != null && opcao1VarianteRecord.opcaoTitulo2 != '' ? opcao1VarianteRecord.opcaoTitulo2 : ''}',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -725,7 +735,7 @@ class _EditarVarianteWidgetState extends State<EditarVarianteWidget> {
                             onPressed: () async {
                               var _shouldSetState = false;
 
-                              await widget.varianteRef!
+                              await widget!.varianteRef!
                                   .update(createVarianteRecordData(
                                 estoque: int.tryParse(
                                     _model.estoque12TextController.text),
@@ -734,18 +744,19 @@ class _EditarVarianteWidgetState extends State<EditarVarianteWidget> {
                               ));
                               _model.listVariante2 =
                                   await queryVarianteRecordOnce(
-                                parent: widget.produtoRef,
+                                parent: widget!.produtoRef,
                               );
                               _shouldSetState = true;
 
-                              await widget.produtoRef!
+                              await widget!.produtoRef!
                                   .update(createProdutoRecordData(
                                 menorPrecoRevenda: functions.menorValorVatiente(
                                     _model.listVariante2!.toList()),
                                 ultimaAtualizacao: getCurrentTimestamp,
                               ));
-                              if (FFAppState().imgUpdateVariante != '') {
-                                await widget.produtoRef!.update({
+                              if (FFAppState().imgUpdateVariante != null &&
+                                  FFAppState().imgUpdateVariante != '') {
+                                await widget!.produtoRef!.update({
                                   ...mapToFirestore(
                                     {
                                       'imagens': FieldValue.arrayUnion(
@@ -755,7 +766,7 @@ class _EditarVarianteWidgetState extends State<EditarVarianteWidget> {
                                 });
                                 _model.respostaQuery =
                                     await queryVarianteRecordOnce(
-                                  parent: widget.produtoRef,
+                                  parent: widget!.produtoRef,
                                   queryBuilder: (varianteRecord) =>
                                       varianteRecord.where(
                                     'foto',
@@ -764,7 +775,7 @@ class _EditarVarianteWidgetState extends State<EditarVarianteWidget> {
                                 );
                                 _shouldSetState = true;
                                 if (_model.respostaQuery!.length >= 2) {
-                                  await widget.produtoRef!.update({
+                                  await widget!.produtoRef!.update({
                                     ...mapToFirestore(
                                       {
                                         'variante_imgList':
@@ -786,7 +797,7 @@ class _EditarVarianteWidgetState extends State<EditarVarianteWidget> {
                                   if (_shouldSetState) safeSetState(() {});
                                   return;
                                 } else {
-                                  await widget.produtoRef!.update({
+                                  await widget!.produtoRef!.update({
                                     ...mapToFirestore(
                                       {
                                         'variante_imgList':
@@ -822,10 +833,11 @@ class _EditarVarianteWidgetState extends State<EditarVarianteWidget> {
                                   return;
                                 }
                               } else {
-                                if (FFAppState().imgUpdateVariante2 != '') {
+                                if (FFAppState().imgUpdateVariante2 != null &&
+                                    FFAppState().imgUpdateVariante2 != '') {
                                   _model.respostaQuery2 =
                                       await queryVarianteRecordOnce(
-                                    parent: widget.produtoRef,
+                                    parent: widget!.produtoRef,
                                     queryBuilder: (varianteRecord) =>
                                         varianteRecord.where(
                                       'foto',
@@ -834,7 +846,7 @@ class _EditarVarianteWidgetState extends State<EditarVarianteWidget> {
                                   );
                                   _shouldSetState = true;
                                   if (_model.respostaQuery2!.length >= 2) {
-                                    await widget.produtoRef!.update({
+                                    await widget!.produtoRef!.update({
                                       ...mapToFirestore(
                                         {
                                           'variante_imgList':

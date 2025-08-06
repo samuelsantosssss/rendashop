@@ -2,6 +2,8 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -185,7 +187,8 @@ class _CadastrarCategoriaWidgetState extends State<CadastrarCategoriaWidget> {
                             ),
                           ),
                         ),
-                        if (FFAppState().lider1 != '')
+                        if (FFAppState().lider1 != null &&
+                            FFAppState().lider1 != '')
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 10.0, 0.0),
@@ -261,7 +264,8 @@ class _CadastrarCategoriaWidgetState extends State<CadastrarCategoriaWidget> {
                               ),
                             ),
                           ),
-                        if (FFAppState().lider2 != '')
+                        if (FFAppState().lider2 != null &&
+                            FFAppState().lider2 != '')
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 10.0, 0.0),
@@ -337,7 +341,8 @@ class _CadastrarCategoriaWidgetState extends State<CadastrarCategoriaWidget> {
                               ),
                             ),
                           ),
-                        if (FFAppState().lider3 != '')
+                        if (FFAppState().lider3 != null &&
+                            FFAppState().lider3 != '')
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 10.0, 0.0),
@@ -424,7 +429,8 @@ class _CadastrarCategoriaWidgetState extends State<CadastrarCategoriaWidget> {
                     color: Color(0x5ECBCDCE),
                   ),
                 ),
-                if ((FFAppState().lider1 == '') ||
+                if ((FFAppState().lider1 == null ||
+                        FFAppState().lider1 == '') ||
                     FFAppState().selecionardoLider1)
                   Align(
                     alignment: AlignmentDirectional(0.0, -1.0),
@@ -473,7 +479,7 @@ class _CadastrarCategoriaWidgetState extends State<CadastrarCategoriaWidget> {
                               builder: (context) {
                                 final lider1 = lider1CategoriaProdutoRecord
                                         ?.listDoLider
-                                        .toList() ??
+                                        ?.toList() ??
                                     [];
 
                                 return SingleChildScrollView(
@@ -591,7 +597,8 @@ class _CadastrarCategoriaWidgetState extends State<CadastrarCategoriaWidget> {
                       },
                     ),
                   ),
-                if ((FFAppState().lider1 != '') &&
+                if ((FFAppState().lider1 != null &&
+                        FFAppState().lider1 != '') &&
                     FFAppState().selecionardoLider2)
                   Align(
                     alignment: AlignmentDirectional(0.0, -1.0),
@@ -645,7 +652,7 @@ class _CadastrarCategoriaWidgetState extends State<CadastrarCategoriaWidget> {
                               builder: (context) {
                                 final lider2 = lider2CategoriaProdutoRecord
                                         ?.listDoLider
-                                        .toList() ??
+                                        ?.toList() ??
                                     [];
 
                                 return SingleChildScrollView(
@@ -784,7 +791,8 @@ class _CadastrarCategoriaWidgetState extends State<CadastrarCategoriaWidget> {
                       },
                     ),
                   ),
-                if ((FFAppState().lider2 != '') &&
+                if ((FFAppState().lider2 != null &&
+                        FFAppState().lider2 != '') &&
                     FFAppState().selecionardoLider3)
                   Align(
                     alignment: AlignmentDirectional(0.0, -1.0),
@@ -838,7 +846,7 @@ class _CadastrarCategoriaWidgetState extends State<CadastrarCategoriaWidget> {
                               builder: (context) {
                                 final lider3 = lider3CategoriaProdutoRecord
                                         ?.listDoLider
-                                        .toList() ??
+                                        ?.toList() ??
                                     [];
 
                                 return SingleChildScrollView(
@@ -974,7 +982,8 @@ class _CadastrarCategoriaWidgetState extends State<CadastrarCategoriaWidget> {
                       },
                     ),
                   ),
-                if ((FFAppState().lider3 != '') &&
+                if ((FFAppState().lider3 != null &&
+                        FFAppState().lider3 != '') &&
                     FFAppState().selecionardoLider4)
                   Align(
                     alignment: AlignmentDirectional(0.0, -1.0),
@@ -1028,7 +1037,7 @@ class _CadastrarCategoriaWidgetState extends State<CadastrarCategoriaWidget> {
                               builder: (context) {
                                 final lider4 = lider4CategoriaProdutoRecord
                                         ?.listDoLider
-                                        .toList() ??
+                                        ?.toList() ??
                                     [];
 
                                 return SingleChildScrollView(

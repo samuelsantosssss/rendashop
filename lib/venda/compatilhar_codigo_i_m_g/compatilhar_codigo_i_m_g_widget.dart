@@ -1,8 +1,13 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/venda/midia_dowload_i_m_g/midia_dowload_i_m_g_widget.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'compatilhar_codigo_i_m_g_model.dart';
 export 'compatilhar_codigo_i_m_g_model.dart';
 
@@ -78,7 +83,7 @@ class _CompatilharCodigoIMGWidgetState
             width: MediaQuery.sizeOf(context).width * 1.0,
             height: MediaQuery.sizeOf(context).height * 1.0,
             screenshotFFpage: () => MidiaDowloadIMGWidget(
-              imgRef: widget.imgRef!,
+              imgRef: widget!.imgRef!,
             ),
           ),
         ),

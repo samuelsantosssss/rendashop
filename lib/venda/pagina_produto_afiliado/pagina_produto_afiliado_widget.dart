@@ -1,3 +1,4 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/carregando/caregando2/caregando2_widget.dart';
@@ -10,6 +11,7 @@ import '/flutter_flow/flutter_flow_media_display.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/loja/addto_card/addto_card_widget.dart';
 import '/loja/cartao_feed/cartao_feed_widget.dart';
 import '/loja/frete/frete_widget.dart';
@@ -17,13 +19,17 @@ import '/loja/promocao_relampago/time_promo/time_promo_widget.dart';
 import '/loja/variante/variante_widget.dart';
 import '/venda/atualizar_afiliado_produto/atualizar_afiliado_produto_widget.dart';
 import '/venda/variante_afiliado/variante_afiliado_widget.dart';
+import 'dart:math';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'dart:async';
 import 'dart:math' as math;
 import 'package:badges/badges.dart' as badges;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -550,7 +556,7 @@ class _PaginaProdutoAfiliadoWidgetState
             key: scaffoldKey,
             backgroundColor: Colors.white,
             body: StreamBuilder<ProdutoAfiliadoRecord>(
-              stream: ProdutoAfiliadoRecord.getDocument(widget.produtoRef2!),
+              stream: ProdutoAfiliadoRecord.getDocument(widget!.produtoRef2!),
               builder: (context, snapshot) {
                 // Customize what your widget looks like when it's loading.
                 if (!snapshot.hasData) {
@@ -887,6 +893,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                 children: [
                                                   if (queryProdutProdutoRecord
                                                               .titulo1 ==
+                                                          null ||
+                                                      queryProdutProdutoRecord
+                                                              .titulo1 ==
                                                           '')
                                                     Align(
                                                       alignment:
@@ -1149,6 +1158,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                     ),
                                                   if ((queryProdutProdutoRecord
                                                                   .titulo1 !=
+                                                              null &&
+                                                          queryProdutProdutoRecord
+                                                                  .titulo1 !=
                                                               '') &&
                                                       ((queryProdutProdutoRecord
                                                               .varianteImgList
@@ -1313,7 +1325,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                       child:
                                                                           Text(
                                                                         functions.valorCentavosEmString(functions.valorProdutoAfiliado(
-                                                                            comVarianteFoto2VarianteRecord.reference,
+                                                                            comVarianteFoto2VarianteRecord!.reference,
                                                                             stackProdutoAfiliadoRecord.valorComRef.toList())),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
@@ -1405,7 +1417,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                 0.0),
                                                                             child:
                                                                                 Text(
-                                                                              functions.porcentagemPromo(queryProdutProdutoRecord.precoAntes, comVarianteFoto2VarianteRecord.preco),
+                                                                              functions.porcentagemPromo(queryProdutProdutoRecord.precoAntes, comVarianteFoto2VarianteRecord!.preco),
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     font: GoogleFonts.inter(
                                                                                       fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -1459,13 +1471,13 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                     varianteRecord
                                                                         .where(
                                                                           'opcao_titulo1',
-                                                                          isEqualTo: FFAppState().selecionarVariante1 != ''
+                                                                          isEqualTo: FFAppState().selecionarVariante1 != null && FFAppState().selecionarVariante1 != ''
                                                                               ? FFAppState().selecionarVariante1
                                                                               : queryProdutProdutoRecord.varianteTitulo1List.firstOrNull,
                                                                         )
                                                                         .where(
                                                                           'opcao_titulo2',
-                                                                          isEqualTo: FFAppState().selecionarVariante2 != ''
+                                                                          isEqualTo: FFAppState().selecionarVariante2 != null && FFAppState().selecionarVariante2 != ''
                                                                               ? FFAppState().selecionarVariante2
                                                                               : '',
                                                                         ),
@@ -1595,7 +1607,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                       child:
                                                                           Text(
                                                                         functions.valorCentavosEmString(functions.valorProdutoAfiliado(
-                                                                            comVarianteOpc2VarianteRecord.reference,
+                                                                            comVarianteOpc2VarianteRecord!.reference,
                                                                             stackProdutoAfiliadoRecord.valorComRef.toList())),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
@@ -1687,7 +1699,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                 0.0),
                                                                             child:
                                                                                 Text(
-                                                                              functions.porcentagemPromo(queryProdutProdutoRecord.precoAntes, comVarianteOpc2VarianteRecord.preco),
+                                                                              functions.porcentagemPromo(queryProdutProdutoRecord.precoAntes, comVarianteOpc2VarianteRecord!.preco),
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     font: GoogleFonts.inter(
                                                                                       fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -1712,8 +1724,11 @@ class _PaginaProdutoAfiliadoWidgetState
                                                         ),
                                                       ),
                                                     ),
-                                                  if ((queryProdutProdutoRecord.titulo1 != '') &&
+                                                  if ((queryProdutProdutoRecord.titulo1 != null && queryProdutProdutoRecord.titulo1 != '') &&
                                                       (queryProdutProdutoRecord
+                                                                  .titulo2 ==
+                                                              null ||
+                                                          queryProdutProdutoRecord
                                                                   .titulo2 ==
                                                               '') &&
                                                       ((queryProdutProdutoRecord
@@ -1746,6 +1761,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         .where(
                                                               'opcao_titulo1',
                                                               isEqualTo: FFAppState()
+                                                                              .selecionarVariante1 !=
+                                                                          null &&
+                                                                      FFAppState()
                                                                               .selecionarVariante1 !=
                                                                           ''
                                                                   ? FFAppState()
@@ -1875,7 +1893,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                       child:
                                                                           Text(
                                                                         functions.valorCentavosEmString(functions.valorProdutoAfiliado(
-                                                                            comVarianteOpc1VarianteRecord.reference,
+                                                                            comVarianteOpc1VarianteRecord!.reference,
                                                                             stackProdutoAfiliadoRecord.valorComRef.toList())),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
@@ -1967,7 +1985,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                 0.0),
                                                                             child:
                                                                                 Text(
-                                                                              functions.porcentagemPromo(queryProdutProdutoRecord.precoAntes, comVarianteOpc1VarianteRecord.preco),
+                                                                              functions.porcentagemPromo(queryProdutProdutoRecord.precoAntes, comVarianteOpc1VarianteRecord!.preco),
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     font: GoogleFonts.inter(
                                                                                       fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -1992,8 +2010,11 @@ class _PaginaProdutoAfiliadoWidgetState
                                                         ),
                                                       ),
                                                     ),
-                                                  if ((queryProdutProdutoRecord.titulo1 != '') &&
+                                                  if ((queryProdutProdutoRecord.titulo1 != null && queryProdutProdutoRecord.titulo1 != '') &&
                                                       (queryProdutProdutoRecord
+                                                                  .titulo2 ==
+                                                              null ||
+                                                          queryProdutProdutoRecord
                                                                   .titulo2 ==
                                                               '') &&
                                                       ((queryProdutProdutoRecord
@@ -2001,6 +2022,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                               .isNotEmpty) ==
                                                           true) &&
                                                       (FFAppState()
+                                                                  .selecionarVariante1foto !=
+                                                              null &&
+                                                          FFAppState()
                                                                   .selecionarVariante1foto !=
                                                               ''))
                                                     Align(
@@ -2029,6 +2053,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         .where(
                                                               'foto',
                                                               isEqualTo: FFAppState()
+                                                                              .selecionarVariante1foto !=
+                                                                          null &&
+                                                                      FFAppState()
                                                                               .selecionarVariante1foto !=
                                                                           ''
                                                                   ? FFAppState()
@@ -2158,7 +2185,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                       child:
                                                                           Text(
                                                                         functions.valorCentavosEmString(functions.valorProdutoAfiliado(
-                                                                            comVarianteOpc1fotoVarianteRecord.reference,
+                                                                            comVarianteOpc1fotoVarianteRecord!.reference,
                                                                             stackProdutoAfiliadoRecord.valorComRef.toList())),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
@@ -2250,7 +2277,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                 0.0),
                                                                             child:
                                                                                 Text(
-                                                                              functions.porcentagemPromo(queryProdutProdutoRecord.precoAntes, comVarianteOpc1fotoVarianteRecord.preco),
+                                                                              functions.porcentagemPromo(queryProdutProdutoRecord.precoAntes, comVarianteOpc1fotoVarianteRecord!.preco),
                                                                               style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                     font: GoogleFonts.inter(
                                                                                       fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -2277,23 +2304,43 @@ class _PaginaProdutoAfiliadoWidgetState
                                                     ),
                                                   if (((queryProdutProdutoRecord
                                                                       .titulo1 !=
-                                                                  '') &&
-                                                          (FFAppState()
-                                                                      .selecionarVariante2 ==
-                                                                  '') &&
-                                                          (queryProdutProdutoRecord
-                                                                      .titulo2 !=
-                                                                  '')) ||
-                                                      ((queryProdutProdutoRecord
+                                                                  null &&
+                                                              queryProdutProdutoRecord
                                                                       .titulo1 !=
                                                                   '') &&
                                                           (FFAppState()
                                                                       .selecionarVariante2 ==
+                                                                  null ||
+                                                              FFAppState()
+                                                                      .selecionarVariante2 ==
                                                                   '') &&
-                                                          ((FFAppState()
+                                                          (queryProdutProdutoRecord
+                                                                      .titulo2 !=
+                                                                  null &&
+                                                              queryProdutProdutoRecord
+                                                                      .titulo2 !=
+                                                                  '')) ||
+                                                      ((queryProdutProdutoRecord
+                                                                      .titulo1 !=
+                                                                  null &&
+                                                              queryProdutProdutoRecord
+                                                                      .titulo1 !=
+                                                                  '') &&
+                                                          (FFAppState()
+                                                                      .selecionarVariante2 ==
+                                                                  null ||
+                                                              FFAppState()
+                                                                      .selecionarVariante2 ==
+                                                                  '') &&
+                                                          ((FFAppState().selecionarVariante1foto ==
+                                                                      null ||
+                                                                  FFAppState()
                                                                           .selecionarVariante1foto ==
                                                                       '') &&
                                                               (FFAppState()
+                                                                          .selecionarVariante1 ==
+                                                                      null ||
+                                                                  FFAppState()
                                                                           .selecionarVariante1 ==
                                                                       ''))))
                                                     Align(
@@ -2669,7 +2716,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                       ),
                                                     if ((currentUserDocument
                                                                     ?.favorito
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .contains(
                                                                 queryProdutProdutoRecord
@@ -2718,7 +2765,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                       ),
                                                     if ((currentUserDocument
                                                                     ?.favorito
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .contains(
                                                                 queryProdutProdutoRecord
@@ -2867,6 +2914,8 @@ class _PaginaProdutoAfiliadoWidgetState
                                                               child:
                                                                   CartaoFeedWidget(
                                                                 valor: queryProdutProdutoRecord.titulo1 !=
+                                                                            null &&
+                                                                        queryProdutProdutoRecord.titulo1 !=
                                                                             ''
                                                                     ? queryProdutProdutoRecord
                                                                         .menorPrecoRevenda
@@ -2881,6 +2930,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                     },
                                                     child: Text(
                                                       functions.parcelamentoFeed(queryProdutProdutoRecord
+                                                                      .titulo1 !=
+                                                                  null &&
+                                                              queryProdutProdutoRecord
                                                                       .titulo1 !=
                                                                   ''
                                                           ? queryProdutProdutoRecord
@@ -2960,6 +3012,8 @@ class _PaginaProdutoAfiliadoWidgetState
                                                               child:
                                                                   CartaoFeedWidget(
                                                                 valor: queryProdutProdutoRecord.titulo1 !=
+                                                                            null &&
+                                                                        queryProdutProdutoRecord.titulo1 !=
                                                                             ''
                                                                     ? queryProdutProdutoRecord
                                                                         .menorPrecoRevenda
@@ -3623,7 +3677,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                             ),
                                           ),
                                         ),
-                                      if (queryProdutProdutoRecord.video != '')
+                                      if (queryProdutProdutoRecord.video !=
+                                              null &&
+                                          queryProdutProdutoRecord.video != '')
                                         Align(
                                           alignment:
                                               AlignmentDirectional(-1.0, 1.0),
@@ -3713,7 +3769,8 @@ class _PaginaProdutoAfiliadoWidgetState
                                 if (((queryProdutProdutoRecord
                                             .varianteImgList.isNotEmpty) ==
                                         true) &&
-                                    (queryProdutProdutoRecord.titulo2 != ''))
+                                    (queryProdutProdutoRecord.titulo2 != null &&
+                                        queryProdutProdutoRecord.titulo2 != ''))
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10.0, 10.0, 10.0, 0.0),
@@ -3724,7 +3781,10 @@ class _PaginaProdutoAfiliadoWidgetState
                                         queryBuilder: (varianteRecord) =>
                                             varianteRecord.where(
                                           'foto',
-                                          isEqualTo: FFAppState().selecionarVariante1foto !=
+                                          isEqualTo: FFAppState()
+                                                          .selecionarVariante1foto !=
+                                                      null &&
+                                                  FFAppState().selecionarVariante1foto !=
                                                       ''
                                               ? FFAppState()
                                                   .selecionarVariante1foto
@@ -3772,6 +3832,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                               .isNotEmpty) !=
                                                           null) &&
                                                       (queryProdutProdutoRecord
+                                                                  .titulo2 !=
+                                                              null &&
+                                                          queryProdutProdutoRecord
                                                                   .titulo2 !=
                                                               ''))
                                                     Container(
@@ -3836,7 +3899,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         child:
                                                                             VarianteAfiliadoWidget(
                                                                           produtoRef:
-                                                                              variantes2opcFotoVarianteRecord.produtoRef!,
+                                                                              variantes2opcFotoVarianteRecord!.produtoRef!,
                                                                           afiliadoProdRef:
                                                                               stackProdutoAfiliadoRecord.reference,
                                                                         ),
@@ -3969,7 +4032,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                 () {
                                                                                   if (FFAppState().selecionarVariante1foto == imgListItem) {
                                                                                     return FlutterFlowTheme.of(context).primaryText;
-                                                                                  } else if ((queryProdutProdutoRecord.imagens.firstOrNull == imgListItem) && (FFAppState().selecionarVariante1foto == '')) {
+                                                                                  } else if ((queryProdutProdutoRecord.imagens.firstOrNull == imgListItem) && (FFAppState().selecionarVariante1foto == null || FFAppState().selecionarVariante1foto == '')) {
                                                                                     return FlutterFlowTheme.of(context).primaryText;
                                                                                   } else {
                                                                                     return Color(0x8575787A);
@@ -4133,8 +4196,8 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                             Colors.transparent,
                                                                         onTap:
                                                                             () async {
-                                                                          if ((FFAppState().selecionarVariante1 == '') &&
-                                                                              (FFAppState().selecionarVariante1foto == '')) {
+                                                                          if ((FFAppState().selecionarVariante1 == null || FFAppState().selecionarVariante1 == '') &&
+                                                                              (FFAppState().selecionarVariante1foto == null || FFAppState().selecionarVariante1foto == '')) {
                                                                             await showModalBottomSheet(
                                                                               isScrollControlled: true,
                                                                               backgroundColor: Colors.transparent,
@@ -4150,7 +4213,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                     padding: MediaQuery.viewInsetsOf(context),
                                                                                     child: VarianteAfiliadoWidget(
                                                                                       produtoRef: variantes2opcFotoVarianteRecord!.produtoRef!,
-                                                                                      afiliadoProdRef: widget.produtoRef2!,
+                                                                                      afiliadoProdRef: widget!.produtoRef2!,
                                                                                     ),
                                                                                   ),
                                                                                 );
@@ -4223,7 +4286,8 @@ class _PaginaProdutoAfiliadoWidgetState
                                       },
                                     ),
                                   ),
-                                if ((queryProdutProdutoRecord.titulo2 ==
+                                if ((queryProdutProdutoRecord.titulo2 == null ||
+                                        queryProdutProdutoRecord.titulo2 ==
                                             '') &&
                                     ((queryProdutProdutoRecord
                                             .varianteImgList.isNotEmpty) ==
@@ -4238,7 +4302,10 @@ class _PaginaProdutoAfiliadoWidgetState
                                         queryBuilder: (varianteRecord) =>
                                             varianteRecord.where(
                                           'foto',
-                                          isEqualTo: FFAppState().selecionarVariante1foto !=
+                                          isEqualTo: FFAppState()
+                                                          .selecionarVariante1foto !=
+                                                      null &&
+                                                  FFAppState().selecionarVariante1foto !=
                                                       ''
                                               ? FFAppState()
                                                   .selecionarVariante1foto
@@ -4393,6 +4460,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                   ),
                                                                   if (FFAppState()
                                                                               .selecionarVariante1foto !=
+                                                                          null &&
+                                                                      FFAppState()
+                                                                              .selecionarVariante1foto !=
                                                                           '')
                                                                     Padding(
                                                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -4419,6 +4489,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                       ),
                                                                     ),
                                                                   if (FFAppState()
+                                                                              .selecionarVariante1foto !=
+                                                                          null &&
+                                                                      FFAppState()
                                                                               .selecionarVariante1foto !=
                                                                           '')
                                                                     Icon(
@@ -4542,7 +4615,8 @@ class _PaginaProdutoAfiliadoWidgetState
                                 if (((queryProdutProdutoRecord
                                             .varianteImgList.isNotEmpty) ==
                                         false) &&
-                                    (queryProdutProdutoRecord.titulo2 != ''))
+                                    (queryProdutProdutoRecord.titulo2 != null &&
+                                        queryProdutProdutoRecord.titulo2 != ''))
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10.0, 10.0, 10.0, 0.0),
@@ -4554,6 +4628,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                             varianteRecord.where(
                                           'opcao_titulo1',
                                           isEqualTo: FFAppState()
+                                                          .selecionarVariante1 !=
+                                                      null &&
+                                                  FFAppState()
                                                           .selecionarVariante1 !=
                                                       ''
                                               ? FFAppState().selecionarVariante1
@@ -4868,8 +4945,8 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                             Colors.transparent,
                                                                         onTap:
                                                                             () async {
-                                                                          if ((FFAppState().selecionarVariante1 == '') &&
-                                                                              (FFAppState().selecionarVariante1foto == '')) {
+                                                                          if ((FFAppState().selecionarVariante1 == null || FFAppState().selecionarVariante1 == '') &&
+                                                                              (FFAppState().selecionarVariante1foto == null || FFAppState().selecionarVariante1foto == '')) {
                                                                             await showModalBottomSheet(
                                                                               isScrollControlled: true,
                                                                               backgroundColor: Colors.transparent,
@@ -4957,8 +5034,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                       },
                                     ),
                                   ),
-                                if ((queryProdutProdutoRecord.titulo1 != '') &&
-                                    (queryProdutProdutoRecord.titulo2 ==
+                                if ((queryProdutProdutoRecord.titulo1 != null && queryProdutProdutoRecord.titulo1 != '') &&
+                                    (queryProdutProdutoRecord.titulo2 == null ||
+                                        queryProdutProdutoRecord.titulo2 ==
                                             '') &&
                                     ((queryProdutProdutoRecord
                                             .varianteImgList.isNotEmpty) ==
@@ -4974,6 +5052,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                             varianteRecord.where(
                                           'opcao_titulo1',
                                           isEqualTo: FFAppState()
+                                                          .selecionarVariante1 !=
+                                                      null &&
+                                                  FFAppState()
                                                           .selecionarVariante1 !=
                                                       ''
                                               ? FFAppState().selecionarVariante1
@@ -5529,6 +5610,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                   () {
                                                             if (FFAppState()
                                                                         .enderecoTemporario !=
+                                                                    null &&
+                                                                FFAppState()
+                                                                        .enderecoTemporario !=
                                                                     '') {
                                                               return FFAppState()
                                                                   .enderecoTemporario;
@@ -5536,8 +5620,16 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                             currentUserDocument
                                                                                 ?.enderecoCompleto,
                                                                             '') !=
+                                                                        null &&
+                                                                    valueOrDefault(
+                                                                            currentUserDocument
+                                                                                ?.enderecoCompleto,
+                                                                            '') !=
                                                                         '') &&
                                                                 (FFAppState()
+                                                                            .enderecoTemporario ==
+                                                                        null ||
+                                                                    FFAppState()
                                                                             .enderecoTemporario ==
                                                                         '')) {
                                                               return valueOrDefault(
@@ -5607,6 +5699,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                   () {
                                                             if (FFAppState()
                                                                         .enderecoTemporario !=
+                                                                    null &&
+                                                                FFAppState()
+                                                                        .enderecoTemporario !=
                                                                     '') {
                                                               return FFAppState()
                                                                   .enderecoTemporario;
@@ -5614,8 +5709,16 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                             currentUserDocument
                                                                                 ?.enderecoCompleto,
                                                                             '') !=
+                                                                        null &&
+                                                                    valueOrDefault(
+                                                                            currentUserDocument
+                                                                                ?.enderecoCompleto,
+                                                                            '') !=
                                                                         '') &&
                                                                 (FFAppState()
+                                                                            .enderecoTemporario ==
+                                                                        null ||
+                                                                    FFAppState()
                                                                             .enderecoTemporario ==
                                                                         '')) {
                                                               return valueOrDefault(
@@ -5695,6 +5798,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                             functions.frete(() {
                                                               if (FFAppState()
                                                                           .enderecoTemporario !=
+                                                                      null &&
+                                                                  FFAppState()
+                                                                          .enderecoTemporario !=
                                                                       '') {
                                                                 return FFAppState()
                                                                     .enderecoTemporario;
@@ -5702,8 +5808,16 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                               currentUserDocument
                                                                                   ?.enderecoCompleto,
                                                                               '') !=
+                                                                          null &&
+                                                                      valueOrDefault(
+                                                                              currentUserDocument
+                                                                                  ?.enderecoCompleto,
+                                                                              '') !=
                                                                           '') &&
                                                                   (FFAppState()
+                                                                              .enderecoTemporario ==
+                                                                          null ||
+                                                                      FFAppState()
                                                                               .enderecoTemporario ==
                                                                           '')) {
                                                                 return valueOrDefault(
@@ -5774,6 +5888,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                     () {
                                                               if (FFAppState()
                                                                           .enderecoTemporario !=
+                                                                      null &&
+                                                                  FFAppState()
+                                                                          .enderecoTemporario !=
                                                                       '') {
                                                                 return FFAppState()
                                                                     .enderecoTemporario;
@@ -5781,8 +5898,16 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                               currentUserDocument
                                                                                   ?.enderecoCompleto,
                                                                               '') !=
+                                                                          null &&
+                                                                      valueOrDefault(
+                                                                              currentUserDocument
+                                                                                  ?.enderecoCompleto,
+                                                                              '') !=
                                                                           '') &&
                                                                   (FFAppState()
+                                                                              .enderecoTemporario ==
+                                                                          null ||
+                                                                      FFAppState()
                                                                               .enderecoTemporario ==
                                                                           '')) {
                                                                 return valueOrDefault(
@@ -7154,6 +7279,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                             ),
                                                             if (listViewAvaliacaoRecord
                                                                         .variacao !=
+                                                                    null &&
+                                                                listViewAvaliacaoRecord
+                                                                        .variacao !=
                                                                     '')
                                                               Align(
                                                                 alignment:
@@ -7200,6 +7328,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         .verTudo ==
                                                                     false) &&
                                                                 (listViewAvaliacaoRecord
+                                                                            .comentario !=
+                                                                        null &&
+                                                                    listViewAvaliacaoRecord
                                                                             .comentario !=
                                                                         ''))
                                                               Align(
@@ -7271,6 +7402,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         .verTudo ==
                                                                     true) &&
                                                                 (listViewAvaliacaoRecord
+                                                                            .comentario !=
+                                                                        null &&
+                                                                    listViewAvaliacaoRecord
                                                                             .comentario !=
                                                                         ''))
                                                               Align(
@@ -8845,7 +8979,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         false;
                                                                     safeSetState(
                                                                         () {});
-                                                                    if ((currentUserDocument?.vistoRecente.toList() ??
+                                                                    if ((currentUserDocument?.vistoRecente?.toList() ??
                                                                                 [])
                                                                             .length ==
                                                                         6) {
@@ -8855,7 +8989,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                           {
                                                                             'vistoRecente':
                                                                                 FieldValue.arrayRemove([
-                                                                              (currentUserDocument?.vistoRecente.toList() ?? []).firstOrNull
+                                                                              (currentUserDocument?.vistoRecente?.toList() ?? []).firstOrNull
                                                                             ]),
                                                                           },
                                                                         ),
@@ -8947,7 +9081,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                         alignment: Alignment(0.0, -1.0),
                                                                                       ),
                                                                                     ),
-                                                                                    if (containerProdutoRecord.video != '')
+                                                                                    if (containerProdutoRecord.video != null && containerProdutoRecord.video != '')
                                                                                       Align(
                                                                                         alignment: AlignmentDirectional(-1.0, 1.0),
                                                                                         child: Padding(
@@ -8967,7 +9101,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                           ),
                                                                                         ),
                                                                                       ),
-                                                                                    if (containerProdutoRecord.capsula1 != '')
+                                                                                    if (containerProdutoRecord.capsula1 != null && containerProdutoRecord.capsula1 != '')
                                                                                       Align(
                                                                                         alignment: AlignmentDirectional(1.0, 1.0),
                                                                                         child: Padding(
@@ -9012,7 +9146,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                                       ),
                                                                                                     ),
                                                                                                   ),
-                                                                                                  if (containerProdutoRecord.capsula2 != '')
+                                                                                                  if (containerProdutoRecord.capsula2 != null && containerProdutoRecord.capsula2 != '')
                                                                                                     Padding(
                                                                                                       padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                                       child: Container(
@@ -9039,7 +9173,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                                         ),
                                                                                                       ),
                                                                                                     ),
-                                                                                                  if (containerProdutoRecord.capsula3 != '')
+                                                                                                  if (containerProdutoRecord.capsula3 != null && containerProdutoRecord.capsula3 != '')
                                                                                                     Padding(
                                                                                                       padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                                       child: Container(
@@ -9066,7 +9200,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                                         ),
                                                                                                       ),
                                                                                                     ),
-                                                                                                  if (containerProdutoRecord.capsulaExtra != '')
+                                                                                                  if (containerProdutoRecord.capsulaExtra != null && containerProdutoRecord.capsulaExtra != '')
                                                                                                     Padding(
                                                                                                       padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
                                                                                                       child: Text(
@@ -9107,40 +9241,41 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                     Row(
                                                                                       mainAxisSize: MainAxisSize.max,
                                                                                       children: [
-                                                                                        Align(
-                                                                                          alignment: AlignmentDirectional(0.0, 1.0),
-                                                                                          child: Padding(
-                                                                                            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 3.0, 0.0),
-                                                                                            child: Container(
-                                                                                              width: 29.0,
-                                                                                              height: 16.0,
-                                                                                              decoration: BoxDecoration(
-                                                                                                borderRadius: BorderRadius.circular(4.0),
-                                                                                                border: Border.all(
-                                                                                                  color: FlutterFlowTheme.of(context).primary,
-                                                                                                  width: 0.7,
+                                                                                        if (containerProdutoRecord.precoAntes != null)
+                                                                                          Align(
+                                                                                            alignment: AlignmentDirectional(0.0, 1.0),
+                                                                                            child: Padding(
+                                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 3.0, 0.0),
+                                                                                              child: Container(
+                                                                                                width: 29.0,
+                                                                                                height: 16.0,
+                                                                                                decoration: BoxDecoration(
+                                                                                                  borderRadius: BorderRadius.circular(4.0),
+                                                                                                  border: Border.all(
+                                                                                                    color: FlutterFlowTheme.of(context).primary,
+                                                                                                    width: 0.7,
+                                                                                                  ),
                                                                                                 ),
-                                                                                              ),
-                                                                                              child: Align(
-                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
-                                                                                                child: Text(
-                                                                                                  functions.porcentagemPromo(containerProdutoRecord.precoAntes, containerProdutoRecord.titulo1 != '' ? containerProdutoRecord.menorPrecoRevenda : containerProdutoRecord.preco),
-                                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                        font: GoogleFonts.inter(
+                                                                                                child: Align(
+                                                                                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                                  child: Text(
+                                                                                                    functions.porcentagemPromo(containerProdutoRecord.precoAntes, containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? containerProdutoRecord.menorPrecoRevenda : containerProdutoRecord.preco),
+                                                                                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                          font: GoogleFonts.inter(
+                                                                                                            fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                                          ),
+                                                                                                          color: FlutterFlowTheme.of(context).primary,
+                                                                                                          fontSize: 10.0,
+                                                                                                          letterSpacing: 0.0,
                                                                                                           fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                                                           fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                                         ),
-                                                                                                        color: FlutterFlowTheme.of(context).primary,
-                                                                                                        fontSize: 10.0,
-                                                                                                        letterSpacing: 0.0,
-                                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                                      ),
+                                                                                                  ),
                                                                                                 ),
                                                                                               ),
                                                                                             ),
                                                                                           ),
-                                                                                        ),
                                                                                         SelectionArea(
                                                                                             child: Text(
                                                                                           containerProdutoRecord.nome.maybeHandleOverflow(
@@ -9306,7 +9441,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                                 ),
                                                                                           ),
                                                                                           Text(
-                                                                                            containerProdutoRecord.titulo1 != '' ? functions.valorRealString(containerProdutoRecord.menorPrecoRevenda) : functions.valorRealString(containerProdutoRecord.preco),
+                                                                                            containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? functions.valorRealString(containerProdutoRecord.menorPrecoRevenda) : functions.valorRealString(containerProdutoRecord.preco),
                                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                   font: GoogleFonts.inter(
                                                                                                     fontWeight: FontWeight.w600,
@@ -9320,7 +9455,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                                 ),
                                                                                           ),
                                                                                           Text(
-                                                                                            containerProdutoRecord.titulo1 != '' ? functions.valorCentavosEmString(containerProdutoRecord.menorPrecoRevenda) : functions.valorCentavosEmString(containerProdutoRecord.preco),
+                                                                                            containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? functions.valorCentavosEmString(containerProdutoRecord.menorPrecoRevenda) : functions.valorCentavosEmString(containerProdutoRecord.preco),
                                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                   font: GoogleFonts.inter(
                                                                                                     fontWeight: FontWeight.w600,
@@ -9571,6 +9706,8 @@ class _PaginaProdutoAfiliadoWidgetState
                                             if ((FFAppState().FeedAntes !=
                                                     FFAppState().FeedDepois) ||
                                                 (FFAppState().FeedAntes ==
+                                                        null ||
+                                                    FFAppState().FeedAntes ==
                                                         ''))
                                               Padding(
                                                 padding: EdgeInsetsDirectional
@@ -9592,22 +9729,22 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                 .toList(),
                                                             (currentUserDocument
                                                                         ?.favorito
-                                                                        .toList() ??
+                                                                        ?.toList() ??
                                                                     [])
                                                                 .toList(),
                                                             (currentUserDocument
                                                                         ?.historicoPesquisa
-                                                                        .toList() ??
+                                                                        ?.toList() ??
                                                                     [])
                                                                 .toList(),
                                                             (currentUserDocument
                                                                         ?.vistoRecente
-                                                                        .toList() ??
+                                                                        ?.toList() ??
                                                                     [])
                                                                 .toList(),
                                                             (currentUserDocument
                                                                         ?.comprasHistoricoProdutos
-                                                                        .toList() ??
+                                                                        ?.toList() ??
                                                                     [])
                                                                 .toList(),
                                                             FFAppState()
@@ -9628,22 +9765,22 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                 .toList(),
                                                             (currentUserDocument
                                                                         ?.favorito
-                                                                        .toList() ??
+                                                                        ?.toList() ??
                                                                     [])
                                                                 .toList(),
                                                             (currentUserDocument
                                                                         ?.historicoPesquisa
-                                                                        .toList() ??
+                                                                        ?.toList() ??
                                                                     [])
                                                                 .toList(),
                                                             (currentUserDocument
                                                                         ?.vistoRecente
-                                                                        .toList() ??
+                                                                        ?.toList() ??
                                                                     [])
                                                                 .toList(),
                                                             (currentUserDocument
                                                                         ?.comprasHistoricoProdutos
-                                                                        .toList() ??
+                                                                        ?.toList() ??
                                                                     [])
                                                                 .toList(),
                                                             FFAppState()
@@ -9731,7 +9868,8 @@ class _PaginaProdutoAfiliadoWidgetState
                                   child: Visibility(
                                     visible: (FFAppState().FeedAntes ==
                                             FFAppState().FeedDepois) &&
-                                        (FFAppState().FeedAntes != ''),
+                                        (FFAppState().FeedAntes != null &&
+                                            FFAppState().FeedAntes != ''),
                                     child: Align(
                                       alignment:
                                           AlignmentDirectional(0.0, -1.0),
@@ -10211,16 +10349,24 @@ class _PaginaProdutoAfiliadoWidgetState
                                   ),
                                   if (() {
                                     if (valueOrDefault<bool>(
-                                      (containerProdutoRecord.titulo1 !=
+                                      (containerProdutoRecord.titulo1 != null &&
+                                              containerProdutoRecord.titulo1 !=
                                                   '') &&
                                           valueOrDefault<bool>(
-                                            (FFAppState()
+                                            (FFAppState().selecionarVariante2 ==
+                                                        null ||
+                                                    FFAppState()
                                                             .selecionarVariante2 ==
                                                         '') &&
-                                                ((FFAppState()
+                                                ((FFAppState().selecionarVariante1foto ==
+                                                            null ||
+                                                        FFAppState()
                                                                 .selecionarVariante1foto ==
                                                             '') &&
                                                     (FFAppState()
+                                                                .selecionarVariante1 ==
+                                                            null ||
+                                                        FFAppState()
                                                                 .selecionarVariante1 ==
                                                             '')),
                                             true,
@@ -10229,18 +10375,28 @@ class _PaginaProdutoAfiliadoWidgetState
                                     )) {
                                       return true;
                                     } else if (valueOrDefault<bool>(
-                                      (containerProdutoRecord.titulo1 !=
+                                      (containerProdutoRecord.titulo1 != null &&
+                                              containerProdutoRecord.titulo1 !=
                                                   '') &&
                                           (containerProdutoRecord.titulo2 !=
+                                                  null &&
+                                              containerProdutoRecord.titulo2 !=
                                                   '') &&
                                           valueOrDefault<bool>(
-                                            (FFAppState()
+                                            (FFAppState().selecionarVariante2 ==
+                                                        null ||
+                                                    FFAppState()
                                                             .selecionarVariante2 ==
                                                         '') &&
-                                                ((FFAppState()
+                                                ((FFAppState().selecionarVariante1foto ==
+                                                            null ||
+                                                        FFAppState()
                                                                 .selecionarVariante1foto ==
                                                             '') ||
                                                     (FFAppState()
+                                                                .selecionarVariante1 ==
+                                                            null ||
+                                                        FFAppState()
                                                                 .selecionarVariante1 ==
                                                             '')),
                                             true,
@@ -10288,7 +10444,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                           containerProdutoRecord
                                                               .reference,
                                                       afiliadoProdRef:
-                                                          widget.produtoRef2!,
+                                                          widget!.produtoRef2!,
                                                     ),
                                                   ),
                                                 );
@@ -10348,17 +10504,27 @@ class _PaginaProdutoAfiliadoWidgetState
                                       ),
                                     ),
                                   if (valueOrDefault<bool>(
-                                    (containerProdutoRecord.titulo1 !=
+                                    (containerProdutoRecord.titulo1 != null &&
+                                            containerProdutoRecord.titulo1 !=
                                                 '') &&
                                         (containerProdutoRecord.titulo2 !=
+                                                null &&
+                                            containerProdutoRecord.titulo2 !=
                                                 '') &&
-                                        ((FFAppState()
+                                        ((FFAppState().selecionarVariante2 !=
+                                                    null &&
+                                                FFAppState()
                                                         .selecionarVariante2 !=
                                                     '') &&
-                                            ((FFAppState()
+                                            ((FFAppState().selecionarVariante1foto !=
+                                                        null &&
+                                                    FFAppState()
                                                             .selecionarVariante1foto !=
                                                         '') ||
                                                 (FFAppState()
+                                                            .selecionarVariante1 !=
+                                                        null &&
+                                                    FFAppState()
                                                             .selecionarVariante1 !=
                                                         ''))),
                                     true,
@@ -10654,6 +10820,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                           'opcao_titulo1',
                                                           isEqualTo: FFAppState()
                                                                           .selecionarVariante1 !=
+                                                                      null &&
+                                                                  FFAppState()
+                                                                          .selecionarVariante1 !=
                                                                       ''
                                                               ? FFAppState()
                                                                   .selecionarVariante1
@@ -10936,14 +11105,14 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         afiliadoRef:
                                                                             stackProdutoAfiliadoRecord.parentReference,
                                                                         varianteRef:
-                                                                            containerVarianteRecord.reference,
+                                                                            containerVarianteRecord?.reference,
                                                                       ));
                                                                     } else {
                                                                       await actions
                                                                           .addCartEvitarDuplicar(
                                                                         containerVarianteRecord!
                                                                             .produtoRef!,
-                                                                        '${containerVarianteRecord.opcaoTitulo1}${containerVarianteRecord.opcaoTitulo2 != '' ? ', ${containerVarianteRecord.opcaoTitulo2}' : ' '}',
+                                                                        '${containerVarianteRecord?.opcaoTitulo1}${containerVarianteRecord?.opcaoTitulo2 != null && containerVarianteRecord?.opcaoTitulo2 != '' ? ', ${containerVarianteRecord?.opcaoTitulo2}' : ' '}',
                                                                         _model
                                                                             .respostaCarrinho2!
                                                                             .toList(),
@@ -11068,20 +11237,20 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                           .addCarrinhoTemporario(
                                                                               getCurrentTimestamp,
                                                                               containerVarianteRecord!.foto,
-                                                                              containerVarianteRecord.produtoRef!,
+                                                                              containerVarianteRecord!.produtoRef!,
                                                                               carinhoVarianteOpc1Opc2ProdutoRecord.lojaRef!,
                                                                               carinhoVarianteOpc1Opc2ProdutoRecord.envioNaciona,
-                                                                              functions.valorProdutoAfiliado(containerVarianteRecord.reference, stackProdutoAfiliadoRecord.valorComRef.toList()),
+                                                                              functions.valorProdutoAfiliado(containerVarianteRecord!.reference, stackProdutoAfiliadoRecord.valorComRef.toList()),
                                                                               carinhoVarianteOpc1Opc2ProdutoRecord.precoAntes,
                                                                               FFAppState().quantidadeProduto,
                                                                               true,
                                                                               carinhoVarianteOpc1Opc2ProdutoRecord.nome,
-                                                                              containerVarianteRecord.opcaoTitulo1,
+                                                                              containerVarianteRecord?.opcaoTitulo1,
                                                                               FFAppState().CarrinhoTemporarioNacional.toList(),
                                                                               stackProdutoAfiliadoRecord.parentReference,
                                                                               stackProdutoAfiliadoRecord.comissao,
-                                                                              containerVarianteRecord.opcaoTitulo2,
-                                                                              containerVarianteRecord.reference)
+                                                                              containerVarianteRecord?.opcaoTitulo2,
+                                                                              containerVarianteRecord?.reference)
                                                                           .toList()
                                                                           .cast<String>();
                                                                       safeSetState(
@@ -11094,17 +11263,17 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                               carinhoVarianteOpc1Opc2ProdutoRecord.reference,
                                                                               carinhoVarianteOpc1Opc2ProdutoRecord.lojaRef!,
                                                                               carinhoVarianteOpc1Opc2ProdutoRecord.envioNaciona,
-                                                                              functions.valorProdutoAfiliado(containerVarianteRecord.reference, stackProdutoAfiliadoRecord.valorComRef.toList()),
+                                                                              functions.valorProdutoAfiliado(containerVarianteRecord!.reference, stackProdutoAfiliadoRecord.valorComRef.toList()),
                                                                               carinhoVarianteOpc1Opc2ProdutoRecord.precoAntes,
                                                                               FFAppState().quantidadeProduto,
                                                                               true,
                                                                               carinhoVarianteOpc1Opc2ProdutoRecord.nome,
-                                                                              containerVarianteRecord.opcaoTitulo1,
+                                                                              containerVarianteRecord?.opcaoTitulo1,
                                                                               FFAppState().CarrinhoTemporarioInternacional.toList(),
                                                                               stackProdutoAfiliadoRecord.parentReference,
                                                                               stackProdutoAfiliadoRecord.comissao,
-                                                                              containerVarianteRecord.opcaoTitulo2,
-                                                                              containerVarianteRecord.reference)
+                                                                              containerVarianteRecord?.opcaoTitulo2,
+                                                                              containerVarianteRecord?.reference)
                                                                           .toList()
                                                                           .cast<String>();
                                                                       safeSetState(
@@ -11403,14 +11572,14 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                           .parentReference,
                                                                   varianteRef:
                                                                       text4444fotoVarianteRecord
-                                                                          .reference,
+                                                                          ?.reference,
                                                                 ));
                                                               } else {
                                                                 await actions
                                                                     .addCartEvitarDuplicar(
                                                                   text4444fotoVarianteRecord!
                                                                       .produtoRef!,
-                                                                  '${text4444fotoVarianteRecord.opcaoTitulo1}${text4444fotoVarianteRecord.opcaoTitulo2 != '' ? ', ${text4444fotoVarianteRecord.opcaoTitulo2}' : ' '}',
+                                                                  '${text4444fotoVarianteRecord?.opcaoTitulo1}${text4444fotoVarianteRecord?.opcaoTitulo2 != null && text4444fotoVarianteRecord?.opcaoTitulo2 != '' ? ', ${text4444fotoVarianteRecord?.opcaoTitulo2}' : ' '}',
                                                                   _model
                                                                       .respostaCarrinho!
                                                                       .toList(),
@@ -11556,14 +11725,14 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         getCurrentTimestamp,
                                                                         text4444fotoVarianteRecord!
                                                                             .foto,
-                                                                        text4444fotoVarianteRecord
+                                                                        text4444fotoVarianteRecord!
                                                                             .produtoRef!,
                                                                         carinhoVarianteOpc1Opc2ProdutoRecord
                                                                             .lojaRef!,
                                                                         carinhoVarianteOpc1Opc2ProdutoRecord
                                                                             .envioNaciona,
                                                                         functions.valorProdutoAfiliado(
-                                                                            text4444fotoVarianteRecord
+                                                                            text4444fotoVarianteRecord!
                                                                                 .reference,
                                                                             stackProdutoAfiliadoRecord.valorComRef
                                                                                 .toList()),
@@ -11575,7 +11744,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         carinhoVarianteOpc1Opc2ProdutoRecord
                                                                             .nome,
                                                                         text4444fotoVarianteRecord
-                                                                            .opcaoTitulo1,
+                                                                            ?.opcaoTitulo1,
                                                                         FFAppState()
                                                                             .CarrinhoTemporarioNacional
                                                                             .toList(),
@@ -11584,9 +11753,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         stackProdutoAfiliadoRecord
                                                                             .comissao,
                                                                         text4444fotoVarianteRecord
-                                                                            .opcaoTitulo2,
+                                                                            ?.opcaoTitulo2,
                                                                         text4444fotoVarianteRecord
-                                                                            .reference)
+                                                                            ?.reference)
                                                                     .toList()
                                                                     .cast<
                                                                         String>();
@@ -11605,7 +11774,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         carinhoVarianteOpc1Opc2ProdutoRecord
                                                                             .envioNaciona,
                                                                         functions.valorProdutoAfiliado(
-                                                                            text4444fotoVarianteRecord
+                                                                            text4444fotoVarianteRecord!
                                                                                 .reference,
                                                                             stackProdutoAfiliadoRecord.valorComRef
                                                                                 .toList()),
@@ -11617,7 +11786,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         carinhoVarianteOpc1Opc2ProdutoRecord
                                                                             .nome,
                                                                         text4444fotoVarianteRecord
-                                                                            .opcaoTitulo1,
+                                                                            ?.opcaoTitulo1,
                                                                         FFAppState()
                                                                             .CarrinhoTemporarioInternacional
                                                                             .toList(),
@@ -11626,9 +11795,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         stackProdutoAfiliadoRecord
                                                                             .comissao,
                                                                         text4444fotoVarianteRecord
-                                                                            .opcaoTitulo2,
+                                                                            ?.opcaoTitulo2,
                                                                         text4444fotoVarianteRecord
-                                                                            .reference)
+                                                                            ?.reference)
                                                                     .toList()
                                                                     .cast<
                                                                         String>();
@@ -11736,14 +11905,21 @@ class _PaginaProdutoAfiliadoWidgetState
                                       ),
                                     ),
                                   if (valueOrDefault<bool>(
-                                    (containerProdutoRecord.titulo1 !=
+                                    (containerProdutoRecord.titulo1 != null &&
+                                            containerProdutoRecord.titulo1 !=
                                                 '') &&
                                         (containerProdutoRecord.titulo2 ==
+                                                null ||
+                                            containerProdutoRecord.titulo2 ==
                                                 '') &&
-                                        ((FFAppState()
+                                        ((FFAppState().selecionarVariante1foto !=
+                                                    null &&
+                                                FFAppState()
                                                         .selecionarVariante1foto !=
                                                     '') ||
-                                            (FFAppState()
+                                            (FFAppState().selecionarVariante1 !=
+                                                    null &&
+                                                FFAppState()
                                                         .selecionarVariante1 !=
                                                     '')),
                                     true,
@@ -12189,7 +12365,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                               if (functions.addCardEvitarDuplicar(
                                                                   text22222VarianteRecord!
                                                                       .produtoRef!,
-                                                                  '${text22222VarianteRecord.opcaoTitulo1}${text22222VarianteRecord.opcaoTitulo2 != '' ? ', ${text22222VarianteRecord.opcaoTitulo2}' : ' '}',
+                                                                  '${text22222VarianteRecord?.opcaoTitulo1}${text22222VarianteRecord?.opcaoTitulo2 != null && text22222VarianteRecord?.opcaoTitulo2 != '' ? ', ${text22222VarianteRecord?.opcaoTitulo2}' : ' '}',
                                                                   _model
                                                                       .respostaCarrinhooo!
                                                                       .toList())) {
@@ -12201,16 +12377,18 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                   userRef:
                                                                       currentUserReference,
                                                                   itens: text22222VarianteRecord
-                                                                      .produtoRef,
+                                                                      ?.produtoRef,
                                                                   quantidade:
                                                                       FFAppState()
                                                                           .quantidadeProduto,
                                                                   dataAdicao:
                                                                       getCurrentTimestamp,
-                                                                  fotoCapa: text22222VarianteRecord.foto !=
+                                                                  fotoCapa: text22222VarianteRecord?.foto !=
+                                                                              null &&
+                                                                          text22222VarianteRecord?.foto !=
                                                                               ''
                                                                       ? text22222VarianteRecord
-                                                                          .foto
+                                                                          ?.foto
                                                                       : carinhoVarianteOpc12ProdutoRecord
                                                                           .imagens
                                                                           .firstOrNull,
@@ -12220,12 +12398,12 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                   selecionado:
                                                                       true,
                                                                   variacao:
-                                                                      '${text22222VarianteRecord.opcaoTitulo1}${text22222VarianteRecord.opcaoTitulo2 != '' ? ', ${text22222VarianteRecord.opcaoTitulo2}' : ' '}',
+                                                                      '${text22222VarianteRecord?.opcaoTitulo1}${text22222VarianteRecord?.opcaoTitulo2 != null && text22222VarianteRecord?.opcaoTitulo2 != '' ? ', ${text22222VarianteRecord?.opcaoTitulo2}' : ' '}',
                                                                   lojaRef:
                                                                       carinhoVarianteOpc12ProdutoRecord
                                                                           .lojaRef,
                                                                   preco: functions.valorProdutoAfiliado(
-                                                                      text22222VarianteRecord
+                                                                      text22222VarianteRecord!
                                                                           .reference,
                                                                       stackProdutoAfiliadoRecord
                                                                           .valorComRef
@@ -12244,14 +12422,14 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                           .parentReference,
                                                                   varianteRef:
                                                                       text22222VarianteRecord
-                                                                          .reference,
+                                                                          ?.reference,
                                                                 ));
                                                               } else {
                                                                 await actions
                                                                     .addCartEvitarDuplicar(
-                                                                  text22222VarianteRecord
+                                                                  text22222VarianteRecord!
                                                                       .produtoRef!,
-                                                                  '${text22222VarianteRecord.opcaoTitulo1}${text22222VarianteRecord.opcaoTitulo2 != '' ? ', ${text22222VarianteRecord.opcaoTitulo2}' : ' '}',
+                                                                  '${text22222VarianteRecord?.opcaoTitulo1}${text22222VarianteRecord?.opcaoTitulo2 != null && text22222VarianteRecord?.opcaoTitulo2 != '' ? ', ${text22222VarianteRecord?.opcaoTitulo2}' : ' '}',
                                                                   _model
                                                                       .respostaCarrinhooo!
                                                                       .toList(),
@@ -12391,14 +12569,14 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         getCurrentTimestamp,
                                                                         text22222VarianteRecord!
                                                                             .foto,
-                                                                        text22222VarianteRecord
+                                                                        text22222VarianteRecord!
                                                                             .produtoRef!,
                                                                         carinhoVarianteOpc12ProdutoRecord
                                                                             .lojaRef!,
                                                                         carinhoVarianteOpc12ProdutoRecord
                                                                             .envioNaciona,
                                                                         functions.valorProdutoAfiliado(
-                                                                            text22222VarianteRecord
+                                                                            text22222VarianteRecord!
                                                                                 .reference,
                                                                             stackProdutoAfiliadoRecord.valorComRef
                                                                                 .toList()),
@@ -12410,7 +12588,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         carinhoVarianteOpc12ProdutoRecord
                                                                             .nome,
                                                                         text22222VarianteRecord
-                                                                            .opcaoTitulo1,
+                                                                            ?.opcaoTitulo1,
                                                                         FFAppState()
                                                                             .CarrinhoTemporarioNacional
                                                                             .toList(),
@@ -12419,9 +12597,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         stackProdutoAfiliadoRecord
                                                                             .comissao,
                                                                         text22222VarianteRecord
-                                                                            .opcaoTitulo2,
+                                                                            ?.opcaoTitulo2,
                                                                         text22222VarianteRecord
-                                                                            .reference)
+                                                                            ?.reference)
                                                                     .toList()
                                                                     .cast<
                                                                         String>();
@@ -12433,14 +12611,14 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         getCurrentTimestamp,
                                                                         text22222VarianteRecord!
                                                                             .foto,
-                                                                        text22222VarianteRecord
+                                                                        text22222VarianteRecord!
                                                                             .produtoRef!,
                                                                         carinhoVarianteOpc12ProdutoRecord
                                                                             .lojaRef!,
                                                                         carinhoVarianteOpc12ProdutoRecord
                                                                             .envioNaciona,
                                                                         functions.valorProdutoAfiliado(
-                                                                            text22222VarianteRecord
+                                                                            text22222VarianteRecord!
                                                                                 .reference,
                                                                             stackProdutoAfiliadoRecord.valorComRef
                                                                                 .toList()),
@@ -12452,7 +12630,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         carinhoVarianteOpc12ProdutoRecord
                                                                             .nome,
                                                                         text22222VarianteRecord
-                                                                            .opcaoTitulo1,
+                                                                            ?.opcaoTitulo1,
                                                                         FFAppState()
                                                                             .CarrinhoTemporarioInternacional
                                                                             .toList(),
@@ -12461,9 +12639,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         stackProdutoAfiliadoRecord
                                                                             .comissao,
                                                                         text22222VarianteRecord
-                                                                            .opcaoTitulo2,
+                                                                            ?.opcaoTitulo2,
                                                                         text22222VarianteRecord
-                                                                            .reference)
+                                                                            ?.reference)
                                                                     .toList()
                                                                     .cast<
                                                                         String>();
@@ -12571,9 +12749,12 @@ class _PaginaProdutoAfiliadoWidgetState
                                       ),
                                     ),
                                   if (valueOrDefault<bool>(
-                                    (containerProdutoRecord.titulo1 ==
+                                    (containerProdutoRecord.titulo1 == null ||
+                                            containerProdutoRecord.titulo1 ==
                                                 '') &&
                                         (containerProdutoRecord.titulo2 ==
+                                                null ||
+                                            containerProdutoRecord.titulo2 ==
                                                 ''),
                                     true,
                                   ))

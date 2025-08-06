@@ -1,12 +1,16 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/carregando/carregando18/carregando18_widget.dart';
 import '/carregando/carregando19/carregando19_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -557,20 +561,20 @@ class _PedidosEnvioWidgetState extends State<PedidosEnvioWidget> {
                                           .recomendarProdutosPersonalizados(
                                               feed2ProdutoRecordList.toList(),
                                               (currentUserDocument?.favorito
-                                                          .toList() ??
+                                                          ?.toList() ??
                                                       [])
                                                   .toList(),
                                               (currentUserDocument?.historicoPesquisa
-                                                          .toList() ??
+                                                          ?.toList() ??
                                                       [])
                                                   .toList(),
                                               (currentUserDocument?.vistoRecente
-                                                          .toList() ??
+                                                          ?.toList() ??
                                                       [])
                                                   .toList(),
                                               (currentUserDocument
                                                           ?.comprasHistoricoProdutos
-                                                          .toList() ??
+                                                          ?.toList() ??
                                                       [])
                                                   .toList(),
                                               FFAppState()
@@ -662,7 +666,7 @@ class _PedidosEnvioWidgetState extends State<PedidosEnvioWidget> {
                                                         safeSetState(() {});
                                                         if ((currentUserDocument
                                                                         ?.vistoRecente
-                                                                        .toList() ??
+                                                                        ?.toList() ??
                                                                     [])
                                                                 .length ==
                                                             6) {
@@ -675,7 +679,7 @@ class _PedidosEnvioWidgetState extends State<PedidosEnvioWidget> {
                                                                         .arrayRemove([
                                                                   (currentUserDocument
                                                                               ?.vistoRecente
-                                                                              .toList() ??
+                                                                              ?.toList() ??
                                                                           [])
                                                                       .firstOrNull
                                                                 ]),
@@ -796,6 +800,8 @@ class _PedidosEnvioWidgetState extends State<PedidosEnvioWidget> {
                                                                           ),
                                                                         ),
                                                                         if (containerProdutoRecord.video !=
+                                                                                null &&
+                                                                            containerProdutoRecord.video !=
                                                                                 '')
                                                                           Align(
                                                                             alignment:
@@ -819,6 +825,8 @@ class _PedidosEnvioWidgetState extends State<PedidosEnvioWidget> {
                                                                             ),
                                                                           ),
                                                                         if (containerProdutoRecord.capsula1 !=
+                                                                                null &&
+                                                                            containerProdutoRecord.capsula1 !=
                                                                                 '')
                                                                           Align(
                                                                             alignment:
@@ -866,7 +874,7 @@ class _PedidosEnvioWidgetState extends State<PedidosEnvioWidget> {
                                                                                           ),
                                                                                         ),
                                                                                       ),
-                                                                                      if (containerProdutoRecord.capsula2 != '')
+                                                                                      if (containerProdutoRecord.capsula2 != null && containerProdutoRecord.capsula2 != '')
                                                                                         Padding(
                                                                                           padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                           child: Container(
@@ -893,7 +901,7 @@ class _PedidosEnvioWidgetState extends State<PedidosEnvioWidget> {
                                                                                             ),
                                                                                           ),
                                                                                         ),
-                                                                                      if (containerProdutoRecord.capsula3 != '')
+                                                                                      if (containerProdutoRecord.capsula3 != null && containerProdutoRecord.capsula3 != '')
                                                                                         Padding(
                                                                                           padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                           child: Container(
@@ -920,7 +928,7 @@ class _PedidosEnvioWidgetState extends State<PedidosEnvioWidget> {
                                                                                             ),
                                                                                           ),
                                                                                         ),
-                                                                                      if (containerProdutoRecord.capsulaExtra != '')
+                                                                                      if (containerProdutoRecord.capsulaExtra != null && containerProdutoRecord.capsulaExtra != '')
                                                                                         Padding(
                                                                                           padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
                                                                                           child: Text(
@@ -972,40 +980,42 @@ class _PedidosEnvioWidgetState extends State<PedidosEnvioWidget> {
                                                                           mainAxisSize:
                                                                               MainAxisSize.max,
                                                                           children: [
-                                                                            Align(
-                                                                              alignment: AlignmentDirectional(0.0, 1.0),
-                                                                              child: Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 3.0, 0.0),
-                                                                                child: Container(
-                                                                                  width: 29.0,
-                                                                                  height: 16.0,
-                                                                                  decoration: BoxDecoration(
-                                                                                    borderRadius: BorderRadius.circular(4.0),
-                                                                                    border: Border.all(
-                                                                                      color: FlutterFlowTheme.of(context).primary,
-                                                                                      width: 0.7,
+                                                                            if (containerProdutoRecord.precoAntes !=
+                                                                                null)
+                                                                              Align(
+                                                                                alignment: AlignmentDirectional(0.0, 1.0),
+                                                                                child: Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 3.0, 0.0),
+                                                                                  child: Container(
+                                                                                    width: 29.0,
+                                                                                    height: 16.0,
+                                                                                    decoration: BoxDecoration(
+                                                                                      borderRadius: BorderRadius.circular(4.0),
+                                                                                      border: Border.all(
+                                                                                        color: FlutterFlowTheme.of(context).primary,
+                                                                                        width: 0.7,
+                                                                                      ),
                                                                                     ),
-                                                                                  ),
-                                                                                  child: Align(
-                                                                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                                                                    child: Text(
-                                                                                      functions.porcentagemPromo(containerProdutoRecord.precoAntes, containerProdutoRecord.titulo1 != '' ? containerProdutoRecord.menorPrecoRevenda : containerProdutoRecord.preco),
-                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                            font: GoogleFonts.inter(
+                                                                                    child: Align(
+                                                                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                      child: Text(
+                                                                                        functions.porcentagemPromo(containerProdutoRecord.precoAntes, containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? containerProdutoRecord.menorPrecoRevenda : containerProdutoRecord.preco),
+                                                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                              font: GoogleFonts.inter(
+                                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                              ),
+                                                                                              color: FlutterFlowTheme.of(context).primary,
+                                                                                              fontSize: 10.0,
+                                                                                              letterSpacing: 0.0,
                                                                                               fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                                               fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                             ),
-                                                                                            color: FlutterFlowTheme.of(context).primary,
-                                                                                            fontSize: 10.0,
-                                                                                            letterSpacing: 0.0,
-                                                                                            fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                          ),
+                                                                                      ),
                                                                                     ),
                                                                                   ),
                                                                                 ),
                                                                               ),
-                                                                            ),
                                                                             SelectionArea(
                                                                                 child: Text(
                                                                               containerProdutoRecord.nome.maybeHandleOverflow(
@@ -1183,7 +1193,7 @@ class _PedidosEnvioWidgetState extends State<PedidosEnvioWidget> {
                                                                                     ),
                                                                               ),
                                                                               Text(
-                                                                                containerProdutoRecord.titulo1 != '' ? functions.valorRealString(containerProdutoRecord.menorPrecoRevenda) : functions.valorRealString(containerProdutoRecord.preco),
+                                                                                containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? functions.valorRealString(containerProdutoRecord.menorPrecoRevenda) : functions.valorRealString(containerProdutoRecord.preco),
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       font: GoogleFonts.inter(
                                                                                         fontWeight: FontWeight.w600,
@@ -1197,7 +1207,7 @@ class _PedidosEnvioWidgetState extends State<PedidosEnvioWidget> {
                                                                                     ),
                                                                               ),
                                                                               Text(
-                                                                                containerProdutoRecord.titulo1 != '' ? functions.valorCentavosEmString(containerProdutoRecord.menorPrecoRevenda) : functions.valorCentavosEmString(containerProdutoRecord.preco),
+                                                                                containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? functions.valorCentavosEmString(containerProdutoRecord.menorPrecoRevenda) : functions.valorCentavosEmString(containerProdutoRecord.preco),
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       font: GoogleFonts.inter(
                                                                                         fontWeight: FontWeight.w600,
@@ -1491,7 +1501,8 @@ class _PedidosEnvioWidgetState extends State<PedidosEnvioWidget> {
                               ),
                               if ((FFAppState().FeedAntes !=
                                       FFAppState().FeedDepois) ||
-                                  (FFAppState().FeedAntes == ''))
+                                  (FFAppState().FeedAntes == null ||
+                                      FFAppState().FeedAntes == ''))
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 15.0, 10.0, 0.0),
@@ -1505,20 +1516,20 @@ class _PedidosEnvioWidgetState extends State<PedidosEnvioWidget> {
                                           .recomendarProdutosPersonalizados(
                                               feed2ProdutoRecordList.toList(),
                                               (currentUserDocument?.favorito
-                                                          .toList() ??
+                                                          ?.toList() ??
                                                       [])
                                                   .toList(),
                                               (currentUserDocument?.historicoPesquisa
-                                                          .toList() ??
+                                                          ?.toList() ??
                                                       [])
                                                   .toList(),
                                               (currentUserDocument?.vistoRecente
-                                                          .toList() ??
+                                                          ?.toList() ??
                                                       [])
                                                   .toList(),
                                               (currentUserDocument
                                                           ?.comprasHistoricoProdutos
-                                                          .toList() ??
+                                                          ?.toList() ??
                                                       [])
                                                   .toList(),
                                               FFAppState()
@@ -1537,20 +1548,20 @@ class _PedidosEnvioWidgetState extends State<PedidosEnvioWidget> {
                                           .recomendarProdutosPersonalizados(
                                               feed2ProdutoRecordList.toList(),
                                               (currentUserDocument?.favorito
-                                                          .toList() ??
+                                                          ?.toList() ??
                                                       [])
                                                   .toList(),
                                               (currentUserDocument?.historicoPesquisa
-                                                          .toList() ??
+                                                          ?.toList() ??
                                                       [])
                                                   .toList(),
                                               (currentUserDocument?.vistoRecente
-                                                          .toList() ??
+                                                          ?.toList() ??
                                                       [])
                                                   .toList(),
                                               (currentUserDocument
                                                           ?.comprasHistoricoProdutos
-                                                          .toList() ??
+                                                          ?.toList() ??
                                                       [])
                                                   .toList(),
                                               FFAppState()

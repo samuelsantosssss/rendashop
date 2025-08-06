@@ -3,10 +3,14 @@ import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'atualizar_foto_variente_model.dart';
 export 'atualizar_foto_variente_model.dart';
 
@@ -55,7 +59,7 @@ class _AtualizarFotoVarienteWidgetState
     return Align(
       alignment: AlignmentDirectional(0.0, 1.0),
       child: StreamBuilder<ProdutoRecord>(
-        stream: ProdutoRecord.getDocument(widget.produtoRef!),
+        stream: ProdutoRecord.getDocument(widget!.produtoRef!),
         builder: (context, snapshot) {
           // Customize what your widget looks like when it's loading.
           if (!snapshot.hasData) {
@@ -97,7 +101,7 @@ class _AtualizarFotoVarienteWidgetState
                 ),
               ),
               child: StreamBuilder<VarianteRecord>(
-                stream: VarianteRecord.getDocument(widget.varianteRef!),
+                stream: VarianteRecord.getDocument(widget!.varianteRef!),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -236,6 +240,8 @@ class _AtualizarFotoVarienteWidgetState
                                   }
 
                                   if (_model.uploadedFileUrl_uploadDataV2uk !=
+                                          null &&
+                                      _model.uploadedFileUrl_uploadDataV2uk !=
                                           '') {
                                     FFAppState().imgUpdateVariante =
                                         _model.uploadedFileUrl_uploadDataV2uk;

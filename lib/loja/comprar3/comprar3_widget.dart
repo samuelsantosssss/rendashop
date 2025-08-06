@@ -1,3 +1,4 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
@@ -17,10 +18,13 @@ import '/loja/pagamento/moedas_renda_shop/moedas_renda_shop_widget.dart';
 import '/loja/pagamento/moedas_renda_shop2/moedas_renda_shop2_widget.dart';
 import '/loja/taxa_processamento/taxa_processamento_widget.dart';
 import 'dart:async';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -531,6 +535,11 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                     ),
                                   ),
                                   if (valueOrDefault(
+                                              currentUserDocument
+                                                  ?.enderecoCompleto,
+                                              '') ==
+                                          null ||
+                                      valueOrDefault(
                                               currentUserDocument
                                                   ?.enderecoCompleto,
                                               '') ==
@@ -1648,6 +1657,9 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                             children: [
                                                               if (carrinho2CarrinhoFinalRecord
                                                                           .fretePromo !=
+                                                                      null &&
+                                                                  carrinho2CarrinhoFinalRecord
+                                                                          .fretePromo !=
                                                                       '')
                                                                 Row(
                                                                   mainAxisSize:
@@ -1731,6 +1743,9 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                   ],
                                                                 ),
                                                               if (carrinho2CarrinhoFinalRecord
+                                                                          .fretePromo ==
+                                                                      null ||
+                                                                  carrinho2CarrinhoFinalRecord
                                                                           .fretePromo ==
                                                                       '')
                                                                 Row(
@@ -1836,6 +1851,9 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                     ],
                                                   ),
                                                   if ((carrinho2CarrinhoFinalRecord
+                                                                  .fretePromo !=
+                                                              null &&
+                                                          carrinho2CarrinhoFinalRecord
                                                                   .fretePromo !=
                                                               '') &&
                                                       (carrinho2CarrinhoFinalRecord
@@ -2100,7 +2118,7 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                   37.0,
                                                                   0.0),
                                                       child: Text(
-                                                        'R\$ ${functions.valorDoubleEmString(functions.impostoImportacaoNovo(carrinho2CarrinhoFinalRecord.listProdutos.toList(), carrinho2CarrinhoFinalRecord.fretePromo != '' ? carrinho2CarrinhoFinalRecord.fretePromo : carrinho2CarrinhoFinalRecord.frete.toString(), carrinho2CarrinhoFinalRecord.nacional))}',
+                                                        'R\$ ${functions.valorDoubleEmString(functions.impostoImportacaoNovo(carrinho2CarrinhoFinalRecord.listProdutos.toList(), carrinho2CarrinhoFinalRecord.fretePromo != null && carrinho2CarrinhoFinalRecord.fretePromo != '' ? carrinho2CarrinhoFinalRecord.fretePromo : carrinho2CarrinhoFinalRecord.frete.toString(), carrinho2CarrinhoFinalRecord.nacional))}',
                                                         style: FlutterFlowTheme
                                                                 .of(context)
                                                             .bodyMedium
@@ -2279,7 +2297,7 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                           AuthUserStreamWidget(
                                                         builder: (context) =>
                                                             Text(
-                                                          'R\$ ${functions.valorDoubleEmString(functions.impostoICMSNovo(carrinho2CarrinhoFinalRecord.listProdutos.toList(), carrinho2CarrinhoFinalRecord.fretePromo != '' ? carrinho2CarrinhoFinalRecord.fretePromo : carrinho2CarrinhoFinalRecord.frete.toString(), valueOrDefault(currentUserDocument?.enderecoCompleto, ''), carrinho2CarrinhoFinalRecord.nacional))}',
+                                                          'R\$ ${functions.valorDoubleEmString(functions.impostoICMSNovo(carrinho2CarrinhoFinalRecord.listProdutos.toList(), carrinho2CarrinhoFinalRecord.fretePromo != null && carrinho2CarrinhoFinalRecord.fretePromo != '' ? carrinho2CarrinhoFinalRecord.fretePromo : carrinho2CarrinhoFinalRecord.frete.toString(), valueOrDefault(currentUserDocument?.enderecoCompleto, ''), carrinho2CarrinhoFinalRecord.nacional))}',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -2413,7 +2431,7 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                             builder:
                                                                 (context) =>
                                                                     Text(
-                                                              'R\$ ${functions.valorDoubleEmString(functions.totalProdutosChechout1(carrinho2CarrinhoFinalRecord.listProdutos.toList(), functions.impostoICMSNovo(carrinho2CarrinhoFinalRecord.listProdutos.toList(), carrinho2CarrinhoFinalRecord.fretePromo != '' ? carrinho2CarrinhoFinalRecord.fretePromo : carrinho2CarrinhoFinalRecord.frete.toString(), valueOrDefault(currentUserDocument?.enderecoCompleto, ''), carrinho2CarrinhoFinalRecord.nacional), functions.impostoImportacaoNovo(carrinho2CarrinhoFinalRecord.listProdutos.toList(), carrinho2CarrinhoFinalRecord.fretePromo != '' ? carrinho2CarrinhoFinalRecord.fretePromo : carrinho2CarrinhoFinalRecord.frete.toString(), carrinho2CarrinhoFinalRecord.nacional), carrinho2CarrinhoFinalRecord.fretePromo != '' ? functions.dinheiroStringemDouble(carrinho2CarrinhoFinalRecord.fretePromo) : carrinho2CarrinhoFinalRecord.frete))}',
+                                                              'R\$ ${functions.valorDoubleEmString(functions.totalProdutosChechout1(carrinho2CarrinhoFinalRecord.listProdutos.toList(), functions.impostoICMSNovo(carrinho2CarrinhoFinalRecord.listProdutos.toList(), carrinho2CarrinhoFinalRecord.fretePromo != null && carrinho2CarrinhoFinalRecord.fretePromo != '' ? carrinho2CarrinhoFinalRecord.fretePromo : carrinho2CarrinhoFinalRecord.frete.toString(), valueOrDefault(currentUserDocument?.enderecoCompleto, ''), carrinho2CarrinhoFinalRecord.nacional), functions.impostoImportacaoNovo(carrinho2CarrinhoFinalRecord.listProdutos.toList(), carrinho2CarrinhoFinalRecord.fretePromo != null && carrinho2CarrinhoFinalRecord.fretePromo != '' ? carrinho2CarrinhoFinalRecord.fretePromo : carrinho2CarrinhoFinalRecord.frete.toString(), carrinho2CarrinhoFinalRecord.nacional), carrinho2CarrinhoFinalRecord.fretePromo != null && carrinho2CarrinhoFinalRecord.fretePromo != '' ? functions.dinheiroStringemDouble(carrinho2CarrinhoFinalRecord.fretePromo) : carrinho2CarrinhoFinalRecord.frete))}',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -2722,8 +2740,8 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                           (newValue) async {
                                                         safeSetState(() =>
                                                             _model.switchValue =
-                                                                newValue);
-                                                        if (newValue) {
+                                                                newValue!);
+                                                        if (newValue!) {
                                                           FFAppState().moeda =
                                                               functions.moedaLimitar(
                                                                   valueOrDefault(
@@ -3005,7 +3023,7 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                   width: 2,
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .alternate,
+                                                                      .alternate!,
                                                                 )
                                                               : null,
                                                           activeColor:
@@ -3232,7 +3250,7 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                         width:
                                                                             2,
                                                                         color: FlutterFlowTheme.of(context)
-                                                                            .alternate,
+                                                                            .alternate!,
                                                                       )
                                                                     : null,
                                                                 activeColor:
@@ -3714,7 +3732,7 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                                 side: (FlutterFlowTheme.of(context).alternate != null)
                                                                                     ? BorderSide(
                                                                                         width: 2,
-                                                                                        color: FlutterFlowTheme.of(context).alternate,
+                                                                                        color: FlutterFlowTheme.of(context).alternate!,
                                                                                       )
                                                                                     : null,
                                                                                 activeColor: FlutterFlowTheme.of(context).primary,
@@ -3944,7 +3962,9 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                           ),
                                         ),
                                       ),
-                                      if (FFAppState().taxaProcessamento != '')
+                                      if (FFAppState().taxaProcessamento !=
+                                              null &&
+                                          FFAppState().taxaProcessamento != '')
                                         Align(
                                           alignment:
                                               AlignmentDirectional(-1.0, -1.0),
@@ -5636,16 +5656,34 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                       currentUserDocument
                                                                           ?.enderecoCompleto,
                                                                       '') !=
+                                                                  null &&
+                                                              valueOrDefault(
+                                                                      currentUserDocument
+                                                                          ?.enderecoCompleto,
+                                                                      '') !=
                                                                   '') {
                                                             if (valueOrDefault(
+                                                                        currentUserDocument
+                                                                            ?.cpf,
+                                                                        '') !=
+                                                                    null &&
+                                                                valueOrDefault(
                                                                         currentUserDocument
                                                                             ?.cpf,
                                                                         '') !=
                                                                     '') {
                                                               if (FFAppState()
                                                                           .metodoPagamento !=
+                                                                      null &&
+                                                                  FFAppState()
+                                                                          .metodoPagamento !=
                                                                       '') {
                                                                 if (valueOrDefault(
+                                                                            currentUserDocument
+                                                                                ?.iDAsaas,
+                                                                            '') !=
+                                                                        null &&
+                                                                    valueOrDefault(
                                                                             currentUserDocument?.iDAsaas,
                                                                             '') !=
                                                                         '') {
@@ -5813,6 +5851,8 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                         .toList(),
                                                                   );
                                                                   if ((FFAppState().notificaafiliado !=
+                                                                              null &&
+                                                                          FFAppState().notificaafiliado !=
                                                                               '') &&
                                                                       (FFAppState()
                                                                               .statusPagamento ==
@@ -5852,16 +5892,20 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                     );
                                                                   }
 
-                                                                  await currentUserReference!
-                                                                      .update({
-                                                                    ...mapToFirestore(
-                                                                      {
-                                                                        'moedas':
-                                                                            FieldValue.increment(-(FFAppState().moeda)),
-                                                                      },
-                                                                    ),
-                                                                  });
-                                                                                                                                  if (FFAppState()
+                                                                  if (FFAppState()
+                                                                          .moeda !=
+                                                                      null) {
+                                                                    await currentUserReference!
+                                                                        .update({
+                                                                      ...mapToFirestore(
+                                                                        {
+                                                                          'moedas':
+                                                                              FieldValue.increment(-(FFAppState().moeda)),
+                                                                        },
+                                                                      ),
+                                                                    });
+                                                                  }
+                                                                  if (FFAppState()
                                                                           .statusPagamento ==
                                                                       'pago') {
                                                                     if (Navigator.of(
@@ -6116,16 +6160,20 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                     containerCarrinhoFinalRecordList
                                                                         .toList(),
                                                                   );
-                                                                  await currentUserReference!
-                                                                      .update({
-                                                                    ...mapToFirestore(
-                                                                      {
-                                                                        'moedas':
-                                                                            FieldValue.increment(-(FFAppState().moeda)),
-                                                                      },
-                                                                    ),
-                                                                  });
-                                                                                                                                  if (FFAppState()
+                                                                  if (FFAppState()
+                                                                          .moeda !=
+                                                                      null) {
+                                                                    await currentUserReference!
+                                                                        .update({
+                                                                      ...mapToFirestore(
+                                                                        {
+                                                                          'moedas':
+                                                                              FieldValue.increment(-(FFAppState().moeda)),
+                                                                        },
+                                                                      ),
+                                                                    });
+                                                                  }
+                                                                  if (FFAppState()
                                                                           .statusPagamento ==
                                                                       'pago') {
                                                                     if (Navigator.of(
@@ -6331,13 +6379,26 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                             currentUserDocument
                                                                 ?.enderecoCompleto,
                                                             '') !=
+                                                        null &&
+                                                    valueOrDefault(
+                                                            currentUserDocument
+                                                                ?.enderecoCompleto,
+                                                            '') !=
                                                         '') {
                                                   if (valueOrDefault(
                                                               currentUserDocument
                                                                   ?.cpf,
                                                               '') !=
+                                                          null &&
+                                                      valueOrDefault(
+                                                              currentUserDocument
+                                                                  ?.cpf,
+                                                              '') !=
                                                           '') {
                                                     if (FFAppState()
+                                                                .metodoPagamento !=
+                                                            null &&
+                                                        FFAppState()
                                                                 .metodoPagamento !=
                                                             '') {
                                                       FFAppState().totalPedido = functions.valorDoubleEmString(functions.somaXmaisY(

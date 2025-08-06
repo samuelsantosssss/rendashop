@@ -1,7 +1,10 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'atualizar_opcao22_model.dart';
@@ -34,7 +37,7 @@ class _AtualizarOpcao22WidgetState extends State<AtualizarOpcao22Widget> {
     _model = createModel(context, () => AtualizarOpcao22Model());
 
     _model.nomeProdutoTextController ??=
-        TextEditingController(text: widget.stringRef);
+        TextEditingController(text: widget!.stringRef);
     _model.nomeProdutoFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -142,7 +145,7 @@ class _AtualizarOpcao22WidgetState extends State<AtualizarOpcao22Widget> {
                             controller: _model.nomeProdutoTextController,
                             focusNode: _model.nomeProdutoFocusNode,
                             onFieldSubmitted: (_) async {
-                              if (widget.stringRef ==
+                              if (widget!.stringRef ==
                                   FFAppState().opcao1titulo2) {
                                 FFAppState().opcao1titulo2 =
                                     _model.nomeProdutoTextController.text;
@@ -150,7 +153,7 @@ class _AtualizarOpcao22WidgetState extends State<AtualizarOpcao22Widget> {
                                 Navigator.pop(context);
                                 return;
                               } else {
-                                if (widget.stringRef ==
+                                if (widget!.stringRef ==
                                     FFAppState().opcao2titulo2) {
                                   FFAppState().opcao2titulo2 =
                                       _model.nomeProdutoTextController.text;
@@ -158,7 +161,7 @@ class _AtualizarOpcao22WidgetState extends State<AtualizarOpcao22Widget> {
                                   Navigator.pop(context);
                                   return;
                                 } else {
-                                  if (widget.stringRef ==
+                                  if (widget!.stringRef ==
                                       FFAppState().opcao3titulo2) {
                                     FFAppState().opcao3titulo2 =
                                         _model.nomeProdutoTextController.text;
@@ -166,7 +169,7 @@ class _AtualizarOpcao22WidgetState extends State<AtualizarOpcao22Widget> {
                                     Navigator.pop(context);
                                     return;
                                   } else {
-                                    if (widget.stringRef ==
+                                    if (widget!.stringRef ==
                                         FFAppState().opcao4titulo2) {
                                       FFAppState().opcao4titulo2 =
                                           _model.nomeProdutoTextController.text;
@@ -174,7 +177,7 @@ class _AtualizarOpcao22WidgetState extends State<AtualizarOpcao22Widget> {
                                       Navigator.pop(context);
                                       return;
                                     } else {
-                                      if (widget.stringRef ==
+                                      if (widget!.stringRef ==
                                           FFAppState().opcao5titulo2) {
                                         FFAppState().opcao5titulo2 = _model
                                             .nomeProdutoTextController.text;
@@ -182,7 +185,7 @@ class _AtualizarOpcao22WidgetState extends State<AtualizarOpcao22Widget> {
                                         Navigator.pop(context);
                                         return;
                                       } else {
-                                        if (widget.stringRef ==
+                                        if (widget!.stringRef ==
                                             FFAppState().opcao6titulo2) {
                                           FFAppState().opcao6titulo2 = _model
                                               .nomeProdutoTextController.text;
@@ -190,7 +193,7 @@ class _AtualizarOpcao22WidgetState extends State<AtualizarOpcao22Widget> {
                                           Navigator.pop(context);
                                           return;
                                         } else {
-                                          if (widget.stringRef ==
+                                          if (widget!.stringRef ==
                                               FFAppState().opcao7titulo2) {
                                             FFAppState().opcao7titulo2 = _model
                                                 .nomeProdutoTextController.text;
@@ -198,7 +201,7 @@ class _AtualizarOpcao22WidgetState extends State<AtualizarOpcao22Widget> {
                                             Navigator.pop(context);
                                             return;
                                           } else {
-                                            if (widget.stringRef ==
+                                            if (widget!.stringRef ==
                                                 FFAppState().opcao8titulo2) {
                                               FFAppState().opcao8titulo2 =
                                                   _model
@@ -208,7 +211,7 @@ class _AtualizarOpcao22WidgetState extends State<AtualizarOpcao22Widget> {
                                               Navigator.pop(context);
                                               return;
                                             } else {
-                                              if (widget.stringRef ==
+                                              if (widget!.stringRef ==
                                                   FFAppState().opcao9titulo2) {
                                                 FFAppState().opcao9titulo2 =
                                                     _model
@@ -218,7 +221,7 @@ class _AtualizarOpcao22WidgetState extends State<AtualizarOpcao22Widget> {
                                                 Navigator.pop(context);
                                                 return;
                                               } else {
-                                                if (widget.stringRef ==
+                                                if (widget!.stringRef ==
                                                     FFAppState()
                                                         .opcao10titulo2) {
                                                   FFAppState().opcao10titulo2 =

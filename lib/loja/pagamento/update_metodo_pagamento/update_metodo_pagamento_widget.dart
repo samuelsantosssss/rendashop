@@ -10,9 +10,12 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/loja/imposto_i_c_m_s/imposto_i_c_m_s_widget.dart';
 import '/loja/imposto_importacao/imposto_importacao_widget.dart';
 import '/loja/taxa_processamento/taxa_processamento_widget.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -118,7 +121,7 @@ class _UpdateMetodoPagamentoWidgetState
                     child: Builder(
                       builder: (context) {
                         final pedidosList =
-                            widget.pagamentoList?.toList() ?? [];
+                            widget!.pagamentoList?.toList() ?? [];
 
                         return SingleChildScrollView(
                           child: Column(
@@ -290,6 +293,8 @@ class _UpdateMetodoPagamentoWidgetState
                                                                           .spaceBetween,
                                                                   children: [
                                                                     if (containerPedidosTotalRecord.variacao !=
+                                                                            null &&
+                                                                        containerPedidosTotalRecord.variacao !=
                                                                             '')
                                                                       Align(
                                                                         alignment: AlignmentDirectional(
@@ -1037,7 +1042,7 @@ class _UpdateMetodoPagamentoWidgetState
                                               width: 2,
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .alternate,
+                                                      .alternate!,
                                             )
                                           : null,
                                       activeColor:
@@ -1200,7 +1205,7 @@ class _UpdateMetodoPagamentoWidgetState
                                                             width: 2,
                                                             color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .alternate,
+                                                                .alternate!,
                                                           )
                                                         : null,
                                                     activeColor:
@@ -1679,7 +1684,7 @@ class _UpdateMetodoPagamentoWidgetState
                                                                             width:
                                                                                 2,
                                                                             color:
-                                                                                FlutterFlowTheme.of(context).alternate,
+                                                                                FlutterFlowTheme.of(context).alternate!,
                                                                           )
                                                                         : null,
                                                                     activeColor:
@@ -2203,7 +2208,8 @@ class _UpdateMetodoPagamentoWidgetState
                                   ),
                                 ),
                               ),
-                              if (FFAppState().taxaProcessamento != '')
+                              if (FFAppState().taxaProcessamento != null &&
+                                  FFAppState().taxaProcessamento != '')
                                 Align(
                                   alignment: AlignmentDirectional(-1.0, -1.0),
                                   child: Padding(
@@ -2624,6 +2630,9 @@ class _UpdateMetodoPagamentoWidgetState
                                                   var _shouldSetState = false;
                                                   if (FFAppState()
                                                               .metodoPagamento !=
+                                                          null &&
+                                                      FFAppState()
+                                                              .metodoPagamento !=
                                                           '') {
                                                     FFAppState().totalPedido = functions.valorDoubleEmString(
                                                         functions.calculoMaisCartao(
@@ -2640,7 +2649,7 @@ class _UpdateMetodoPagamentoWidgetState
                                                     FFAppState().IDasaas =
                                                         functions.gerarID();
                                                     FFAppState().listRefPedido =
-                                                        widget.pagamentoList!
+                                                        widget!.pagamentoList!
                                                             .toList()
                                                             .cast<
                                                                 DocumentReference>();
@@ -2876,6 +2885,8 @@ class _UpdateMetodoPagamentoWidgetState
                                       onPressed: () async {
                                         var _shouldSetState = false;
                                         if (FFAppState().metodoPagamento !=
+                                                null &&
+                                            FFAppState().metodoPagamento !=
                                                 '') {
                                           FFAppState().totalPedido =
                                               functions.valorDoubleEmString(
@@ -2890,7 +2901,7 @@ class _UpdateMetodoPagamentoWidgetState
                                                           .icmsCartaoErro,
                                                       FFAppState()
                                                           .impostoImportacaoCartaoErro));
-                                          FFAppState().listRefPedido = widget
+                                          FFAppState().listRefPedido = widget!
                                               .pagamentoList!
                                               .toList()
                                               .cast<DocumentReference>();

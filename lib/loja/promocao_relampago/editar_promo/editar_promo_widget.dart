@@ -1,16 +1,22 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/carregando/carregando8/carregando8_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:async';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:provider/provider.dart';
 import 'editar_promo_model.dart';
 export 'editar_promo_model.dart';
 
@@ -74,7 +80,7 @@ class _EditarPromoWidgetState extends State<EditarPromoWidget> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<PromoRelampagoRecord>(
-      stream: PromoRelampagoRecord.getDocument(widget.promoRef!),
+      stream: PromoRelampagoRecord.getDocument(widget!.promoRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -1216,6 +1222,8 @@ class _EditarPromoWidgetState extends State<EditarPromoWidget> {
                             child: FFButtonWidget(
                               onPressed: () async {
                                 if (_model.textField111TextController.text !=
+                                        null &&
+                                    _model.textField111TextController.text !=
                                         '') {
                                   await editarPromoPromoRelampagoRecord
                                       .reference
@@ -1271,7 +1279,9 @@ class _EditarPromoWidgetState extends State<EditarPromoWidget> {
                                 iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
                                 color: valueOrDefault<Color>(
-                                  _model.textField111TextController
+                                  _model.textField111TextController.text !=
+                                              null &&
+                                          _model.textField111TextController
                                                   .text !=
                                               ''
                                       ? FlutterFlowTheme.of(context).primary

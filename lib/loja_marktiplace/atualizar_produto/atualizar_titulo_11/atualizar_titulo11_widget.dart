@@ -1,7 +1,10 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'atualizar_titulo11_model.dart';
@@ -35,7 +38,7 @@ class _AtualizarTitulo11WidgetState extends State<AtualizarTitulo11Widget> {
     _model = createModel(context, () => AtualizarTitulo11Model());
 
     _model.nomeProdutoTextController ??=
-        TextEditingController(text: widget.stringRef);
+        TextEditingController(text: widget!.stringRef);
     _model.nomeProdutoFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -143,14 +146,14 @@ class _AtualizarTitulo11WidgetState extends State<AtualizarTitulo11Widget> {
                             controller: _model.nomeProdutoTextController,
                             focusNode: _model.nomeProdutoFocusNode,
                             onFieldSubmitted: (_) async {
-                              if (widget.stringRef == FFAppState().titulo1) {
+                              if (widget!.stringRef == FFAppState().titulo1) {
                                 FFAppState().titulo1 =
                                     _model.nomeProdutoTextController.text;
                                 safeSetState(() {});
                                 Navigator.pop(context);
                                 return;
                               } else {
-                                if (widget.stringRef == FFAppState().titulo2) {
+                                if (widget!.stringRef == FFAppState().titulo2) {
                                   FFAppState().titulo2 =
                                       _model.nomeProdutoTextController.text;
                                   safeSetState(() {});

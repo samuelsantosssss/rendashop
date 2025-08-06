@@ -9,15 +9,19 @@ import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/loja_marktiplace/capsula_variacao_cadastro/capsula_variacao_cadastro_widget.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'cadastrar_produto_model.dart';
 export 'cadastrar_produto_model.dart';
@@ -1069,7 +1073,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                                   width: 2,
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .alternate,
+                                                      .alternate!,
                                                 )
                                               : null,
                                           activeColor:
@@ -1376,7 +1380,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                                   width: 2,
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .alternate,
+                                                      .alternate!,
                                                 )
                                               : null,
                                           activeColor:
@@ -1612,7 +1616,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                             ),
                           ),
                         ),
-                        if (_model.uploadedFileUrl_uploadData33f4455 != '')
+                        if (_model.uploadedFileUrl_uploadData33f4455 != null &&
+                            _model.uploadedFileUrl_uploadData33f4455 != '')
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
@@ -2524,7 +2529,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                         AdicionarVariante11Widget.routeName,
                         queryParameters: {
                           'lojaRef': serializeParam(
-                            widget.lojaRef,
+                            widget!.lojaRef,
                             ParamType.DocumentReference,
                           ),
                         }.withoutNulls,
@@ -2604,7 +2609,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                   ),
                 ),
               ),
-              if (FFAppState().titulo1 != '')
+              if (FFAppState().titulo1 != null && FFAppState().titulo1 != '')
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -3091,7 +3096,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                   ),
                 ),
               ),
-              if (FFAppState().titulo1 == '')
+              if (FFAppState().titulo1 == null || FFAppState().titulo1 == '')
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -3212,7 +3217,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                           );
                                         });
                                       });
-                                      if (FFAppState().titulo1 != '') {
+                                      if (FFAppState().titulo1 != null &&
+                                          FFAppState().titulo1 != '') {
                                         safeSetState(() {
                                           _model.precoTextController?.clear();
                                         });
@@ -3323,7 +3329,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                     ),
                   ),
                 ),
-              if (FFAppState().titulo1 == '')
+              if (FFAppState().titulo1 == null || FFAppState().titulo1 == '')
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -3709,7 +3715,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                     ),
                   ),
                 ),
-              if (FFAppState().titulo1 == '')
+              if (FFAppState().titulo1 == null || FFAppState().titulo1 == '')
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -4607,7 +4613,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     value: _model.switchValue1!,
                                     onChanged: (newValue) async {
                                       safeSetState(() =>
-                                          _model.switchValue1 = newValue);
+                                          _model.switchValue1 = newValue!);
                                     },
                                     activeColor: Colors.white,
                                     activeTrackColor:
@@ -4705,7 +4711,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     value: _model.switchValue2!,
                                     onChanged: (newValue) async {
                                       safeSetState(() =>
-                                          _model.switchValue2 = newValue);
+                                          _model.switchValue2 = newValue!);
                                     },
                                     activeColor: Colors.white,
                                     activeTrackColor:
@@ -5071,8 +5077,10 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                               ),
                             }, produtoRecordReference);
                             _shouldSetState = true;
-                            if (FFAppState().titulo1 != '') {
-                              if (FFAppState().capsula1 != '') {
+                            if (FFAppState().titulo1 != null &&
+                                FFAppState().titulo1 != '') {
+                              if (FFAppState().capsula1 != null &&
+                                  FFAppState().capsula1 != '') {
                                 await _model.produtoCriado!.reference
                                     .update(createProdutoRecordData(
                                   capsula1: FFAppState().capsula1,
@@ -5101,9 +5109,12 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                 .update(createProdutoRecordData(
                               produtoRef: _model.produtoCriado?.reference,
                             ));
-                            if (FFAppState().titulo1 != '') {
-                              if (FFAppState().titulo2 != '') {
-                                if (FFAppState().opcao1preco != '') {
+                            if (FFAppState().titulo1 != null &&
+                                FFAppState().titulo1 != '') {
+                              if (FFAppState().titulo2 != null &&
+                                  FFAppState().titulo2 != '') {
+                                if (FFAppState().opcao1preco != null &&
+                                    FFAppState().opcao1preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5119,7 +5130,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao1titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao12preco != '') {
+                                if (FFAppState().opcao12preco != null &&
+                                    FFAppState().opcao12preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5135,7 +5147,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao2titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao13preco != '') {
+                                if (FFAppState().opcao13preco != null &&
+                                    FFAppState().opcao13preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5151,7 +5164,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao3titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao14preco != '') {
+                                if (FFAppState().opcao14preco != null &&
+                                    FFAppState().opcao14preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5167,7 +5181,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao4titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao15preco != '') {
+                                if (FFAppState().opcao15preco != null &&
+                                    FFAppState().opcao15preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5183,7 +5198,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao5titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao16preco != '') {
+                                if (FFAppState().opcao16preco != null &&
+                                    FFAppState().opcao16preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5199,7 +5215,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao6titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao17preco != '') {
+                                if (FFAppState().opcao17preco != null &&
+                                    FFAppState().opcao17preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5215,7 +5232,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao7titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao18preco != '') {
+                                if (FFAppState().opcao18preco != null &&
+                                    FFAppState().opcao18preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5231,7 +5249,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao8titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao19preco != '') {
+                                if (FFAppState().opcao19preco != null &&
+                                    FFAppState().opcao19preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5247,7 +5266,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao9titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao110preco != '') {
+                                if (FFAppState().opcao110preco != null &&
+                                    FFAppState().opcao110preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5263,7 +5283,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao10titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao21preco != '') {
+                                if (FFAppState().opcao21preco != null &&
+                                    FFAppState().opcao21preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5279,7 +5300,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao1titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao22preco != '') {
+                                if (FFAppState().opcao22preco != null &&
+                                    FFAppState().opcao22preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5295,7 +5317,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao2titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao23preco != '') {
+                                if (FFAppState().opcao23preco != null &&
+                                    FFAppState().opcao23preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5311,7 +5334,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao3titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao24preco != '') {
+                                if (FFAppState().opcao24preco != null &&
+                                    FFAppState().opcao24preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5327,7 +5351,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao4titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao25preco != '') {
+                                if (FFAppState().opcao25preco != null &&
+                                    FFAppState().opcao25preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5343,7 +5368,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao5titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao26preco != '') {
+                                if (FFAppState().opcao26preco != null &&
+                                    FFAppState().opcao26preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5359,7 +5385,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao6titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao27preco != '') {
+                                if (FFAppState().opcao27preco != null &&
+                                    FFAppState().opcao27preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5375,7 +5402,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao7titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao28preco != '') {
+                                if (FFAppState().opcao28preco != null &&
+                                    FFAppState().opcao28preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5391,7 +5419,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao8titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao29preco != '') {
+                                if (FFAppState().opcao29preco != null &&
+                                    FFAppState().opcao29preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5407,7 +5436,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao9titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao210preco != '') {
+                                if (FFAppState().opcao210preco != null &&
+                                    FFAppState().opcao210preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5423,7 +5453,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao10titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao31preco != '') {
+                                if (FFAppState().opcao31preco != null &&
+                                    FFAppState().opcao31preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5439,7 +5470,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao1titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao32preco != '') {
+                                if (FFAppState().opcao32preco != null &&
+                                    FFAppState().opcao32preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5455,7 +5487,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao2titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao33preco != '') {
+                                if (FFAppState().opcao33preco != null &&
+                                    FFAppState().opcao33preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5471,7 +5504,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao3titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao34preco != '') {
+                                if (FFAppState().opcao34preco != null &&
+                                    FFAppState().opcao34preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5487,7 +5521,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao4titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao35preco != '') {
+                                if (FFAppState().opcao35preco != null &&
+                                    FFAppState().opcao35preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5503,7 +5538,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao5titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao36preco != '') {
+                                if (FFAppState().opcao36preco != null &&
+                                    FFAppState().opcao36preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5519,7 +5555,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao6titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao37preco != '') {
+                                if (FFAppState().opcao37preco != null &&
+                                    FFAppState().opcao37preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5535,7 +5572,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao7titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao38preco != '') {
+                                if (FFAppState().opcao38preco != null &&
+                                    FFAppState().opcao38preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5551,7 +5589,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao8titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao39preco != '') {
+                                if (FFAppState().opcao39preco != null &&
+                                    FFAppState().opcao39preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5567,7 +5606,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao9titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao310preco != '') {
+                                if (FFAppState().opcao310preco != null &&
+                                    FFAppState().opcao310preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5583,7 +5623,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao10titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao41preco != '') {
+                                if (FFAppState().opcao41preco != null &&
+                                    FFAppState().opcao41preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5599,7 +5640,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao1titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao42preco != '') {
+                                if (FFAppState().opcao42preco != null &&
+                                    FFAppState().opcao42preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5615,7 +5657,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao2titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao43preco != '') {
+                                if (FFAppState().opcao43preco != null &&
+                                    FFAppState().opcao43preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5631,7 +5674,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao3titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao44preco != '') {
+                                if (FFAppState().opcao44preco != null &&
+                                    FFAppState().opcao44preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5647,7 +5691,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao4titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao45preco != '') {
+                                if (FFAppState().opcao45preco != null &&
+                                    FFAppState().opcao45preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5663,7 +5708,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao5titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao46preco != '') {
+                                if (FFAppState().opcao46preco != null &&
+                                    FFAppState().opcao46preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5679,7 +5725,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao6titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao47preco != '') {
+                                if (FFAppState().opcao47preco != null &&
+                                    FFAppState().opcao47preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5695,7 +5742,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao7titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao48preco != '') {
+                                if (FFAppState().opcao48preco != null &&
+                                    FFAppState().opcao48preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5711,7 +5759,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao8titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao49preco != '') {
+                                if (FFAppState().opcao49preco != null &&
+                                    FFAppState().opcao49preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5727,7 +5776,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao9titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao410preco != '') {
+                                if (FFAppState().opcao410preco != null &&
+                                    FFAppState().opcao410preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5743,7 +5793,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao10titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao51preco != '') {
+                                if (FFAppState().opcao51preco != null &&
+                                    FFAppState().opcao51preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5759,7 +5810,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao1titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao52preco != '') {
+                                if (FFAppState().opcao52preco != null &&
+                                    FFAppState().opcao52preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5775,7 +5827,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao2titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao53preco != '') {
+                                if (FFAppState().opcao53preco != null &&
+                                    FFAppState().opcao53preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5791,7 +5844,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao3titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao54preco != '') {
+                                if (FFAppState().opcao54preco != null &&
+                                    FFAppState().opcao54preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5807,7 +5861,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao4titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao55preco != '') {
+                                if (FFAppState().opcao55preco != null &&
+                                    FFAppState().opcao55preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5823,7 +5878,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao5titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao56preco != '') {
+                                if (FFAppState().opcao56preco != null &&
+                                    FFAppState().opcao56preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5839,7 +5895,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao6titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao57preco != '') {
+                                if (FFAppState().opcao57preco != null &&
+                                    FFAppState().opcao57preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5855,7 +5912,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao7titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao58preco != '') {
+                                if (FFAppState().opcao58preco != null &&
+                                    FFAppState().opcao58preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5871,7 +5929,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao8titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao59preco != '') {
+                                if (FFAppState().opcao59preco != null &&
+                                    FFAppState().opcao59preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5887,7 +5946,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao9titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao510preco != '') {
+                                if (FFAppState().opcao510preco != null &&
+                                    FFAppState().opcao510preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5903,7 +5963,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao10titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao61preco != '') {
+                                if (FFAppState().opcao61preco != null &&
+                                    FFAppState().opcao61preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5919,7 +5980,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao1titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao62preco != '') {
+                                if (FFAppState().opcao62preco != null &&
+                                    FFAppState().opcao62preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5935,7 +5997,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao2titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao63preco != '') {
+                                if (FFAppState().opcao63preco != null &&
+                                    FFAppState().opcao63preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5951,7 +6014,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao3titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao64preco != '') {
+                                if (FFAppState().opcao64preco != null &&
+                                    FFAppState().opcao64preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5967,7 +6031,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao4titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao65preco != '') {
+                                if (FFAppState().opcao65preco != null &&
+                                    FFAppState().opcao65preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5983,7 +6048,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao5titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao66preco != '') {
+                                if (FFAppState().opcao66preco != null &&
+                                    FFAppState().opcao66preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -5999,7 +6065,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao6titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao67preco != '') {
+                                if (FFAppState().opcao67preco != null &&
+                                    FFAppState().opcao67preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6015,7 +6082,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao7titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao68preco != '') {
+                                if (FFAppState().opcao68preco != null &&
+                                    FFAppState().opcao68preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6031,7 +6099,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao8titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao69preco != '') {
+                                if (FFAppState().opcao69preco != null &&
+                                    FFAppState().opcao69preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6047,7 +6116,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao9titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao610preco != '') {
+                                if (FFAppState().opcao610preco != null &&
+                                    FFAppState().opcao610preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6063,7 +6133,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao10titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao71preco != '') {
+                                if (FFAppState().opcao71preco != null &&
+                                    FFAppState().opcao71preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6079,7 +6150,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao1titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao72preco != '') {
+                                if (FFAppState().opcao72preco != null &&
+                                    FFAppState().opcao72preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6095,7 +6167,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao2titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao73preco != '') {
+                                if (FFAppState().opcao73preco != null &&
+                                    FFAppState().opcao73preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6111,7 +6184,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao3titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao74preco != '') {
+                                if (FFAppState().opcao74preco != null &&
+                                    FFAppState().opcao74preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6127,7 +6201,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao4titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao75preco != '') {
+                                if (FFAppState().opcao75preco != null &&
+                                    FFAppState().opcao75preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6143,7 +6218,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao5titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao76preco != '') {
+                                if (FFAppState().opcao76preco != null &&
+                                    FFAppState().opcao76preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6159,7 +6235,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao6titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao77preco != '') {
+                                if (FFAppState().opcao77preco != null &&
+                                    FFAppState().opcao77preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6175,7 +6252,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao7titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao78preco != '') {
+                                if (FFAppState().opcao78preco != null &&
+                                    FFAppState().opcao78preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6191,7 +6269,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao8titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao79preco != '') {
+                                if (FFAppState().opcao79preco != null &&
+                                    FFAppState().opcao79preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6207,7 +6286,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao9titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao710preco != '') {
+                                if (FFAppState().opcao710preco != null &&
+                                    FFAppState().opcao710preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6223,7 +6303,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao10titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao81preco != '') {
+                                if (FFAppState().opcao81preco != null &&
+                                    FFAppState().opcao81preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6239,7 +6320,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao1titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao82preco != '') {
+                                if (FFAppState().opcao82preco != null &&
+                                    FFAppState().opcao82preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6255,7 +6337,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao2titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao83preco != '') {
+                                if (FFAppState().opcao83preco != null &&
+                                    FFAppState().opcao83preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6271,7 +6354,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao3titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao84preco != '') {
+                                if (FFAppState().opcao84preco != null &&
+                                    FFAppState().opcao84preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6287,7 +6371,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao4titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao85preco != '') {
+                                if (FFAppState().opcao85preco != null &&
+                                    FFAppState().opcao85preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6303,7 +6388,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao5titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao86preco != '') {
+                                if (FFAppState().opcao86preco != null &&
+                                    FFAppState().opcao86preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6319,7 +6405,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao6titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao87preco != '') {
+                                if (FFAppState().opcao87preco != null &&
+                                    FFAppState().opcao87preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6335,7 +6422,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao7titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao88preco != '') {
+                                if (FFAppState().opcao88preco != null &&
+                                    FFAppState().opcao88preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6351,7 +6439,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao8titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao89preco != '') {
+                                if (FFAppState().opcao89preco != null &&
+                                    FFAppState().opcao89preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6367,7 +6456,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao9titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao810preco != '') {
+                                if (FFAppState().opcao810preco != null &&
+                                    FFAppState().opcao810preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6383,7 +6473,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao10titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao91preco != '') {
+                                if (FFAppState().opcao91preco != null &&
+                                    FFAppState().opcao91preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6399,7 +6490,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao1titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao92preco != '') {
+                                if (FFAppState().opcao92preco != null &&
+                                    FFAppState().opcao92preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6415,7 +6507,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao2titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao93preco != '') {
+                                if (FFAppState().opcao93preco != null &&
+                                    FFAppState().opcao93preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6431,7 +6524,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao3titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao94preco != '') {
+                                if (FFAppState().opcao94preco != null &&
+                                    FFAppState().opcao94preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6447,7 +6541,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao4titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao95preco != '') {
+                                if (FFAppState().opcao95preco != null &&
+                                    FFAppState().opcao95preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6463,7 +6558,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao5titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao96preco != '') {
+                                if (FFAppState().opcao96preco != null &&
+                                    FFAppState().opcao96preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6479,7 +6575,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao6titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao97preco != '') {
+                                if (FFAppState().opcao97preco != null &&
+                                    FFAppState().opcao97preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6495,7 +6592,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao7titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao98preco != '') {
+                                if (FFAppState().opcao98preco != null &&
+                                    FFAppState().opcao98preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6511,7 +6609,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao8titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao99preco != '') {
+                                if (FFAppState().opcao99preco != null &&
+                                    FFAppState().opcao99preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6527,7 +6626,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao9titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao910preco != '') {
+                                if (FFAppState().opcao910preco != null &&
+                                    FFAppState().opcao910preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6543,7 +6643,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao10titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao101preco != '') {
+                                if (FFAppState().opcao101preco != null &&
+                                    FFAppState().opcao101preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6559,7 +6660,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao1titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao102preco != '') {
+                                if (FFAppState().opcao102preco != null &&
+                                    FFAppState().opcao102preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6575,7 +6677,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao2titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao103preco != '') {
+                                if (FFAppState().opcao103preco != null &&
+                                    FFAppState().opcao103preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6592,7 +6695,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                   ));
                                 }
                               } else {
-                                if (FFAppState().opcao1preco != '') {
+                                if (FFAppState().opcao1preco != null &&
+                                    FFAppState().opcao1preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6606,7 +6710,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo1: FFAppState().opcao1titulo1,
                                   ));
                                 }
-                                if (FFAppState().opcao12preco != '') {
+                                if (FFAppState().opcao12preco != null &&
+                                    FFAppState().opcao12preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6620,7 +6725,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo1: FFAppState().opcao2titulo1,
                                   ));
                                 }
-                                if (FFAppState().opcao13preco != '') {
+                                if (FFAppState().opcao13preco != null &&
+                                    FFAppState().opcao13preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6634,7 +6740,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo1: FFAppState().opcao3titulo1,
                                   ));
                                 }
-                                if (FFAppState().opcao14preco != '') {
+                                if (FFAppState().opcao14preco != null &&
+                                    FFAppState().opcao14preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6648,7 +6755,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo1: FFAppState().opcao4titulo1,
                                   ));
                                 }
-                                if (FFAppState().opcao15preco != '') {
+                                if (FFAppState().opcao15preco != null &&
+                                    FFAppState().opcao15preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6662,7 +6770,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo1: FFAppState().opcao5titulo1,
                                   ));
                                 }
-                                if (FFAppState().opcao16preco != '') {
+                                if (FFAppState().opcao16preco != null &&
+                                    FFAppState().opcao16preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6676,7 +6785,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo1: FFAppState().opcao6titulo1,
                                   ));
                                 }
-                                if (FFAppState().opcao17preco != '') {
+                                if (FFAppState().opcao17preco != null &&
+                                    FFAppState().opcao17preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6690,7 +6800,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo1: FFAppState().opcao7titulo1,
                                   ));
                                 }
-                                if (FFAppState().opcao18preco != '') {
+                                if (FFAppState().opcao18preco != null &&
+                                    FFAppState().opcao18preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6704,7 +6815,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo1: FFAppState().opcao8titulo1,
                                   ));
                                 }
-                                if (FFAppState().opcao19preco != '') {
+                                if (FFAppState().opcao19preco != null &&
+                                    FFAppState().opcao19preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6718,7 +6830,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo1: FFAppState().opcao9titulo1,
                                   ));
                                 }
-                                if (FFAppState().opcao110preco != '') {
+                                if (FFAppState().opcao110preco != null &&
+                                    FFAppState().opcao110preco != '') {
                                   await VarianteRecord.createDoc(
                                           _model.produtoCriado!.reference)
                                       .set(createVarianteRecordData(
@@ -6823,7 +6936,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                   ProdutosWidget.routeName,
                                   queryParameters: {
                                     'lojaref': serializeParam(
-                                      widget.lojaRef,
+                                      widget!.lojaRef,
                                       ParamType.DocumentReference,
                                     ),
                                   }.withoutNulls,
@@ -6833,7 +6946,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                 return;
                               }
 
-                              if (FFAppState().opcao104preco != '') {
+                              if (FFAppState().opcao104preco != null &&
+                                  FFAppState().opcao104preco != '') {
                                 await VarianteRecord.createDoc(
                                         _model.produtoCriado!.reference)
                                     .set(createVarianteRecordData(
@@ -6849,7 +6963,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                   opcaoTitulo2: FFAppState().opcao4titulo2,
                                 ));
                               }
-                              if (FFAppState().opcao105preco != '') {
+                              if (FFAppState().opcao105preco != null &&
+                                  FFAppState().opcao105preco != '') {
                                 await VarianteRecord.createDoc(
                                         _model.produtoCriado!.reference)
                                     .set(createVarianteRecordData(
@@ -6865,7 +6980,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                   opcaoTitulo2: FFAppState().opcao5titulo2,
                                 ));
                               }
-                              if (FFAppState().opcao106preco != '') {
+                              if (FFAppState().opcao106preco != null &&
+                                  FFAppState().opcao106preco != '') {
                                 await VarianteRecord.createDoc(
                                         _model.produtoCriado!.reference)
                                     .set(createVarianteRecordData(
@@ -6881,7 +6997,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                   opcaoTitulo2: FFAppState().opcao6titulo2,
                                 ));
                               }
-                              if (FFAppState().opcao107preco != '') {
+                              if (FFAppState().opcao107preco != null &&
+                                  FFAppState().opcao107preco != '') {
                                 await VarianteRecord.createDoc(
                                         _model.produtoCriado!.reference)
                                     .set(createVarianteRecordData(
@@ -6897,7 +7014,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                   opcaoTitulo2: FFAppState().opcao7titulo2,
                                 ));
                               }
-                              if (FFAppState().opcao108preco != '') {
+                              if (FFAppState().opcao108preco != null &&
+                                  FFAppState().opcao108preco != '') {
                                 await VarianteRecord.createDoc(
                                         _model.produtoCriado!.reference)
                                     .set(createVarianteRecordData(
@@ -6913,7 +7031,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                   opcaoTitulo2: FFAppState().opcao8titulo2,
                                 ));
                               }
-                              if (FFAppState().opcao109preco != '') {
+                              if (FFAppState().opcao109preco != null &&
+                                  FFAppState().opcao109preco != '') {
                                 await VarianteRecord.createDoc(
                                         _model.produtoCriado!.reference)
                                     .set(createVarianteRecordData(
@@ -6929,7 +7048,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                   opcaoTitulo2: FFAppState().opcao9titulo2,
                                 ));
                               }
-                              if (FFAppState().opcao1010preco != '') {
+                              if (FFAppState().opcao1010preco != null &&
+                                  FFAppState().opcao1010preco != '') {
                                 await VarianteRecord.createDoc(
                                         _model.produtoCriado!.reference)
                                     .set(createVarianteRecordData(
@@ -7229,7 +7349,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                 ProdutosWidget.routeName,
                                 queryParameters: {
                                   'lojaref': serializeParam(
-                                    widget.lojaRef,
+                                    widget!.lojaRef,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -7242,7 +7362,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                 ProdutosWidget.routeName,
                                 queryParameters: {
                                   'lojaref': serializeParam(
-                                    widget.lojaRef,
+                                    widget!.lojaRef,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,

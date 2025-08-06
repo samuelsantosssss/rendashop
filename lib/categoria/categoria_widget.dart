@@ -1,11 +1,15 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/nav_bar/nav_bar_categoria/nav_bar_categoria_widget.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -482,7 +486,8 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                     color: valueOrDefault<Color>(
                                       (FFAppState().categoria ==
                                                   'Roupas Femininas') ||
-                                              (FFAppState().categoria == '')
+                                              (FFAppState().categoria == null ||
+                                                  FFAppState().categoria == '')
                                           ? FlutterFlowTheme.of(context)
                                               .secondaryBackground
                                           : Color(0xFFEEEEEE),
@@ -2770,7 +2775,8 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         if ((FFAppState().categoria == 'Roupas Femininas') ||
-                            (FFAppState().categoria == ''))
+                            (FFAppState().categoria == null ||
+                                FFAppState().categoria == ''))
                           Align(
                             alignment: AlignmentDirectional(0.0, -1.0),
                             child: Container(
@@ -2808,7 +2814,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Vestidos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -2905,7 +2911,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Blusas Femininas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -3002,7 +3008,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Saias',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -3099,7 +3105,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Shorts Femininas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -3196,7 +3202,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Jeans Femininas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -3293,7 +3299,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Calça e Leggins',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -3390,7 +3396,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Conjuntos Femininos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -3486,7 +3492,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Lingerie e Roupa Íntima Feminina',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -3582,7 +3588,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Traje para dormir e Pijamas Femininas',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -3678,7 +3684,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Macacões e Jardineiras Femininas',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -3774,7 +3780,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Jaquetase e Casacos Femininos',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -3870,7 +3876,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Moletons e Suéteres Femininos',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -3966,7 +3972,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Agasalhos e Cardigans Femininos',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -4063,7 +4069,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Roupas de Maternidade',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -4160,7 +4166,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Meias Femininas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -4256,7 +4262,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Roupas Tradicionais Femininas',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -4352,7 +4358,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Fantasias e Cosplay Femininas',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -4449,7 +4455,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Vestidos de Casamento',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -4546,7 +4552,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Tecidos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -4643,7 +4649,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Roupas Femininas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -4773,7 +4779,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Blusas Masculina',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -4869,7 +4875,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Moletons e Suéteres Masculinos',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -4959,7 +4965,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Jaquetas e Casacos Masculinos',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -5050,7 +5056,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Calças Masculinas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -5147,7 +5153,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Jeans Maculinas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -5244,7 +5250,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Roupa Íntima Masculina',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -5341,7 +5347,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Bermuda Masculina',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -5437,7 +5443,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Agasalhos e Cardigans Masculinos',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -5528,7 +5534,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Meias Masculinas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -5624,7 +5630,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Traje para dormir masculino',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -5721,7 +5727,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Conjuntos Masculino',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -5818,7 +5824,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Ternos Masculinos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -5914,7 +5920,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Roupas Tradicionais Masculino',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -6010,7 +6016,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Fantasias e Cospley Masculino',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -6106,7 +6112,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Vestuário Profissional Masculino',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -6203,7 +6209,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Roupas Masculina',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -6338,7 +6344,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Decoração',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -6435,7 +6441,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Artigos de Cozinha',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -6532,7 +6538,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Roupas de Cama',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -6629,7 +6635,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Móveis',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -6726,7 +6732,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Banheiros',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -6823,7 +6829,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Louça',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -6920,7 +6926,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Iluminação',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -7017,7 +7023,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Organizadores para Casa',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -7113,7 +7119,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Fragrância e Aromaterapia',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -7210,7 +7216,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Cuidados com a Casa',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -7307,7 +7313,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Jardinagem',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -7404,7 +7410,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Artigos de Festa',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -7501,7 +7507,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Ferramentas e Construção',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -7598,7 +7604,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Segurança',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -7695,7 +7701,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Artigos Religiosos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -7792,7 +7798,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Bolsa Termica',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -7889,7 +7895,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'casa',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -8024,7 +8030,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Tênis Femininos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -8121,7 +8127,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Botas Femininas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -8218,7 +8224,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Saltos e Tamancos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -8314,7 +8320,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Sandálias e Chinelos Femininos',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -8411,7 +8417,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Sapatos Femininos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -8508,7 +8514,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Plataformas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -8604,7 +8610,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Acessórios Calçados Femininos',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -8701,7 +8707,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Sapatos Femininos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -8831,7 +8837,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Maquiagem',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -8928,7 +8934,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Cuidados com o Cabelo',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -9025,7 +9031,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Perfume e Fragância',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -9121,7 +9127,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Banho e cuidados com o Corpo',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -9218,7 +9224,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Cuidados com a Pele',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -9315,7 +9321,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Utensílios de Beleza',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -9411,7 +9417,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Cuidados com as Mãos e Unhas',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -9508,7 +9514,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Cuidados Maculinos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -9605,7 +9611,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Conjuntos de Beleza',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -9702,7 +9708,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Beleza',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -9832,7 +9838,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Tênis Maculino',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -9929,7 +9935,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Bota Maculina',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -10025,7 +10031,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Sandálias e Chinelos Maculinos',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -10122,7 +10128,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Slip on e Mule Masculino',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -10219,7 +10225,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Mocassins Masculino',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -10316,7 +10322,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Oxfords Masculino',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -10412,7 +10418,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Acessórios Calçados Maculinos',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -10509,7 +10515,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Sapatos Maculinos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -10638,7 +10644,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Roupas de Menina Infantil',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -10734,7 +10740,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Roupas de Menino Infantil',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -10830,7 +10836,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Calçados de Menina Infantil',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -10926,7 +10932,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Calçados de Menino Infantil',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -11023,7 +11029,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Cessórios Infantis',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -11119,7 +11125,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Luvas e Calçados Infantis',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -11216,7 +11222,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Roupas Infantis',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -11313,7 +11319,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Moda infantil',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -11443,7 +11449,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Óculos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -11540,7 +11546,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Anéis',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -11637,7 +11643,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Colares',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -11734,7 +11740,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Bonés, Chapéus e Toucas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -11831,7 +11837,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Pulseiras e Braceletes',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -11928,7 +11934,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Brincos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -12025,7 +12031,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Cintos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -12122,7 +12128,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Cachecóis e Lenços',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -12219,7 +12225,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Conjunto e Acessórios',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -12316,7 +12322,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Acessórios de Cabelo',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -12413,7 +12419,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Tornozeleira',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -12510,7 +12516,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Luvas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -12607,7 +12613,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Gravatas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -12704,7 +12710,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Acessórios de Moda',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -12834,7 +12840,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Relógios Masculinos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -12931,7 +12937,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Relógios Fêmininos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -13028,7 +13034,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Acessório de Relógios',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -13125,7 +13131,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Conjuntos de Relógios',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -13222,7 +13228,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Relógios',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -13353,7 +13359,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Celulares',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -13450,7 +13456,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Tablets',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -13547,7 +13553,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Acessórios Celular',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -13644,7 +13650,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Capinha celular',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -13741,7 +13747,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Celulares e acessórios',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -13872,7 +13878,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Equipamentos Esportivos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -13969,7 +13975,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Vestimenta Esportiva',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -14066,7 +14072,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Calçados Esportivos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -14163,7 +14169,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Acessórios Esportivos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -14260,7 +14266,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Esporte e Lazer',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -14390,7 +14396,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Utensílios de Cozinha',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -14486,7 +14492,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Eletrodomésticos Pequenos',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -14583,7 +14589,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Projetore e Acessórios',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -14680,7 +14686,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Baterias',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -14777,7 +14783,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Eletrodomésticos Grandes',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -14874,7 +14880,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'TVs e Acessórios',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -14971,7 +14977,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Circuitos Elétricos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -15068,7 +15074,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Controles Remoto',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -15165,7 +15171,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Eletroportáteis',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -15295,7 +15301,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Brinquedos e Jogos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -15392,7 +15398,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Instrumentos Musicais',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -15489,7 +15495,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Itens Colecionáveis',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -15586,7 +15592,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Chaveiros',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -15683,7 +15689,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Álbum de Fotos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -15780,7 +15786,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'CD, DVD e Bluray',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -15877,7 +15883,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Disco de Vinil',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -15974,7 +15980,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Bordado',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -16071,7 +16077,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Brinquedos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -16201,7 +16207,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Pneus e Rodas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -16297,7 +16303,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Acessórios Internos para Automóveis',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -16393,7 +16399,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Acessórios Externos para Automóveis',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -16489,7 +16495,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Peças de Reposição para Automóveis',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -16586,7 +16592,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Ferramentas Veiculares',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -16683,7 +16689,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Limpeza Veicular',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -16780,7 +16786,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Segurança Veicular',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -16876,7 +16882,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Peça de Reposição para Motocicletas',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -16972,7 +16978,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Acessórios para Motocicletas',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -17068,7 +17074,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Veículos Pesados e Barcos',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -17165,7 +17171,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Acessórios para veículos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -17295,7 +17301,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Suplementos Alimentares',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -17392,7 +17398,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Cuidados Pessoais',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -17489,7 +17495,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Bem-Estar Sexual',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -17586,7 +17592,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Suprimentos Medicos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -17683,7 +17689,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Saúde',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -17813,7 +17819,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Reprodutores da Mídia',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -17910,7 +17916,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Fones de Ouvido',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -18007,7 +18013,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Microfones',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -18104,7 +18110,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Amplificador e Mixers',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -18201,7 +18207,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Caixas de Som',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -18297,7 +18303,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Cabos e Conversores de Audio',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -18394,7 +18400,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Audio',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -18523,7 +18529,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Banhos e Cuidados com o Corpo Bebe',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -18619,7 +18625,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Acessórios para Casa Bebe',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -18716,7 +18722,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Brinquedos Bebe',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -18813,7 +18819,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Fraldas e Pinicos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -18910,7 +18916,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Berçário',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -19007,7 +19013,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Bolsas Bebe',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -19104,7 +19110,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Saúde na Gravidez',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -19201,7 +19207,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Segurança do bebê',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -19298,7 +19304,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Leite e Comida para Bebê',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -19394,7 +19400,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Conjuntos de Presentes Bebe',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -19491,7 +19497,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Mamâe e Bebê',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -19620,7 +19626,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Bolsas trasversais e de ombro feminino',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -19717,7 +19723,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Bolsas Tote Feminino',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -19814,7 +19820,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Mochilas Femininas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -19911,7 +19917,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Bolsas com alça feminina',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -20008,7 +20014,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Carteiras Femininas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -20104,7 +20110,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Malas de Notebook Feminino',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -20200,7 +20206,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Pochetes e Chest Bags Femininos',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -20296,7 +20302,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Acessórios de Bolsas Femininas',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -20393,7 +20399,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Bolsas Femininas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -20523,7 +20529,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Mochilas Masculinas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -20619,7 +20625,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Mala e Nootebok Masculino',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -20721,7 +20727,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Carteiras Masculina',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -20823,7 +20829,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Pochetes Masculinas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -20925,7 +20931,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Pastas Maculinas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -21026,7 +21032,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Bolsas transfersais de ombro Masculinos',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -21128,7 +21134,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Bolsas de mão masculinas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -21230,7 +21236,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Bolsas Masculinas',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -21365,7 +21371,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Ração para pets',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -21467,7 +21473,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Cuidado com animais',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -21569,7 +21575,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Bem-Estar dos Animais',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -21670,7 +21676,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Cama e Banheiro para cachorros e gatos',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -21772,7 +21778,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Acessórios para pets',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -21874,7 +21880,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Roupas Pets',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -21976,7 +21982,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Animais Domésticos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -22111,7 +22117,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Cadernos e Papéis',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -22213,7 +22219,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Escrita e Correção',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -22314,7 +22320,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Equipamento Escolar e Escritorio',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -22416,7 +22422,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Artigos de Arte',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -22518,7 +22524,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Presentes e Embalagens',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -22620,7 +22626,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Cartas e Envelopes',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -22722,7 +22728,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Papelaria',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -22857,7 +22863,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Equipamentos de Escritório',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -22959,7 +22965,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Impressoras e Scaner',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -23061,7 +23067,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Armazenamento Computador',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -23162,7 +23168,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Acessórios e Periféricos Computador',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -23264,7 +23270,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Computadores Desktop',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -23365,7 +23371,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Componentes de Computadores',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -23467,7 +23473,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Monitores',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -23569,7 +23575,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Notebooks',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -23671,7 +23677,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Componentes de Rede',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -23773,7 +23779,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Teclados e Mouses',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -23874,7 +23880,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Computadores e Acessórios',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -24009,7 +24015,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Consoles Jogos',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -24111,7 +24117,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Acessórios de Consoles',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -24213,7 +24219,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Jogos video game',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -24315,7 +24321,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Jogos e Controles',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -24450,7 +24456,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Cuidados com a Câmera',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -24552,7 +24558,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Acessórios de Lentes',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -24654,7 +24660,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Cêmeras',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -24756,7 +24762,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Lentes de Câmeras',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -24857,7 +24863,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Cêmeras e Sistema de Segurança',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -24959,7 +24965,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Acessórios para Câmera',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -25061,7 +25067,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Acessórios de Drones',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -25163,7 +25169,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Drones',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -25265,7 +25271,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Cêmeras e Drones',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -25400,7 +25406,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Malas de Viagem',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -25502,7 +25508,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Bagagens',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -25604,7 +25610,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Acessórios de Viagem',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -25706,7 +25712,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Viagens e Bagagens',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -25841,7 +25847,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Livros',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -25943,7 +25949,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                         'Revistas e Jornais',
                                                         (currentUserDocument
                                                                     ?.historicoPesquisa
-                                                                    .toList() ??
+                                                                    ?.toList() ??
                                                                 [])
                                                             .toList())
                                                     .toList()
@@ -26044,7 +26050,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                     'Revistas, Jornais e Livros',
                                                     (currentUserDocument
                                                                 ?.historicoPesquisa
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
                                                         .toList())
                                                 .toList()
@@ -26382,6 +26388,9 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                                   ),
                                                                   if (containerProdutoRecord
                                                                               .video !=
+                                                                          null &&
+                                                                      containerProdutoRecord
+                                                                              .video !=
                                                                           '')
                                                                     Align(
                                                                       alignment:
@@ -26470,7 +26479,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                                               ),
                                                                         ),
                                                                         Text(
-                                                                          containerProdutoRecord.titulo1 != ''
+                                                                          containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != ''
                                                                               ? functions.valorRealString(containerProdutoRecord.menorPrecoRevenda)
                                                                               : functions.valorRealString(containerProdutoRecord.preco),
                                                                           style: FlutterFlowTheme.of(context)
@@ -26488,7 +26497,7 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                                               ),
                                                                         ),
                                                                         Text(
-                                                                          containerProdutoRecord.titulo1 != ''
+                                                                          containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != ''
                                                                               ? functions.valorCentavosEmString(containerProdutoRecord.menorPrecoRevenda)
                                                                               : functions.valorCentavosEmString(containerProdutoRecord.preco),
                                                                           style: FlutterFlowTheme.of(context)

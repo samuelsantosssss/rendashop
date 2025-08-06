@@ -1,3 +1,4 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
@@ -15,10 +16,13 @@ import '/loja/imposto_importacao/imposto_importacao_widget.dart';
 import '/loja/pagamento/moedas_renda_shop/moedas_renda_shop_widget.dart';
 import '/loja/pagamento/moedas_renda_shop2/moedas_renda_shop2_widget.dart';
 import '/loja/taxa_processamento/taxa_processamento_widget.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -517,6 +521,11 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                     ),
                                   ),
                                   if (valueOrDefault(
+                                              currentUserDocument
+                                                  ?.enderecoCompleto,
+                                              '') ==
+                                          null ||
+                                      valueOrDefault(
                                               currentUserDocument
                                                   ?.enderecoCompleto,
                                               '') ==
@@ -1134,6 +1143,9 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                                                 ),
                                                           ),
                                                           if (carrinho2CarrinhoRecord
+                                                                      .variacao !=
+                                                                  null &&
+                                                              carrinho2CarrinhoRecord
                                                                       .variacao !=
                                                                   '')
                                                             Align(
@@ -2733,8 +2745,8 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                                           (newValue) async {
                                                         safeSetState(() =>
                                                             _model.switchValue =
-                                                                newValue);
-                                                        if (newValue) {
+                                                                newValue!);
+                                                        if (newValue!) {
                                                           FFAppState().moeda =
                                                               functions.moedaLimitar(
                                                                   valueOrDefault(
@@ -3016,7 +3028,7 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                                                   width: 2,
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .alternate,
+                                                                      .alternate!,
                                                                 )
                                                               : null,
                                                           activeColor:
@@ -3243,7 +3255,7 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                                                         width:
                                                                             2,
                                                                         color: FlutterFlowTheme.of(context)
-                                                                            .alternate,
+                                                                            .alternate!,
                                                                       )
                                                                     : null,
                                                                 activeColor:
@@ -3723,7 +3735,7 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                                                                 side: (FlutterFlowTheme.of(context).alternate != null)
                                                                                     ? BorderSide(
                                                                                         width: 2,
-                                                                                        color: FlutterFlowTheme.of(context).alternate,
+                                                                                        color: FlutterFlowTheme.of(context).alternate!,
                                                                                       )
                                                                                     : null,
                                                                                 activeColor: FlutterFlowTheme.of(context).primary,
@@ -3918,7 +3930,8 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                       ),
                                     ),
                                   ),
-                                  if (FFAppState().taxaProcessamento != '')
+                                  if (FFAppState().taxaProcessamento != null &&
+                                      FFAppState().taxaProcessamento != '')
                                     Align(
                                       alignment:
                                           AlignmentDirectional(-1.0, -1.0),
@@ -5531,16 +5544,34 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                                                   currentUserDocument
                                                                       ?.enderecoCompleto,
                                                                   '') !=
+                                                              null &&
+                                                          valueOrDefault(
+                                                                  currentUserDocument
+                                                                      ?.enderecoCompleto,
+                                                                  '') !=
                                                               '') {
                                                         if (valueOrDefault(
+                                                                    currentUserDocument
+                                                                        ?.cpf,
+                                                                    '') !=
+                                                                null &&
+                                                            valueOrDefault(
                                                                     currentUserDocument
                                                                         ?.cpf,
                                                                     '') !=
                                                                 '') {
                                                           if (FFAppState()
                                                                       .metodoPagamento !=
+                                                                  null &&
+                                                              FFAppState()
+                                                                      .metodoPagamento !=
                                                                   '') {
                                                             if (valueOrDefault(
+                                                                        currentUserDocument
+                                                                            ?.iDAsaas,
+                                                                        '') !=
+                                                                    null &&
+                                                                valueOrDefault(
                                                                         currentUserDocument
                                                                             ?.iDAsaas,
                                                                         '') !=
@@ -5704,17 +5735,21 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                                                     .cupomSelecionadoRef!
                                                                     .delete();
                                                               }
-                                                              await currentUserReference!
-                                                                  .update({
-                                                                ...mapToFirestore(
-                                                                  {
-                                                                    'moedas':
-                                                                        FieldValue.increment(
-                                                                            -(FFAppState().moeda)),
-                                                                  },
-                                                                ),
-                                                              });
-                                                                                                                          if (FFAppState()
+                                                              if (FFAppState()
+                                                                      .moeda !=
+                                                                  null) {
+                                                                await currentUserReference!
+                                                                    .update({
+                                                                  ...mapToFirestore(
+                                                                    {
+                                                                      'moedas':
+                                                                          FieldValue.increment(
+                                                                              -(FFAppState().moeda)),
+                                                                    },
+                                                                  ),
+                                                                });
+                                                              }
+                                                              if (FFAppState()
                                                                       .statusPagamento ==
                                                                   'pago') {
                                                                 if (Navigator.of(
@@ -5966,17 +6001,21 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                                                     .cupomSelecionadoRef!
                                                                     .delete();
                                                               }
-                                                              await currentUserReference!
-                                                                  .update({
-                                                                ...mapToFirestore(
-                                                                  {
-                                                                    'moedas':
-                                                                        FieldValue.increment(
-                                                                            -(FFAppState().moeda)),
-                                                                  },
-                                                                ),
-                                                              });
-                                                                                                                          if (FFAppState()
+                                                              if (FFAppState()
+                                                                      .moeda !=
+                                                                  null) {
+                                                                await currentUserReference!
+                                                                    .update({
+                                                                  ...mapToFirestore(
+                                                                    {
+                                                                      'moedas':
+                                                                          FieldValue.increment(
+                                                                              -(FFAppState().moeda)),
+                                                                    },
+                                                                  ),
+                                                                });
+                                                              }
+                                                              if (FFAppState()
                                                                       .statusPagamento ==
                                                                   'pago') {
                                                                 if (Navigator.of(
@@ -6170,13 +6209,26 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                                         currentUserDocument
                                                             ?.enderecoCompleto,
                                                         '') !=
+                                                    null &&
+                                                valueOrDefault(
+                                                        currentUserDocument
+                                                            ?.enderecoCompleto,
+                                                        '') !=
                                                     '') {
                                               if (valueOrDefault(
                                                           currentUserDocument
                                                               ?.cpf,
                                                           '') !=
+                                                      null &&
+                                                  valueOrDefault(
+                                                          currentUserDocument
+                                                              ?.cpf,
+                                                          '') !=
                                                       '') {
                                                 if (FFAppState()
+                                                            .metodoPagamento !=
+                                                        null &&
+                                                    FFAppState()
                                                             .metodoPagamento !=
                                                         '') {
                                                   FFAppState().totalPedido = functions.valorDoubleEmString(functions.somaXmaisY(

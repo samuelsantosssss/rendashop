@@ -1,10 +1,15 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'update_frete_model.dart';
 export 'update_frete_model.dart';
@@ -44,20 +49,20 @@ class _UpdateFreteWidgetState extends State<UpdateFreteWidget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       while ((isAndroid == true) || isiOS || isWeb || kDebugMode) {
-        await widget.carrinhoRef!.update(createCarrinhoRecordData(
+        await widget!.carrinhoRef!.update(createCarrinhoRecordData(
           frete: FFAppState().cupomSelecionadoRef != null
               ? functions.freteCupom2(
                   functions.frete(
                       valueOrDefault(currentUserDocument?.enderecoCompleto, ''),
-                      widget.stringList!.toList(),
-                      widget.valorSP!),
+                      widget!.stringList!.toList(),
+                      widget!.valorSP!),
                   FFAppState().cupomFrete,
                   FFAppState().tipoDeCupom,
-                  widget.valorProduto!)
+                  widget!.valorProduto!)
               : functions.dinheiroStringemDouble(functions.frete(
                   valueOrDefault(currentUserDocument?.enderecoCompleto, ''),
-                  widget.stringList!.toList(),
-                  widget.valorSP!)),
+                  widget!.stringList!.toList(),
+                  widget!.valorSP!)),
         ));
         await Future.delayed(
           Duration(

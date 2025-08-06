@@ -1,9 +1,12 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -64,7 +67,7 @@ class _CapsulaVariacaoAtualizarWidgetState
     return Align(
       alignment: AlignmentDirectional(0.0, 0.0),
       child: StreamBuilder<ProdutoRecord>(
-        stream: ProdutoRecord.getDocument(widget.produtoRef!),
+        stream: ProdutoRecord.getDocument(widget!.produtoRef!),
         builder: (context, snapshot) {
           // Customize what your widget looks like when it's loading.
           if (!snapshot.hasData) {
@@ -127,7 +130,7 @@ class _CapsulaVariacaoAtualizarWidgetState
                                 0.0, 10.0, 0.0, 0.0),
                             child: StreamBuilder<ProdutoRecord>(
                               stream: ProdutoRecord.getDocument(
-                                  widget.produtoRef!),
+                                  widget!.produtoRef!),
                               builder: (context, snapshot) {
                                 // Customize what your widget looks like when it's loading.
                                 if (!snapshot.hasData) {
@@ -189,7 +192,9 @@ class _CapsulaVariacaoAtualizarWidgetState
                                                       ),
                                                       child: Image.network(
                                                         valueOrDefault<String>(
-                                                          FFAppState()
+                                                          FFAppState().capsula1 !=
+                                                                      null &&
+                                                                  FFAppState()
                                                                           .capsula1 !=
                                                                       ''
                                                               ? FFAppState()
@@ -385,7 +390,9 @@ class _CapsulaVariacaoAtualizarWidgetState
                                                       ),
                                                       child: Image.network(
                                                         valueOrDefault<String>(
-                                                          FFAppState()
+                                                          FFAppState().capsula2 !=
+                                                                      null &&
+                                                                  FFAppState()
                                                                           .capsula2 !=
                                                                       ''
                                                               ? FFAppState()
@@ -582,7 +589,9 @@ class _CapsulaVariacaoAtualizarWidgetState
                                                       ),
                                                       child: Image.network(
                                                         valueOrDefault<String>(
-                                                          FFAppState()
+                                                          FFAppState().capsula3 !=
+                                                                      null &&
+                                                                  FFAppState()
                                                                           .capsula3 !=
                                                                       ''
                                                               ? FFAppState()
@@ -751,6 +760,8 @@ class _CapsulaVariacaoAtualizarWidgetState
                                             ),
                                           ),
                                         if ((_model.textController.text !=
+                                                    null &&
+                                                _model.textController.text !=
                                                     '') &&
                                             _model.switchListTile3Value2!)
                                           Padding(
@@ -826,9 +837,9 @@ class _CapsulaVariacaoAtualizarWidgetState
                                   value: _model.switchListTile1Value ??= true,
                                   onChanged: (newValue) async {
                                     safeSetState(() => _model
-                                        .switchListTile1Value = newValue);
+                                        .switchListTile1Value = newValue!);
 
-                                    if (!newValue) {
+                                    if (!newValue!) {
                                       FFAppState().capsula1 = '';
                                       safeSetState(() {});
                                     }
@@ -873,9 +884,9 @@ class _CapsulaVariacaoAtualizarWidgetState
                                   value: _model.switchListTile2Value ??= true,
                                   onChanged: (newValue) async {
                                     safeSetState(() => _model
-                                        .switchListTile2Value = newValue);
+                                        .switchListTile2Value = newValue!);
 
-                                    if (!newValue) {
+                                    if (!newValue!) {
                                       FFAppState().capsula2 = '';
                                       safeSetState(() {});
                                     }
@@ -920,9 +931,9 @@ class _CapsulaVariacaoAtualizarWidgetState
                                   value: _model.switchListTile3Value1 ??= true,
                                   onChanged: (newValue) async {
                                     safeSetState(() => _model
-                                        .switchListTile3Value1 = newValue);
+                                        .switchListTile3Value1 = newValue!);
 
-                                    if (!newValue) {
+                                    if (!newValue!) {
                                       FFAppState().capsula3 = '';
                                       safeSetState(() {});
                                     }
@@ -967,8 +978,8 @@ class _CapsulaVariacaoAtualizarWidgetState
                                   value: _model.switchListTile3Value2 ??= true,
                                   onChanged: (newValue) async {
                                     safeSetState(() => _model
-                                        .switchListTile3Value2 = newValue);
-                                    if (newValue) {
+                                        .switchListTile3Value2 = newValue!);
+                                    if (newValue!) {
                                       FFAppState().capsulaextra = '2';
                                       safeSetState(() {});
                                     } else {
@@ -1140,15 +1151,18 @@ class _CapsulaVariacaoAtualizarWidgetState
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        await widget.produtoRef!
+                        await widget!.produtoRef!
                             .update(createProdutoRecordData(
-                          capsula1: FFAppState().capsula1 != ''
+                          capsula1: FFAppState().capsula1 != null &&
+                                  FFAppState().capsula1 != ''
                               ? FFAppState().capsula1
                               : containerProdutoRecord.capsula1,
-                          capsula2: FFAppState().capsula2 != ''
+                          capsula2: FFAppState().capsula2 != null &&
+                                  FFAppState().capsula2 != ''
                               ? FFAppState().capsula2
                               : containerProdutoRecord.capsula2,
-                          capsula3: FFAppState().capsula3 != ''
+                          capsula3: FFAppState().capsula3 != null &&
+                                  FFAppState().capsula3 != ''
                               ? FFAppState().capsula3
                               : containerProdutoRecord.capsula3,
                           capsulaExtra: FFAppState().capsulaextra,

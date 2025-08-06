@@ -4,11 +4,15 @@ import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'chat_cliente_model.dart';
 export 'chat_cliente_model.dart';
 
@@ -82,7 +86,7 @@ class _ChatClienteWidgetState extends State<ChatClienteWidget> {
                           stream: queryLojasRecord(
                             queryBuilder: (lojasRecord) => lojasRecord.where(
                               'userRef',
-                              isEqualTo: widget.idLogista,
+                              isEqualTo: widget!.idLogista,
                             ),
                             singleRecord: true,
                           ),
@@ -454,6 +458,8 @@ class _ChatClienteWidgetState extends State<ChatClienteWidget> {
                                           ),
                                           onPressed: () async {
                                             if (_model.textController.text !=
+                                                    null &&
+                                                _model.textController.text !=
                                                     '') {
                                               await ChatRecord.collection
                                                   .doc()
@@ -461,7 +467,7 @@ class _ChatClienteWidgetState extends State<ChatClienteWidget> {
                                                 ...createChatRecordData(
                                                   clienteID:
                                                       currentUserReference,
-                                                  logistaID: widget.idLogista,
+                                                  logistaID: widget!.idLogista,
                                                 ),
                                                 ...mapToFirestore(
                                                   {
@@ -487,7 +493,7 @@ class _ChatClienteWidgetState extends State<ChatClienteWidget> {
                                                     .where(
                                                       'logistaID',
                                                       isEqualTo:
-                                                          widget.idLogista,
+                                                          widget!.idLogista,
                                                     )
                                                     .where(
                                                       'clienteID',
@@ -538,6 +544,9 @@ class _ChatClienteWidgetState extends State<ChatClienteWidget> {
                                               ),
                                               onPressed: () async {
                                                 if (_model.textController
+                                                            .text !=
+                                                        null &&
+                                                    _model.textController
                                                             .text !=
                                                         '') {
                                                   await jateveChatRecord!
@@ -592,7 +601,7 @@ class _ChatClienteWidgetState extends State<ChatClienteWidget> {
                             )
                             .where(
                               'logistaID',
-                              isEqualTo: widget.idLogista,
+                              isEqualTo: widget!.idLogista,
                             ),
                         singleRecord: true,
                       ),
@@ -650,7 +659,7 @@ class _ChatClienteWidgetState extends State<ChatClienteWidget> {
                                       builder: (context) {
                                         final listConversa = chatChatRecord
                                                 ?.conversa
-                                                .toList() ??
+                                                ?.toList() ??
                                             [];
 
                                         return Column(

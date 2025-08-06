@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/loja/cupom/cupom_acima10/cupom_acima10_widget.dart';
 import '/loja/cupom/cupom_acima19/cupom_acima19_widget.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -742,7 +743,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                           if (FFAppState()
                                                                   .cupomSelecionadoRef ==
                                                               containerCupomRecord
-                                                                  .reference) {
+                                                                  ?.reference) {
                                                             FFAppState()
                                                                     .cupomSelecionadoRef =
                                                                 null;
@@ -752,7 +753,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                             safeSetState(() {});
                                                             await actions
                                                                 .removerFretePromo(
-                                                              widget
+                                                              widget!
                                                                   .carrinhoFinal
                                                                   ?.toList(),
                                                             );
@@ -767,11 +768,11 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                             FFAppState()
                                                                     .cupomSelecionadoRef =
                                                                 containerCupomRecord
-                                                                    .reference;
+                                                                    ?.reference;
                                                             safeSetState(() {});
                                                             await actions
                                                                 .aplicarDescontoFrete(
-                                                              widget
+                                                              widget!
                                                                   .carrinhoFinal
                                                                   ?.toList(),
                                                             );
@@ -1649,7 +1650,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                                             ),
                                                                           ),
                                                                           Text(
-                                                                            containerCupomRecord.tipoCupom,
+                                                                            containerCupomRecord!.tipoCupom,
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   font: GoogleFonts.inter(
                                                                                     fontWeight: FontWeight.w500,
@@ -1698,7 +1699,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                                               5.0),
                                                                           child:
                                                                               Text(
-                                                                            functions.cupomData(containerCupomRecord.data!),
+                                                                            functions.cupomData(containerCupomRecord!.data!),
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   font: GoogleFonts.inter(
                                                                                     fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -1786,11 +1787,11 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                                               hoverColor: Colors.transparent,
                                                                               highlightColor: Colors.transparent,
                                                                               onTap: () async {
-                                                                                if (FFAppState().cupomSelecionadoRef == containerCupomRecord.reference) {
+                                                                                if (FFAppState().cupomSelecionadoRef == containerCupomRecord?.reference) {
                                                                                   FFAppState().cupomSelecionadoRef = null;
                                                                                   safeSetState(() {});
                                                                                 } else {
-                                                                                  FFAppState().cupomSelecionadoRef = containerCupomRecord.reference;
+                                                                                  FFAppState().cupomSelecionadoRef = containerCupomRecord?.reference;
                                                                                   safeSetState(() {});
                                                                                 }
                                                                               },
@@ -1799,7 +1800,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                                                 height: 18.0,
                                                                                 decoration: BoxDecoration(
                                                                                   color: valueOrDefault<Color>(
-                                                                                    FFAppState().cupomSelecionadoRef == containerCupomRecord.reference ? FlutterFlowTheme.of(context).primary : Color(0xFFD4D4D4),
+                                                                                    FFAppState().cupomSelecionadoRef == containerCupomRecord?.reference ? FlutterFlowTheme.of(context).primary : Color(0xFFD4D4D4),
                                                                                     Color(0xFFD4D4D4),
                                                                                   ),
                                                                                   shape: BoxShape.circle,
@@ -1811,7 +1812,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                                                     height: 15.0,
                                                                                     decoration: BoxDecoration(
                                                                                       color: valueOrDefault<Color>(
-                                                                                        FFAppState().cupomSelecionadoRef == containerCupomRecord.reference ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                        FFAppState().cupomSelecionadoRef == containerCupomRecord?.reference ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryBackground,
                                                                                         FlutterFlowTheme.of(context).secondaryBackground,
                                                                                       ),
                                                                                       shape: BoxShape.circle,
@@ -2194,7 +2195,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                           if (FFAppState()
                                                                   .cupomSelecionadoRef ==
                                                               containerCupomRecord
-                                                                  .reference) {
+                                                                  ?.reference) {
                                                             FFAppState()
                                                                     .cupomSelecionadoRef =
                                                                 null;
@@ -2204,7 +2205,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                             safeSetState(() {});
                                                             await actions
                                                                 .removerFretePromo(
-                                                              widget
+                                                              widget!
                                                                   .carrinhoFinal
                                                                   ?.toList(),
                                                             );
@@ -2219,11 +2220,11 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                             FFAppState()
                                                                     .cupomSelecionadoRef =
                                                                 containerCupomRecord
-                                                                    .reference;
+                                                                    ?.reference;
                                                             safeSetState(() {});
                                                             await actions
                                                                 .aplicarDescontoFrete19(
-                                                              widget
+                                                              widget!
                                                                   .carrinhoFinal
                                                                   ?.toList(),
                                                             );
@@ -3101,7 +3102,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                                             ),
                                                                           ),
                                                                           Text(
-                                                                            containerCupomRecord.tipoCupom,
+                                                                            containerCupomRecord!.tipoCupom,
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   font: GoogleFonts.inter(
                                                                                     fontWeight: FontWeight.w500,
@@ -3150,7 +3151,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                                               5.0),
                                                                           child:
                                                                               Text(
-                                                                            functions.cupomData(containerCupomRecord.data!),
+                                                                            functions.cupomData(containerCupomRecord!.data!),
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   font: GoogleFonts.inter(
                                                                                     fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -3237,7 +3238,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                                               height: 18.0,
                                                                               decoration: BoxDecoration(
                                                                                 color: valueOrDefault<Color>(
-                                                                                  FFAppState().cupomSelecionadoRef == containerCupomRecord.reference ? FlutterFlowTheme.of(context).primary : Color(0xFFD4D4D4),
+                                                                                  FFAppState().cupomSelecionadoRef == containerCupomRecord?.reference ? FlutterFlowTheme.of(context).primary : Color(0xFFD4D4D4),
                                                                                   Color(0xFFD4D4D4),
                                                                                 ),
                                                                                 shape: BoxShape.circle,
@@ -3249,7 +3250,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                                                   height: double.infinity,
                                                                                   decoration: BoxDecoration(
                                                                                     color: valueOrDefault<Color>(
-                                                                                      FFAppState().cupomSelecionadoRef == containerCupomRecord.reference ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                      FFAppState().cupomSelecionadoRef == containerCupomRecord?.reference ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryBackground,
                                                                                       FlutterFlowTheme.of(context).secondaryBackground,
                                                                                     ),
                                                                                     shape: BoxShape.circle,
@@ -3609,7 +3610,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                           if (FFAppState()
                                                                   .cupomSelecionadoRef ==
                                                               containerCupomRecord
-                                                                  .reference) {
+                                                                  ?.reference) {
                                                             FFAppState()
                                                                     .cupomSelecionadoRef =
                                                                 null;
@@ -3619,7 +3620,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                             safeSetState(() {});
                                                             await actions
                                                                 .removerFretePromo(
-                                                              widget
+                                                              widget!
                                                                   .carrinhoFinal
                                                                   ?.toList(),
                                                             );
@@ -3634,11 +3635,11 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                             FFAppState()
                                                                     .cupomSelecionadoRef =
                                                                 containerCupomRecord
-                                                                    .reference;
+                                                                    ?.reference;
                                                             safeSetState(() {});
                                                             await actions
                                                                 .aplicarDescontoFrete50(
-                                                              widget
+                                                              widget!
                                                                   .carrinhoFinal
                                                                   ?.toList(),
                                                             );
@@ -4565,7 +4566,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                                               5.0),
                                                                           child:
                                                                               Text(
-                                                                            functions.cupomData(containerCupomRecord.data!),
+                                                                            functions.cupomData(containerCupomRecord!.data!),
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   font: GoogleFonts.inter(
                                                                                     fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -4652,7 +4653,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                                               height: 18.0,
                                                                               decoration: BoxDecoration(
                                                                                 color: valueOrDefault<Color>(
-                                                                                  FFAppState().cupomSelecionadoRef == containerCupomRecord.reference ? FlutterFlowTheme.of(context).primary : Color(0xFFD4D4D4),
+                                                                                  FFAppState().cupomSelecionadoRef == containerCupomRecord?.reference ? FlutterFlowTheme.of(context).primary : Color(0xFFD4D4D4),
                                                                                   Color(0xFFD4D4D4),
                                                                                 ),
                                                                                 shape: BoxShape.circle,
@@ -4664,7 +4665,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                                                   height: double.infinity,
                                                                                   decoration: BoxDecoration(
                                                                                     color: valueOrDefault<Color>(
-                                                                                      FFAppState().cupomSelecionadoRef == containerCupomRecord.reference ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                      FFAppState().cupomSelecionadoRef == containerCupomRecord?.reference ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryBackground,
                                                                                       FlutterFlowTheme.of(context).secondaryBackground,
                                                                                     ),
                                                                                     shape: BoxShape.circle,

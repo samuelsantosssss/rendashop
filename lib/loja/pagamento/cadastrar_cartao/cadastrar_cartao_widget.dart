@@ -6,11 +6,15 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/loja/pagamento/info_c_v_v/info_c_v_v_widget.dart';
+import 'dart:async';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
@@ -1554,7 +1558,8 @@ class _CadastrarCartaoWidgetState extends State<CadastrarCartaoWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (!(_model.cepTextController.text != '')) {
+                              if (!(_model.cepTextController.text != null &&
+                                  _model.cepTextController.text != '')) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
@@ -1594,11 +1599,13 @@ class _CadastrarCartaoWidgetState extends State<CadastrarCartaoWidget> {
                                             10.0, 0.0, 0.0, 0.0),
                                         child: Text(
                                           valueOrDefault<String>(
-                                            _model.cepTextController
+                                            _model.cepTextController.text !=
+                                                        null &&
+                                                    _model.cepTextController
                                                             .text !=
                                                         ''
                                                 ? valueOrDefault<String>(
-                                                    '${FFAppState().cidade != '' ? FFAppState().cidade : 'Cidade'} - ${FFAppState().bairro != '' ? FFAppState().estado : 'Estado'}',
+                                                    '${FFAppState().cidade != null && FFAppState().cidade != '' ? FFAppState().cidade : 'Cidade'} - ${FFAppState().bairro != null && FFAppState().bairro != '' ? FFAppState().estado : 'Estado'}',
                                                     'Estado - Cidade',
                                                   )
                                                 : 'Estado - Cidade',
@@ -1620,10 +1627,15 @@ class _CadastrarCartaoWidgetState extends State<CadastrarCartaoWidget> {
                                                           .fontStyle,
                                                 ),
                                                 color: valueOrDefault<Color>(
-                                                  (FFAppState()
+                                                  (FFAppState().estado !=
+                                                                  null &&
+                                                              FFAppState()
                                                                       .estado !=
                                                                   '') &&
                                                           (_model.cepTextController
+                                                                      .text !=
+                                                                  null &&
+                                                              _model.cepTextController
                                                                       .text !=
                                                                   '')
                                                       ? Color(0xFF323233)
@@ -1658,7 +1670,8 @@ class _CadastrarCartaoWidgetState extends State<CadastrarCartaoWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (!(_model.cepTextController.text != '')) {
+                              if (!(_model.cepTextController.text != null &&
+                                  _model.cepTextController.text != '')) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
@@ -1697,7 +1710,8 @@ class _CadastrarCartaoWidgetState extends State<CadastrarCartaoWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 0.0, 0.0),
                                         child: Text(
-                                          FFAppState().bairro != ''
+                                          FFAppState().bairro != null &&
+                                                  FFAppState().bairro != ''
                                               ? FFAppState().bairro
                                               : 'Bairro',
                                           style: FlutterFlowTheme.of(context)
@@ -1716,7 +1730,8 @@ class _CadastrarCartaoWidgetState extends State<CadastrarCartaoWidget> {
                                                           .fontStyle,
                                                 ),
                                                 color: valueOrDefault<Color>(
-                                                  FFAppState().estado !=
+                                                  FFAppState().estado != null &&
+                                                          FFAppState().estado !=
                                                               ''
                                                       ? Color(0xFF323233)
                                                       : Color(0x8575787A),
@@ -1791,6 +1806,9 @@ class _CadastrarCartaoWidgetState extends State<CadastrarCartaoWidget> {
                                             onTap: () async {
                                               if (!(_model.cepTextController
                                                           .text !=
+                                                      null &&
+                                                  _model.cepTextController
+                                                          .text !=
                                                       '')) {
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
@@ -1810,7 +1828,8 @@ class _CadastrarCartaoWidgetState extends State<CadastrarCartaoWidget> {
                                               }
                                             },
                                             child: Text(
-                                              FFAppState().rua != ''
+                                              FFAppState().rua != null &&
+                                                      FFAppState().rua != ''
                                                   ? FFAppState().rua
                                                   : 'Rua',
                                               style: FlutterFlowTheme.of(
@@ -1831,7 +1850,9 @@ class _CadastrarCartaoWidgetState extends State<CadastrarCartaoWidget> {
                                                     ),
                                                     color:
                                                         valueOrDefault<Color>(
-                                                      FFAppState()
+                                                      FFAppState().estado !=
+                                                                  null &&
+                                                              FFAppState()
                                                                       .estado !=
                                                                   ''
                                                           ? Color(0xFF323233)

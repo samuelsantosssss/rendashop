@@ -1,8 +1,11 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -420,7 +423,7 @@ class _PagamentoReprovado2WidgetState extends State<PagamentoReprovado2Widget> {
                         EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 20.0),
                     child: Builder(
                       builder: (context) {
-                        final pedidosList = widget.pedidoList?.toList() ?? [];
+                        final pedidosList = widget!.pedidoList?.toList() ?? [];
 
                         return Column(
                           mainAxisSize: MainAxisSize.max,
@@ -588,6 +591,9 @@ class _PagamentoReprovado2WidgetState extends State<PagamentoReprovado2Widget> {
                                                                         .spaceBetween,
                                                                 children: [
                                                                   if (containerPedidosTotalRecord
+                                                                              .variacao !=
+                                                                          null &&
+                                                                      containerPedidosTotalRecord
                                                                               .variacao !=
                                                                           '')
                                                                     Align(

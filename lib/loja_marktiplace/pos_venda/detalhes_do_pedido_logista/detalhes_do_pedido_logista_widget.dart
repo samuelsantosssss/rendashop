@@ -8,13 +8,16 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/loja_marktiplace/pos_venda/cadastrar_rastreio/cadastrar_rastreio_widget.dart';
 import '/loja_marktiplace/pos_venda/cencelando_pedido_markteplace/cencelando_pedido_markteplace_widget.dart';
 import '/loja_marktiplace/pos_venda/pagamentototalcomprador/pagamentototalcomprador_widget.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'detalhes_do_pedido_logista_model.dart';
 export 'detalhes_do_pedido_logista_model.dart';
 
@@ -58,7 +61,7 @@ class _DetalhesDoPedidoLogistaWidgetState
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<PedidosTotalRecord>(
-      stream: PedidosTotalRecord.getDocument(widget.pedidoRef2!),
+      stream: PedidosTotalRecord.getDocument(widget!.pedidoRef2!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -285,6 +288,9 @@ class _DetalhesDoPedidoLogistaWidgetState
                               ),
                               if (detalhesDoPedidoLogistaPedidosTotalRecord
                                           .codigoRastreio !=
+                                      null &&
+                                  detalhesDoPedidoLogistaPedidosTotalRecord
+                                          .codigoRastreio !=
                                       '')
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -311,7 +317,7 @@ class _DetalhesDoPedidoLogistaWidgetState
                                                   queryParameters: {
                                                     'pedidoRef2':
                                                         serializeParam(
-                                                      widget.pedidoRef2,
+                                                      widget!.pedidoRef2,
                                                       ParamType
                                                           .DocumentReference,
                                                     ),
@@ -410,7 +416,7 @@ class _DetalhesDoPedidoLogistaWidgetState
                                                   queryParameters: {
                                                     'pedidoRef2':
                                                         serializeParam(
-                                                      widget.pedidoRef2,
+                                                      widget!.pedidoRef2,
                                                       ParamType
                                                           .DocumentReference,
                                                     ),
@@ -473,7 +479,7 @@ class _DetalhesDoPedidoLogistaWidgetState
                                                         rastreio2Record
                                                             .where(
                                                               'pedidoRef2',
-                                                              isEqualTo: widget
+                                                              isEqualTo: widget!
                                                                   .pedidoRef2,
                                                             )
                                                             .orderBy(
@@ -527,7 +533,7 @@ class _DetalhesDoPedidoLogistaWidgetState
                                                               queryParameters: {
                                                                 'pedidoRef2':
                                                                     serializeParam(
-                                                                  widget
+                                                                  widget!
                                                                       .pedidoRef2,
                                                                   ParamType
                                                                       .DocumentReference,
@@ -725,6 +731,9 @@ class _DetalhesDoPedidoLogistaWidgetState
                                 ),
                               if (detalhesDoPedidoLogistaPedidosTotalRecord
                                           .codigoRastreio ==
+                                      null ||
+                                  detalhesDoPedidoLogistaPedidosTotalRecord
+                                          .codigoRastreio ==
                                       '')
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -792,6 +801,9 @@ class _DetalhesDoPedidoLogistaWidgetState
                                   ),
                                 ),
                               if (detalhesDoPedidoLogistaPedidosTotalRecord
+                                          .codigoRastreio ==
+                                      null ||
+                                  detalhesDoPedidoLogistaPedidosTotalRecord
                                           .codigoRastreio ==
                                       '')
                                 Padding(
@@ -1656,7 +1668,7 @@ class _DetalhesDoPedidoLogistaWidgetState
                                     ValorFinaldoPedidoWidget.routeName,
                                     queryParameters: {
                                       'pedidoRef2': serializeParam(
-                                        widget.pedidoRef2,
+                                        widget!.pedidoRef2,
                                         ParamType.DocumentReference,
                                       ),
                                     }.withoutNulls,
@@ -1817,7 +1829,7 @@ class _DetalhesDoPedidoLogistaWidgetState
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
                                           child: PagamentototalcompradorWidget(
-                                            pedidoRef: widget.pedidoRef2!,
+                                            pedidoRef: widget!.pedidoRef2!,
                                           ),
                                         ),
                                       );
@@ -2049,7 +2061,7 @@ class _DetalhesDoPedidoLogistaWidgetState
                                                 context),
                                             child:
                                                 CencelandoPedidoMarkteplaceWidget(
-                                              pedidoRef: widget.pedidoRef2,
+                                              pedidoRef: widget!.pedidoRef2,
                                             ),
                                           ),
                                         );
@@ -2795,6 +2807,9 @@ class _DetalhesDoPedidoLogistaWidgetState
                       children: [
                         if (detalhesDoPedidoLogistaPedidosTotalRecord
                                     .codigoRastreio !=
+                                null &&
+                            detalhesDoPedidoLogistaPedidosTotalRecord
+                                    .codigoRastreio !=
                                 '')
                           Expanded(
                             child: Align(
@@ -2805,7 +2820,7 @@ class _DetalhesDoPedidoLogistaWidgetState
                                     RastreadorPedidoLojistaWidget.routeName,
                                     queryParameters: {
                                       'pedidoRef2': serializeParam(
-                                        widget.pedidoRef2,
+                                        widget!.pedidoRef2,
                                         ParamType.DocumentReference,
                                       ),
                                     }.withoutNulls,
@@ -2851,6 +2866,9 @@ class _DetalhesDoPedidoLogistaWidgetState
                           ),
                         if (detalhesDoPedidoLogistaPedidosTotalRecord
                                     .codigoRastreio ==
+                                null ||
+                            detalhesDoPedidoLogistaPedidosTotalRecord
+                                    .codigoRastreio ==
                                 '')
                           Expanded(
                             child: Align(
@@ -2873,7 +2891,7 @@ class _DetalhesDoPedidoLogistaWidgetState
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
                                           child: CadastrarRastreioWidget(
-                                            pedidoRef: widget.pedidoRef2!,
+                                            pedidoRef: widget!.pedidoRef2!,
                                           ),
                                         ),
                                       );

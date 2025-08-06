@@ -1,7 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'atualizar_carrinho_produto_model.dart';
 export 'atualizar_carrinho_produto_model.dart';
 
@@ -47,20 +54,20 @@ class _AtualizarCarrinhoProdutoWidgetState
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (widget.dataAtualizacaoProduto != null) {
-        if (widget.dataAtualizacaoProduto == widget.dataAtualizacaoCarrinho) {
+      if (widget!.dataAtualizacaoProduto != null) {
+        if (widget!.dataAtualizacaoProduto == widget!.dataAtualizacaoCarrinho) {
           return;
         }
 
-        if (widget.exiteVariante == true) {
-          await widget.carrinhoRef!.update(createCarrinhoRecordData(
-            preco: widget.precoVariante,
-            utimaAtializacaoCarrinho: widget.dataAtualizacaoProduto,
+        if (widget!.exiteVariante == true) {
+          await widget!.carrinhoRef!.update(createCarrinhoRecordData(
+            preco: widget!.precoVariante,
+            utimaAtializacaoCarrinho: widget!.dataAtualizacaoProduto,
           ));
         } else {
-          await widget.carrinhoRef!.update(createCarrinhoRecordData(
-            preco: widget.preco,
-            utimaAtializacaoCarrinho: widget.dataAtualizacaoProduto,
+          await widget!.carrinhoRef!.update(createCarrinhoRecordData(
+            preco: widget!.preco,
+            utimaAtializacaoCarrinho: widget!.dataAtualizacaoProduto,
           ));
         }
       } else {

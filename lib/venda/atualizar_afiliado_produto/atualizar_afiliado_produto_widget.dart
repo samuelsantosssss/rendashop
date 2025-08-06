@@ -1,9 +1,16 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'atualizar_afiliado_produto_model.dart';
 export 'atualizar_afiliado_produto_model.dart';
 
@@ -45,29 +52,29 @@ class _AtualizarAfiliadoProdutoWidgetState
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (widget.dataAtualizacaoProduto != null) {
-        if (widget.dataAtualizacaoProduto == widget.dataAtualizacaoAfiliado) {
+      if (widget!.dataAtualizacaoProduto != null) {
+        if (widget!.dataAtualizacaoProduto == widget!.dataAtualizacaoAfiliado) {
           return;
         }
 
         _model.query = await queryProdutoRecordOnce(
           queryBuilder: (produtoRecord) => produtoRecord.where(
             'produtoRef',
-            isEqualTo: widget.produtoRef,
+            isEqualTo: widget!.produtoRef,
           ),
           singleRecord: true,
         ).then((s) => s.firstOrNull);
-        if (widget.exiteVariante == true) {
+        if (widget!.exiteVariante == true) {
           _model.listVariante = await queryVarianteRecordOnce(
-            parent: widget.produtoRef,
+            parent: widget!.produtoRef,
           );
 
-          await widget.afiliadoProRef!.update({
+          await widget!.afiliadoProRef!.update({
             ...createProdutoAfiliadoRecordData(
-              ultimaAtualizacao: widget.dataAtualizacaoProduto,
+              ultimaAtualizacao: widget!.dataAtualizacaoProduto,
               menorPreco:
                   functions.menorValorVatiente(_model.listVariante!.toList()),
-              comissao: _model.query?.comissaoAfiliado.toDouble(),
+              comissao: _model.query?.comissaoAfiliado?.toDouble(),
             ),
             ...mapToFirestore(
               {
@@ -78,10 +85,10 @@ class _AtualizarAfiliadoProdutoWidgetState
           });
           return;
         } else {
-          await widget.afiliadoProRef!.update(createProdutoAfiliadoRecordData(
+          await widget!.afiliadoProRef!.update(createProdutoAfiliadoRecordData(
             valor: _model.query?.preco,
-            comissao: _model.query?.comissaoAfiliado.toDouble(),
-            ultimaAtualizacao: widget.dataAtualizacaoProduto,
+            comissao: _model.query?.comissaoAfiliado?.toDouble(),
+            ultimaAtualizacao: widget!.dataAtualizacaoProduto,
           ));
           return;
         }

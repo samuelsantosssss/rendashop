@@ -5,10 +5,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
@@ -615,7 +618,8 @@ class _CadastrarEndereco2WidgetState extends State<CadastrarEndereco2Widget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  if (!(_model.cepTextController.text != '')) {
+                  if (!(_model.cepTextController.text != null &&
+                      _model.cepTextController.text != '')) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(
@@ -652,9 +656,10 @@ class _CadastrarEndereco2WidgetState extends State<CadastrarEndereco2Widget> {
                                 10.0, 0.0, 0.0, 0.0),
                             child: Text(
                               valueOrDefault<String>(
-                                _model.cepTextController.text != ''
+                                _model.cepTextController.text != null &&
+                                        _model.cepTextController.text != ''
                                     ? valueOrDefault<String>(
-                                        '${FFAppState().cidade != '' ? FFAppState().cidade : 'Cidade'} - ${FFAppState().bairro != '' ? FFAppState().estado : 'Estado'}',
+                                        '${FFAppState().cidade != null && FFAppState().cidade != '' ? FFAppState().cidade : 'Cidade'} - ${FFAppState().bairro != null && FFAppState().bairro != '' ? FFAppState().estado : 'Estado'}',
                                         'Estado - Cidade',
                                       )
                                     : 'Estado - Cidade',
@@ -672,8 +677,11 @@ class _CadastrarEndereco2WidgetState extends State<CadastrarEndereco2Widget> {
                                           .fontStyle,
                                     ),
                                     color: valueOrDefault<Color>(
-                                      (FFAppState().estado != '') &&
-                                              (_model.cepTextController
+                                      (FFAppState().estado != null &&
+                                                  FFAppState().estado != '') &&
+                                              (_model.cepTextController.text !=
+                                                      null &&
+                                                  _model.cepTextController
                                                           .text !=
                                                       '')
                                           ? Color(0xFF323233)
@@ -702,7 +710,8 @@ class _CadastrarEndereco2WidgetState extends State<CadastrarEndereco2Widget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  if (!(_model.cepTextController.text != '')) {
+                  if (!(_model.cepTextController.text != null &&
+                      _model.cepTextController.text != '')) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(
@@ -738,7 +747,8 @@ class _CadastrarEndereco2WidgetState extends State<CadastrarEndereco2Widget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 10.0, 0.0, 0.0, 0.0),
                             child: Text(
-                              FFAppState().bairro != ''
+                              FFAppState().bairro != null &&
+                                      FFAppState().bairro != ''
                                   ? FFAppState().bairro
                                   : 'Bairro',
                               style: FlutterFlowTheme.of(context)
@@ -753,7 +763,8 @@ class _CadastrarEndereco2WidgetState extends State<CadastrarEndereco2Widget> {
                                           .fontStyle,
                                     ),
                                     color: valueOrDefault<Color>(
-                                      FFAppState().estado != ''
+                                      FFAppState().estado != null &&
+                                              FFAppState().estado != ''
                                           ? Color(0xFF323233)
                                           : Color(0x8575787A),
                                       Color(0x8575787A),
@@ -801,7 +812,8 @@ class _CadastrarEndereco2WidgetState extends State<CadastrarEndereco2Widget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (!(_model.cepTextController.text != '')) {
+                              if (!(_model.cepTextController.text != null &&
+                                  _model.cepTextController.text != '')) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
@@ -817,7 +829,7 @@ class _CadastrarEndereco2WidgetState extends State<CadastrarEndereco2Widget> {
                               }
                             },
                             child: Text(
-                              FFAppState().rua != ''
+                              FFAppState().rua != null && FFAppState().rua != ''
                                   ? FFAppState().rua
                                   : 'Rua',
                               style: FlutterFlowTheme.of(context)
@@ -832,7 +844,8 @@ class _CadastrarEndereco2WidgetState extends State<CadastrarEndereco2Widget> {
                                           .fontStyle,
                                     ),
                                     color: valueOrDefault<Color>(
-                                      FFAppState().estado != ''
+                                      FFAppState().estado != null &&
+                                              FFAppState().estado != ''
                                           ? Color(0xFF323233)
                                           : Color(0x8575787A),
                                       Color(0x8575787A),
@@ -1363,10 +1376,14 @@ class _CadastrarEndereco2WidgetState extends State<CadastrarEndereco2Widget> {
                       child: FFButtonWidget(
                         onPressed: () async {
                           var _shouldSetState = false;
-                          if (_model.textController1.text != '') {
-                            if (_model.textController2.text != '') {
-                              if (_model.cepTextController.text != '') {
-                                if (_model.textController4.text != '') {
+                          if (_model.textController1.text != null &&
+                              _model.textController1.text != '') {
+                            if (_model.textController2.text != null &&
+                                _model.textController2.text != '') {
+                              if (_model.cepTextController.text != null &&
+                                  _model.cepTextController.text != '') {
+                                if (_model.textController4.text != null &&
+                                    _model.textController4.text != '') {
                                   var enderecosRecordReference =
                                       EnderecosRecord.createDoc(
                                           currentUserReference!);

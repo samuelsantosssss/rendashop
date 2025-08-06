@@ -8,10 +8,14 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/loja_marktiplace/pos_venda/criar_atualizacao_frete/criar_atualizacao_frete_widget.dart';
 import '/loja_marktiplace/pos_venda/editar_atualizacao_frete/editar_atualizacao_frete_widget.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'rastreador_pedido_lojista_model.dart';
 export 'rastreador_pedido_lojista_model.dart';
 
@@ -55,7 +59,7 @@ class _RastreadorPedidoLojistaWidgetState
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<PedidosTotalRecord>(
-      stream: PedidosTotalRecord.getDocument(widget.pedidoRef2!),
+      stream: PedidosTotalRecord.getDocument(widget!.pedidoRef2!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -121,7 +125,7 @@ class _RastreadorPedidoLojistaWidgetState
               stream: queryRastreio2Record(
                 queryBuilder: (rastreio2Record) => rastreio2Record.where(
                   'pedidoRef2',
-                  isEqualTo: widget.pedidoRef2,
+                  isEqualTo: widget!.pedidoRef2,
                 ),
               ),
               builder: (context, snapshot) {
@@ -611,7 +615,7 @@ class _RastreadorPedidoLojistaWidgetState
                                           rastreio2Record
                                               .where(
                                                 'pedidoRef2',
-                                                isEqualTo: widget.pedidoRef2,
+                                                isEqualTo: widget!.pedidoRef2,
                                               )
                                               .orderBy('data',
                                                   descending: true),
@@ -667,7 +671,7 @@ class _RastreadorPedidoLojistaWidgetState
                                                                 context),
                                                         child:
                                                             EditarAtualizacaoFreteWidget(
-                                                          pedidoRef: widget
+                                                          pedidoRef: widget!
                                                               .pedidoRef2!,
                                                           rastreioRef:
                                                               listViewRastreio2Record
@@ -954,7 +958,7 @@ class _RastreadorPedidoLojistaWidgetState
                                         padding:
                                             MediaQuery.viewInsetsOf(context),
                                         child: CriarAtualizacaoFreteWidget(
-                                          pedidoRef: widget.pedidoRef2!,
+                                          pedidoRef: widget!.pedidoRef2!,
                                         ),
                                       ),
                                     );

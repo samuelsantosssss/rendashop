@@ -4,8 +4,11 @@ import '/flutter_flow/flutter_flow_media_display.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -65,7 +68,7 @@ class _ImagemAvaliacaoWidgetState extends State<ImagemAvaliacaoWidget> {
         key: scaffoldKey,
         backgroundColor: Color(0xFF121212),
         body: StreamBuilder<AvaliacaoRecord>(
-          stream: AvaliacaoRecord.getDocument(widget.avaliacaoref!),
+          stream: AvaliacaoRecord.getDocument(widget!.avaliacaoref!),
           builder: (context, snapshot) {
             // Customize what your widget looks like when it's loading.
             if (!snapshot.hasData) {
@@ -111,7 +114,7 @@ class _ImagemAvaliacaoWidgetState extends State<ImagemAvaliacaoWidget> {
                                       0,
                                       min(
                                           valueOrDefault<int>(
-                                            widget.index,
+                                            widget!.index,
                                             0,
                                           ),
                                           avaliacaoList.length - 1))),
@@ -378,7 +381,8 @@ class _ImagemAvaliacaoWidgetState extends State<ImagemAvaliacaoWidget> {
                               ),
                             ),
                             if ((FFAppState().verTudo == false) &&
-                                (containerAvaliacaoRecord.comentario != ''))
+                                (containerAvaliacaoRecord.comentario != null &&
+                                    containerAvaliacaoRecord.comentario != ''))
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 80.0, 0.0),
@@ -477,7 +481,7 @@ class _ImagemAvaliacaoWidgetState extends State<ImagemAvaliacaoWidget> {
                                     0.0, 8.0, 8.0, 0.0),
                                 child: StreamBuilder<ProdutoRecord>(
                                   stream: ProdutoRecord.getDocument(
-                                      widget.produtoRef!),
+                                      widget!.produtoRef!),
                                   builder: (context, snapshot) {
                                     // Customize what your widget looks like when it's loading.
                                     if (!snapshot.hasData) {
@@ -507,7 +511,7 @@ class _ImagemAvaliacaoWidgetState extends State<ImagemAvaliacaoWidget> {
                                           PaginaProdutoWidget.routeName,
                                           queryParameters: {
                                             'produtoRef': serializeParam(
-                                              widget.produtoRef,
+                                              widget!.produtoRef,
                                               ParamType.DocumentReference,
                                             ),
                                           }.withoutNulls,

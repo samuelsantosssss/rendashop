@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
@@ -522,7 +523,7 @@ class _CriarPromoRelampago2WidgetState
                                                           width: 2,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
-                                                              .alternate,
+                                                              .alternate!,
                                                         )
                                                       : null,
                                                   activeColor:
@@ -603,7 +604,7 @@ class _CriarPromoRelampago2WidgetState
                                                                   0.0,
                                                                   4.0),
                                                       child: Text(
-                                                        'R\$ ${listViewProdutoRecord.titulo1 != '' ? functions.valorDoubleEmString(listViewProdutoRecord.menorPrecoRevenda) : functions.valorDoubleEmString(listViewProdutoRecord.preco)}',
+                                                        'R\$ ${listViewProdutoRecord.titulo1 != null && listViewProdutoRecord.titulo1 != '' ? functions.valorDoubleEmString(listViewProdutoRecord.menorPrecoRevenda) : functions.valorDoubleEmString(listViewProdutoRecord.preco)}',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)

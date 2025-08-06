@@ -1,3 +1,4 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/carregando/caregando2/caregando2_widget.dart';
@@ -10,18 +11,23 @@ import '/flutter_flow/flutter_flow_media_display.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/loja/addto_card/addto_card_widget.dart';
 import '/loja/cartao_feed/cartao_feed_widget.dart';
 import '/loja/frete/frete_widget.dart';
 import '/loja/promocao_relampago/time_promo/time_promo_widget.dart';
 import '/loja/variante/variante_widget.dart';
+import 'dart:math';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'dart:async';
 import 'dart:math' as math;
 import 'package:badges/badges.dart' as badges;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -552,7 +558,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                     future: (_model.documentRequestCompleter ??=
                             Completer<ProdutoRecord>()
                               ..complete(ProdutoRecord.getDocumentOnce(
-                                  widget.produtoRef!)))
+                                  widget!.produtoRef!)))
                         .future,
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
@@ -868,6 +874,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                             children: [
                                               if (queryProdutProdutoRecord
                                                           .titulo1 ==
+                                                      null ||
+                                                  queryProdutProdutoRecord
+                                                          .titulo1 ==
                                                       '')
                                                 Align(
                                                   alignment:
@@ -1149,6 +1158,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                 ),
                                               if ((queryProdutProdutoRecord
                                                               .titulo1 !=
+                                                          null &&
+                                                      queryProdutProdutoRecord
+                                                              .titulo1 !=
                                                           '') &&
                                                   ((queryProdutProdutoRecord
                                                           .varianteImgList
@@ -1327,7 +1339,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                           5.0),
                                                                   child: Text(
                                                                     functions.valorCentavosEmString(
-                                                                        comVarianteFoto2VarianteRecord
+                                                                        comVarianteFoto2VarianteRecord!
                                                                             .preco),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
@@ -1444,7 +1456,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                             Text(
                                                                           functions.porcentagemPromo(
                                                                               queryProdutProdutoRecord.precoAntes,
-                                                                              comVarianteFoto2VarianteRecord.preco),
+                                                                              comVarianteFoto2VarianteRecord!.preco),
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(
@@ -1489,13 +1501,14 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                       stream:
                                                           queryVarianteRecord(
                                                         parent:
-                                                            widget.produtoRef,
+                                                            widget!.produtoRef,
                                                         queryBuilder:
                                                             (varianteRecord) =>
                                                                 varianteRecord
                                                                     .where(
                                                                       'opcao_titulo1',
-                                                                      isEqualTo: FFAppState().selecionarVariante1 !=
+                                                                      isEqualTo: FFAppState().selecionarVariante1 != null &&
+                                                                              FFAppState().selecionarVariante1 !=
                                                                                   ''
                                                                           ? FFAppState()
                                                                               .selecionarVariante1
@@ -1505,7 +1518,8 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                     )
                                                                     .where(
                                                                       'opcao_titulo2',
-                                                                      isEqualTo: FFAppState().selecionarVariante2 !=
+                                                                      isEqualTo: FFAppState().selecionarVariante2 != null &&
+                                                                              FFAppState().selecionarVariante2 !=
                                                                                   ''
                                                                           ? FFAppState()
                                                                               .selecionarVariante2
@@ -1653,7 +1667,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                           5.0),
                                                                   child: Text(
                                                                     functions.valorCentavosEmString(
-                                                                        comVarianteOpc2VarianteRecord
+                                                                        comVarianteOpc2VarianteRecord!
                                                                             .preco),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
@@ -1770,7 +1784,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                             Text(
                                                                           functions.porcentagemPromo(
                                                                               queryProdutProdutoRecord.precoAntes,
-                                                                              comVarianteOpc2VarianteRecord.preco),
+                                                                              comVarianteOpc2VarianteRecord!.preco),
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(
@@ -1797,11 +1811,17 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                     ),
                                                   ),
                                                 ),
-                                              if ((queryProdutProdutoRecord.titulo1 != '') &&
+                                              if ((queryProdutProdutoRecord.titulo1 != null && queryProdutProdutoRecord.titulo1 != '') &&
                                                   (queryProdutProdutoRecord
+                                                              .titulo2 ==
+                                                          null ||
+                                                      queryProdutProdutoRecord
                                                               .titulo2 ==
                                                           '') &&
                                                   (FFAppState()
+                                                              .selecionarVariante1 !=
+                                                          null &&
+                                                      FFAppState()
                                                               .selecionarVariante1 !=
                                                           ''))
                                                 Align(
@@ -1818,13 +1838,16 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                       stream:
                                                           queryVarianteRecord(
                                                         parent:
-                                                            widget.produtoRef,
+                                                            widget!.produtoRef,
                                                         queryBuilder:
                                                             (varianteRecord) =>
                                                                 varianteRecord
                                                                     .where(
                                                           'opcao_titulo1',
                                                           isEqualTo: FFAppState()
+                                                                          .selecionarVariante1 !=
+                                                                      null &&
+                                                                  FFAppState()
                                                                           .selecionarVariante1 !=
                                                                       ''
                                                               ? FFAppState()
@@ -1970,7 +1993,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                           5.0),
                                                                   child: Text(
                                                                     functions.valorCentavosEmString(
-                                                                        comVarianteOpc1VarianteRecord
+                                                                        comVarianteOpc1VarianteRecord!
                                                                             .preco),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
@@ -2087,7 +2110,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                             Text(
                                                                           functions.porcentagemPromo(
                                                                               queryProdutProdutoRecord.precoAntes,
-                                                                              comVarianteOpc1VarianteRecord.preco),
+                                                                              comVarianteOpc1VarianteRecord!.preco),
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(
@@ -2114,14 +2137,20 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                     ),
                                                   ),
                                                 ),
-                                              if ((queryProdutProdutoRecord.titulo1 != '') &&
-                                                  (queryProdutProdutoRecord.titulo2 ==
+                                              if ((queryProdutProdutoRecord.titulo1 != null && queryProdutProdutoRecord.titulo1 != '') &&
+                                                  (queryProdutProdutoRecord
+                                                              .titulo2 ==
+                                                          null ||
+                                                      queryProdutProdutoRecord.titulo2 ==
                                                           '') &&
                                                   ((queryProdutProdutoRecord
                                                           .varianteImgList
                                                           .isNotEmpty) ==
                                                       true) &&
                                                   (FFAppState()
+                                                              .selecionarVariante1foto !=
+                                                          null &&
+                                                      FFAppState()
                                                               .selecionarVariante1foto !=
                                                           ''))
                                                 Align(
@@ -2138,13 +2167,16 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                       stream:
                                                           queryVarianteRecord(
                                                         parent:
-                                                            widget.produtoRef,
+                                                            widget!.produtoRef,
                                                         queryBuilder:
                                                             (varianteRecord) =>
                                                                 varianteRecord
                                                                     .where(
                                                           'foto',
                                                           isEqualTo: FFAppState()
+                                                                          .selecionarVariante1foto !=
+                                                                      null &&
+                                                                  FFAppState()
                                                                           .selecionarVariante1foto !=
                                                                       ''
                                                               ? FFAppState()
@@ -2290,7 +2322,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                           5.0),
                                                                   child: Text(
                                                                     functions.valorCentavosEmString(
-                                                                        comVarianteOpc1fotoVarianteRecord
+                                                                        comVarianteOpc1fotoVarianteRecord!
                                                                             .preco),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
@@ -2407,7 +2439,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                             Text(
                                                                           functions.porcentagemPromo(
                                                                               queryProdutProdutoRecord.precoAntes,
-                                                                              comVarianteOpc1fotoVarianteRecord.preco),
+                                                                              comVarianteOpc1fotoVarianteRecord!.preco),
                                                                           style: FlutterFlowTheme.of(context)
                                                                               .bodyMedium
                                                                               .override(
@@ -2436,21 +2468,38 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                 ),
                                               if (((queryProdutProdutoRecord
                                                                   .titulo1 !=
+                                                              null &&
+                                                          queryProdutProdutoRecord
+                                                                  .titulo1 !=
                                                               '') &&
                                                       (FFAppState().selecionarVariante2 ==
+                                                              null ||
+                                                          FFAppState().selecionarVariante2 ==
                                                               '') &&
                                                       (queryProdutProdutoRecord
+                                                                  .titulo2 !=
+                                                              null &&
+                                                          queryProdutProdutoRecord
                                                                   .titulo2 !=
                                                               '')) ||
                                                   ((queryProdutProdutoRecord
                                                                   .titulo1 !=
+                                                              null &&
+                                                          queryProdutProdutoRecord
+                                                                  .titulo1 !=
                                                               '') &&
                                                       (FFAppState().selecionarVariante2 ==
+                                                              null ||
+                                                          FFAppState().selecionarVariante2 ==
                                                               '') &&
-                                                      ((FFAppState()
+                                                      ((FFAppState().selecionarVariante1foto ==
+                                                                  null ||
+                                                              FFAppState()
                                                                       .selecionarVariante1foto ==
                                                                   '') &&
-                                                          (FFAppState()
+                                                          (FFAppState().selecionarVariante1 ==
+                                                                  null ||
+                                                              FFAppState()
                                                                       .selecionarVariante1 ==
                                                                   ''))))
                                                 Align(
@@ -2849,9 +2898,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                   ),
                                                 if ((currentUserDocument
                                                                 ?.favorito
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
-                                                        .contains(widget
+                                                        .contains(widget!
                                                             .produtoRef?.id) ==
                                                     true)
                                                   AuthUserStreamWidget(
@@ -2872,7 +2921,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                             {
                                                               'favorito': FieldValue
                                                                   .arrayRemove([
-                                                                widget
+                                                                widget!
                                                                     .produtoRef
                                                                     ?.id
                                                               ]),
@@ -2895,9 +2944,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                   ),
                                                 if ((currentUserDocument
                                                                 ?.favorito
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [])
-                                                        .contains(widget
+                                                        .contains(widget!
                                                             .produtoRef?.id) ==
                                                     false)
                                                   AuthUserStreamWidget(
@@ -2919,7 +2968,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                               'favorito':
                                                                   FieldValue
                                                                       .arrayUnion([
-                                                                widget
+                                                                widget!
                                                                     .produtoRef
                                                                     ?.id
                                                               ]),
@@ -3033,6 +3082,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                               CartaoFeedWidget(
                                                             valor: queryProdutProdutoRecord
                                                                             .titulo1 !=
+                                                                        null &&
+                                                                    queryProdutProdutoRecord
+                                                                            .titulo1 !=
                                                                         ''
                                                                 ? queryProdutProdutoRecord
                                                                     .menorPrecoRevenda
@@ -3048,6 +3100,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                 child: Text(
                                                   functions.parcelamentoFeed(
                                                       queryProdutProdutoRecord
+                                                                      .titulo1 !=
+                                                                  null &&
+                                                              queryProdutProdutoRecord
                                                                       .titulo1 !=
                                                                   ''
                                                           ? queryProdutProdutoRecord
@@ -3119,6 +3174,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                           child:
                                                               CartaoFeedWidget(
                                                             valor: queryProdutProdutoRecord
+                                                                            .titulo1 !=
+                                                                        null &&
+                                                                    queryProdutProdutoRecord
                                                                             .titulo1 !=
                                                                         ''
                                                                 ? queryProdutProdutoRecord
@@ -3508,7 +3566,8 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                         ),
                                       ),
                                     ),
-                                  if (queryProdutProdutoRecord.video != '')
+                                  if (queryProdutProdutoRecord.video != null &&
+                                      queryProdutProdutoRecord.video != '')
                                     Align(
                                       alignment:
                                           AlignmentDirectional(-1.0, 1.0),
@@ -3535,7 +3594,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                               VideoProdutoWidget.routeName,
                                               queryParameters: {
                                                 'produtoRef': serializeParam(
-                                                  widget.produtoRef,
+                                                  widget!.produtoRef,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -3626,7 +3685,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                   ),
                                   child: Visibility(
                                     visible: functions.maisVendidoBoolean4Max(
-                                        widget.produtoRef,
+                                        widget!.produtoRef,
                                         containerProdutoRecordList.toList()),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -3717,7 +3776,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                       5.0,
                                                                       0.0),
                                                           child: Text(
-                                                            '${functions.maisVendido(widget.produtoRef, containerProdutoRecordList.toList())}° Mais Vendido',
+                                                            '${functions.maisVendido(widget!.produtoRef, containerProdutoRecordList.toList())}° Mais Vendido',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .titleSmall
@@ -3827,17 +3886,21 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                             if (((queryProdutProdutoRecord
                                         .varianteImgList.isNotEmpty) ==
                                     true) &&
-                                (queryProdutProdutoRecord.titulo2 != ''))
+                                (queryProdutProdutoRecord.titulo2 != null &&
+                                    queryProdutProdutoRecord.titulo2 != ''))
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 10.0, 10.0, 0.0),
                                 child: StreamBuilder<List<VarianteRecord>>(
                                   stream: queryVarianteRecord(
-                                    parent: widget.produtoRef,
+                                    parent: widget!.produtoRef,
                                     queryBuilder: (varianteRecord) =>
                                         varianteRecord.where(
                                       'foto',
                                       isEqualTo: FFAppState()
+                                                      .selecionarVariante1foto !=
+                                                  null &&
+                                              FFAppState()
                                                       .selecionarVariante1foto !=
                                                   ''
                                           ? FFAppState().selecionarVariante1foto
@@ -3885,6 +3948,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                           .isNotEmpty) !=
                                                       null) &&
                                                   (queryProdutProdutoRecord
+                                                              .titulo2 !=
+                                                          null &&
+                                                      queryProdutProdutoRecord
                                                               .titulo2 !=
                                                           ''))
                                                 Container(
@@ -3947,7 +4013,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                     child:
                                                                         VarianteWidget(
                                                                       produtoRef:
-                                                                          widget
+                                                                          widget!
                                                                               .produtoRef!,
                                                                     ),
                                                                   ),
@@ -3992,6 +4058,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                               ),
                                                               if (FFAppState()
                                                                           .selecionarVariante1foto !=
+                                                                      null &&
+                                                                  FFAppState()
+                                                                          .selecionarVariante1foto !=
                                                                       '')
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
@@ -4027,6 +4096,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                   ),
                                                                 ),
                                                               if (FFAppState()
+                                                                          .selecionarVariante1foto !=
+                                                                      null &&
+                                                                  FFAppState()
                                                                           .selecionarVariante1foto !=
                                                                       '')
                                                                 Icon(
@@ -4258,9 +4330,11 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                             .transparent,
                                                                     onTap:
                                                                         () async {
-                                                                      if ((FFAppState().selecionarVariante1 ==
+                                                                      if ((FFAppState().selecionarVariante1 == null ||
+                                                                              FFAppState().selecionarVariante1 ==
                                                                                   '') &&
-                                                                          (FFAppState().selecionarVariante1foto == '')) {
+                                                                          (FFAppState().selecionarVariante1foto == null ||
+                                                                              FFAppState().selecionarVariante1foto == '')) {
                                                                         await showModalBottomSheet(
                                                                           isScrollControlled:
                                                                               true,
@@ -4280,7 +4354,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                               child: Padding(
                                                                                 padding: MediaQuery.viewInsetsOf(context),
                                                                                 child: VarianteWidget(
-                                                                                  produtoRef: widget.produtoRef!,
+                                                                                  produtoRef: widget!.produtoRef!,
                                                                                 ),
                                                                               ),
                                                                             );
@@ -4366,7 +4440,8 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                   },
                                 ),
                               ),
-                            if ((queryProdutProdutoRecord.titulo2 == '') &&
+                            if ((queryProdutProdutoRecord.titulo2 == null ||
+                                    queryProdutProdutoRecord.titulo2 == '') &&
                                 ((queryProdutProdutoRecord
                                         .varianteImgList.isNotEmpty) ==
                                     true))
@@ -4375,11 +4450,14 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                     10.0, 10.0, 10.0, 0.0),
                                 child: StreamBuilder<List<VarianteRecord>>(
                                   stream: queryVarianteRecord(
-                                    parent: widget.produtoRef,
+                                    parent: widget!.produtoRef,
                                     queryBuilder: (varianteRecord) =>
                                         varianteRecord.where(
                                       'foto',
                                       isEqualTo: FFAppState()
+                                                      .selecionarVariante1foto !=
+                                                  null &&
+                                              FFAppState()
                                                       .selecionarVariante1foto !=
                                                   ''
                                           ? FFAppState().selecionarVariante1foto
@@ -4423,6 +4501,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               if ((queryProdutProdutoRecord
+                                                              .titulo2 ==
+                                                          null ||
+                                                      queryProdutProdutoRecord
                                                               .titulo2 ==
                                                           '') &&
                                                   ((queryProdutProdutoRecord
@@ -4489,7 +4570,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                     child:
                                                                         VarianteWidget(
                                                                       produtoRef:
-                                                                          widget
+                                                                          widget!
                                                                               .produtoRef!,
                                                                     ),
                                                                   ),
@@ -4534,6 +4615,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                               ),
                                                               if (FFAppState()
                                                                           .selecionarVariante1foto !=
+                                                                      null &&
+                                                                  FFAppState()
+                                                                          .selecionarVariante1foto !=
                                                                       '')
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
@@ -4569,6 +4653,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                   ),
                                                                 ),
                                                               if (FFAppState()
+                                                                          .selecionarVariante1foto !=
+                                                                      null &&
+                                                                  FFAppState()
                                                                           .selecionarVariante1foto !=
                                                                       '')
                                                                 Icon(
@@ -4705,17 +4792,21 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                             if (((queryProdutProdutoRecord
                                         .varianteImgList.isNotEmpty) ==
                                     false) &&
-                                (queryProdutProdutoRecord.titulo2 != ''))
+                                (queryProdutProdutoRecord.titulo2 != null &&
+                                    queryProdutProdutoRecord.titulo2 != ''))
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 10.0, 10.0, 0.0),
                                 child: StreamBuilder<List<VarianteRecord>>(
                                   stream: queryVarianteRecord(
-                                    parent: widget.produtoRef,
+                                    parent: widget!.produtoRef,
                                     queryBuilder: (varianteRecord) =>
                                         varianteRecord.where(
                                       'opcao_titulo1',
                                       isEqualTo: FFAppState()
+                                                      .selecionarVariante1 !=
+                                                  null &&
+                                              FFAppState()
                                                       .selecionarVariante1 !=
                                                   ''
                                           ? FFAppState().selecionarVariante1
@@ -5036,9 +5127,11 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                             .transparent,
                                                                     onTap:
                                                                         () async {
-                                                                      if ((FFAppState().selecionarVariante1 ==
+                                                                      if ((FFAppState().selecionarVariante1 == null ||
+                                                                              FFAppState().selecionarVariante1 ==
                                                                                   '') &&
-                                                                          (FFAppState().selecionarVariante1foto == '')) {
+                                                                          (FFAppState().selecionarVariante1foto == null ||
+                                                                              FFAppState().selecionarVariante1foto == '')) {
                                                                         await showModalBottomSheet(
                                                                           isScrollControlled:
                                                                               true,
@@ -5058,7 +5151,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                               child: Padding(
                                                                                 padding: MediaQuery.viewInsetsOf(context),
                                                                                 child: VarianteWidget(
-                                                                                  produtoRef: widget.produtoRef!,
+                                                                                  produtoRef: widget!.produtoRef!,
                                                                                 ),
                                                                               ),
                                                                             );
@@ -5144,8 +5237,10 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                   },
                                 ),
                               ),
-                            if ((queryProdutProdutoRecord.titulo1 != '') &&
-                                (queryProdutProdutoRecord.titulo2 == '') &&
+                            if ((queryProdutProdutoRecord.titulo1 != null &&
+                                    queryProdutProdutoRecord.titulo1 != '') &&
+                                (queryProdutProdutoRecord.titulo2 == null ||
+                                    queryProdutProdutoRecord.titulo2 == '') &&
                                 ((queryProdutProdutoRecord
                                         .varianteImgList.isNotEmpty) ==
                                     false))
@@ -5154,11 +5249,14 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                     10.0, 10.0, 10.0, 0.0),
                                 child: StreamBuilder<List<VarianteRecord>>(
                                   stream: queryVarianteRecord(
-                                    parent: widget.produtoRef,
+                                    parent: widget!.produtoRef,
                                     queryBuilder: (varianteRecord) =>
                                         varianteRecord.where(
                                       'opcao_titulo1',
                                       isEqualTo: FFAppState()
+                                                      .selecionarVariante1 !=
+                                                  null &&
+                                              FFAppState()
                                                       .selecionarVariante1 !=
                                                   ''
                                           ? FFAppState().selecionarVariante1
@@ -5701,6 +5799,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                     children: [
                                                       if (queryProdutProdutoRecord
                                                                   .titulo1 ==
+                                                              null ||
+                                                          queryProdutProdutoRecord
+                                                                  .titulo1 ==
                                                               '')
                                                         Align(
                                                           alignment:
@@ -5724,7 +5825,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                     {
                                                                   'produtoRef':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .produtoRef,
                                                                     ParamType
                                                                         .DocumentReference,
@@ -5755,6 +5856,8 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                   'variante':
                                                                       serializeParam(
                                                                     queryProdutProdutoRecord.titulo1 !=
+                                                                            null &&
+                                                                        queryProdutProdutoRecord.titulo1 !=
                                                                             '',
                                                                     ParamType
                                                                         .bool,
@@ -5855,6 +5958,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                         ),
                                                       if (queryProdutProdutoRecord
                                                                   .titulo1 !=
+                                                              null &&
+                                                          queryProdutProdutoRecord
+                                                                  .titulo1 !=
                                                               '')
                                                         Align(
                                                           alignment:
@@ -5865,7 +5971,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                   VarianteRecord>>(
                                                             stream:
                                                                 queryVarianteRecord(
-                                                              parent: widget
+                                                              parent: widget!
                                                                   .produtoRef,
                                                             ),
                                                             builder: (context,
@@ -5915,7 +6021,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                         {
                                                                       'produtoRef':
                                                                           serializeParam(
-                                                                        widget
+                                                                        widget!
                                                                             .produtoRef,
                                                                         ParamType
                                                                             .DocumentReference,
@@ -5939,6 +6045,8 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                       'variante':
                                                                           serializeParam(
                                                                         queryProdutProdutoRecord.titulo1 !=
+                                                                                null &&
+                                                                            queryProdutProdutoRecord.titulo1 !=
                                                                                 '',
                                                                         ParamType
                                                                             .bool,
@@ -6078,6 +6186,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                       ),
                                                       if (queryProdutProdutoRecord
                                                                   .titulo1 ==
+                                                              null ||
+                                                          queryProdutProdutoRecord
+                                                                  .titulo1 ==
                                                               '')
                                                         Padding(
                                                           padding:
@@ -6123,6 +6234,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                         ),
                                                       if (queryProdutProdutoRecord
                                                                   .titulo1 !=
+                                                              null &&
+                                                          queryProdutProdutoRecord
+                                                                  .titulo1 !=
                                                               '')
                                                         Padding(
                                                           padding:
@@ -6137,7 +6251,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                   VarianteRecord>>(
                                                             stream:
                                                                 queryVarianteRecord(
-                                                              parent: widget
+                                                              parent: widget!
                                                                   .produtoRef,
                                                             ),
                                                             builder: (context,
@@ -6379,7 +6493,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                           padding:
                                               MediaQuery.viewInsetsOf(context),
                                           child: FreteWidget(
-                                            produtoRef: widget.produtoRef!,
+                                            produtoRef: widget!.produtoRef!,
                                           ),
                                         ),
                                       );
@@ -6432,6 +6546,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                           functions.frete(() {
                                                         if (FFAppState()
                                                                     .enderecoTemporario !=
+                                                                null &&
+                                                            FFAppState()
+                                                                    .enderecoTemporario !=
                                                                 '') {
                                                           return FFAppState()
                                                               .enderecoTemporario;
@@ -6439,8 +6556,16 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                         currentUserDocument
                                                                             ?.enderecoCompleto,
                                                                         '') !=
+                                                                    null &&
+                                                                valueOrDefault(
+                                                                        currentUserDocument
+                                                                            ?.enderecoCompleto,
+                                                                        '') !=
                                                                     '') &&
                                                             (FFAppState()
+                                                                        .enderecoTemporario ==
+                                                                    null ||
+                                                                FFAppState()
                                                                         .enderecoTemporario ==
                                                                     '')) {
                                                           return valueOrDefault(
@@ -6508,6 +6633,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                           functions.frete(() {
                                                         if (FFAppState()
                                                                     .enderecoTemporario !=
+                                                                null &&
+                                                            FFAppState()
+                                                                    .enderecoTemporario !=
                                                                 '') {
                                                           return FFAppState()
                                                               .enderecoTemporario;
@@ -6515,8 +6643,16 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                         currentUserDocument
                                                                             ?.enderecoCompleto,
                                                                         '') !=
+                                                                    null &&
+                                                                valueOrDefault(
+                                                                        currentUserDocument
+                                                                            ?.enderecoCompleto,
+                                                                        '') !=
                                                                     '') &&
                                                             (FFAppState()
+                                                                        .enderecoTemporario ==
+                                                                    null ||
+                                                                FFAppState()
                                                                         .enderecoTemporario ==
                                                                     '')) {
                                                           return valueOrDefault(
@@ -6591,6 +6727,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                         functions.frete(() {
                                                           if (FFAppState()
                                                                       .enderecoTemporario !=
+                                                                  null &&
+                                                              FFAppState()
+                                                                      .enderecoTemporario !=
                                                                   '') {
                                                             return FFAppState()
                                                                 .enderecoTemporario;
@@ -6598,8 +6737,16 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                           currentUserDocument
                                                                               ?.enderecoCompleto,
                                                                           '') !=
+                                                                      null &&
+                                                                  valueOrDefault(
+                                                                          currentUserDocument
+                                                                              ?.enderecoCompleto,
+                                                                          '') !=
                                                                       '') &&
                                                               (FFAppState()
+                                                                          .enderecoTemporario ==
+                                                                      null ||
+                                                                  FFAppState()
                                                                           .enderecoTemporario ==
                                                                       '')) {
                                                             return valueOrDefault(
@@ -6664,6 +6811,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                             functions.frete(() {
                                                           if (FFAppState()
                                                                       .enderecoTemporario !=
+                                                                  null &&
+                                                              FFAppState()
+                                                                      .enderecoTemporario !=
                                                                   '') {
                                                             return FFAppState()
                                                                 .enderecoTemporario;
@@ -6671,8 +6821,16 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                           currentUserDocument
                                                                               ?.enderecoCompleto,
                                                                           '') !=
+                                                                      null &&
+                                                                  valueOrDefault(
+                                                                          currentUserDocument
+                                                                              ?.enderecoCompleto,
+                                                                          '') !=
                                                                       '') &&
                                                               (FFAppState()
+                                                                          .enderecoTemporario ==
+                                                                      null ||
+                                                                  FFAppState()
                                                                           .enderecoTemporario ==
                                                                       '')) {
                                                             return valueOrDefault(
@@ -7261,7 +7419,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                 true)
                               StreamBuilder<List<AvaliacaoRecord>>(
                                 stream: queryAvaliacaoRecord(
-                                  parent: widget.produtoRef,
+                                  parent: widget!.produtoRef,
                                 ),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
@@ -7292,7 +7450,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                         TodasAvaliacaoWidget.routeName,
                                         queryParameters: {
                                           'produtoRef': serializeParam(
-                                            widget.produtoRef,
+                                            widget!.produtoRef,
                                             ParamType.DocumentReference,
                                           ),
                                         }.withoutNulls,
@@ -7646,7 +7804,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                 true)
                               StreamBuilder<List<AvaliacaoRecord>>(
                                 stream: queryAvaliacaoRecord(
-                                  parent: widget.produtoRef,
+                                  parent: widget!.produtoRef,
                                   queryBuilder: (avaliacaoRecord) =>
                                       avaliacaoRecord.orderBy('nota',
                                           descending: true),
@@ -7686,7 +7844,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                           child: StreamBuilder<
                                               List<AvaliacaoRecord>>(
                                             stream: queryAvaliacaoRecord(
-                                              parent: widget.produtoRef,
+                                              parent: widget!.produtoRef,
                                               queryBuilder: (avaliacaoRecord) =>
                                                   avaliacaoRecord.orderBy(
                                                       'videoSet',
@@ -8045,6 +8203,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                         ),
                                                         if (listViewAvaliacaoRecord
                                                                     .variacao !=
+                                                                null &&
+                                                            listViewAvaliacaoRecord
+                                                                    .variacao !=
                                                                 '')
                                                           Align(
                                                             alignment:
@@ -8095,6 +8256,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                     .verTudo ==
                                                                 false) &&
                                                             (listViewAvaliacaoRecord
+                                                                        .comentario !=
+                                                                    null &&
+                                                                listViewAvaliacaoRecord
                                                                         .comentario !=
                                                                     ''))
                                                           Align(
@@ -8168,6 +8332,9 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                     .verTudo ==
                                                                 true) &&
                                                             (listViewAvaliacaoRecord
+                                                                        .comentario !=
+                                                                    null &&
+                                                                listViewAvaliacaoRecord
                                                                         .comentario !=
                                                                     ''))
                                                           Align(
@@ -8292,7 +8459,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                                         ParamType.DocumentReference,
                                                                                       ),
                                                                                       'produtoRef': serializeParam(
-                                                                                        widget.produtoRef,
+                                                                                        widget!.produtoRef,
                                                                                         ParamType.DocumentReference,
                                                                                       ),
                                                                                     }.withoutNulls,
@@ -8434,7 +8601,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                           ),
                                                                           'produtoRef':
                                                                               serializeParam(
-                                                                            widget.produtoRef,
+                                                                            widget!.produtoRef,
                                                                             ParamType.DocumentReference,
                                                                           ),
                                                                         }.withoutNulls,
@@ -8557,7 +8724,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                     queryParameters: {
                                                       'produtoRef':
                                                           serializeParam(
-                                                        widget.produtoRef,
+                                                        widget!.produtoRef,
                                                         ParamType
                                                             .DocumentReference,
                                                       ),
@@ -9645,7 +9812,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                     .recomendarProdutosSimilares(
                                                         feed2ProdutoRecordList
                                                             .toList(),
-                                                        widget.produtoRef!,
+                                                        widget!.produtoRef!,
                                                         FFAppState()
                                                             .limiteVistualizacaoProdutoHomePage
                                                             .toString())
@@ -9750,7 +9917,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                       false;
                                                                   safeSetState(
                                                                       () {});
-                                                                  if ((currentUserDocument?.vistoRecente.toList() ??
+                                                                  if ((currentUserDocument?.vistoRecente?.toList() ??
                                                                               [])
                                                                           .length ==
                                                                       6) {
@@ -9760,7 +9927,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                         {
                                                                           'vistoRecente':
                                                                               FieldValue.arrayRemove([
-                                                                            (currentUserDocument?.vistoRecente.toList() ?? []).firstOrNull
+                                                                            (currentUserDocument?.vistoRecente?.toList() ?? []).firstOrNull
                                                                           ]),
                                                                         },
                                                                       ),
@@ -9855,7 +10022,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                                       alignment: Alignment(0.0, -1.0),
                                                                                     ),
                                                                                   ),
-                                                                                  if (containerProdutoRecord.video != '')
+                                                                                  if (containerProdutoRecord.video != null && containerProdutoRecord.video != '')
                                                                                     Align(
                                                                                       alignment: AlignmentDirectional(-1.0, 1.0),
                                                                                       child: Padding(
@@ -9875,7 +10042,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                                         ),
                                                                                       ),
                                                                                     ),
-                                                                                  if (containerProdutoRecord.capsula1 != '')
+                                                                                  if (containerProdutoRecord.capsula1 != null && containerProdutoRecord.capsula1 != '')
                                                                                     Align(
                                                                                       alignment: AlignmentDirectional(1.0, 1.0),
                                                                                       child: Padding(
@@ -9920,7 +10087,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                                                     ),
                                                                                                   ),
                                                                                                 ),
-                                                                                                if (containerProdutoRecord.capsula2 != '')
+                                                                                                if (containerProdutoRecord.capsula2 != null && containerProdutoRecord.capsula2 != '')
                                                                                                   Padding(
                                                                                                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                                     child: Container(
@@ -9947,7 +10114,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                                                       ),
                                                                                                     ),
                                                                                                   ),
-                                                                                                if (containerProdutoRecord.capsula3 != '')
+                                                                                                if (containerProdutoRecord.capsula3 != null && containerProdutoRecord.capsula3 != '')
                                                                                                   Padding(
                                                                                                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                                     child: Container(
@@ -9974,7 +10141,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                                                       ),
                                                                                                     ),
                                                                                                   ),
-                                                                                                if (containerProdutoRecord.capsulaExtra != '')
+                                                                                                if (containerProdutoRecord.capsulaExtra != null && containerProdutoRecord.capsulaExtra != '')
                                                                                                   Padding(
                                                                                                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
                                                                                                     child: Text(
@@ -10015,40 +10182,41 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.max,
                                                                                     children: [
-                                                                                      Align(
-                                                                                        alignment: AlignmentDirectional(0.0, 1.0),
-                                                                                        child: Padding(
-                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 3.0, 0.0),
-                                                                                          child: Container(
-                                                                                            width: 29.0,
-                                                                                            height: 16.0,
-                                                                                            decoration: BoxDecoration(
-                                                                                              borderRadius: BorderRadius.circular(4.0),
-                                                                                              border: Border.all(
-                                                                                                color: FlutterFlowTheme.of(context).primary,
-                                                                                                width: 0.7,
+                                                                                      if (containerProdutoRecord.precoAntes != null)
+                                                                                        Align(
+                                                                                          alignment: AlignmentDirectional(0.0, 1.0),
+                                                                                          child: Padding(
+                                                                                            padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 3.0, 0.0),
+                                                                                            child: Container(
+                                                                                              width: 29.0,
+                                                                                              height: 16.0,
+                                                                                              decoration: BoxDecoration(
+                                                                                                borderRadius: BorderRadius.circular(4.0),
+                                                                                                border: Border.all(
+                                                                                                  color: FlutterFlowTheme.of(context).primary,
+                                                                                                  width: 0.7,
+                                                                                                ),
                                                                                               ),
-                                                                                            ),
-                                                                                            child: Align(
-                                                                                              alignment: AlignmentDirectional(0.0, 0.0),
-                                                                                              child: Text(
-                                                                                                functions.porcentagemPromo(containerProdutoRecord.precoAntes, containerProdutoRecord.titulo1 != '' ? containerProdutoRecord.menorPrecoRevenda : containerProdutoRecord.preco),
-                                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                      font: GoogleFonts.inter(
+                                                                                              child: Align(
+                                                                                                alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                                child: Text(
+                                                                                                  functions.porcentagemPromo(containerProdutoRecord.precoAntes, containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? containerProdutoRecord.menorPrecoRevenda : containerProdutoRecord.preco),
+                                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                        font: GoogleFonts.inter(
+                                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                                        ),
+                                                                                                        color: FlutterFlowTheme.of(context).primary,
+                                                                                                        fontSize: 10.0,
+                                                                                                        letterSpacing: 0.0,
                                                                                                         fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                                                         fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                                       ),
-                                                                                                      color: FlutterFlowTheme.of(context).primary,
-                                                                                                      fontSize: 10.0,
-                                                                                                      letterSpacing: 0.0,
-                                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                                    ),
+                                                                                                ),
                                                                                               ),
                                                                                             ),
                                                                                           ),
                                                                                         ),
-                                                                                      ),
                                                                                       SelectionArea(
                                                                                           child: Text(
                                                                                         containerProdutoRecord.nome.maybeHandleOverflow(
@@ -10214,7 +10382,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                                               ),
                                                                                         ),
                                                                                         Text(
-                                                                                          containerProdutoRecord.titulo1 != '' ? functions.valorRealString(containerProdutoRecord.menorPrecoRevenda) : functions.valorRealString(containerProdutoRecord.preco),
+                                                                                          containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? functions.valorRealString(containerProdutoRecord.menorPrecoRevenda) : functions.valorRealString(containerProdutoRecord.preco),
                                                                                           style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                 font: GoogleFonts.inter(
                                                                                                   fontWeight: FontWeight.w600,
@@ -10228,7 +10396,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                                               ),
                                                                                         ),
                                                                                         Text(
-                                                                                          containerProdutoRecord.titulo1 != '' ? functions.valorCentavosEmString(containerProdutoRecord.menorPrecoRevenda) : functions.valorCentavosEmString(containerProdutoRecord.preco),
+                                                                                          containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? functions.valorCentavosEmString(containerProdutoRecord.menorPrecoRevenda) : functions.valorCentavosEmString(containerProdutoRecord.preco),
                                                                                           style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                 font: GoogleFonts.inter(
                                                                                                   fontWeight: FontWeight.w600,
@@ -10490,7 +10658,8 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                           ),
                                           if ((FFAppState().FeedAntes !=
                                                   FFAppState().FeedDepois) ||
-                                              (FFAppState().FeedAntes == ''))
+                                              (FFAppState().FeedAntes == null ||
+                                                  FFAppState().FeedAntes == ''))
                                             Padding(
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(
@@ -10508,22 +10677,22 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                               .toList(),
                                                           (currentUserDocument
                                                                       ?.favorito
-                                                                      .toList() ??
+                                                                      ?.toList() ??
                                                                   [])
                                                               .toList(),
                                                           (currentUserDocument
                                                                       ?.historicoPesquisa
-                                                                      .toList() ??
+                                                                      ?.toList() ??
                                                                   [])
                                                               .toList(),
                                                           (currentUserDocument
                                                                       ?.vistoRecente
-                                                                      .toList() ??
+                                                                      ?.toList() ??
                                                                   [])
                                                               .toList(),
                                                           (currentUserDocument
                                                                       ?.comprasHistoricoProdutos
-                                                                      .toList() ??
+                                                                      ?.toList() ??
                                                                   [])
                                                               .toList(),
                                                           FFAppState()
@@ -10544,22 +10713,22 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                               .toList(),
                                                           (currentUserDocument
                                                                       ?.favorito
-                                                                      .toList() ??
+                                                                      ?.toList() ??
                                                                   [])
                                                               .toList(),
                                                           (currentUserDocument
                                                                       ?.historicoPesquisa
-                                                                      .toList() ??
+                                                                      ?.toList() ??
                                                                   [])
                                                               .toList(),
                                                           (currentUserDocument
                                                                       ?.vistoRecente
-                                                                      .toList() ??
+                                                                      ?.toList() ??
                                                                   [])
                                                               .toList(),
                                                           (currentUserDocument
                                                                       ?.comprasHistoricoProdutos
-                                                                      .toList() ??
+                                                                      ?.toList() ??
                                                                   [])
                                                               .toList(),
                                                           FFAppState()
@@ -10650,7 +10819,8 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                               child: Visibility(
                                 visible: (FFAppState().FeedAntes ==
                                         FFAppState().FeedDepois) &&
-                                    (FFAppState().FeedAntes != ''),
+                                    (FFAppState().FeedAntes != null &&
+                                        FFAppState().FeedAntes != ''),
                                 child: Align(
                                   alignment: AlignmentDirectional(0.0, -1.0),
                                   child: Padding(
@@ -10923,7 +11093,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                 Align(
                   alignment: AlignmentDirectional(0.0, 1.0),
                   child: FutureBuilder<ProdutoRecord>(
-                    future: ProdutoRecord.getDocumentOnce(widget.produtoRef!),
+                    future: ProdutoRecord.getDocumentOnce(widget!.produtoRef!),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
@@ -11108,16 +11278,24 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                               ),
                               if (() {
                                 if (valueOrDefault<bool>(
-                                  (containerProdutoRecord.titulo1 !=
+                                  (containerProdutoRecord.titulo1 != null &&
+                                          containerProdutoRecord.titulo1 !=
                                               '') &&
                                       valueOrDefault<bool>(
-                                        (FFAppState()
+                                        (FFAppState().selecionarVariante2 ==
+                                                    null ||
+                                                FFAppState()
                                                         .selecionarVariante2 ==
                                                     '') &&
-                                            ((FFAppState()
+                                            ((FFAppState().selecionarVariante1foto ==
+                                                        null ||
+                                                    FFAppState()
                                                             .selecionarVariante1foto ==
                                                         '') &&
                                                 (FFAppState()
+                                                            .selecionarVariante1 ==
+                                                        null ||
+                                                    FFAppState()
                                                             .selecionarVariante1 ==
                                                         '')),
                                         true,
@@ -11126,18 +11304,27 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                 )) {
                                   return true;
                                 } else if (valueOrDefault<bool>(
-                                  (containerProdutoRecord.titulo1 !=
+                                  (containerProdutoRecord.titulo1 != null &&
+                                          containerProdutoRecord.titulo1 !=
                                               '') &&
-                                      (containerProdutoRecord.titulo2 !=
+                                      (containerProdutoRecord.titulo2 != null &&
+                                          containerProdutoRecord.titulo2 !=
                                               '') &&
                                       valueOrDefault<bool>(
-                                        (FFAppState()
+                                        (FFAppState().selecionarVariante2 ==
+                                                    null ||
+                                                FFAppState()
                                                         .selecionarVariante2 ==
                                                     '') &&
-                                            ((FFAppState()
+                                            ((FFAppState().selecionarVariante1foto ==
+                                                        null ||
+                                                    FFAppState()
                                                             .selecionarVariante1foto ==
                                                         '') ||
                                                 (FFAppState()
+                                                            .selecionarVariante1 ==
+                                                        null ||
+                                                    FFAppState()
                                                             .selecionarVariante1 ==
                                                         '')),
                                         true,
@@ -11180,7 +11367,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                         context),
                                                 child: VarianteWidget(
                                                   produtoRef:
-                                                      widget.produtoRef!,
+                                                      widget!.produtoRef!,
                                                 ),
                                               ),
                                             );
@@ -11243,14 +11430,22 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                   ),
                                 ),
                               if (valueOrDefault<bool>(
-                                (containerProdutoRecord.titulo1 != '') &&
-                                    (containerProdutoRecord.titulo2 != '') &&
+                                (containerProdutoRecord.titulo1 != null &&
+                                        containerProdutoRecord.titulo1 != '') &&
+                                    (containerProdutoRecord.titulo2 != null &&
+                                        containerProdutoRecord.titulo2 != '') &&
                                     ((FFAppState().selecionarVariante2 !=
+                                                null &&
+                                            FFAppState().selecionarVariante2 !=
                                                 '') &&
-                                        ((FFAppState()
+                                        ((FFAppState().selecionarVariante1foto !=
+                                                    null &&
+                                                FFAppState()
                                                         .selecionarVariante1foto !=
                                                     '') ||
-                                            (FFAppState()
+                                            (FFAppState().selecionarVariante1 !=
+                                                    null &&
+                                                FFAppState()
                                                         .selecionarVariante1 !=
                                                     ''))),
                                 true,
@@ -11262,7 +11457,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                         5.0, 0.0, 5.0, 0.0),
                                     child: FutureBuilder<ProdutoRecord>(
                                       future: ProdutoRecord.getDocumentOnce(
-                                          widget.produtoRef!),
+                                          widget!.produtoRef!),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
                                         if (!snapshot.hasData) {
@@ -11526,13 +11721,16 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                 StreamBuilder<
                                                     List<VarianteRecord>>(
                                                   stream: queryVarianteRecord(
-                                                    parent: widget.produtoRef,
+                                                    parent: widget!.produtoRef,
                                                     queryBuilder:
                                                         (varianteRecord) =>
                                                             varianteRecord
                                                                 .where(
                                                       'opcao_titulo1',
                                                       isEqualTo: FFAppState()
+                                                                      .selecionarVariante1 !=
+                                                                  null &&
+                                                              FFAppState()
                                                                       .selecionarVariante1 !=
                                                                   ''
                                                           ? FFAppState()
@@ -11592,7 +11790,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                           List<VarianteRecord>>(
                                                         stream:
                                                             queryVarianteRecord(
-                                                          parent: widget
+                                                          parent: widget!
                                                               .produtoRef,
                                                           queryBuilder:
                                                               (varianteRecord) =>
@@ -11948,12 +12146,12 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                           getCurrentTimestamp,
                                                                           containerVarianteRecord!
                                                                               .foto,
-                                                                          containerVarianteRecord
+                                                                          containerVarianteRecord!
                                                                               .produtoRef!,
                                                                           carinhoVarianteOpc1Opc2ProdutoRecord
                                                                               .lojaRef!,
                                                                           true,
-                                                                          containerVarianteRecord
+                                                                          containerVarianteRecord!
                                                                               .preco,
                                                                           carinhoVarianteOpc1Opc2ProdutoRecord
                                                                               .precoAntes,
@@ -11963,16 +12161,16 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                           carinhoVarianteOpc1Opc2ProdutoRecord
                                                                               .nome,
                                                                           containerVarianteRecord
-                                                                              .opcaoTitulo1,
+                                                                              ?.opcaoTitulo1,
                                                                           FFAppState()
                                                                               .CarrinhoTemporarioNacional
                                                                               .toList(),
                                                                           null,
                                                                           null,
                                                                           containerVarianteRecord
-                                                                              .opcaoTitulo2,
+                                                                              ?.opcaoTitulo2,
                                                                           containerVarianteRecord
-                                                                              .reference)
+                                                                              ?.reference)
                                                                       .toList()
                                                                       .cast<
                                                                           String>();
@@ -11984,12 +12182,12 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                           getCurrentTimestamp,
                                                                           containerVarianteRecord!
                                                                               .foto,
-                                                                          containerVarianteRecord
+                                                                          containerVarianteRecord!
                                                                               .produtoRef!,
                                                                           carinhoVarianteOpc1Opc2ProdutoRecord
                                                                               .lojaRef!,
                                                                           false,
-                                                                          containerVarianteRecord
+                                                                          containerVarianteRecord!
                                                                               .preco,
                                                                           carinhoVarianteOpc1Opc2ProdutoRecord
                                                                               .precoAntes,
@@ -11999,16 +12197,16 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                           carinhoVarianteOpc1Opc2ProdutoRecord
                                                                               .nome,
                                                                           containerVarianteRecord
-                                                                              .opcaoTitulo1,
+                                                                              ?.opcaoTitulo1,
                                                                           FFAppState()
                                                                               .CarrinhoTemporarioInternacional
                                                                               .toList(),
                                                                           null,
                                                                           null,
                                                                           containerVarianteRecord
-                                                                              .opcaoTitulo2,
+                                                                              ?.opcaoTitulo2,
                                                                           containerVarianteRecord
-                                                                              .reference)
+                                                                              ?.reference)
                                                                       .toList()
                                                                       .cast<
                                                                           String>();
@@ -12412,12 +12610,12 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                     getCurrentTimestamp,
                                                                     text4444fotoVarianteRecord!
                                                                         .foto,
-                                                                    text4444fotoVarianteRecord
+                                                                    text4444fotoVarianteRecord!
                                                                         .produtoRef!,
                                                                     carinhoVarianteOpc1Opc2ProdutoRecord
                                                                         .lojaRef!,
                                                                     true,
-                                                                    text4444fotoVarianteRecord
+                                                                    text4444fotoVarianteRecord!
                                                                         .preco,
                                                                     carinhoVarianteOpc1Opc2ProdutoRecord
                                                                         .precoAntes,
@@ -12427,16 +12625,16 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                     carinhoVarianteOpc1Opc2ProdutoRecord
                                                                         .nome,
                                                                     text4444fotoVarianteRecord
-                                                                        .opcaoTitulo1,
+                                                                        ?.opcaoTitulo1,
                                                                     FFAppState()
                                                                         .CarrinhoTemporarioNacional
                                                                         .toList(),
                                                                     null,
                                                                     null,
                                                                     text4444fotoVarianteRecord
-                                                                        .opcaoTitulo2,
+                                                                        ?.opcaoTitulo2,
                                                                     text4444fotoVarianteRecord
-                                                                        .reference)
+                                                                        ?.reference)
                                                                 .toList()
                                                                 .cast<String>();
                                                             safeSetState(() {});
@@ -12446,12 +12644,12 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                     getCurrentTimestamp,
                                                                     text4444fotoVarianteRecord!
                                                                         .foto,
-                                                                    text4444fotoVarianteRecord
+                                                                    text4444fotoVarianteRecord!
                                                                         .produtoRef!,
                                                                     carinhoVarianteOpc1Opc2ProdutoRecord
                                                                         .lojaRef!,
                                                                     false,
-                                                                    text4444fotoVarianteRecord
+                                                                    text4444fotoVarianteRecord!
                                                                         .preco,
                                                                     carinhoVarianteOpc1Opc2ProdutoRecord
                                                                         .precoAntes,
@@ -12461,16 +12659,16 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                     carinhoVarianteOpc1Opc2ProdutoRecord
                                                                         .nome,
                                                                     text4444fotoVarianteRecord
-                                                                        .opcaoTitulo1,
+                                                                        ?.opcaoTitulo1,
                                                                     FFAppState()
                                                                         .CarrinhoTemporarioInternacional
                                                                         .toList(),
                                                                     null,
                                                                     null,
                                                                     text4444fotoVarianteRecord
-                                                                        .opcaoTitulo2,
+                                                                        ?.opcaoTitulo2,
                                                                     text4444fotoVarianteRecord
-                                                                        .reference)
+                                                                        ?.reference)
                                                                 .toList()
                                                                 .cast<String>();
                                                             safeSetState(() {});
@@ -12572,12 +12770,18 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                   ),
                                 ),
                               if (valueOrDefault<bool>(
-                                (containerProdutoRecord.titulo1 != '') &&
-                                    (containerProdutoRecord.titulo2 == '') &&
-                                    ((FFAppState()
+                                (containerProdutoRecord.titulo1 != null &&
+                                        containerProdutoRecord.titulo1 != '') &&
+                                    (containerProdutoRecord.titulo2 == null ||
+                                        containerProdutoRecord.titulo2 == '') &&
+                                    ((FFAppState().selecionarVariante1foto !=
+                                                null &&
+                                            FFAppState()
                                                     .selecionarVariante1foto !=
                                                 '') ||
                                         (FFAppState().selecionarVariante1 !=
+                                                null &&
+                                            FFAppState().selecionarVariante1 !=
                                                 '')),
                                 true,
                               ))
@@ -12588,7 +12792,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                         5.0, 0.0, 5.0, 0.0),
                                     child: FutureBuilder<ProdutoRecord>(
                                       future: ProdutoRecord.getDocumentOnce(
-                                          widget.produtoRef!),
+                                          widget!.produtoRef!),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
                                         if (!snapshot.hasData) {
@@ -13058,7 +13262,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                 .addCartEvitarDuplicar(
                                                               text22222VarianteRecord!
                                                                   .produtoRef!,
-                                                              '${text22222VarianteRecord.opcaoTitulo1}${text22222VarianteRecord.opcaoTitulo2 != '' ? ', ${text22222VarianteRecord.opcaoTitulo2}' : ' '}',
+                                                              '${text22222VarianteRecord?.opcaoTitulo1}${text22222VarianteRecord?.opcaoTitulo2 != null && text22222VarianteRecord?.opcaoTitulo2 != '' ? ', ${text22222VarianteRecord?.opcaoTitulo2}' : ' '}',
                                                               _model
                                                                   .respostaCarrinho3!
                                                                   .toList(),
@@ -13185,7 +13389,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                     carinhoVarianteOpc1ProdutoRecord
                                                                         .lojaRef!,
                                                                     true,
-                                                                    text22222VarianteRecord
+                                                                    text22222VarianteRecord!
                                                                         .preco,
                                                                     carinhoVarianteOpc1ProdutoRecord
                                                                         .precoAntes,
@@ -13195,16 +13399,16 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                     carinhoVarianteOpc1ProdutoRecord
                                                                         .nome,
                                                                     text22222VarianteRecord
-                                                                        .opcaoTitulo1,
+                                                                        ?.opcaoTitulo1,
                                                                     FFAppState()
                                                                         .CarrinhoTemporarioNacional
                                                                         .toList(),
                                                                     null,
                                                                     null,
                                                                     text22222VarianteRecord
-                                                                        .opcaoTitulo2,
+                                                                        ?.opcaoTitulo2,
                                                                     text22222VarianteRecord
-                                                                        .reference)
+                                                                        ?.reference)
                                                                 .toList()
                                                                 .cast<String>();
                                                             safeSetState(() {});
@@ -13219,7 +13423,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                     carinhoVarianteOpc1ProdutoRecord
                                                                         .lojaRef!,
                                                                     false,
-                                                                    text22222VarianteRecord
+                                                                    text22222VarianteRecord!
                                                                         .preco,
                                                                     carinhoVarianteOpc1ProdutoRecord
                                                                         .precoAntes,
@@ -13229,16 +13433,16 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                                                     carinhoVarianteOpc1ProdutoRecord
                                                                         .nome,
                                                                     text22222VarianteRecord
-                                                                        .opcaoTitulo1,
+                                                                        ?.opcaoTitulo1,
                                                                     FFAppState()
                                                                         .CarrinhoTemporarioInternacional
                                                                         .toList(),
                                                                     null,
                                                                     null,
                                                                     text22222VarianteRecord
-                                                                        .opcaoTitulo2,
+                                                                        ?.opcaoTitulo2,
                                                                     text22222VarianteRecord
-                                                                        .reference)
+                                                                        ?.reference)
                                                                 .toList()
                                                                 .cast<String>();
                                                             safeSetState(() {});
@@ -13340,8 +13544,10 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                   ),
                                 ),
                               if (valueOrDefault<bool>(
-                                (containerProdutoRecord.titulo1 == '') &&
-                                    (containerProdutoRecord.titulo2 == ''),
+                                (containerProdutoRecord.titulo1 == null ||
+                                        containerProdutoRecord.titulo1 == '') &&
+                                    (containerProdutoRecord.titulo2 == null ||
+                                        containerProdutoRecord.titulo2 == ''),
                                 true,
                               ))
                                 Align(
@@ -13351,7 +13557,7 @@ class _PaginaProdutoWidgetState extends State<PaginaProdutoWidget>
                                         5.0, 0.0, 0.0, 0.0),
                                     child: StreamBuilder<ProdutoRecord>(
                                       stream: ProdutoRecord.getDocument(
-                                          widget.produtoRef!),
+                                          widget!.produtoRef!),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
                                         if (!snapshot.hasData) {
