@@ -2232,6 +2232,7 @@ class _CadastrarCartaoWidgetState extends State<CadastrarCartaoWidget> {
                               bandeira: BinCall.bandeira(
                                 (_model.apiResultBin?.jsonBody ?? ''),
                               ),
+                              abrirFechar: true,
                             ));
                             FFAppState().ccv = _model.textController3.text;
                             safeSetState(() {});
