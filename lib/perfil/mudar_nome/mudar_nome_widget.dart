@@ -4,12 +4,8 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'mudar_nome_model.dart';
 export 'mudar_nome_model.dart';
 
@@ -222,8 +218,7 @@ class _MudarNomeWidgetState extends State<MudarNomeWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(30.0, 20.0, 30.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if (_model.textController.text != null &&
-                        _model.textController.text != '') {
+                    if (_model.textController.text != '') {
                       await currentUserReference!.update(createUserRecordData(
                         displayName: _model.textController.text,
                       ));
@@ -239,8 +234,7 @@ class _MudarNomeWidgetState extends State<MudarNomeWidget> {
                     iconPadding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: valueOrDefault<Color>(
-                      _model.textController.text != null &&
-                              _model.textController.text != ''
+                      _model.textController.text != ''
                           ? FlutterFlowTheme.of(context).primary
                           : Color(0xFFB2B2B2),
                       Color(0xFFB2B2B2),
@@ -253,8 +247,7 @@ class _MudarNomeWidgetState extends State<MudarNomeWidget> {
                                 .fontStyle,
                           ),
                           color: valueOrDefault<Color>(
-                            _model.textController.text != null &&
-                                    _model.textController.text != ''
+                            _model.textController.text != ''
                                 ? FlutterFlowTheme.of(context)
                                     .secondaryBackground
                                 : Color(0xFF727272),

@@ -1,4 +1,3 @@
-import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/carregando/addtocart3/addtocart3_widget.dart';
@@ -8,23 +7,16 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
-import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'dart:math' as math;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'variante_afiliado_model.dart';
 export 'variante_afiliado_model.dart';
@@ -666,7 +658,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
     return Stack(
       children: [
         StreamBuilder<ProdutoAfiliadoRecord>(
-          stream: ProdutoAfiliadoRecord.getDocument(widget!.afiliadoProdRef!),
+          stream: ProdutoAfiliadoRecord.getDocument(widget.afiliadoProdRef!),
           builder: (context, snapshot) {
             // Customize what your widget looks like when it's loading.
             if (!snapshot.hasData) {
@@ -699,7 +691,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                 child: Align(
                   alignment: AlignmentDirectional(0.0, 1.0),
                   child: StreamBuilder<ProdutoRecord>(
-                    stream: ProdutoRecord.getDocument(widget!.produtoRef!),
+                    stream: ProdutoRecord.getDocument(widget.produtoRef!),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
@@ -738,8 +730,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                               if (((containerProdutoRecord
                                           .varianteImgList.isNotEmpty) ==
                                       true) &&
-                                  (containerProdutoRecord.titulo2 != null &&
-                                      containerProdutoRecord.titulo2 != ''))
+                                  (containerProdutoRecord.titulo2 != ''))
                                 Align(
                                   alignment: AlignmentDirectional(0.0, 1.0),
                                   child: InkWell(
@@ -769,14 +760,11 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                         child:
                                             StreamBuilder<List<VarianteRecord>>(
                                           stream: queryVarianteRecord(
-                                            parent: widget!.produtoRef,
+                                            parent: widget.produtoRef,
                                             queryBuilder: (varianteRecord) =>
                                                 varianteRecord.where(
                                               'foto',
                                               isEqualTo: FFAppState()
-                                                              .selecionarVariante1foto !=
-                                                          null &&
-                                                      FFAppState()
                                                               .selecionarVariante1foto !=
                                                           ''
                                                   ? FFAppState()
@@ -830,19 +818,11 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                     children: [
                                                       if ((FFAppState()
                                                                       .selecionarVariante2 !=
-                                                                  null &&
-                                                              FFAppState()
-                                                                      .selecionarVariante2 !=
                                                                   '') &&
-                                                          ((FFAppState().selecionarVariante1foto ==
-                                                                      null ||
-                                                                  FFAppState()
+                                                          ((FFAppState()
                                                                           .selecionarVariante1foto ==
                                                                       '') &&
                                                               (FFAppState()
-                                                                          .selecionarVariante1 ==
-                                                                      null ||
-                                                                  FFAppState()
                                                                           .selecionarVariante1 ==
                                                                       '')))
                                                         Align(
@@ -862,7 +842,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                     VarianteRecord>>(
                                                               stream:
                                                                   queryVarianteRecord(
-                                                                parent: widget!
+                                                                parent: widget
                                                                     .produtoRef,
                                                                 queryBuilder:
                                                                     (varianteRecord) =>
@@ -946,11 +926,11 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                         type: PageTransitionType.fade,
                                                                                         child: FlutterFlowExpandedImageView(
                                                                                           image: Image.network(
-                                                                                            stackVarianteRecord!.foto,
+                                                                                            stackVarianteRecord.foto,
                                                                                             fit: BoxFit.contain,
                                                                                           ),
                                                                                           allowRotation: false,
-                                                                                          tag: stackVarianteRecord!.foto,
+                                                                                          tag: stackVarianteRecord.foto,
                                                                                           useHeroAnimation: true,
                                                                                         ),
                                                                                       ),
@@ -962,7 +942,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                     child: ClipRRect(
                                                                                       borderRadius: BorderRadius.circular(8.0),
                                                                                       child: Image.network(
-                                                                                        stackVarianteRecord!.foto,
+                                                                                        stackVarianteRecord.foto,
                                                                                         width: 196.0,
                                                                                         height: 200.0,
                                                                                         fit: BoxFit.cover,
@@ -1008,7 +988,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                               mainAxisSize: MainAxisSize.min,
                                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                                               children: [
-                                                                                if ((containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '') && ((FFAppState().selecionarVariante2 == null || FFAppState().selecionarVariante2 == '') || (FFAppState().selecionarVariante1foto == null || FFAppState().selecionarVariante1foto == '')))
+                                                                                if ((containerProdutoRecord.titulo1 != '') && ((FFAppState().selecionarVariante2 == '') || (FFAppState().selecionarVariante1foto == '')))
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.min,
                                                                                     children: [
@@ -1057,7 +1037,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                         child: Padding(
                                                                                           padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                           child: Text(
-                                                                                            functions.valorCentavosEmString(functions.valorProdutoAfiliado(cimaNaoSetadoOpc1VarianteRecord!.reference, containerProdutoAfiliadoRecord.valorComRef.toList())),
+                                                                                            functions.valorCentavosEmString(functions.valorProdutoAfiliado(cimaNaoSetadoOpc1VarianteRecord.reference, containerProdutoAfiliadoRecord.valorComRef.toList())),
                                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                   font: GoogleFonts.inter(
                                                                                                     fontWeight: FontWeight.w500,
@@ -1077,7 +1057,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 7.0, 0.0, 0.0),
                                                                                   child: Text(
-                                                                                    'Estoque: ${cimaNaoSetadoOpc1VarianteRecord?.estoque?.toString()}',
+                                                                                    'Estoque: ${cimaNaoSetadoOpc1VarianteRecord?.estoque.toString()}',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                           font: GoogleFonts.inter(
                                                                                             fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -1158,14 +1138,8 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                         ),
                                                       if ((FFAppState()
                                                                       .selecionarVariante2 !=
-                                                                  null &&
-                                                              FFAppState()
-                                                                      .selecionarVariante2 !=
                                                                   '') &&
                                                           (FFAppState()
-                                                                      .selecionarVariante1foto !=
-                                                                  null &&
-                                                              FFAppState()
                                                                       .selecionarVariante1foto !=
                                                                   ''))
                                                         Align(
@@ -1185,7 +1159,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                     VarianteRecord>>(
                                                               stream:
                                                                   queryVarianteRecord(
-                                                                parent: widget!
+                                                                parent: widget
                                                                     .produtoRef,
                                                                 queryBuilder:
                                                                     (varianteRecord) =>
@@ -1269,11 +1243,11 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                         type: PageTransitionType.fade,
                                                                                         child: FlutterFlowExpandedImageView(
                                                                                           image: Image.network(
-                                                                                            stackVarianteRecord!.foto,
+                                                                                            stackVarianteRecord.foto,
                                                                                             fit: BoxFit.contain,
                                                                                           ),
                                                                                           allowRotation: false,
-                                                                                          tag: stackVarianteRecord!.foto,
+                                                                                          tag: stackVarianteRecord.foto,
                                                                                           useHeroAnimation: true,
                                                                                         ),
                                                                                       ),
@@ -1285,7 +1259,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                     child: ClipRRect(
                                                                                       borderRadius: BorderRadius.circular(8.0),
                                                                                       child: Image.network(
-                                                                                        stackVarianteRecord!.foto,
+                                                                                        stackVarianteRecord.foto,
                                                                                         width: 196.0,
                                                                                         height: 200.0,
                                                                                         fit: BoxFit.cover,
@@ -1379,7 +1353,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                       child: Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                         child: Text(
-                                                                                          functions.valorCentavosEmString(functions.valorProdutoAfiliado(cimaSetadoFotoVarianteRecord!.reference, containerProdutoAfiliadoRecord.valorComRef.toList())),
+                                                                                          functions.valorCentavosEmString(functions.valorProdutoAfiliado(cimaSetadoFotoVarianteRecord.reference, containerProdutoAfiliadoRecord.valorComRef.toList())),
                                                                                           style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                 font: GoogleFonts.inter(
                                                                                                   fontWeight: FontWeight.w500,
@@ -1399,7 +1373,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 7.0, 0.0, 0.0),
                                                                                   child: Text(
-                                                                                    'Estoque: ${cimaSetadoFotoVarianteRecord?.estoque?.toString()}',
+                                                                                    'Estoque: ${cimaSetadoFotoVarianteRecord.estoque.toString()}',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                           font: GoogleFonts.inter(
                                                                                             fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -1479,19 +1453,11 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                         ),
                                                       if ((FFAppState()
                                                                       .selecionarVariante2 ==
-                                                                  null ||
-                                                              FFAppState()
-                                                                      .selecionarVariante2 ==
                                                                   '') &&
-                                                          ((FFAppState().selecionarVariante1foto ==
-                                                                      null ||
-                                                                  FFAppState()
+                                                          ((FFAppState()
                                                                           .selecionarVariante1foto ==
                                                                       '') ||
                                                               (FFAppState()
-                                                                          .selecionarVariante1 ==
-                                                                      null ||
-                                                                  FFAppState()
                                                                           .selecionarVariante1 ==
                                                                       '')))
                                                         Align(
@@ -1552,11 +1518,11 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                     type: PageTransitionType.fade,
                                                                                     child: FlutterFlowExpandedImageView(
                                                                                       image: Image.network(
-                                                                                        stackVarianteRecord!.foto,
+                                                                                        stackVarianteRecord.foto,
                                                                                         fit: BoxFit.contain,
                                                                                       ),
                                                                                       allowRotation: false,
-                                                                                      tag: stackVarianteRecord!.foto,
+                                                                                      tag: stackVarianteRecord.foto,
                                                                                       useHeroAnimation: true,
                                                                                     ),
                                                                                   ),
@@ -1568,7 +1534,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                 child: ClipRRect(
                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                   child: Image.network(
-                                                                                    stackVarianteRecord!.foto,
+                                                                                    stackVarianteRecord.foto,
                                                                                     width: 196.0,
                                                                                     height: 200.0,
                                                                                     fit: BoxFit.cover,
@@ -1617,8 +1583,8 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                           crossAxisAlignment:
                                                                               CrossAxisAlignment.start,
                                                                           children: [
-                                                                            if ((containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '') &&
-                                                                                ((FFAppState().selecionarVariante2 == null || FFAppState().selecionarVariante2 == '') || (FFAppState().selecionarVariante1foto == null || FFAppState().selecionarVariante1foto == '')))
+                                                                            if ((containerProdutoRecord.titulo1 != '') &&
+                                                                                ((FFAppState().selecionarVariante2 == '') || (FFAppState().selecionarVariante1foto == '')))
                                                                               Row(
                                                                                 mainAxisSize: MainAxisSize.min,
                                                                                 children: [
@@ -1707,7 +1673,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                             Padding(
                                                                               padding: EdgeInsetsDirectional.fromSTEB(0.0, 7.0, 0.0, 0.0),
                                                                               child: Text(
-                                                                                'Estoque: ${stackVarianteRecord?.estoque?.toString()}',
+                                                                                'Estoque: ${stackVarianteRecord.estoque.toString()}',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       font: GoogleFonts.inter(
                                                                                         fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -1920,7 +1886,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                             () {
                                                                                               if (FFAppState().selecionarVariante1foto == imgListItem) {
                                                                                                 return FlutterFlowTheme.of(context).primaryText;
-                                                                                              } else if ((containerProdutoRecord.imagens.firstOrNull == imgListItem) && (FFAppState().selecionarVariante1foto == null || FFAppState().selecionarVariante1foto == '')) {
+                                                                                              } else if ((containerProdutoRecord.imagens.firstOrNull == imgListItem) && (FFAppState().selecionarVariante1foto == '')) {
                                                                                                 return FlutterFlowTheme.of(context).primaryText;
                                                                                               } else {
                                                                                                 return Color(0x8575787A);
@@ -2008,8 +1974,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                       ),
                                                                       if ((FFAppState().selecionarOpcao2 ==
                                                                               true) &&
-                                                                          (FFAppState().selecionarVariante2 == null ||
-                                                                              FFAppState().selecionarVariante2 == ''))
+                                                                          (FFAppState().selecionarVariante2 == ''))
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
@@ -2341,9 +2306,6 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                       ),
                                                       if (FFAppState()
                                                                   .selecionarVariante2 !=
-                                                              null &&
-                                                          FFAppState()
-                                                                  .selecionarVariante2 !=
                                                               '')
                                                         Align(
                                                           alignment:
@@ -2354,7 +2316,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                   VarianteRecord>>(
                                                             stream:
                                                                 queryVarianteRecord(
-                                                              parent: widget!
+                                                              parent: widget
                                                                   .produtoRef,
                                                               queryBuilder:
                                                                   (varianteRecord) =>
@@ -2367,7 +2329,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                           .where(
                                                                             'foto',
                                                                             isEqualTo:
-                                                                                stackVarianteRecord?.foto,
+                                                                                stackVarianteRecord.foto,
                                                                           ),
                                                               singleRecord:
                                                                   true,
@@ -2503,7 +2465,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                     if (functions.addCardEvitarDuplicar(
                                                                         baixoVarianteRecord!
                                                                             .produtoRef!,
-                                                                        '${baixoVarianteRecord?.opcaoTitulo1}${baixoVarianteRecord?.opcaoTitulo2 != null && baixoVarianteRecord?.opcaoTitulo2 != '' ? ', ${baixoVarianteRecord?.opcaoTitulo2}' : ' '}',
+                                                                        '${baixoVarianteRecord.opcaoTitulo1}${baixoVarianteRecord.opcaoTitulo2 != '' ? ', ${baixoVarianteRecord.opcaoTitulo2}' : ' '}',
                                                                         _model
                                                                             .respostaCarrinho3!
                                                                             .toList())) {
@@ -2519,20 +2481,19 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                             FFAppState().quantidadeProduto,
                                                                         dataAdicao:
                                                                             getCurrentTimestamp,
-                                                                        fotoCapa: baixoVarianteRecord?.foto != null &&
-                                                                                baixoVarianteRecord?.foto != ''
-                                                                            ? baixoVarianteRecord?.foto
+                                                                        fotoCapa: baixoVarianteRecord.foto != ''
+                                                                            ? baixoVarianteRecord.foto
                                                                             : containerProdutoRecord.imagens.firstOrNull,
                                                                         titulo:
                                                                             containerProdutoRecord.nome,
                                                                         selecionado:
                                                                             true,
                                                                         variacao:
-                                                                            '${baixoVarianteRecord?.opcaoTitulo1}${baixoVarianteRecord?.opcaoTitulo2 != null && baixoVarianteRecord?.opcaoTitulo2 != '' ? ', ${baixoVarianteRecord?.opcaoTitulo2}' : ' '}',
+                                                                            '${baixoVarianteRecord.opcaoTitulo1}${baixoVarianteRecord.opcaoTitulo2 != '' ? ', ${baixoVarianteRecord.opcaoTitulo2}' : ' '}',
                                                                         lojaRef:
                                                                             containerProdutoRecord.lojaRef,
                                                                         preco: functions.valorProdutoAfiliado(
-                                                                            baixoVarianteRecord!.reference,
+                                                                            baixoVarianteRecord.reference,
                                                                             containerProdutoAfiliadoRecord.valorComRef.toList()),
                                                                         precoAntes:
                                                                             containerProdutoRecord.precoAntes,
@@ -2543,14 +2504,14 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                         afiliadoRef:
                                                                             containerProdutoAfiliadoRecord.parentReference,
                                                                         varianteRef:
-                                                                            baixoVarianteRecord?.reference,
+                                                                            baixoVarianteRecord.reference,
                                                                       ));
                                                                     } else {
                                                                       await actions
                                                                           .addCartEvitarDuplicar(
-                                                                        baixoVarianteRecord!
+                                                                        baixoVarianteRecord
                                                                             .produtoRef!,
-                                                                        '${baixoVarianteRecord?.opcaoTitulo1}${baixoVarianteRecord?.opcaoTitulo2 != null && baixoVarianteRecord?.opcaoTitulo2 != '' ? ', ${baixoVarianteRecord?.opcaoTitulo2}' : ' '}',
+                                                                        '${baixoVarianteRecord.opcaoTitulo1}${baixoVarianteRecord.opcaoTitulo2 != '' ? ', ${baixoVarianteRecord.opcaoTitulo2}' : ' '}',
                                                                         _model
                                                                             .respostaCarrinho3!
                                                                             .toList(),
@@ -2675,20 +2636,20 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                           .addCarrinhoTemporario(
                                                                               getCurrentTimestamp,
                                                                               baixoVarianteRecord!.foto,
-                                                                              baixoVarianteRecord!.produtoRef!,
+                                                                              baixoVarianteRecord.produtoRef!,
                                                                               containerProdutoRecord.lojaRef!,
                                                                               containerProdutoRecord.envioNaciona,
-                                                                              functions.valorProdutoAfiliado(baixoVarianteRecord!.reference, containerProdutoAfiliadoRecord.valorComRef.toList()),
+                                                                              functions.valorProdutoAfiliado(baixoVarianteRecord.reference, containerProdutoAfiliadoRecord.valorComRef.toList()),
                                                                               containerProdutoRecord.precoAntes,
                                                                               FFAppState().quantidadeProduto,
                                                                               true,
                                                                               containerProdutoRecord.nome,
-                                                                              baixoVarianteRecord?.opcaoTitulo1,
+                                                                              baixoVarianteRecord.opcaoTitulo1,
                                                                               FFAppState().CarrinhoTemporarioNacional.toList(),
                                                                               containerProdutoAfiliadoRecord.parentReference,
                                                                               containerProdutoAfiliadoRecord.comissao,
-                                                                              baixoVarianteRecord?.opcaoTitulo2,
-                                                                              baixoVarianteRecord?.reference)
+                                                                              baixoVarianteRecord.opcaoTitulo2,
+                                                                              baixoVarianteRecord.reference)
                                                                           .toList()
                                                                           .cast<String>();
                                                                       safeSetState(
@@ -2698,20 +2659,20 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                           .addCarrinhoTemporario(
                                                                               getCurrentTimestamp,
                                                                               baixoVarianteRecord!.foto,
-                                                                              baixoVarianteRecord!.produtoRef!,
+                                                                              baixoVarianteRecord.produtoRef!,
                                                                               containerProdutoRecord.lojaRef!,
                                                                               containerProdutoRecord.envioNaciona,
-                                                                              functions.valorProdutoAfiliado(baixoVarianteRecord!.reference, containerProdutoAfiliadoRecord.valorComRef.toList()),
+                                                                              functions.valorProdutoAfiliado(baixoVarianteRecord.reference, containerProdutoAfiliadoRecord.valorComRef.toList()),
                                                                               containerProdutoRecord.precoAntes,
                                                                               FFAppState().quantidadeProduto,
                                                                               true,
                                                                               containerProdutoRecord.nome,
-                                                                              baixoVarianteRecord?.opcaoTitulo1,
+                                                                              baixoVarianteRecord.opcaoTitulo1,
                                                                               FFAppState().CarrinhoTemporarioInternacional.toList(),
                                                                               containerProdutoAfiliadoRecord.parentReference,
                                                                               containerProdutoAfiliadoRecord.comissao,
-                                                                              baixoVarianteRecord?.opcaoTitulo2,
-                                                                              baixoVarianteRecord?.reference)
+                                                                              baixoVarianteRecord.opcaoTitulo2,
+                                                                              baixoVarianteRecord.reference)
                                                                           .toList()
                                                                           .cast<String>();
                                                                       safeSetState(
@@ -2983,9 +2944,6 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                         ),
                                                       if (FFAppState()
                                                                   .selecionarVariante2 ==
-                                                              null ||
-                                                          FFAppState()
-                                                                  .selecionarVariante2 ==
                                                               '')
                                                         Align(
                                                           alignment:
@@ -3023,9 +2981,6 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                     () async {
                                                                   if (FFAppState()
                                                                               .selecionarVariante2 ==
-                                                                          null ||
-                                                                      FFAppState()
-                                                                              .selecionarVariante2 ==
                                                                           '') {
                                                                     FFAppState()
                                                                             .selecionarOpcao2 =
@@ -3035,8 +2990,6 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                     return;
                                                                   } else {
                                                                     if (FFAppState().selecionarVariante1foto ==
-                                                                            null ||
-                                                                        FFAppState().selecionarVariante1foto ==
                                                                             '') {
                                                                       FFAppState()
                                                                               .selecionarOpcao1 =
@@ -3111,8 +3064,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                               if (((containerProdutoRecord
                                           .varianteImgList.isNotEmpty) ==
                                       true) &&
-                                  (containerProdutoRecord.titulo2 == null ||
-                                      containerProdutoRecord.titulo2 == ''))
+                                  (containerProdutoRecord.titulo2 == ''))
                                 Align(
                                   alignment: AlignmentDirectional(0.0, 1.0),
                                   child: InkWell(
@@ -3142,14 +3094,11 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                         child:
                                             StreamBuilder<List<VarianteRecord>>(
                                           stream: queryVarianteRecord(
-                                            parent: widget!.produtoRef,
+                                            parent: widget.produtoRef,
                                             queryBuilder: (varianteRecord) =>
                                                 varianteRecord.where(
                                               'foto',
                                               isEqualTo: FFAppState()
-                                                              .selecionarVariante1foto !=
-                                                          null &&
-                                                      FFAppState()
                                                               .selecionarVariante1foto !=
                                                           ''
                                                   ? FFAppState()
@@ -3203,19 +3152,11 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                     children: [
                                                       if ((FFAppState()
                                                                       .selecionarVariante2 !=
-                                                                  null &&
-                                                              FFAppState()
-                                                                      .selecionarVariante2 !=
                                                                   '') &&
-                                                          ((FFAppState().selecionarVariante1foto ==
-                                                                      null ||
-                                                                  FFAppState()
+                                                          ((FFAppState()
                                                                           .selecionarVariante1foto ==
                                                                       '') &&
                                                               (FFAppState()
-                                                                          .selecionarVariante1 ==
-                                                                      null ||
-                                                                  FFAppState()
                                                                           .selecionarVariante1 ==
                                                                       '')))
                                                         Align(
@@ -3235,7 +3176,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                     VarianteRecord>>(
                                                               stream:
                                                                   queryVarianteRecord(
-                                                                parent: widget!
+                                                                parent: widget
                                                                     .produtoRef,
                                                                 queryBuilder:
                                                                     (varianteRecord) =>
@@ -3319,11 +3260,11 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                         type: PageTransitionType.fade,
                                                                                         child: FlutterFlowExpandedImageView(
                                                                                           image: Image.network(
-                                                                                            stackVarianteRecord!.foto,
+                                                                                            stackVarianteRecord.foto,
                                                                                             fit: BoxFit.contain,
                                                                                           ),
                                                                                           allowRotation: false,
-                                                                                          tag: stackVarianteRecord!.foto,
+                                                                                          tag: stackVarianteRecord.foto,
                                                                                           useHeroAnimation: true,
                                                                                         ),
                                                                                       ),
@@ -3335,7 +3276,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                     child: ClipRRect(
                                                                                       borderRadius: BorderRadius.circular(8.0),
                                                                                       child: Image.network(
-                                                                                        stackVarianteRecord!.foto,
+                                                                                        stackVarianteRecord.foto,
                                                                                         width: 196.0,
                                                                                         height: 200.0,
                                                                                         fit: BoxFit.cover,
@@ -3381,7 +3322,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                               mainAxisSize: MainAxisSize.min,
                                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                                               children: [
-                                                                                if ((cimaNaoSetadoOpc1VarianteRecord?.titulo1 != null && cimaNaoSetadoOpc1VarianteRecord?.titulo1 != '') && ((FFAppState().selecionarVariante2 == null || FFAppState().selecionarVariante2 == '') || (FFAppState().selecionarVariante1foto == null || FFAppState().selecionarVariante1foto == '')))
+                                                                                if ((cimaNaoSetadoOpc1VarianteRecord?.titulo1 != null && cimaNaoSetadoOpc1VarianteRecord?.titulo1 != '') && ((FFAppState().selecionarVariante2 == '') || (FFAppState().selecionarVariante1foto == '')))
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.min,
                                                                                     children: [
@@ -3430,7 +3371,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                         child: Padding(
                                                                                           padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                           child: Text(
-                                                                                            functions.valorCentavosEmString(cimaNaoSetadoOpc1VarianteRecord!.preco),
+                                                                                            functions.valorCentavosEmString(cimaNaoSetadoOpc1VarianteRecord.preco),
                                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                   font: GoogleFonts.inter(
                                                                                                     fontWeight: FontWeight.w500,
@@ -3450,7 +3391,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 7.0, 0.0, 0.0),
                                                                                   child: Text(
-                                                                                    'Estoque: ${cimaNaoSetadoOpc1VarianteRecord?.estoque?.toString()}',
+                                                                                    'Estoque: ${cimaNaoSetadoOpc1VarianteRecord?.estoque.toString()}',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                           font: GoogleFonts.inter(
                                                                                             fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -3531,9 +3472,6 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                         ),
                                                       if (FFAppState()
                                                                   .selecionarVariante1foto !=
-                                                              null &&
-                                                          FFAppState()
-                                                                  .selecionarVariante1foto !=
                                                               '')
                                                         Align(
                                                           alignment:
@@ -3552,7 +3490,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                     VarianteRecord>>(
                                                               stream:
                                                                   queryVarianteRecord(
-                                                                parent: widget!
+                                                                parent: widget
                                                                     .produtoRef,
                                                                 queryBuilder:
                                                                     (varianteRecord) =>
@@ -3634,11 +3572,11 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                         type: PageTransitionType.fade,
                                                                                         child: FlutterFlowExpandedImageView(
                                                                                           image: Image.network(
-                                                                                            stackVarianteRecord!.foto,
+                                                                                            stackVarianteRecord.foto,
                                                                                             fit: BoxFit.contain,
                                                                                           ),
                                                                                           allowRotation: false,
-                                                                                          tag: stackVarianteRecord!.foto,
+                                                                                          tag: stackVarianteRecord.foto,
                                                                                           useHeroAnimation: true,
                                                                                         ),
                                                                                       ),
@@ -3650,7 +3588,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                     child: ClipRRect(
                                                                                       borderRadius: BorderRadius.circular(8.0),
                                                                                       child: Image.network(
-                                                                                        stackVarianteRecord!.foto,
+                                                                                        stackVarianteRecord.foto,
                                                                                         width: 196.0,
                                                                                         height: 200.0,
                                                                                         fit: BoxFit.cover,
@@ -3744,7 +3682,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                       child: Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                         child: Text(
-                                                                                          functions.valorCentavosEmString(cimaSetadoFotoVarianteRecord!.preco),
+                                                                                          functions.valorCentavosEmString(cimaSetadoFotoVarianteRecord.preco),
                                                                                           style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                 font: GoogleFonts.inter(
                                                                                                   fontWeight: FontWeight.w500,
@@ -3764,7 +3702,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 7.0, 0.0, 0.0),
                                                                                   child: Text(
-                                                                                    'Estoque: ${cimaSetadoFotoVarianteRecord?.estoque?.toString()}',
+                                                                                    'Estoque: ${cimaSetadoFotoVarianteRecord.estoque.toString()}',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                           font: GoogleFonts.inter(
                                                                                             fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -3844,14 +3782,8 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                         ),
                                                       if ((FFAppState()
                                                                       .selecionarVariante1foto ==
-                                                                  null ||
-                                                              FFAppState()
-                                                                      .selecionarVariante1foto ==
                                                                   '') &&
                                                           (FFAppState()
-                                                                      .selecionarVariante1 ==
-                                                                  null ||
-                                                              FFAppState()
                                                                       .selecionarVariante1 ==
                                                                   ''))
                                                         Align(
@@ -3912,11 +3844,11 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                     type: PageTransitionType.fade,
                                                                                     child: FlutterFlowExpandedImageView(
                                                                                       image: Image.network(
-                                                                                        stackVarianteRecord!.foto,
+                                                                                        stackVarianteRecord.foto,
                                                                                         fit: BoxFit.contain,
                                                                                       ),
                                                                                       allowRotation: false,
-                                                                                      tag: stackVarianteRecord!.foto,
+                                                                                      tag: stackVarianteRecord.foto,
                                                                                       useHeroAnimation: true,
                                                                                     ),
                                                                                   ),
@@ -3928,7 +3860,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                 child: ClipRRect(
                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                   child: Image.network(
-                                                                                    stackVarianteRecord!.foto,
+                                                                                    stackVarianteRecord.foto,
                                                                                     width: 196.0,
                                                                                     height: 200.0,
                                                                                     fit: BoxFit.cover,
@@ -3977,8 +3909,8 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                           crossAxisAlignment:
                                                                               CrossAxisAlignment.start,
                                                                           children: [
-                                                                            if ((stackVarianteRecord?.titulo1 != null && stackVarianteRecord?.titulo1 != '') &&
-                                                                                ((FFAppState().selecionarVariante2 == null || FFAppState().selecionarVariante2 == '') || (FFAppState().selecionarVariante1foto == null || FFAppState().selecionarVariante1foto == '')))
+                                                                            if ((stackVarianteRecord.titulo1 != '') &&
+                                                                                ((FFAppState().selecionarVariante2 == '') || (FFAppState().selecionarVariante1foto == '')))
                                                                               Row(
                                                                                 mainAxisSize: MainAxisSize.min,
                                                                                 children: [
@@ -4067,7 +3999,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                             Padding(
                                                                               padding: EdgeInsetsDirectional.fromSTEB(0.0, 7.0, 0.0, 0.0),
                                                                               child: Text(
-                                                                                'Estoque: ${stackVarianteRecord?.estoque?.toString()}',
+                                                                                'Estoque: ${stackVarianteRecord.estoque.toString()}',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       font: GoogleFonts.inter(
                                                                                         fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -4193,7 +4125,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                 fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                               ),
                                                                               color: valueOrDefault<Color>(
-                                                                                (FFAppState().selecionarOpcao2 == true) && (FFAppState().selecionarVariante1foto == null || FFAppState().selecionarVariante1foto == '') ? Color(0xFFE9381B) : Color(0xFF303131),
+                                                                                (FFAppState().selecionarOpcao2 == true) && (FFAppState().selecionarVariante1foto == '') ? Color(0xFFE9381B) : Color(0xFF303131),
                                                                                 Color(0xFF303131),
                                                                               ),
                                                                               letterSpacing: 0.0,
@@ -4202,8 +4134,6 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                             ),
                                                                       ),
                                                                       if (FFAppState().selecionarVariante1foto !=
-                                                                              null &&
-                                                                          FFAppState().selecionarVariante1foto !=
                                                                               '')
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
@@ -4228,8 +4158,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                         ),
                                                                       if ((FFAppState().selecionarOpcao2 ==
                                                                               true) &&
-                                                                          (FFAppState().selecionarVariante1foto == null ||
-                                                                              FFAppState().selecionarVariante1foto == ''))
+                                                                          (FFAppState().selecionarVariante1foto == ''))
                                                                         Row(
                                                                           mainAxisSize:
                                                                               MainAxisSize.max,
@@ -4581,14 +4510,8 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                       ),
                                                       if ((FFAppState()
                                                                       .selecionarVariante1foto !=
-                                                                  null &&
-                                                              FFAppState()
-                                                                      .selecionarVariante1foto !=
                                                                   '') ||
                                                           (FFAppState()
-                                                                      .selecionarVariante1 !=
-                                                                  null &&
-                                                              FFAppState()
                                                                       .selecionarVariante1 !=
                                                                   ''))
                                                         Align(
@@ -4600,7 +4523,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                   VarianteRecord>>(
                                                             future:
                                                                 queryVarianteRecordOnce(
-                                                              parent: widget!
+                                                              parent: widget
                                                                   .produtoRef,
                                                               queryBuilder: (varianteRecord) =>
                                                                   varianteRecord
@@ -4610,8 +4533,6 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                 Filter(
                                                                   'opcao_titulo1',
                                                                   isEqualTo: FFAppState().selecionarVariante1 !=
-                                                                              null &&
-                                                                          FFAppState().selecionarVariante1 !=
                                                                               ''
                                                                       ? FFAppState()
                                                                           .selecionarVariante1
@@ -4622,8 +4543,6 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                 Filter(
                                                                   'foto',
                                                                   isEqualTo: FFAppState().selecionarVariante1foto !=
-                                                                              null &&
-                                                                          FFAppState().selecionarVariante1foto !=
                                                                               ''
                                                                       ? FFAppState()
                                                                           .selecionarVariante1foto
@@ -4808,7 +4727,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                           .addCartEvitarDuplicar(
                                                                         baixo2VarianteRecord!
                                                                             .produtoRef!,
-                                                                        '${baixo2VarianteRecord?.opcaoTitulo1}${baixo2VarianteRecord?.opcaoTitulo2 != null && baixo2VarianteRecord?.opcaoTitulo2 != '' ? ', ${baixo2VarianteRecord?.opcaoTitulo2}' : ' '}',
+                                                                        '${baixo2VarianteRecord.opcaoTitulo1}${baixo2VarianteRecord.opcaoTitulo2 != '' ? ', ${baixo2VarianteRecord.opcaoTitulo2}' : ' '}',
                                                                         _model
                                                                             .respostaCarrinho1!
                                                                             .toList(),
@@ -4933,20 +4852,20 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                           .addCarrinhoTemporario(
                                                                               getCurrentTimestamp,
                                                                               baixo2VarianteRecord!.foto,
-                                                                              baixo2VarianteRecord!.produtoRef!,
+                                                                              baixo2VarianteRecord.produtoRef!,
                                                                               containerProdutoRecord.lojaRef!,
                                                                               true,
-                                                                              baixo2VarianteRecord!.preco,
+                                                                              baixo2VarianteRecord.preco,
                                                                               containerProdutoRecord.precoAntes,
                                                                               FFAppState().quantidadeProduto,
                                                                               true,
                                                                               containerProdutoRecord.nome,
-                                                                              baixo2VarianteRecord?.opcaoTitulo1,
+                                                                              baixo2VarianteRecord.opcaoTitulo1,
                                                                               FFAppState().CarrinhoTemporarioNacional.toList(),
                                                                               null,
                                                                               null,
-                                                                              baixo2VarianteRecord?.opcaoTitulo2,
-                                                                              baixo2VarianteRecord?.reference)
+                                                                              baixo2VarianteRecord.opcaoTitulo2,
+                                                                              baixo2VarianteRecord.reference)
                                                                           .toList()
                                                                           .cast<String>();
                                                                       safeSetState(
@@ -4956,20 +4875,20 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                           .addCarrinhoTemporario(
                                                                               getCurrentTimestamp,
                                                                               baixo2VarianteRecord!.foto,
-                                                                              baixo2VarianteRecord!.produtoRef!,
+                                                                              baixo2VarianteRecord.produtoRef!,
                                                                               containerProdutoRecord.lojaRef!,
                                                                               false,
-                                                                              baixo2VarianteRecord!.preco,
+                                                                              baixo2VarianteRecord.preco,
                                                                               containerProdutoRecord.precoAntes,
                                                                               FFAppState().quantidadeProduto,
                                                                               true,
                                                                               containerProdutoRecord.nome,
-                                                                              baixo2VarianteRecord?.opcaoTitulo1,
+                                                                              baixo2VarianteRecord.opcaoTitulo1,
                                                                               FFAppState().CarrinhoTemporarioInternacional.toList(),
                                                                               null,
                                                                               null,
-                                                                              baixo2VarianteRecord?.opcaoTitulo2,
-                                                                              baixo2VarianteRecord?.reference)
+                                                                              baixo2VarianteRecord.opcaoTitulo2,
+                                                                              baixo2VarianteRecord.reference)
                                                                           .toList()
                                                                           .cast<String>();
                                                                       safeSetState(
@@ -5241,14 +5160,8 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                         ),
                                                       if ((FFAppState()
                                                                       .selecionarVariante1foto ==
-                                                                  null ||
-                                                              FFAppState()
-                                                                      .selecionarVariante1foto ==
                                                                   '') &&
                                                           (FFAppState()
-                                                                      .selecionarVariante1 ==
-                                                                  null ||
-                                                              FFAppState()
                                                                       .selecionarVariante1 ==
                                                                   ''))
                                                         Align(
@@ -5286,9 +5199,6 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                 onTap:
                                                                     () async {
                                                                   if (FFAppState()
-                                                                              .selecionarVariante2 ==
-                                                                          null ||
-                                                                      FFAppState()
                                                                               .selecionarVariante2 ==
                                                                           '') {
                                                                     FFAppState()
@@ -5372,8 +5282,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                               if (((containerProdutoRecord
                                           .varianteImgList.isNotEmpty) ==
                                       false) &&
-                                  (containerProdutoRecord.titulo2 != null &&
-                                      containerProdutoRecord.titulo2 != ''))
+                                  (containerProdutoRecord.titulo2 != ''))
                                 Align(
                                   alignment: AlignmentDirectional(0.0, 1.0),
                                   child: InkWell(
@@ -5403,14 +5312,11 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                         child:
                                             StreamBuilder<List<VarianteRecord>>(
                                           stream: queryVarianteRecord(
-                                            parent: widget!.produtoRef,
+                                            parent: widget.produtoRef,
                                             queryBuilder: (varianteRecord) =>
                                                 varianteRecord.where(
                                               'opcao_titulo1',
-                                              isEqualTo: FFAppState()
-                                                              .selecionarVariante1 !=
-                                                          null &&
-                                                      FFAppState().selecionarVariante1 !=
+                                              isEqualTo: FFAppState().selecionarVariante1 !=
                                                           ''
                                                   ? FFAppState()
                                                       .selecionarVariante1
@@ -5464,14 +5370,8 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                     children: [
                                                       if ((FFAppState()
                                                                       .selecionarVariante2 !=
-                                                                  null &&
-                                                              FFAppState()
-                                                                      .selecionarVariante2 !=
                                                                   '') &&
                                                           (FFAppState()
-                                                                      .selecionarVariante1 ==
-                                                                  null ||
-                                                              FFAppState()
                                                                       .selecionarVariante1 ==
                                                                   ''))
                                                         Align(
@@ -5491,7 +5391,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                     VarianteRecord>>(
                                                               stream:
                                                                   queryVarianteRecord(
-                                                                parent: widget!
+                                                                parent: widget
                                                                     .produtoRef,
                                                                 queryBuilder:
                                                                     (varianteRecord) =>
@@ -5685,7 +5585,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                       child: Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                         child: Text(
-                                                                                          functions.valorCentavosEmString(functions.valorProdutoAfiliado(naoEsetadoVarianteRecord!.reference, containerProdutoAfiliadoRecord.valorComRef.toList())),
+                                                                                          functions.valorCentavosEmString(functions.valorProdutoAfiliado(naoEsetadoVarianteRecord.reference, containerProdutoAfiliadoRecord.valorComRef.toList())),
                                                                                           style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                 font: GoogleFonts.inter(
                                                                                                   fontWeight: FontWeight.w500,
@@ -5705,7 +5605,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 7.0, 0.0, 0.0),
                                                                                   child: Text(
-                                                                                    'Estoque: ${naoEsetadoVarianteRecord?.estoque?.toString()}',
+                                                                                    'Estoque: ${naoEsetadoVarianteRecord.estoque.toString()}',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                           font: GoogleFonts.inter(
                                                                                             fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -5786,14 +5686,8 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                         ),
                                                       if ((FFAppState()
                                                                       .selecionarVariante2 !=
-                                                                  null &&
-                                                              FFAppState()
-                                                                      .selecionarVariante2 !=
                                                                   '') &&
                                                           (FFAppState()
-                                                                      .selecionarVariante1 !=
-                                                                  null &&
-                                                              FFAppState()
                                                                       .selecionarVariante1 !=
                                                                   ''))
                                                         Align(
@@ -5813,7 +5707,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                     VarianteRecord>>(
                                                               stream:
                                                                   queryVarianteRecord(
-                                                                parent: widget!
+                                                                parent: widget
                                                                     .produtoRef,
                                                                 queryBuilder:
                                                                     (varianteRecord) =>
@@ -6010,7 +5904,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                       child: Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                         child: Text(
-                                                                                          functions.valorCentavosEmString(functions.valorProdutoAfiliado(cimaSetado2VarianteRecord!.reference, containerProdutoAfiliadoRecord.valorComRef.toList())),
+                                                                                          functions.valorCentavosEmString(functions.valorProdutoAfiliado(cimaSetado2VarianteRecord.reference, containerProdutoAfiliadoRecord.valorComRef.toList())),
                                                                                           style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                 font: GoogleFonts.inter(
                                                                                                   fontWeight: FontWeight.w500,
@@ -6030,7 +5924,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 7.0, 0.0, 0.0),
                                                                                   child: Text(
-                                                                                    'Estoque: ${cimaSetado2VarianteRecord?.estoque?.toString()}',
+                                                                                    'Estoque: ${cimaSetado2VarianteRecord.estoque.toString()}',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                           font: GoogleFonts.inter(
                                                                                             fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -6110,19 +6004,11 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                         ),
                                                       if ((FFAppState()
                                                                       .selecionarVariante2 ==
-                                                                  null ||
-                                                              FFAppState()
-                                                                      .selecionarVariante2 ==
                                                                   '') &&
-                                                          ((FFAppState().selecionarVariante1foto ==
-                                                                      null ||
-                                                                  FFAppState()
+                                                          ((FFAppState()
                                                                           .selecionarVariante1foto ==
                                                                       '') ||
                                                               (FFAppState()
-                                                                          .selecionarVariante1 ==
-                                                                      null ||
-                                                                  FFAppState()
                                                                           .selecionarVariante1 ==
                                                                       '')))
                                                         Align(
@@ -6248,8 +6134,8 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                           crossAxisAlignment:
                                                                               CrossAxisAlignment.start,
                                                                           children: [
-                                                                            if ((containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '') &&
-                                                                                ((FFAppState().selecionarVariante2 == null || FFAppState().selecionarVariante2 == '') || (FFAppState().selecionarVariante1foto == null || FFAppState().selecionarVariante1foto == '') || (FFAppState().selecionarVariante1 == null || FFAppState().selecionarVariante1 == '')))
+                                                                            if ((containerProdutoRecord.titulo1 != '') &&
+                                                                                ((FFAppState().selecionarVariante2 == '') || (FFAppState().selecionarVariante1foto == '') || (FFAppState().selecionarVariante1 == '')))
                                                                               Row(
                                                                                 mainAxisSize: MainAxisSize.min,
                                                                                 children: [
@@ -6338,7 +6224,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                             Padding(
                                                                               padding: EdgeInsetsDirectional.fromSTEB(0.0, 7.0, 0.0, 0.0),
                                                                               child: Text(
-                                                                                'Estoque: ${stackVarianteRecord?.estoque?.toString()}',
+                                                                                'Estoque: ${stackVarianteRecord?.estoque.toString()}',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       font: GoogleFonts.inter(
                                                                                         fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -6532,7 +6418,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                                   () {
                                                                                                     if (FFAppState().selecionarVariante1 == titulo1ListItem) {
                                                                                                       return FlutterFlowTheme.of(context).primaryText;
-                                                                                                    } else if ((containerProdutoRecord.varianteTitulo1List.firstOrNull == titulo1ListItem) && (FFAppState().selecionarVariante1 == null || FFAppState().selecionarVariante1 == '')) {
+                                                                                                    } else if ((containerProdutoRecord.varianteTitulo1List.firstOrNull == titulo1ListItem) && (FFAppState().selecionarVariante1 == '')) {
                                                                                                       return FlutterFlowTheme.of(context).primaryText;
                                                                                                     } else {
                                                                                                       return Color(0x8575787A);
@@ -6616,8 +6502,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                       ),
                                                                       if ((FFAppState().selecionarOpcao2 ==
                                                                               true) &&
-                                                                          (FFAppState().selecionarVariante2 == null ||
-                                                                              FFAppState().selecionarVariante2 == ''))
+                                                                          (FFAppState().selecionarVariante2 == ''))
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
@@ -6949,9 +6834,6 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                       ),
                                                       if (FFAppState()
                                                                   .selecionarVariante2 !=
-                                                              null &&
-                                                          FFAppState()
-                                                                  .selecionarVariante2 !=
                                                               '')
                                                         Align(
                                                           alignment:
@@ -6962,7 +6844,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                   VarianteRecord>>(
                                                             stream:
                                                                 queryVarianteRecord(
-                                                              parent: widget!
+                                                              parent: widget
                                                                   .produtoRef,
                                                               queryBuilder:
                                                                   (varianteRecord) =>
@@ -7111,7 +6993,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                     if (functions.addCardEvitarDuplicar(
                                                                         baixoVarianteRecord!
                                                                             .produtoRef!,
-                                                                        '${baixoVarianteRecord?.opcaoTitulo1}${baixoVarianteRecord?.opcaoTitulo2 != null && baixoVarianteRecord?.opcaoTitulo2 != '' ? ', ${baixoVarianteRecord?.opcaoTitulo2}' : ' '}',
+                                                                        '${baixoVarianteRecord.opcaoTitulo1}${baixoVarianteRecord.opcaoTitulo2 != '' ? ', ${baixoVarianteRecord.opcaoTitulo2}' : ' '}',
                                                                         _model
                                                                             .respostaCarrinho4!
                                                                             .toList())) {
@@ -7127,20 +7009,19 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                             FFAppState().quantidadeProduto,
                                                                         dataAdicao:
                                                                             getCurrentTimestamp,
-                                                                        fotoCapa: baixoVarianteRecord?.foto != null &&
-                                                                                baixoVarianteRecord?.foto != ''
-                                                                            ? baixoVarianteRecord?.foto
+                                                                        fotoCapa: baixoVarianteRecord.foto != ''
+                                                                            ? baixoVarianteRecord.foto
                                                                             : containerProdutoRecord.imagens.firstOrNull,
                                                                         titulo:
                                                                             containerProdutoRecord.nome,
                                                                         selecionado:
                                                                             true,
                                                                         variacao:
-                                                                            '${baixoVarianteRecord?.opcaoTitulo1}${baixoVarianteRecord?.opcaoTitulo2 != null && baixoVarianteRecord?.opcaoTitulo2 != '' ? ', ${baixoVarianteRecord?.opcaoTitulo2}' : ' '}',
+                                                                            '${baixoVarianteRecord.opcaoTitulo1}${baixoVarianteRecord.opcaoTitulo2 != '' ? ', ${baixoVarianteRecord.opcaoTitulo2}' : ' '}',
                                                                         lojaRef:
                                                                             containerProdutoRecord.lojaRef,
                                                                         preco: functions.valorProdutoAfiliado(
-                                                                            baixoVarianteRecord!.reference,
+                                                                            baixoVarianteRecord.reference,
                                                                             containerProdutoAfiliadoRecord.valorComRef.toList()),
                                                                         precoAntes:
                                                                             containerProdutoRecord.precoAntes,
@@ -7151,14 +7032,14 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                         afiliadoRef:
                                                                             containerProdutoAfiliadoRecord.parentReference,
                                                                         varianteRef:
-                                                                            baixoVarianteRecord?.reference,
+                                                                            baixoVarianteRecord.reference,
                                                                       ));
                                                                     } else {
                                                                       await actions
                                                                           .addCartEvitarDuplicar(
-                                                                        baixoVarianteRecord!
+                                                                        baixoVarianteRecord
                                                                             .produtoRef!,
-                                                                        '${baixoVarianteRecord?.opcaoTitulo1}${baixoVarianteRecord?.opcaoTitulo2 != null && baixoVarianteRecord?.opcaoTitulo2 != '' ? ', ${baixoVarianteRecord?.opcaoTitulo2}' : ' '}',
+                                                                        '${baixoVarianteRecord.opcaoTitulo1}${baixoVarianteRecord.opcaoTitulo2 != '' ? ', ${baixoVarianteRecord.opcaoTitulo2}' : ' '}',
                                                                         _model
                                                                             .respostaCarrinho4!
                                                                             .toList(),
@@ -7283,20 +7164,20 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                           .addCarrinhoTemporario(
                                                                               getCurrentTimestamp,
                                                                               baixoVarianteRecord!.foto,
-                                                                              baixoVarianteRecord!.produtoRef!,
+                                                                              baixoVarianteRecord.produtoRef!,
                                                                               containerProdutoRecord.lojaRef!,
                                                                               containerProdutoRecord.envioNaciona,
-                                                                              functions.valorProdutoAfiliado(baixoVarianteRecord!.reference, containerProdutoAfiliadoRecord.valorComRef.toList()),
+                                                                              functions.valorProdutoAfiliado(baixoVarianteRecord.reference, containerProdutoAfiliadoRecord.valorComRef.toList()),
                                                                               containerProdutoRecord.precoAntes,
                                                                               FFAppState().quantidadeProduto,
                                                                               true,
                                                                               containerProdutoRecord.nome,
-                                                                              baixoVarianteRecord?.opcaoTitulo1,
+                                                                              baixoVarianteRecord.opcaoTitulo1,
                                                                               FFAppState().CarrinhoTemporarioNacional.toList(),
                                                                               containerProdutoAfiliadoRecord.parentReference,
                                                                               containerProdutoAfiliadoRecord.comissao,
-                                                                              baixoVarianteRecord?.opcaoTitulo2,
-                                                                              baixoVarianteRecord?.reference)
+                                                                              baixoVarianteRecord.opcaoTitulo2,
+                                                                              baixoVarianteRecord.reference)
                                                                           .toList()
                                                                           .cast<String>();
                                                                       safeSetState(
@@ -7306,20 +7187,20 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                           .addCarrinhoTemporario(
                                                                               getCurrentTimestamp,
                                                                               baixoVarianteRecord!.foto,
-                                                                              baixoVarianteRecord!.produtoRef!,
+                                                                              baixoVarianteRecord.produtoRef!,
                                                                               containerProdutoRecord.lojaRef!,
                                                                               containerProdutoRecord.envioNaciona,
-                                                                              functions.valorProdutoAfiliado(baixoVarianteRecord!.reference, containerProdutoAfiliadoRecord.valorComRef.toList()),
+                                                                              functions.valorProdutoAfiliado(baixoVarianteRecord.reference, containerProdutoAfiliadoRecord.valorComRef.toList()),
                                                                               containerProdutoRecord.precoAntes,
                                                                               FFAppState().quantidadeProduto,
                                                                               true,
                                                                               containerProdutoRecord.nome,
-                                                                              baixoVarianteRecord?.opcaoTitulo1,
+                                                                              baixoVarianteRecord.opcaoTitulo1,
                                                                               FFAppState().CarrinhoTemporarioInternacional.toList(),
                                                                               containerProdutoAfiliadoRecord.parentReference,
                                                                               containerProdutoAfiliadoRecord.comissao,
-                                                                              baixoVarianteRecord?.opcaoTitulo2,
-                                                                              baixoVarianteRecord?.reference)
+                                                                              baixoVarianteRecord.opcaoTitulo2,
+                                                                              baixoVarianteRecord.reference)
                                                                           .toList()
                                                                           .cast<String>();
                                                                       safeSetState(
@@ -7589,9 +7470,6 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                         ),
                                                       if (FFAppState()
                                                                   .selecionarVariante2 ==
-                                                              null ||
-                                                          FFAppState()
-                                                                  .selecionarVariante2 ==
                                                               '')
                                                         Align(
                                                           alignment:
@@ -7629,9 +7507,6 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                     () async {
                                                                   if (FFAppState()
                                                                               .selecionarVariante2 ==
-                                                                          null ||
-                                                                      FFAppState()
-                                                                              .selecionarVariante2 ==
                                                                           '') {
                                                                     FFAppState()
                                                                             .selecionarOpcao2 =
@@ -7641,8 +7516,6 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                     return;
                                                                   } else {
                                                                     if (FFAppState().selecionarVariante1foto ==
-                                                                            null ||
-                                                                        FFAppState().selecionarVariante1foto ==
                                                                             '') {
                                                                       FFAppState()
                                                                               .selecionarOpcao1 =
@@ -7714,10 +7587,8 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                     ),
                                   ),
                                 ),
-                              if ((containerProdutoRecord.titulo2 == null ||
-                                      containerProdutoRecord.titulo2 == '') &&
-                                  (containerProdutoRecord.titulo1 != null &&
-                                      containerProdutoRecord.titulo1 != '') &&
+                              if ((containerProdutoRecord.titulo2 == '') &&
+                                  (containerProdutoRecord.titulo1 != '') &&
                                   ((containerProdutoRecord
                                           .varianteTitulo1List.isNotEmpty) ==
                                       true) &&
@@ -7753,7 +7624,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                         child:
                                             StreamBuilder<List<VarianteRecord>>(
                                           stream: queryVarianteRecord(
-                                            parent: widget!.produtoRef,
+                                            parent: widget.produtoRef,
                                             queryBuilder: (varianteRecord) =>
                                                 varianteRecord.where(
                                               'titulo1',
@@ -7806,9 +7677,6 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                     children: [
                                                       if (FFAppState()
                                                                   .selecionarVariante1 !=
-                                                              null &&
-                                                          FFAppState()
-                                                                  .selecionarVariante1 !=
                                                               '')
                                                         Align(
                                                           alignment:
@@ -7827,7 +7695,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                     VarianteRecord>>(
                                                               stream:
                                                                   queryVarianteRecord(
-                                                                parent: widget!
+                                                                parent: widget
                                                                     .produtoRef,
                                                                 queryBuilder:
                                                                     (varianteRecord) =>
@@ -7971,7 +7839,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                               mainAxisSize: MainAxisSize.min,
                                                                               crossAxisAlignment: CrossAxisAlignment.start,
                                                                               children: [
-                                                                                if ((cimaNaoSetadoOpc1VarianteRecord?.titulo1 != null && cimaNaoSetadoOpc1VarianteRecord?.titulo1 != '') && ((FFAppState().selecionarVariante2 == null || FFAppState().selecionarVariante2 == '') || (FFAppState().selecionarVariante1foto == null || FFAppState().selecionarVariante1foto == '')))
+                                                                                if ((cimaNaoSetadoOpc1VarianteRecord?.titulo1 != null && cimaNaoSetadoOpc1VarianteRecord?.titulo1 != '') && ((FFAppState().selecionarVariante2 == '') || (FFAppState().selecionarVariante1foto == '')))
                                                                                   Row(
                                                                                     mainAxisSize: MainAxisSize.min,
                                                                                     children: [
@@ -8020,7 +7888,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                         child: Padding(
                                                                                           padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                                                                                           child: Text(
-                                                                                            functions.valorCentavosEmString(cimaNaoSetadoOpc1VarianteRecord!.preco),
+                                                                                            functions.valorCentavosEmString(cimaNaoSetadoOpc1VarianteRecord.preco),
                                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                                   font: GoogleFonts.inter(
                                                                                                     fontWeight: FontWeight.w500,
@@ -8040,7 +7908,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 7.0, 0.0, 0.0),
                                                                                   child: Text(
-                                                                                    'Estoque: ${cimaNaoSetadoOpc1VarianteRecord?.estoque?.toString()}',
+                                                                                    'Estoque: ${cimaNaoSetadoOpc1VarianteRecord?.estoque.toString()}',
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                           font: GoogleFonts.inter(
                                                                                             fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -8121,14 +7989,8 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                         ),
                                                       if ((FFAppState()
                                                                       .selecionarVariante1foto ==
-                                                                  null ||
-                                                              FFAppState()
-                                                                      .selecionarVariante1foto ==
                                                                   '') &&
                                                           (FFAppState()
-                                                                      .selecionarVariante1 ==
-                                                                  null ||
-                                                              FFAppState()
                                                                       .selecionarVariante1 ==
                                                                   ''))
                                                         Align(
@@ -8255,7 +8117,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                               CrossAxisAlignment.start,
                                                                           children: [
                                                                             if ((stackVarianteRecord?.titulo1 != null && stackVarianteRecord?.titulo1 != '') &&
-                                                                                ((FFAppState().selecionarVariante2 == null || FFAppState().selecionarVariante2 == '') || (FFAppState().selecionarVariante1foto == null || FFAppState().selecionarVariante1foto == '')))
+                                                                                ((FFAppState().selecionarVariante2 == '') || (FFAppState().selecionarVariante1foto == '')))
                                                                               Row(
                                                                                 mainAxisSize: MainAxisSize.min,
                                                                                 children: [
@@ -8344,7 +8206,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                             Padding(
                                                                               padding: EdgeInsetsDirectional.fromSTEB(0.0, 7.0, 0.0, 0.0),
                                                                               child: Text(
-                                                                                'Estoque: ${stackVarianteRecord?.estoque?.toString()}',
+                                                                                'Estoque: ${stackVarianteRecord?.estoque.toString()}',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       font: GoogleFonts.inter(
                                                                                         fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -8470,7 +8332,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                                 fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                               ),
                                                                               color: valueOrDefault<Color>(
-                                                                                (FFAppState().selecionarOpcao2 == true) && (FFAppState().selecionarVariante1 == null || FFAppState().selecionarVariante1 == '') ? Color(0xFFE9381B) : Color(0xFF303131),
+                                                                                (FFAppState().selecionarOpcao2 == true) && (FFAppState().selecionarVariante1 == '') ? Color(0xFFE9381B) : Color(0xFF303131),
                                                                                 Color(0xFF303131),
                                                                               ),
                                                                               letterSpacing: 0.0,
@@ -8479,8 +8341,6 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                             ),
                                                                       ),
                                                                       if (FFAppState().selecionarVariante1foto !=
-                                                                              null &&
-                                                                          FFAppState().selecionarVariante1foto !=
                                                                               '')
                                                                         Padding(
                                                                           padding: EdgeInsetsDirectional.fromSTEB(
@@ -8505,8 +8365,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                         ),
                                                                       if ((FFAppState().selecionarOpcao2 ==
                                                                               true) &&
-                                                                          (FFAppState().selecionarVariante1 == null ||
-                                                                              FFAppState().selecionarVariante1 == ''))
+                                                                          (FFAppState().selecionarVariante1 == ''))
                                                                         Row(
                                                                           mainAxisSize:
                                                                               MainAxisSize.max,
@@ -8848,14 +8707,8 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                       ),
                                                       if ((FFAppState()
                                                                       .selecionarVariante1foto !=
-                                                                  null &&
-                                                              FFAppState()
-                                                                      .selecionarVariante1foto !=
                                                                   '') ||
                                                           (FFAppState()
-                                                                      .selecionarVariante1 !=
-                                                                  null &&
-                                                              FFAppState()
                                                                       .selecionarVariante1 !=
                                                                   ''))
                                                         Align(
@@ -8867,7 +8720,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                   VarianteRecord>>(
                                                             future:
                                                                 queryVarianteRecordOnce(
-                                                              parent: widget!
+                                                              parent: widget
                                                                   .produtoRef,
                                                               queryBuilder:
                                                                   (varianteRecord) =>
@@ -8875,8 +8728,6 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                           .where(
                                                                 'opcao_titulo1',
                                                                 isEqualTo: FFAppState().selecionarVariante1 !=
-                                                                            null &&
-                                                                        FFAppState().selecionarVariante1 !=
                                                                             ''
                                                                     ? FFAppState()
                                                                         .selecionarVariante1
@@ -9060,7 +8911,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                           .addCartEvitarDuplicar(
                                                                         baixo2VarianteRecord!
                                                                             .produtoRef!,
-                                                                        '${baixo2VarianteRecord?.opcaoTitulo1}${baixo2VarianteRecord?.opcaoTitulo2 != null && baixo2VarianteRecord?.opcaoTitulo2 != '' ? ', ${baixo2VarianteRecord?.opcaoTitulo2}' : ' '}',
+                                                                        '${baixo2VarianteRecord.opcaoTitulo1}${baixo2VarianteRecord.opcaoTitulo2 != '' ? ', ${baixo2VarianteRecord.opcaoTitulo2}' : ' '}',
                                                                         _model
                                                                             .respostaCarrinho11!
                                                                             .toList(),
@@ -9185,20 +9036,20 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                           .addCarrinhoTemporario(
                                                                               getCurrentTimestamp,
                                                                               baixo2VarianteRecord!.foto,
-                                                                              baixo2VarianteRecord!.produtoRef!,
+                                                                              baixo2VarianteRecord.produtoRef!,
                                                                               containerProdutoRecord.lojaRef!,
                                                                               true,
-                                                                              baixo2VarianteRecord!.preco,
+                                                                              baixo2VarianteRecord.preco,
                                                                               containerProdutoRecord.precoAntes,
                                                                               FFAppState().quantidadeProduto,
                                                                               true,
                                                                               containerProdutoRecord.nome,
-                                                                              baixo2VarianteRecord?.opcaoTitulo1,
+                                                                              baixo2VarianteRecord.opcaoTitulo1,
                                                                               FFAppState().CarrinhoTemporarioNacional.toList(),
                                                                               null,
                                                                               null,
-                                                                              baixo2VarianteRecord?.opcaoTitulo2,
-                                                                              baixo2VarianteRecord?.reference)
+                                                                              baixo2VarianteRecord.opcaoTitulo2,
+                                                                              baixo2VarianteRecord.reference)
                                                                           .toList()
                                                                           .cast<String>();
                                                                       safeSetState(
@@ -9208,20 +9059,20 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                           .addCarrinhoTemporario(
                                                                               getCurrentTimestamp,
                                                                               baixo2VarianteRecord!.foto,
-                                                                              baixo2VarianteRecord!.produtoRef!,
+                                                                              baixo2VarianteRecord.produtoRef!,
                                                                               containerProdutoRecord.lojaRef!,
                                                                               false,
-                                                                              baixo2VarianteRecord!.preco,
+                                                                              baixo2VarianteRecord.preco,
                                                                               containerProdutoRecord.precoAntes,
                                                                               FFAppState().quantidadeProduto,
                                                                               true,
                                                                               containerProdutoRecord.nome,
-                                                                              baixo2VarianteRecord?.opcaoTitulo1,
+                                                                              baixo2VarianteRecord.opcaoTitulo1,
                                                                               FFAppState().CarrinhoTemporarioInternacional.toList(),
                                                                               null,
                                                                               null,
-                                                                              baixo2VarianteRecord?.opcaoTitulo2,
-                                                                              baixo2VarianteRecord?.reference)
+                                                                              baixo2VarianteRecord.opcaoTitulo2,
+                                                                              baixo2VarianteRecord.reference)
                                                                           .toList()
                                                                           .cast<String>();
                                                                       safeSetState(
@@ -9493,14 +9344,8 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                         ),
                                                       if ((FFAppState()
                                                                       .selecionarVariante1foto ==
-                                                                  null ||
-                                                              FFAppState()
-                                                                      .selecionarVariante1foto ==
                                                                   '') &&
                                                           (FFAppState()
-                                                                      .selecionarVariante1 ==
-                                                                  null ||
-                                                              FFAppState()
                                                                       .selecionarVariante1 ==
                                                                   ''))
                                                         Align(
@@ -9538,9 +9383,6 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                 onTap:
                                                                     () async {
                                                                   if (FFAppState()
-                                                                              .selecionarVariante2 ==
-                                                                          null ||
-                                                                      FFAppState()
                                                                               .selecionarVariante2 ==
                                                                           '') {
                                                                     FFAppState()

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '/backend/backend.dart';
-import '/backend/api_requests/api_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 
@@ -2861,6 +2860,12 @@ class FFAppState extends ChangeNotifier {
   bool get abrirFrete => _abrirFrete;
   set abrirFrete(bool value) {
     _abrirFrete = value;
+  }
+
+  bool _cpfInvalido = false;
+  bool get cpfInvalido => _cpfInvalido;
+  set cpfInvalido(bool value) {
+    _cpfInvalido = value;
   }
 }
 

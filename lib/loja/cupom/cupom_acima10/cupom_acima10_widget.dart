@@ -1,12 +1,8 @@
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'cupom_acima10_model.dart';
 export 'cupom_acima10_model.dart';
@@ -40,7 +36,7 @@ class _CupomAcima10WidgetState extends State<CupomAcima10Widget> {
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.resultado1 = await actions.cupomMais10(
-        widget!.query!.toList(),
+        widget.query!.toList(),
       );
       FFAppState().cupomMais10 = _model.resultado1!;
       safeSetState(() {});

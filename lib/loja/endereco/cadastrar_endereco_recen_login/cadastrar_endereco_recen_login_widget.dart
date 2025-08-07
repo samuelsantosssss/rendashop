@@ -4,16 +4,12 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
@@ -47,22 +43,22 @@ class _CadastrarEnderecoRecenLoginWidgetState
     super.initState();
     _model = createModel(context, () => CadastrarEnderecoRecenLoginModel());
 
-    _model.textController1 ??= TextEditingController();
-    _model.textFieldFocusNode1 ??= FocusNode();
+    _model.nomeTextController ??= TextEditingController();
+    _model.nomeFocusNode ??= FocusNode();
 
     _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.textFieldMask2 = MaskTextInputFormatter(mask: '(##) #####-####');
+    _model.textFieldMask1 = MaskTextInputFormatter(mask: '(##) #####-####');
     _model.cepTextController ??= TextEditingController();
     _model.cepFocusNode ??= FocusNode();
 
     _model.cepMask = MaskTextInputFormatter(mask: '#####-###');
     _model.textController4 ??= TextEditingController();
-    _model.textFieldFocusNode3 ??= FocusNode();
+    _model.textFieldFocusNode2 ??= FocusNode();
 
     _model.textController5 ??= TextEditingController();
-    _model.textFieldFocusNode4 ??= FocusNode();
+    _model.textFieldFocusNode3 ??= FocusNode();
 
     _model.cpfTextController ??= TextEditingController();
     _model.cpfFocusNode ??= FocusNode();
@@ -460,8 +456,8 @@ class _CadastrarEnderecoRecenLoginWidgetState
                             child: Container(
                               width: double.infinity,
                               child: TextFormField(
-                                controller: _model.textController1,
-                                focusNode: _model.textFieldFocusNode1,
+                                controller: _model.nomeTextController,
+                                focusNode: _model.nomeFocusNode,
                                 autofocus: false,
                                 obscureText: false,
                                 decoration: InputDecoration(
@@ -541,7 +537,7 @@ class _CadastrarEnderecoRecenLoginWidgetState
                                 textAlign: TextAlign.start,
                                 cursorColor:
                                     FlutterFlowTheme.of(context).primaryText,
-                                validator: _model.textController1Validator
+                                validator: _model.nomeTextControllerValidator
                                     .asValidator(context),
                               ),
                             ),
@@ -576,7 +572,7 @@ class _CadastrarEnderecoRecenLoginWidgetState
                               width: double.infinity,
                               child: TextFormField(
                                 controller: _model.textController2,
-                                focusNode: _model.textFieldFocusNode2,
+                                focusNode: _model.textFieldFocusNode1,
                                 autofocus: false,
                                 obscureText: false,
                                 decoration: InputDecoration(
@@ -659,7 +655,7 @@ class _CadastrarEnderecoRecenLoginWidgetState
                                     FlutterFlowTheme.of(context).primaryText,
                                 validator: _model.textController2Validator
                                     .asValidator(context),
-                                inputFormatters: [_model.textFieldMask2],
+                                inputFormatters: [_model.textFieldMask1],
                               ),
                             ),
                           ),
@@ -727,20 +723,71 @@ class _CadastrarEnderecoRecenLoginWidgetState
                                   Duration(milliseconds: 300),
                                   () async {
                                     var _shouldSetState = false;
-                                    _model.apiResult1rf =
-                                        await PuxarCEPCall.call(
-                                      cepVariavel: functions.apenasNumeros(
-                                          _model.cepTextController.text),
-                                    );
+                                    if (functions.cepCompleto(
+                                        _model.cepTextController.text)) {
+                                      _model.apiResult1rf =
+                                          await PuxarCEPCall.call(
+                                        cepVariavel: functions.apenasNumeros(
+                                            _model.cepTextController.text),
+                                      );
 
-                                    _shouldSetState = true;
-                                    if ((_model.apiResult1rf?.succeeded ??
-                                        true)) {
-                                      if (PuxarCEPCall.erro(
+                                      _shouldSetState = true;
+                                      if ((_model.apiResult1rf?.succeeded ??
+                                          true)) {
+                                        if (PuxarCEPCall.erro(
+                                              (_model.apiResult1rf?.jsonBody ??
+                                                  ''),
+                                            ) ==
+                                            'true') {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Insira um CEP válido',
+                                                style: TextStyle(
+                                                  color: Color(0xFFF60000),
+                                                ),
+                                              ),
+                                              duration:
+                                                  Duration(milliseconds: 500),
+                                              backgroundColor:
+                                                  Color(0xFFFFCDCD),
+                                            ),
+                                          );
+                                          FFAppState().rua = '';
+                                          FFAppState().estado = '';
+                                          FFAppState().cidade = '';
+                                          FFAppState().bairro = '';
+                                          safeSetState(() {});
+                                          if (_shouldSetState)
+                                            safeSetState(() {});
+                                          return;
+                                        } else {
+                                          FFAppState().rua = PuxarCEPCall.rua(
                                             (_model.apiResult1rf?.jsonBody ??
                                                 ''),
-                                          ) ==
-                                          'true') {
+                                          )!;
+                                          FFAppState().estado =
+                                              PuxarCEPCall.estado(
+                                            (_model.apiResult1rf?.jsonBody ??
+                                                ''),
+                                          )!;
+                                          FFAppState().cidade =
+                                              PuxarCEPCall.cidade(
+                                            (_model.apiResult1rf?.jsonBody ??
+                                                ''),
+                                          )!;
+                                          FFAppState().bairro =
+                                              PuxarCEPCall.bairro(
+                                            (_model.apiResult1rf?.jsonBody ??
+                                                ''),
+                                          )!;
+                                          safeSetState(() {});
+                                          if (_shouldSetState)
+                                            safeSetState(() {});
+                                          return;
+                                        }
+                                      } else {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
@@ -763,46 +810,8 @@ class _CadastrarEnderecoRecenLoginWidgetState
                                         if (_shouldSetState)
                                           safeSetState(() {});
                                         return;
-                                      } else {
-                                        FFAppState().rua = PuxarCEPCall.rua(
-                                          (_model.apiResult1rf?.jsonBody ?? ''),
-                                        )!;
-                                        FFAppState().estado =
-                                            PuxarCEPCall.estado(
-                                          (_model.apiResult1rf?.jsonBody ?? ''),
-                                        )!;
-                                        FFAppState().cidade =
-                                            PuxarCEPCall.cidade(
-                                          (_model.apiResult1rf?.jsonBody ?? ''),
-                                        )!;
-                                        FFAppState().bairro =
-                                            PuxarCEPCall.bairro(
-                                          (_model.apiResult1rf?.jsonBody ?? ''),
-                                        )!;
-                                        safeSetState(() {});
-                                        if (_shouldSetState)
-                                          safeSetState(() {});
-                                        return;
                                       }
                                     } else {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            'Insira um CEP válido',
-                                            style: TextStyle(
-                                              color: Color(0xFFF60000),
-                                            ),
-                                          ),
-                                          duration: Duration(milliseconds: 500),
-                                          backgroundColor: Color(0xFFFFCDCD),
-                                        ),
-                                      );
-                                      FFAppState().rua = '';
-                                      FFAppState().estado = '';
-                                      FFAppState().cidade = '';
-                                      FFAppState().bairro = '';
-                                      safeSetState(() {});
                                       if (_shouldSetState) safeSetState(() {});
                                       return;
                                     }
@@ -908,8 +917,7 @@ class _CadastrarEnderecoRecenLoginWidgetState
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  if (!(_model.cepTextController.text != null &&
-                      _model.cepTextController.text != '')) {
+                  if (!(_model.cepTextController.text != '')) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(
@@ -946,10 +954,9 @@ class _CadastrarEnderecoRecenLoginWidgetState
                                 10.0, 0.0, 0.0, 0.0),
                             child: Text(
                               valueOrDefault<String>(
-                                _model.cepTextController.text != null &&
-                                        _model.cepTextController.text != ''
+                                _model.cepTextController.text != ''
                                     ? valueOrDefault<String>(
-                                        '${FFAppState().cidade != null && FFAppState().cidade != '' ? FFAppState().cidade : 'Cidade'} - ${FFAppState().bairro != null && FFAppState().bairro != '' ? FFAppState().estado : 'Estado'}',
+                                        '${FFAppState().cidade != '' ? FFAppState().cidade : 'Cidade'} - ${FFAppState().bairro != '' ? FFAppState().estado : 'Estado'}',
                                         'Estado - Cidade',
                                       )
                                     : 'Estado - Cidade',
@@ -967,11 +974,8 @@ class _CadastrarEnderecoRecenLoginWidgetState
                                           .fontStyle,
                                     ),
                                     color: valueOrDefault<Color>(
-                                      (FFAppState().estado != null &&
-                                                  FFAppState().estado != '') &&
-                                              (_model.cepTextController.text !=
-                                                      null &&
-                                                  _model.cepTextController
+                                      (FFAppState().estado != '') &&
+                                              (_model.cepTextController
                                                           .text !=
                                                       '')
                                           ? Color(0xFF323233)
@@ -1000,8 +1004,7 @@ class _CadastrarEnderecoRecenLoginWidgetState
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  if (!(_model.cepTextController.text != null &&
-                      _model.cepTextController.text != '')) {
+                  if (!(_model.cepTextController.text != '')) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(
@@ -1037,8 +1040,7 @@ class _CadastrarEnderecoRecenLoginWidgetState
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 10.0, 0.0, 0.0, 0.0),
                             child: Text(
-                              FFAppState().bairro != null &&
-                                      FFAppState().bairro != ''
+                              FFAppState().bairro != ''
                                   ? FFAppState().bairro
                                   : 'Bairro',
                               style: FlutterFlowTheme.of(context)
@@ -1053,8 +1055,7 @@ class _CadastrarEnderecoRecenLoginWidgetState
                                           .fontStyle,
                                     ),
                                     color: valueOrDefault<Color>(
-                                      FFAppState().estado != null &&
-                                              FFAppState().estado != ''
+                                      FFAppState().estado != ''
                                           ? Color(0xFF323233)
                                           : Color(0x8575787A),
                                       Color(0x8575787A),
@@ -1102,8 +1103,7 @@ class _CadastrarEnderecoRecenLoginWidgetState
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (!(_model.cepTextController.text != null &&
-                                  _model.cepTextController.text != '')) {
+                              if (!(_model.cepTextController.text != '')) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
@@ -1119,7 +1119,7 @@ class _CadastrarEnderecoRecenLoginWidgetState
                               }
                             },
                             child: Text(
-                              FFAppState().rua != null && FFAppState().rua != ''
+                              FFAppState().rua != ''
                                   ? FFAppState().rua
                                   : 'Rua',
                               style: FlutterFlowTheme.of(context)
@@ -1134,8 +1134,7 @@ class _CadastrarEnderecoRecenLoginWidgetState
                                           .fontStyle,
                                     ),
                                     color: valueOrDefault<Color>(
-                                      FFAppState().estado != null &&
-                                              FFAppState().estado != ''
+                                      FFAppState().estado != ''
                                           ? Color(0xFF323233)
                                           : Color(0x8575787A),
                                       Color(0x8575787A),
@@ -1179,7 +1178,7 @@ class _CadastrarEnderecoRecenLoginWidgetState
                                     width: double.infinity,
                                     child: TextFormField(
                                       controller: _model.textController4,
-                                      focusNode: _model.textFieldFocusNode3,
+                                      focusNode: _model.textFieldFocusNode2,
                                       autofocus: false,
                                       obscureText: false,
                                       decoration: InputDecoration(
@@ -1310,7 +1309,7 @@ class _CadastrarEnderecoRecenLoginWidgetState
                               width: double.infinity,
                               child: TextFormField(
                                 controller: _model.textController5,
-                                focusNode: _model.textFieldFocusNode4,
+                                focusNode: _model.textFieldFocusNode3,
                                 autofocus: false,
                                 obscureText: false,
                                 decoration: InputDecoration(
@@ -1783,23 +1782,18 @@ class _CadastrarEnderecoRecenLoginWidgetState
                       child: FFButtonWidget(
                         onPressed: () async {
                           var _shouldSetState = false;
-                          if (_model.textController1.text != null &&
-                              _model.textController1.text != '') {
-                            if (_model.textController2.text != null &&
-                                _model.textController2.text != '') {
-                              if (_model.cepTextController.text != null &&
-                                  _model.cepTextController.text != '') {
-                                if (_model.textController4.text != null &&
-                                    _model.textController4.text != '') {
-                                  if ((_model.cpfFocusNode?.hasFocus ??
-                                          false) !=
-                                      null) {
+                          if (_model.nomeTextController.text != '') {
+                            if (_model.textController2.text != '') {
+                              if (_model.cepTextController.text != '') {
+                                if (_model.textController4.text != '') {
+                                  if (functions.validarCPF(
+                                      _model.cpfTextController.text)) {
                                     var enderecosRecordReference =
                                         EnderecosRecord.createDoc(
                                             currentUserReference!);
                                     await enderecosRecordReference
                                         .set(createEnderecosRecordData(
-                                      nome: _model.textController1.text,
+                                      nome: _model.nomeTextController.text,
                                       contato: _model.textController2.text,
                                       cep: _model.cepTextController.text,
                                       estado: FFAppState().estado,
@@ -1823,7 +1817,8 @@ class _CadastrarEnderecoRecenLoginWidgetState
                                     _model.criado =
                                         EnderecosRecord.getDocumentFromData(
                                             createEnderecosRecordData(
-                                              nome: _model.textController1.text,
+                                              nome: _model
+                                                  .nomeTextController.text,
                                               contato:
                                                   _model.textController2.text,
                                               cep:
@@ -1861,6 +1856,11 @@ class _CadastrarEnderecoRecenLoginWidgetState
                                           _model.criado?.enderecoCompleto,
                                       enderecoRef: _model.criado?.reference,
                                       cpf: _model.cpfTextController.text,
+                                      displayName:
+                                          currentUserDisplayName != ''
+                                              ? currentUserDisplayName
+                                              : _model.nomeTextController.text,
+                                      phoneNumber: _model.textController2.text,
                                     ));
                                     _model.listCardFinal2 =
                                         await queryCarrinhoFinalRecordOnce(
@@ -1887,7 +1887,7 @@ class _CadastrarEnderecoRecenLoginWidgetState
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
-                                          'Adicione CPF',
+                                          'Adicione um CPF valido',
                                           style: TextStyle(
                                             color: Color(0xFFF60000),
                                           ),

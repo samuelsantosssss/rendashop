@@ -3,12 +3,9 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
-import '/custom_code/actions/index.dart' as actions;
+import '/perfil/baixar_app/baixar_app_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -91,28 +88,24 @@ class _CarrinhoNaoLogadoVendaWidgetState
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        _model.retorno = await actions.detectarAndroidOuIOS();
-                        if (_model.retorno!) {
-                          _model.respostaAndroid2 = await queryLinkRecordOnce(
-                            queryBuilder: (linkRecord) => linkRecord.where(
-                              'tipo',
-                              isEqualTo: 'baixarAndroid',
-                            ),
-                            singleRecord: true,
-                          ).then((s) => s.firstOrNull);
-                          await launchURL(_model.respostaAndroid2!.link);
-                        } else {
-                          _model.respostaIos2 = await queryLinkRecordOnce(
-                            queryBuilder: (linkRecord) => linkRecord.where(
-                              'tipo',
-                              isEqualTo: 'baixarIos',
-                            ),
-                            singleRecord: true,
-                          ).then((s) => s.firstOrNull);
-                          await launchURL(_model.respostaIos2!.link);
-                        }
-
-                        safeSetState(() {});
+                        await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          enableDrag: false,
+                          context: context,
+                          builder: (context) {
+                            return GestureDetector(
+                              onTap: () {
+                                FocusScope.of(context).unfocus();
+                                FocusManager.instance.primaryFocus?.unfocus();
+                              },
+                              child: Padding(
+                                padding: MediaQuery.viewInsetsOf(context),
+                                child: BaixarAppWidget(),
+                              ),
+                            );
+                          },
+                        ).then((value) => safeSetState(() {}));
                       },
                       child: Container(
                         width: double.infinity,
@@ -1265,34 +1258,6 @@ class _CarrinhoNaoLogadoVendaWidgetState
                                                                       ),
                                                                     ),
                                                                   ),
-                                                                if (functions
-                                                                        .carrinhoTemporarioVarianteExiste(
-                                                                            listaStringItem) ==
-                                                                    null)
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            -1.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          1.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Container(
-                                                                        height:
-                                                                            29.0,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(100.0),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
@@ -2423,34 +2388,6 @@ class _CarrinhoNaoLogadoVendaWidgetState
                                                                       ),
                                                                     ),
                                                                   ),
-                                                                if (functions
-                                                                        .carrinhoTemporarioVarianteExiste(
-                                                                            listaStringItem) ==
-                                                                    null)
-                                                                  Align(
-                                                                    alignment:
-                                                                        AlignmentDirectional(
-                                                                            -1.0,
-                                                                            0.0),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          1.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Container(
-                                                                        height:
-                                                                            29.0,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(100.0),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
                                                                       .fromSTEB(
@@ -2884,20 +2821,20 @@ class _CarrinhoNaoLogadoVendaWidgetState
                                     .recomendarProdutosCarrinhoNaoLogado(
                                         feed2ProdutoRecordList.toList(),
                                         (currentUserDocument?.favorito
-                                                    ?.toList() ??
+                                                    .toList() ??
                                                 [])
                                             .toList(),
                                         (currentUserDocument?.historicoPesquisa
-                                                    ?.toList() ??
+                                                    .toList() ??
                                                 [])
                                             .toList(),
                                         (currentUserDocument?.vistoRecente
-                                                    ?.toList() ??
+                                                    .toList() ??
                                                 [])
                                             .toList(),
                                         (currentUserDocument
                                                     ?.comprasHistoricoProdutos
-                                                    ?.toList() ??
+                                                    .toList() ??
                                                 [])
                                             .toList(),
                                         40,
@@ -3114,9 +3051,6 @@ class _CarrinhoNaoLogadoVendaWidgetState
                                                                   ),
                                                                   if (containerProdutoRecord
                                                                               .video !=
-                                                                          null &&
-                                                                      containerProdutoRecord
-                                                                              .video !=
                                                                           '')
                                                                     Align(
                                                                       alignment:
@@ -3178,51 +3112,48 @@ class _CarrinhoNaoLogadoVendaWidgetState
                                                                         MainAxisSize
                                                                             .max,
                                                                     children: [
-                                                                      if (containerProdutoRecord
-                                                                              .precoAntes !=
-                                                                          null)
-                                                                        Align(
-                                                                          alignment: AlignmentDirectional(
+                                                                      Align(
+                                                                        alignment: AlignmentDirectional(
+                                                                            0.0,
+                                                                            1.0),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding: EdgeInsetsDirectional.fromSTEB(
                                                                               0.0,
-                                                                              1.0),
+                                                                              0.0,
+                                                                              3.0,
+                                                                              0.0),
                                                                           child:
-                                                                              Padding(
-                                                                            padding: EdgeInsetsDirectional.fromSTEB(
-                                                                                0.0,
-                                                                                0.0,
-                                                                                3.0,
-                                                                                0.0),
-                                                                            child:
-                                                                                Container(
-                                                                              width: 29.0,
-                                                                              height: 16.0,
-                                                                              decoration: BoxDecoration(
-                                                                                borderRadius: BorderRadius.circular(4.0),
-                                                                                border: Border.all(
-                                                                                  color: FlutterFlowTheme.of(context).primary,
-                                                                                  width: 0.7,
-                                                                                ),
+                                                                              Container(
+                                                                            width: 29.0,
+                                                                            height: 16.0,
+                                                                            decoration: BoxDecoration(
+                                                                              borderRadius: BorderRadius.circular(4.0),
+                                                                              border: Border.all(
+                                                                                color: FlutterFlowTheme.of(context).primary,
+                                                                                width: 0.7,
                                                                               ),
-                                                                              child: Align(
-                                                                                alignment: AlignmentDirectional(0.0, 0.0),
-                                                                                child: Text(
-                                                                                  functions.porcentagemPromo(containerProdutoRecord.precoAntes, containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? containerProdutoRecord.menorPrecoRevenda : containerProdutoRecord.preco),
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        font: GoogleFonts.inter(
-                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                        ),
-                                                                                        color: FlutterFlowTheme.of(context).primary,
-                                                                                        fontSize: 10.0,
-                                                                                        letterSpacing: 0.0,
+                                                                            ),
+                                                                            child: Align(
+                                                                              alignment: AlignmentDirectional(0.0, 0.0),
+                                                                              child: Text(
+                                                                                functions.porcentagemPromo(containerProdutoRecord.precoAntes, containerProdutoRecord.titulo1 != '' ? containerProdutoRecord.menorPrecoRevenda : containerProdutoRecord.preco),
+                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                      font: GoogleFonts.inter(
                                                                                         fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                                         fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                       ),
-                                                                                ),
+                                                                                      color: FlutterFlowTheme.of(context).primary,
+                                                                                      fontSize: 10.0,
+                                                                                      letterSpacing: 0.0,
+                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                    ),
                                                                               ),
                                                                             ),
                                                                           ),
                                                                         ),
+                                                                      ),
                                                                       SelectionArea(
                                                                           child:
                                                                               Text(
@@ -3433,7 +3364,7 @@ class _CarrinhoNaoLogadoVendaWidgetState
                                                                               ),
                                                                         ),
                                                                         Text(
-                                                                          containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != ''
+                                                                          containerProdutoRecord.titulo1 != ''
                                                                               ? functions.valorRealString(containerProdutoRecord.menorPrecoRevenda)
                                                                               : functions.valorRealString(containerProdutoRecord.preco),
                                                                           style: FlutterFlowTheme.of(context)
@@ -3451,7 +3382,7 @@ class _CarrinhoNaoLogadoVendaWidgetState
                                                                               ),
                                                                         ),
                                                                         Text(
-                                                                          containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != ''
+                                                                          containerProdutoRecord.titulo1 != ''
                                                                               ? functions.valorCentavosEmString(containerProdutoRecord.menorPrecoRevenda)
                                                                               : functions.valorCentavosEmString(containerProdutoRecord.preco),
                                                                           style: FlutterFlowTheme.of(context)

@@ -94,7 +94,7 @@ Future<List<String>> criarCarrinhoPosLogin(
           if (variante.isNotEmpty)
             'variacao': variante, // Campo de string simples
           if (variacaoRef != null)
-            'variacaoRef': variacaoRef, // Campo de referência
+            'varianteRef': variacaoRef, // Campo de referência
         });
 
         documentosCriados.add(docRef.id);

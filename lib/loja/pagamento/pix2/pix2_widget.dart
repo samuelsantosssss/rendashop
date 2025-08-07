@@ -6,11 +6,9 @@ import '/components/time_pix3_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -65,7 +63,7 @@ class _Pix2WidgetState extends State<Pix2Widget> {
           FFAppState().metodoPagamento = 'Pix';
           safeSetState(() {});
           await actions.pedidoPagoUpdate(
-            widget!.doc!.toList(),
+            widget.doc!.toList(),
           );
           if (Navigator.of(context).canPop()) {
             context.pop();
@@ -98,7 +96,7 @@ class _Pix2WidgetState extends State<Pix2Widget> {
     context.watch<FFAppState>();
 
     return StreamBuilder<PedidosTotalRecord>(
-      stream: PedidosTotalRecord.getDocument(widget!.pedidoRef!),
+      stream: PedidosTotalRecord.getDocument(widget.pedidoRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -812,8 +810,7 @@ class _Pix2WidgetState extends State<Pix2Widget> {
                                                                         mainAxisAlignment:
                                                                             MainAxisAlignment.spaceBetween,
                                                                         children: [
-                                                                          if (containerPedidosTotalRecord.variacao != null &&
-                                                                              containerPedidosTotalRecord.variacao != '')
+                                                                          if (containerPedidosTotalRecord.variacao != '')
                                                                             Align(
                                                                               alignment: AlignmentDirectional(-1.0, 0.0),
                                                                               child: Text(

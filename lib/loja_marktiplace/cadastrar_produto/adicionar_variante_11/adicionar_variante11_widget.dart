@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/loja_marktiplace/atualizar_produto/atualizar_opcao_11/atualizar_opcao11_widget.dart';
 import '/loja_marktiplace/atualizar_produto/atualizar_opcao_22/atualizar_opcao22_widget.dart';
 import '/loja_marktiplace/atualizar_produto/atualizar_titulo_11/atualizar_titulo11_widget.dart';
@@ -9,11 +8,8 @@ import '/loja_marktiplace/cadastrar_produto/add_foto_variante/add_foto_variante_
 import '/loja_marktiplace/cadastrar_produto/cadastrar_opcao_11/cadastrar_opcao11_widget.dart';
 import '/loja_marktiplace/cadastrar_produto/cadastrar_opcao_22/cadastrar_opcao22_widget.dart';
 import '/loja_marktiplace/cadastrar_produto/variacao_11/variacao11_widget.dart';
-import 'dart:ui';
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -120,8 +116,7 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                     shrinkWrap: true,
                     scrollDirection: Axis.vertical,
                     children: [
-                      if (FFAppState().titulo1 != null &&
-                          FFAppState().titulo1 != '')
+                      if (FFAppState().titulo1 != '')
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 0.0),
@@ -272,9 +267,7 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                                   ],
                                                 ),
                                               ),
-                                              if (FFAppState().titulo2 ==
-                                                      null ||
-                                                  FFAppState().titulo2 == '')
+                                              if (FFAppState().titulo2 == '')
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
                                                       .fromSTEB(
@@ -404,8 +397,8 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                                 value: _model.switchValue!,
                                                 onChanged: (newValue) async {
                                                   safeSetState(() => _model
-                                                      .switchValue = newValue!);
-                                                  if (newValue!) {
+                                                      .switchValue = newValue);
+                                                  if (newValue) {
                                                     FFAppState()
                                                             .fotoAtivoTitulo1 =
                                                         true;
@@ -480,8 +473,6 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               if (FFAppState().opcao1titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao1titulo1 !=
                                                       '')
                                                 Column(
                                                   mainAxisSize:
@@ -764,8 +755,6 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                                   ],
                                                 ),
                                               if (FFAppState().opcao2titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao2titulo1 !=
                                                       '')
                                                 Column(
                                                   mainAxisSize:
@@ -1079,8 +1068,6 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                                   ],
                                                 ),
                                               if (FFAppState().opcao3titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao3titulo1 !=
                                                       '')
                                                 Column(
                                                   mainAxisSize:
@@ -1394,8 +1381,6 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                                   ],
                                                 ),
                                               if (FFAppState().opcao4titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao4titulo1 !=
                                                       '')
                                                 Column(
                                                   mainAxisSize:
@@ -1709,8 +1694,6 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                                   ],
                                                 ),
                                               if (FFAppState().opcao5titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao5titulo1 !=
                                                       '')
                                                 Column(
                                                   mainAxisSize:
@@ -2024,8 +2007,6 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                                   ],
                                                 ),
                                               if (FFAppState().opcao6titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao6titulo1 !=
                                                       '')
                                                 Column(
                                                   mainAxisSize:
@@ -2339,8 +2320,6 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                                   ],
                                                 ),
                                               if (FFAppState().opcao7titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao7titulo1 !=
                                                       '')
                                                 Column(
                                                   mainAxisSize:
@@ -2654,8 +2633,6 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                                   ],
                                                 ),
                                               if (FFAppState().opcao8titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao8titulo1 !=
                                                       '')
                                                 Column(
                                                   mainAxisSize:
@@ -2969,8 +2946,6 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                                   ],
                                                 ),
                                               if (FFAppState().opcao9titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao9titulo1 !=
                                                       '')
                                                 Column(
                                                   mainAxisSize:
@@ -3284,8 +3259,6 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                                   ],
                                                 ),
                                               if (FFAppState().opcao10titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao10titulo1 !=
                                                       '')
                                                 Column(
                                                   mainAxisSize:
@@ -3700,8 +3673,7 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                             ),
                           ),
                         ),
-                      if (FFAppState().titulo2 != null &&
-                          FFAppState().titulo2 != '')
+                      if (FFAppState().titulo2 != '')
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 10.0, 0.0, 0.0),
@@ -3984,8 +3956,7 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                     shrinkWrap: true,
                                     scrollDirection: Axis.vertical,
                                     children: [
-                                      if (FFAppState().opcao1titulo2 != null &&
-                                          FFAppState().opcao1titulo2 != '')
+                                      if (FFAppState().opcao1titulo2 != '')
                                         Container(
                                           width: double.infinity,
                                           decoration: BoxDecoration(),
@@ -4237,8 +4208,7 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                             ],
                                           ),
                                         ),
-                                      if (FFAppState().opcao2titulo2 != null &&
-                                          FFAppState().opcao2titulo2 != '')
+                                      if (FFAppState().opcao2titulo2 != '')
                                         Container(
                                           width: double.infinity,
                                           decoration: BoxDecoration(),
@@ -4490,8 +4460,7 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                             ],
                                           ),
                                         ),
-                                      if (FFAppState().opcao3titulo2 != null &&
-                                          FFAppState().opcao3titulo2 != '')
+                                      if (FFAppState().opcao3titulo2 != '')
                                         Container(
                                           width: double.infinity,
                                           decoration: BoxDecoration(),
@@ -4743,8 +4712,7 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                             ],
                                           ),
                                         ),
-                                      if (FFAppState().opcao4titulo2 != null &&
-                                          FFAppState().opcao4titulo2 != '')
+                                      if (FFAppState().opcao4titulo2 != '')
                                         Container(
                                           width: double.infinity,
                                           decoration: BoxDecoration(),
@@ -4996,8 +4964,7 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                             ],
                                           ),
                                         ),
-                                      if (FFAppState().opcao5titulo2 != null &&
-                                          FFAppState().opcao5titulo2 != '')
+                                      if (FFAppState().opcao5titulo2 != '')
                                         Container(
                                           width: double.infinity,
                                           decoration: BoxDecoration(),
@@ -5249,8 +5216,7 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                             ],
                                           ),
                                         ),
-                                      if (FFAppState().opcao6titulo2 != null &&
-                                          FFAppState().opcao6titulo2 != '')
+                                      if (FFAppState().opcao6titulo2 != '')
                                         Container(
                                           width: double.infinity,
                                           decoration: BoxDecoration(),
@@ -5502,8 +5468,7 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                             ],
                                           ),
                                         ),
-                                      if (FFAppState().opcao7titulo2 != null &&
-                                          FFAppState().opcao7titulo2 != '')
+                                      if (FFAppState().opcao7titulo2 != '')
                                         Container(
                                           width: double.infinity,
                                           decoration: BoxDecoration(),
@@ -5755,8 +5720,7 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                             ],
                                           ),
                                         ),
-                                      if (FFAppState().opcao8titulo2 != null &&
-                                          FFAppState().opcao8titulo2 != '')
+                                      if (FFAppState().opcao8titulo2 != '')
                                         Container(
                                           width: double.infinity,
                                           decoration: BoxDecoration(),
@@ -6008,8 +5972,7 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                             ],
                                           ),
                                         ),
-                                      if (FFAppState().opcao9titulo2 != null &&
-                                          FFAppState().opcao9titulo2 != '')
+                                      if (FFAppState().opcao9titulo2 != '')
                                         Container(
                                           width: double.infinity,
                                           decoration: BoxDecoration(),
@@ -6261,8 +6224,7 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                                             ],
                                           ),
                                         ),
-                                      if (FFAppState().opcao10titulo2 != null &&
-                                          FFAppState().opcao10titulo2 != '')
+                                      if (FFAppState().opcao10titulo2 != '')
                                         Container(
                                           width: double.infinity,
                                           decoration: BoxDecoration(),
@@ -6614,10 +6576,8 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                         ),
                     ],
                   ),
-                  if ((FFAppState().titulo1 == null ||
-                          FFAppState().titulo1 == '') ||
-                      (FFAppState().titulo2 == null ||
-                          FFAppState().titulo2 == ''))
+                  if ((FFAppState().titulo1 == '') ||
+                      (FFAppState().titulo2 == ''))
                     Align(
                       alignment: AlignmentDirectional(0.0, -1.0),
                       child: Padding(
@@ -6731,7 +6691,7 @@ class _AdicionarVariante11WidgetState extends State<AdicionarVariante11Widget> {
                         AdicionarVariante2Widget.routeName,
                         queryParameters: {
                           'lojaRef': serializeParam(
-                            widget!.lojaRef,
+                            widget.lojaRef,
                             ParamType.DocumentReference,
                           ),
                         }.withoutNulls,

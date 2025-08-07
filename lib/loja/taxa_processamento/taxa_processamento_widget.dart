@@ -2,14 +2,9 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:math';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'taxa_processamento_model.dart';
 export 'taxa_processamento_model.dart';
 
@@ -108,7 +103,7 @@ class _TaxaProcessamentoWidgetState extends State<TaxaProcessamentoWidget>
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
                 child: Text(
-                  'A taxa de processamento é de ${widget!.taxa} para o método de pagamento selecionado',
+                  'A taxa de processamento é de ${widget.taxa} para o método de pagamento selecionado',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         font: GoogleFonts.inter(
                           fontWeight: FlutterFlowTheme.of(context)

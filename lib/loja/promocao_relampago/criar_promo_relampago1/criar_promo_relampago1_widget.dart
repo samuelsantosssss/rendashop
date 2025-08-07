@@ -3,11 +3,9 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'criar_promo_relampago1_model.dart';
@@ -1052,8 +1050,7 @@ class _CriarPromoRelampago1WidgetState
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (FFAppState().promoRelampagoHorario != null &&
-                        FFAppState().promoRelampagoHorario != '')
+                    if (FFAppState().promoRelampagoHorario != '')
                       Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 8.0),
@@ -1111,8 +1108,7 @@ class _CriarPromoRelampago1WidgetState
                           EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 8.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          if ((FFAppState().promoRelampagoHorario != null &&
-                                  FFAppState().promoRelampagoHorario != '') &&
+                          if ((FFAppState().promoRelampagoHorario != '') &&
                               (FFAppState().promoRelampagoDia != null)) {
                             context.pushNamed(
                                 CriarPromoRelampago2Widget.routeName);
@@ -1127,8 +1123,7 @@ class _CriarPromoRelampago1WidgetState
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
                           color: valueOrDefault<Color>(
-                            (FFAppState().promoRelampagoHorario != null &&
-                                        FFAppState().promoRelampagoHorario !=
+                            (FFAppState().promoRelampagoHorario !=
                                             '') &&
                                     (FFAppState().promoRelampagoDia != null)
                                 ? FlutterFlowTheme.of(context).primary

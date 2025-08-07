@@ -11,17 +11,13 @@ import '/flutter_flow/upload_data.dart';
 import '/loja/avaliacao/avaliacao_notificacao/avaliacao_notificacao_widget.dart';
 import '/loja/avaliacao/moeda_info/moeda_info_widget.dart';
 import 'dart:async';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'criar_avaliacao_model.dart';
 export 'criar_avaliacao_model.dart';
@@ -263,7 +259,7 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                         EdgeInsetsDirectional.fromSTEB(10.0, 15.0, 10.0, 15.0),
                     child: StreamBuilder<PedidosTotalRecord>(
                       stream:
-                          PedidosTotalRecord.getDocument(widget!.pedidoRef2!),
+                          PedidosTotalRecord.getDocument(widget.pedidoRef2!),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
                         if (!snapshot.hasData) {
@@ -1205,8 +1201,6 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                                         ),
                                       ),
                                       if (_model.uploadedFileUrl_uploadData33f445555 !=
-                                              null &&
-                                          _model.uploadedFileUrl_uploadData33f445555 !=
                                               '')
                                         SingleChildScrollView(
                                           scrollDirection: Axis.horizontal,
@@ -1746,7 +1740,7 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                     ),
                   ),
                   child: StreamBuilder<PedidosTotalRecord>(
-                    stream: PedidosTotalRecord.getDocument(widget!.pedidoRef2!),
+                    stream: PedidosTotalRecord.getDocument(widget.pedidoRef2!),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
@@ -1964,14 +1958,9 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                                         _model.ratingBarValue3?.round(),
                                     videoSet: () {
                                       if (_model.uploadedFileUrl_uploadData33f445555 !=
-                                              null &&
-                                          _model.uploadedFileUrl_uploadData33f445555 !=
                                               '') {
                                         return 2;
-                                      } else if ((_model
-                                                      .uploadedFileUrl_uploadData33f445555 ==
-                                                  null ||
-                                              _model.uploadedFileUrl_uploadData33f445555 ==
+                                      } else if ((_model.uploadedFileUrl_uploadData33f445555 ==
                                                   '') &&
                                           ((_model.uploadedFileUrls_uploadData33f4555
                                                   .isNotEmpty) ==
@@ -2002,8 +1991,6 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                                                     .isNotEmpty) !=
                                                 null) &&
                                             (_model.uploadedFileUrl_uploadData33f445555 !=
-                                                    null &&
-                                                _model.uploadedFileUrl_uploadData33f445555 !=
                                                     '')) {
                                           return 0.10;
                                         } else if (((_model
@@ -2011,8 +1998,6 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                                                     .isNotEmpty) !=
                                                 null) &&
                                             (_model.uploadedFileUrl_uploadData33f445555 ==
-                                                    null ||
-                                                _model.uploadedFileUrl_uploadData33f445555 ==
                                                     '')) {
                                           return 0.5;
                                         } else if (((_model
@@ -2020,8 +2005,6 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                                                     .isNotEmpty) ==
                                                 null) &&
                                             (_model.uploadedFileUrl_uploadData33f445555 !=
-                                                    null &&
-                                                _model.uploadedFileUrl_uploadData33f445555 !=
                                                     '')) {
                                           return 0.5;
                                         } else {
@@ -2032,7 +2015,7 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                                   ),
                                 });
 
-                                await widget!.pedidoRef2!
+                                await widget.pedidoRef2!
                                     .update(createPedidosTotalRecordData(
                                   avaliado: true,
                                 ));

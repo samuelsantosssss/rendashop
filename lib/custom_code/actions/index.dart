@@ -47,3 +47,5 @@ export 'download_video.dart' show downloadVideo;
 export 'check_firebase_config.dart' show checkFirebaseConfig;
 export 'detectar_android_ou_i_o_s.dart' show detectarAndroidOuIOS;
 export 'firebase_diagnostic.dart' show firebaseDiagnostic;
+export 'alert_link_web.dart' show alertLinkWeb;
+export 'notificacao_venda.dart' show notificacaoVenda;

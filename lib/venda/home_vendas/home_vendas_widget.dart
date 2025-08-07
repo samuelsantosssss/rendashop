@@ -1,4 +1,3 @@
-import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/carregando/carregando22/carregando22_widget.dart';
@@ -6,17 +5,13 @@ import '/carregando/carregando23/carregando23_widget.dart';
 import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/nav_bar/nav_bar_venda/nav_bar_venda_widget.dart';
 import '/venda/naotem_produto/naotem_produto_widget.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -390,10 +385,7 @@ class _HomeVendasWidgetState extends State<HomeVendasWidget> {
                                               'hoje') {
                                             return FlutterFlowTheme.of(context)
                                                 .primary;
-                                          } else if (FFAppState()
-                                                      .corFiltroAfiliado ==
-                                                  null ||
-                                              FFAppState().corFiltroAfiliado ==
+                                          } else if (FFAppState().corFiltroAfiliado ==
                                                   '') {
                                             return FlutterFlowTheme.of(context)
                                                 .primary;
@@ -432,9 +424,6 @@ class _HomeVendasWidgetState extends State<HomeVendasWidget> {
                                                               .of(context)
                                                           .secondaryBackground;
                                                     } else if (FFAppState()
-                                                                .corFiltroAfiliado ==
-                                                            null ||
-                                                        FFAppState()
                                                                 .corFiltroAfiliado ==
                                                             '') {
                                                       return FlutterFlowTheme
@@ -1522,9 +1511,6 @@ class _HomeVendasWidgetState extends State<HomeVendasWidget> {
                                                         .primary;
                                                   } else if (FFAppState()
                                                               .corFiltroAfiliado ==
-                                                          null ||
-                                                      FFAppState()
-                                                              .corFiltroAfiliado ==
                                                           '') {
                                                     return FlutterFlowTheme.of(
                                                             context)
@@ -1567,9 +1553,6 @@ class _HomeVendasWidgetState extends State<HomeVendasWidget> {
                                                                       .of(context)
                                                                   .secondaryBackground;
                                                             } else if (FFAppState()
-                                                                        .corFiltroAfiliado ==
-                                                                    null ||
-                                                                FFAppState()
                                                                         .corFiltroAfiliado ==
                                                                     '') {
                                                               return FlutterFlowTheme

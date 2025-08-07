@@ -1,10 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'cadastrar_opcao22_model.dart';
@@ -139,49 +136,42 @@ class _CadastrarOpcao22WidgetState extends State<CadastrarOpcao22Widget> {
                             controller: _model.nomeProdutoTextController,
                             focusNode: _model.nomeProdutoFocusNode,
                             onFieldSubmitted: (_) async {
-                              if (FFAppState().opcao1titulo2 == null ||
-                                  FFAppState().opcao1titulo2 == '') {
+                              if (FFAppState().opcao1titulo2 == '') {
                                 FFAppState().opcao1titulo2 =
                                     _model.nomeProdutoTextController.text;
                                 safeSetState(() {});
                                 Navigator.pop(context);
                                 return;
                               } else {
-                                if (FFAppState().opcao2titulo2 == null ||
-                                    FFAppState().opcao2titulo2 == '') {
+                                if (FFAppState().opcao2titulo2 == '') {
                                   FFAppState().opcao2titulo2 =
                                       _model.nomeProdutoTextController.text;
                                   safeSetState(() {});
                                   Navigator.pop(context);
                                   return;
                                 } else {
-                                  if (FFAppState().opcao3titulo2 == null ||
-                                      FFAppState().opcao3titulo2 == '') {
+                                  if (FFAppState().opcao3titulo2 == '') {
                                     FFAppState().opcao3titulo2 =
                                         _model.nomeProdutoTextController.text;
                                     safeSetState(() {});
                                     Navigator.pop(context);
                                     return;
                                   } else {
-                                    if (FFAppState().opcao4titulo2 == null ||
-                                        FFAppState().opcao4titulo2 == '') {
+                                    if (FFAppState().opcao4titulo2 == '') {
                                       FFAppState().opcao4titulo2 =
                                           _model.nomeProdutoTextController.text;
                                       safeSetState(() {});
                                       Navigator.pop(context);
                                       return;
                                     } else {
-                                      if (FFAppState().opcao5titulo2 == null ||
-                                          FFAppState().opcao5titulo2 == '') {
+                                      if (FFAppState().opcao5titulo2 == '') {
                                         FFAppState().opcao5titulo2 = _model
                                             .nomeProdutoTextController.text;
                                         safeSetState(() {});
                                         Navigator.pop(context);
                                         return;
                                       } else {
-                                        if (FFAppState().opcao6titulo2 ==
-                                                null ||
-                                            FFAppState().opcao6titulo2 == '') {
+                                        if (FFAppState().opcao6titulo2 == '') {
                                           FFAppState().opcao6titulo2 = _model
                                               .nomeProdutoTextController.text;
                                           safeSetState(() {});
@@ -189,8 +179,6 @@ class _CadastrarOpcao22WidgetState extends State<CadastrarOpcao22Widget> {
                                           return;
                                         } else {
                                           if (FFAppState().opcao7titulo2 ==
-                                                  null ||
-                                              FFAppState().opcao7titulo2 ==
                                                   '') {
                                             FFAppState().opcao7titulo2 = _model
                                                 .nomeProdutoTextController.text;
@@ -199,8 +187,6 @@ class _CadastrarOpcao22WidgetState extends State<CadastrarOpcao22Widget> {
                                             return;
                                           } else {
                                             if (FFAppState().opcao8titulo2 ==
-                                                    null ||
-                                                FFAppState().opcao8titulo2 ==
                                                     '') {
                                               FFAppState().opcao8titulo2 =
                                                   _model
@@ -211,8 +197,6 @@ class _CadastrarOpcao22WidgetState extends State<CadastrarOpcao22Widget> {
                                               return;
                                             } else {
                                               if (FFAppState().opcao9titulo2 ==
-                                                      null ||
-                                                  FFAppState().opcao9titulo2 ==
                                                       '') {
                                                 FFAppState().opcao9titulo2 =
                                                     _model
@@ -223,9 +207,6 @@ class _CadastrarOpcao22WidgetState extends State<CadastrarOpcao22Widget> {
                                                 return;
                                               } else {
                                                 if (FFAppState()
-                                                            .opcao10titulo2 ==
-                                                        null ||
-                                                    FFAppState()
                                                             .opcao10titulo2 ==
                                                         '') {
                                                   FFAppState().opcao10titulo2 =

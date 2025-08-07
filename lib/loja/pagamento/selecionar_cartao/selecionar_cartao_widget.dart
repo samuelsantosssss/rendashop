@@ -5,10 +5,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/loja/pagamento/cvv_cartao/cvv_cartao_widget.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -382,7 +380,7 @@ class _SelecionarCartaoWidgetState extends State<SelecionarCartaoWidget> {
                               Builder(
                                 builder: (context) {
                                   final parcelamento = functions
-                                      .parcelamento(widget!.valor!)
+                                      .parcelamento(widget.valor!)
                                       .toList();
 
                                   return SingleChildScrollView(
@@ -406,8 +404,7 @@ class _SelecionarCartaoWidgetState extends State<SelecionarCartaoWidget> {
                                               if ((listViewCartaoRecord
                                                           .reference !=
                                                       FFAppState().cartaoRef) ||
-                                                  (FFAppState().ccv == null ||
-                                                      FFAppState().ccv == '')) {
+                                                  (FFAppState().ccv == '')) {
                                                 FFAppState().parceladoApagagar =
                                                     parcelamentoItem;
                                                 FFAppState().cartaoRef =
@@ -417,12 +414,12 @@ class _SelecionarCartaoWidgetState extends State<SelecionarCartaoWidget> {
                                                     'Cartão de Credito';
                                                 FFAppState().taxaProcessamento =
                                                     functions.taxaCartao(
-                                                        widget!.valor!,
+                                                        widget.valor!,
                                                         FFAppState()
                                                             .parceladoApagagar);
                                                 FFAppState().taxaCartaoDouble =
                                                     functions.taxaCartaoDouble(
-                                                        widget!.valor!,
+                                                        widget.valor!,
                                                         FFAppState()
                                                             .parceladoApagagar);
                                                 safeSetState(() {});
@@ -454,12 +451,12 @@ class _SelecionarCartaoWidgetState extends State<SelecionarCartaoWidget> {
                                                     'Cartão de Credito';
                                                 FFAppState().taxaProcessamento =
                                                     functions.taxaCartao(
-                                                        widget!.valor!,
+                                                        widget.valor!,
                                                         FFAppState()
                                                             .parceladoApagagar);
                                                 FFAppState().taxaCartaoDouble =
                                                     functions.taxaCartaoDouble(
-                                                        widget!.valor!,
+                                                        widget.valor!,
                                                         FFAppState()
                                                             .parceladoApagagar);
                                                 safeSetState(() {});
@@ -728,8 +725,7 @@ class _SelecionarCartaoWidgetState extends State<SelecionarCartaoWidget> {
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  if (FFAppState().parceladoApagagar != null &&
-                      FFAppState().parceladoApagagar != '')
+                  if (FFAppState().parceladoApagagar != '')
                     Flexible(
                       child: Container(
                         width: double.infinity,
@@ -781,7 +777,7 @@ class _SelecionarCartaoWidgetState extends State<SelecionarCartaoWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 0.0, 10.0, 0.0),
                                   child: Text(
-                                    functions.taxaCartao(widget!.valor!,
+                                    functions.taxaCartao(widget.valor!,
                                         FFAppState().parceladoApagagar),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium

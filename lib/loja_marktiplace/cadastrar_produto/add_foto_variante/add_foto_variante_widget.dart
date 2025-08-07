@@ -2,11 +2,8 @@ import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'add_foto_variante_model.dart';
@@ -189,10 +186,9 @@ class _AddFotoVarianteWidgetState extends State<AddFotoVarianteWidget> {
                             }
                           }
 
-                          if (widget!.numero == '1') {
+                          if (widget.numero == '1') {
                             FFAppState().foto1titulo1 =
-                                _model.uploadedFileUrl_upload1010 != null &&
-                                        _model.uploadedFileUrl_upload1010 != ''
+                                _model.uploadedFileUrl_upload1010 != ''
                                     ? _model.uploadedFileUrl_upload1010
                                     : FFAppState().foto1titulo1;
                             FFAppState().addToFotoProduto(
@@ -208,10 +204,9 @@ class _AddFotoVarianteWidgetState extends State<AddFotoVarianteWidget> {
                             Navigator.pop(context);
                             return;
                           } else {
-                            if (widget!.numero == '2') {
+                            if (widget.numero == '2') {
                               FFAppState().foto2titulo1 =
-                                  _model.uploadedFileUrl_upload1010 != null &&
-                                          _model.uploadedFileUrl_upload1010 !=
+                                  _model.uploadedFileUrl_upload1010 !=
                                               ''
                                       ? _model.uploadedFileUrl_upload1010
                                       : FFAppState().foto2titulo1;
@@ -229,10 +224,9 @@ class _AddFotoVarianteWidgetState extends State<AddFotoVarianteWidget> {
                               Navigator.pop(context);
                               return;
                             } else {
-                              if (widget!.numero == '3') {
+                              if (widget.numero == '3') {
                                 FFAppState().foto3titulo1 =
-                                    _model.uploadedFileUrl_upload1010 != null &&
-                                            _model.uploadedFileUrl_upload1010 !=
+                                    _model.uploadedFileUrl_upload1010 !=
                                                 ''
                                         ? _model.uploadedFileUrl_upload1010
                                         : FFAppState().foto3titulo1;
@@ -250,11 +244,8 @@ class _AddFotoVarianteWidgetState extends State<AddFotoVarianteWidget> {
                                 Navigator.pop(context);
                                 return;
                               } else {
-                                if (widget!.numero == '4') {
-                                  FFAppState().foto4titulo1 = _model
-                                                  .uploadedFileUrl_upload1010 !=
-                                              null &&
-                                          _model.uploadedFileUrl_upload1010 !=
+                                if (widget.numero == '4') {
+                                  FFAppState().foto4titulo1 = _model.uploadedFileUrl_upload1010 !=
                                               ''
                                       ? _model.uploadedFileUrl_upload1010
                                       : FFAppState().foto4titulo1;
@@ -272,11 +263,8 @@ class _AddFotoVarianteWidgetState extends State<AddFotoVarianteWidget> {
                                   Navigator.pop(context);
                                   return;
                                 } else {
-                                  if (widget!.numero == '5') {
-                                    FFAppState().foto5titulo1 = _model
-                                                    .uploadedFileUrl_upload1010 !=
-                                                null &&
-                                            _model.uploadedFileUrl_upload1010 !=
+                                  if (widget.numero == '5') {
+                                    FFAppState().foto5titulo1 = _model.uploadedFileUrl_upload1010 !=
                                                 ''
                                         ? _model.uploadedFileUrl_upload1010
                                         : FFAppState().foto5titulo1;
@@ -294,11 +282,8 @@ class _AddFotoVarianteWidgetState extends State<AddFotoVarianteWidget> {
                                     Navigator.pop(context);
                                     return;
                                   } else {
-                                    if (widget!.numero == '6') {
-                                      FFAppState().foto6titulo1 = _model
-                                                      .uploadedFileUrl_upload1010 !=
-                                                  null &&
-                                              _model.uploadedFileUrl_upload1010 !=
+                                    if (widget.numero == '6') {
+                                      FFAppState().foto6titulo1 = _model.uploadedFileUrl_upload1010 !=
                                                   ''
                                           ? _model.uploadedFileUrl_upload1010
                                           : FFAppState().foto6titulo1;
@@ -317,11 +302,9 @@ class _AddFotoVarianteWidgetState extends State<AddFotoVarianteWidget> {
                                       Navigator.pop(context);
                                       return;
                                     } else {
-                                      if (widget!.numero == '7') {
+                                      if (widget.numero == '7') {
                                         FFAppState().foto7titulo1 =
                                             _model.uploadedFileUrl_upload1010 !=
-                                                        null &&
-                                                    _model.uploadedFileUrl_upload1010 !=
                                                         ''
                                                 ? _model
                                                     .uploadedFileUrl_upload1010
@@ -343,11 +326,9 @@ class _AddFotoVarianteWidgetState extends State<AddFotoVarianteWidget> {
                                         Navigator.pop(context);
                                         return;
                                       } else {
-                                        if (widget!.numero == '8') {
+                                        if (widget.numero == '8') {
                                           FFAppState().foto8titulo1 =
                                               _model.uploadedFileUrl_upload1010 !=
-                                                          null &&
-                                                      _model.uploadedFileUrl_upload1010 !=
                                                           ''
                                                   ? _model
                                                       .uploadedFileUrl_upload1010
@@ -369,11 +350,8 @@ class _AddFotoVarianteWidgetState extends State<AddFotoVarianteWidget> {
                                           Navigator.pop(context);
                                           return;
                                         } else {
-                                          if (widget!.numero == '9') {
-                                            FFAppState().foto9titulo1 = _model
-                                                            .uploadedFileUrl_upload1010 !=
-                                                        null &&
-                                                    _model.uploadedFileUrl_upload1010 !=
+                                          if (widget.numero == '9') {
+                                            FFAppState().foto9titulo1 = _model.uploadedFileUrl_upload1010 !=
                                                         ''
                                                 ? _model
                                                     .uploadedFileUrl_upload1010
@@ -395,12 +373,9 @@ class _AddFotoVarianteWidgetState extends State<AddFotoVarianteWidget> {
                                             Navigator.pop(context);
                                             return;
                                           } else {
-                                            if (widget!.numero == '10') {
+                                            if (widget.numero == '10') {
                                               FFAppState()
-                                                  .foto10titulo1 = _model
-                                                              .uploadedFileUrl_upload1010 !=
-                                                          null &&
-                                                      _model.uploadedFileUrl_upload1010 !=
+                                                  .foto10titulo1 = _model.uploadedFileUrl_upload1010 !=
                                                           ''
                                                   ? _model
                                                       .uploadedFileUrl_upload1010
@@ -467,75 +442,75 @@ class _AddFotoVarianteWidgetState extends State<AddFotoVarianteWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                if (widget!.numero == '1') {
+                                if (widget.numero == '1') {
                                   FFAppState().foto1titulo1 = fotoProdutoItem;
                                   safeSetState(() {});
                                   Navigator.pop(context);
                                   return;
                                 } else {
-                                  if (widget!.numero == '2') {
+                                  if (widget.numero == '2') {
                                     FFAppState().foto2titulo1 = fotoProdutoItem;
                                     safeSetState(() {});
                                     Navigator.pop(context);
                                     return;
                                   } else {
-                                    if (widget!.numero == '3') {
+                                    if (widget.numero == '3') {
                                       FFAppState().foto3titulo1 =
                                           fotoProdutoItem;
                                       safeSetState(() {});
                                       Navigator.pop(context);
                                       return;
                                     } else {
-                                      if (widget!.numero == '4') {
+                                      if (widget.numero == '4') {
                                         FFAppState().foto4titulo1 =
                                             fotoProdutoItem;
                                         safeSetState(() {});
                                         Navigator.pop(context);
                                         return;
                                       } else {
-                                        if (widget!.numero == '4') {
+                                        if (widget.numero == '4') {
                                           FFAppState().foto4titulo1 =
                                               fotoProdutoItem;
                                           safeSetState(() {});
                                           Navigator.pop(context);
                                           return;
                                         } else {
-                                          if (widget!.numero == '5') {
+                                          if (widget.numero == '5') {
                                             FFAppState().foto5titulo1 =
                                                 fotoProdutoItem;
                                             safeSetState(() {});
                                             Navigator.pop(context);
                                             return;
                                           } else {
-                                            if (widget!.numero == '6') {
+                                            if (widget.numero == '6') {
                                               FFAppState().foto6titulo1 =
                                                   fotoProdutoItem;
                                               safeSetState(() {});
                                               Navigator.pop(context);
                                               return;
                                             } else {
-                                              if (widget!.numero == '7') {
+                                              if (widget.numero == '7') {
                                                 FFAppState().foto7titulo1 =
                                                     fotoProdutoItem;
                                                 safeSetState(() {});
                                                 Navigator.pop(context);
                                                 return;
                                               } else {
-                                                if (widget!.numero == '8') {
+                                                if (widget.numero == '8') {
                                                   FFAppState().foto8titulo1 =
                                                       fotoProdutoItem;
                                                   safeSetState(() {});
                                                   Navigator.pop(context);
                                                   return;
                                                 } else {
-                                                  if (widget!.numero == '9') {
+                                                  if (widget.numero == '9') {
                                                     FFAppState().foto9titulo1 =
                                                         fotoProdutoItem;
                                                     safeSetState(() {});
                                                     Navigator.pop(context);
                                                     return;
                                                   } else {
-                                                    if (widget!.numero ==
+                                                    if (widget.numero ==
                                                         '10') {
                                                       FFAppState()
                                                               .foto10titulo1 =

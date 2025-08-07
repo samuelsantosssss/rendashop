@@ -1,12 +1,7 @@
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'dddddddddd_model.dart';
 export 'dddddddddd_model.dart';
@@ -43,7 +38,7 @@ class _DdddddddddWidgetState extends State<DdddddddddWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       FFAppState().apagar = functions
           .valorProdutoAfiliado(
-              widget!.varianteRef!, widget!.listVariantes!.toList())
+              widget.varianteRef!, widget.listVariantes!.toList())
           .toString();
       safeSetState(() {});
     });

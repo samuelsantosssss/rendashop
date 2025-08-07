@@ -1,37 +1,24 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
-import '/custom_code/actions/index.dart' as actions;
-import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'cadastrar_endereco_recen_login_widget.dart'
     show CadastrarEnderecoRecenLoginWidget;
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
-import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:provider/provider.dart';
 
 class CadastrarEnderecoRecenLoginModel
     extends FlutterFlowModel<CadastrarEnderecoRecenLoginWidget> {
   ///  State fields for stateful widgets in this page.
 
+  // State field(s) for nome widget.
+  FocusNode? nomeFocusNode;
+  TextEditingController? nomeTextController;
+  String? Function(BuildContext, String?)? nomeTextControllerValidator;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
-  TextEditingController? textController1;
-  String? Function(BuildContext, String?)? textController1Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
-  late MaskTextInputFormatter textFieldMask2;
+  late MaskTextInputFormatter textFieldMask1;
   String? Function(BuildContext, String?)? textController2Validator;
   // State field(s) for cep widget.
   FocusNode? cepFocusNode;
@@ -41,11 +28,11 @@ class CadastrarEnderecoRecenLoginModel
   // Stores action output result for [Backend Call - API (Puxar CEP)] action in cep widget.
   ApiCallResponse? apiResult1rf;
   // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
+  FocusNode? textFieldFocusNode2;
   TextEditingController? textController4;
   String? Function(BuildContext, String?)? textController4Validator;
   // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode4;
+  FocusNode? textFieldFocusNode3;
   TextEditingController? textController5;
   String? Function(BuildContext, String?)? textController5Validator;
   // State field(s) for CPF widget.
@@ -63,19 +50,19 @@ class CadastrarEnderecoRecenLoginModel
 
   @override
   void dispose() {
-    textFieldFocusNode1?.dispose();
-    textController1?.dispose();
+    nomeFocusNode?.dispose();
+    nomeTextController?.dispose();
 
-    textFieldFocusNode2?.dispose();
+    textFieldFocusNode1?.dispose();
     textController2?.dispose();
 
     cepFocusNode?.dispose();
     cepTextController?.dispose();
 
-    textFieldFocusNode3?.dispose();
+    textFieldFocusNode2?.dispose();
     textController4?.dispose();
 
-    textFieldFocusNode4?.dispose();
+    textFieldFocusNode3?.dispose();
     textController5?.dispose();
 
     cpfFocusNode?.dispose();

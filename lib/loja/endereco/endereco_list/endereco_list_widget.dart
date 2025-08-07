@@ -3,16 +3,11 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'endereco_list_model.dart';
 export 'endereco_list_model.dart';
 
@@ -502,14 +497,14 @@ class _EnderecoListWidgetState extends State<EnderecoListWidget> {
                                               ParamType.DocumentReference,
                                             ),
                                             'queryCarrinhoList': serializeParam(
-                                              widget!.queryCarrinhoList,
+                                              widget.queryCarrinhoList,
                                               ParamType.Document,
                                               isList: true,
                                             ),
                                           }.withoutNulls,
                                           extra: <String, dynamic>{
                                             'queryCarrinhoList':
-                                                widget!.queryCarrinhoList,
+                                                widget.queryCarrinhoList,
                                           },
                                         );
                                       },
@@ -566,13 +561,13 @@ class _EnderecoListWidgetState extends State<EnderecoListWidget> {
                     CadastrarEnderecoWidget.routeName,
                     queryParameters: {
                       'queryCarrinhoList': serializeParam(
-                        widget!.queryCarrinhoList,
+                        widget.queryCarrinhoList,
                         ParamType.Document,
                         isList: true,
                       ),
                     }.withoutNulls,
                     extra: <String, dynamic>{
-                      'queryCarrinhoList': widget!.queryCarrinhoList,
+                      'queryCarrinhoList': widget.queryCarrinhoList,
                     },
                   );
 

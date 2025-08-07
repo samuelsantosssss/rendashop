@@ -2,13 +2,9 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'detalhes_promo_model.dart';
 export 'detalhes_promo_model.dart';
 
@@ -105,7 +101,7 @@ class _DetalhesPromoWidgetState extends State<DetalhesPromoWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                     child: StreamBuilder<PromoRelampagoRecord>(
                       stream:
-                          PromoRelampagoRecord.getDocument(widget!.promoRef!),
+                          PromoRelampagoRecord.getDocument(widget.promoRef!),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
                         if (!snapshot.hasData) {

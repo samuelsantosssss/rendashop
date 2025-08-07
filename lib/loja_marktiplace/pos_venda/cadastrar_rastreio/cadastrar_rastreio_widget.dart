@@ -1,16 +1,12 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'cadastrar_rastreio_model.dart';
 export 'cadastrar_rastreio_model.dart';
 
@@ -148,16 +144,16 @@ class _CadastrarRastreioWidgetState extends State<CadastrarRastreioWidget> {
                           buttonRastreioGeralRecord!.reference,
                         );
 
-                        await Rastreio2Record.createDoc(widget!.pedidoRef!)
+                        await Rastreio2Record.createDoc(widget.pedidoRef!)
                             .set(createRastreio2RecordData(
                           codigoRastreio: _model.rastreioRetorno,
-                          userRef: widget!.userRef,
+                          userRef: widget.userRef,
                           data: getCurrentTimestamp,
                           mensagem: 'O seu pedido foi embalado pelo vendedor',
-                          pedidoRef2: widget!.pedidoRef,
+                          pedidoRef2: widget.pedidoRef,
                         ));
 
-                        await widget!.pedidoRef!
+                        await widget.pedidoRef!
                             .update(createPedidosTotalRecordData(
                           codigoRastreio: _model.rastreioRetorno,
                         ));
@@ -167,7 +163,7 @@ class _CadastrarRastreioWidgetState extends State<CadastrarRastreioWidget> {
                           RastreadorPedidoLojistaWidget.routeName,
                           queryParameters: {
                             'pedidoRef2': serializeParam(
-                              widget!.pedidoRef,
+                              widget.pedidoRef,
                               ParamType.DocumentReference,
                             ),
                           }.withoutNulls,

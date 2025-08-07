@@ -3,14 +3,11 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'cencelando_pedido_model.dart';
 export 'cencelando_pedido_model.dart';
 
@@ -77,7 +74,7 @@ class _CencelandoPedidoWidgetState extends State<CencelandoPedidoWidget> {
           ),
         ),
         child: StreamBuilder<PedidosTotalRecord>(
-          stream: PedidosTotalRecord.getDocument(widget!.pedidoRef!),
+          stream: PedidosTotalRecord.getDocument(widget.pedidoRef!),
           builder: (context, snapshot) {
             // Customize what your widget looks like when it's loading.
             if (!snapshot.hasData) {
@@ -232,7 +229,7 @@ class _CencelandoPedidoWidgetState extends State<CencelandoPedidoWidget> {
                                       ? BorderSide(
                                           width: 2,
                                           color: FlutterFlowTheme.of(context)
-                                              .alternate!,
+                                              .alternate,
                                         )
                                       : null,
                                   activeColor:
@@ -334,7 +331,7 @@ class _CencelandoPedidoWidgetState extends State<CencelandoPedidoWidget> {
                                       ? BorderSide(
                                           width: 2,
                                           color: FlutterFlowTheme.of(context)
-                                              .alternate!,
+                                              .alternate,
                                         )
                                       : null,
                                   activeColor:
@@ -436,7 +433,7 @@ class _CencelandoPedidoWidgetState extends State<CencelandoPedidoWidget> {
                                       ? BorderSide(
                                           width: 2,
                                           color: FlutterFlowTheme.of(context)
-                                              .alternate!,
+                                              .alternate,
                                         )
                                       : null,
                                   activeColor:
@@ -505,10 +502,10 @@ class _CencelandoPedidoWidgetState extends State<CencelandoPedidoWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               await CancelamentoRecord.createDoc(
-                                      widget!.pedidoRef!)
+                                      widget.pedidoRef!)
                                   .set(createCancelamentoRecordData(
                                 data: getCurrentTimestamp,
-                                pedidoRef: widget!.pedidoRef,
+                                pedidoRef: widget.pedidoRef,
                                 solicitante: 'Comprador',
                                 motivo: () {
                                   if (_model.checkbox1Value == true) {
@@ -543,7 +540,7 @@ class _CencelandoPedidoWidgetState extends State<CencelandoPedidoWidget> {
                               if ((_model.checkbox1Value == true) ||
                                   (_model.checkbox2Value == true) ||
                                   (_model.checkbox3Value == true)) {
-                                await widget!.pedidoRef!
+                                await widget.pedidoRef!
                                     .update(createPedidosTotalRecordData(
                                   status: valueOrDefault<String>(
                                     stackPedidosTotalRecord.statusPagamento ==
@@ -570,7 +567,7 @@ class _CencelandoPedidoWidgetState extends State<CencelandoPedidoWidget> {
                                     DetalhesReembolsoWidget.routeName,
                                     queryParameters: {
                                       'pedidoRef2': serializeParam(
-                                        widget!.pedidoRef,
+                                        widget.pedidoRef,
                                         ParamType.DocumentReference,
                                       ),
                                     }.withoutNulls,
@@ -592,7 +589,7 @@ class _CencelandoPedidoWidgetState extends State<CencelandoPedidoWidget> {
                                     DetalhesCancelamentoWidget.routeName,
                                     queryParameters: {
                                       'pedidoRef2': serializeParam(
-                                        widget!.pedidoRef,
+                                        widget.pedidoRef,
                                         ParamType.DocumentReference,
                                       ),
                                     }.withoutNulls,

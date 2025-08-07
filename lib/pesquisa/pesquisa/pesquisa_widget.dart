@@ -2,11 +2,8 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -98,8 +95,7 @@ class _PesquisaWidgetState extends State<PesquisaWidget> {
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            if (_model.textController.text != null &&
-                                _model.textController.text != '') {
+                            if (_model.textController.text != '') {
                               safeSetState(() {
                                 _model.textController?.clear();
                               });
@@ -157,7 +153,7 @@ class _PesquisaWidgetState extends State<PesquisaWidget> {
                                                               .text,
                                                           (currentUserDocument
                                                                       ?.historicoPesquisa
-                                                                      ?.toList() ??
+                                                                      .toList() ??
                                                                   [])
                                                               .toList())
                                                       .toList()
@@ -218,7 +214,7 @@ class _PesquisaWidgetState extends State<PesquisaWidget> {
                                                                 .text,
                                                             (currentUserDocument
                                                                         ?.historicoPesquisa
-                                                                        ?.toList() ??
+                                                                        .toList() ??
                                                                     [])
                                                                 .toList())
                                                         .toList()
@@ -403,7 +399,7 @@ class _PesquisaWidgetState extends State<PesquisaWidget> {
                 builder: (context) {
                   final produtoResult = functions
                       .buscarSugestoesPalavrasChave(_model.textController.text,
-                          widget!.documentList!.toList())
+                          widget.documentList!.toList())
                       .toList();
 
                   return ListView.builder(
@@ -425,7 +421,7 @@ class _PesquisaWidgetState extends State<PesquisaWidget> {
                               .listaBuscaHistorico(
                                   produtoResultItem,
                                   (currentUserDocument?.historicoPesquisa
-                                              ?.toList() ??
+                                              .toList() ??
                                           [])
                                       .toList())
                               .toList()
@@ -541,13 +537,12 @@ class _PesquisaWidgetState extends State<PesquisaWidget> {
                   );
                 },
               ),
-              if (_model.textController.text == null ||
-                  _model.textController.text == '')
+              if (_model.textController.text == '')
                 AuthUserStreamWidget(
                   builder: (context) => Builder(
                     builder: (context) {
                       final historico =
-                          (currentUserDocument?.historicoPesquisa?.toList() ??
+                          (currentUserDocument?.historicoPesquisa.toList() ??
                                   [])
                               .take(valueOrDefault<int>(
                                 FFAppState().pesquisaMostrarMais ? 10 : 3,
@@ -573,7 +568,7 @@ class _PesquisaWidgetState extends State<PesquisaWidget> {
                                   .listaBuscaHistorico(
                                       historicoItem,
                                       (currentUserDocument?.historicoPesquisa
-                                                  ?.toList() ??
+                                                  .toList() ??
                                               [])
                                           .toList())
                                   .toList()
@@ -685,9 +680,8 @@ class _PesquisaWidgetState extends State<PesquisaWidget> {
                     },
                   ),
                 ),
-              if ((_model.textController.text == null ||
-                      _model.textController.text == '') &&
-                  (((currentUserDocument?.historicoPesquisa?.toList() ?? [])
+              if ((_model.textController.text == '') &&
+                  (((currentUserDocument?.historicoPesquisa.toList() ?? [])
                           .isNotEmpty) ==
                       true) &&
                   (FFAppState().pesquisaMostrarMais == true) &&
@@ -770,11 +764,10 @@ class _PesquisaWidgetState extends State<PesquisaWidget> {
                     ),
                   ),
                 ),
-              if ((((currentUserDocument?.historicoPesquisa?.toList() ?? [])
+              if ((((currentUserDocument?.historicoPesquisa.toList() ?? [])
                           .isNotEmpty) ==
                       false) &&
-                  (_model.textController.text == null ||
-                      _model.textController.text == ''))
+                  (_model.textController.text == ''))
                 AuthUserStreamWidget(
                   builder: (context) => Container(
                     width: double.infinity,
@@ -830,10 +823,9 @@ class _PesquisaWidgetState extends State<PesquisaWidget> {
                     ),
                   ),
                 ),
-              if ((_model.textController.text == null ||
-                      _model.textController.text == '') &&
+              if ((_model.textController.text == '') &&
                   (FFAppState().pesquisaMostrarMais == false) &&
-                  ((currentUserDocument?.historicoPesquisa?.toList() ?? [])
+                  ((currentUserDocument?.historicoPesquisa.toList() ?? [])
                       .isNotEmpty))
                 AuthUserStreamWidget(
                   builder: (context) => InkWell(
@@ -906,8 +898,7 @@ class _PesquisaWidgetState extends State<PesquisaWidget> {
                     ),
                   ),
                 ),
-              if (_model.textController.text == null ||
-                  _model.textController.text == '')
+              if (_model.textController.text == '')
                 Container(
                   width: double.infinity,
                   height: 50.0,
@@ -939,8 +930,7 @@ class _PesquisaWidgetState extends State<PesquisaWidget> {
                     ),
                   ),
                 ),
-              if (_model.textController.text == null ||
-                  _model.textController.text == '')
+              if (_model.textController.text == '')
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -954,20 +944,20 @@ class _PesquisaWidgetState extends State<PesquisaWidget> {
                         builder: (context) {
                           final listRecomendado = functions
                               .recomendarProdutosPersonalizados(
-                                  widget!.documentList!.toList(),
-                                  (currentUserDocument?.favorito?.toList() ??
+                                  widget.documentList!.toList(),
+                                  (currentUserDocument?.favorito.toList() ??
                                           [])
                                       .toList(),
                                   (currentUserDocument?.historicoPesquisa
-                                              ?.toList() ??
+                                              .toList() ??
                                           [])
                                       .toList(),
                                   (currentUserDocument?.vistoRecente
-                                              ?.toList() ??
+                                              .toList() ??
                                           [])
                                       .toList(),
                                   (currentUserDocument?.comprasHistoricoProdutos
-                                              ?.toList() ??
+                                              .toList() ??
                                           [])
                                       .toList(),
                                   30,
@@ -1030,7 +1020,7 @@ class _PesquisaWidgetState extends State<PesquisaWidget> {
                                                           .categoria),
                                                   (currentUserDocument
                                                               ?.historicoPesquisa
-                                                              ?.toList() ??
+                                                              .toList() ??
                                                           [])
                                                       .toList())
                                               .toList()
@@ -1151,8 +1141,7 @@ class _PesquisaWidgetState extends State<PesquisaWidget> {
                     ),
                   ),
                 ),
-              if (_model.textController.text != null &&
-                  _model.textController.text != '')
+              if (_model.textController.text != '')
                 ListView(
                   padding: EdgeInsets.zero,
                   primary: false,

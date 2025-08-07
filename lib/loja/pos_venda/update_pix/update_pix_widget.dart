@@ -1,15 +1,9 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'update_pix_model.dart';
 export 'update_pix_model.dart';
 
@@ -53,26 +47,26 @@ class _UpdatePixWidgetState extends State<UpdatePixWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      while ((functions.contagemregressivaPix(widget!.dataPedido!) ==
+      while ((functions.contagemregressivaPix(widget.dataPedido!) ==
               'Tempo expirado') &&
-          (widget!.statusPagamento == 'naopago') &&
-          (widget!.status != 'cancelado')) {
-        await widget!.pedidoRef!.update(createPedidosTotalRecordData(
+          (widget.statusPagamento == 'naopago') &&
+          (widget.status != 'cancelado')) {
+        await widget.pedidoRef!.update(createPedidosTotalRecordData(
           status: 'cancelado',
         ));
 
-        await CancelamentoRecord.createDoc(widget!.pedidoRef!)
+        await CancelamentoRecord.createDoc(widget.pedidoRef!)
             .set(createCancelamentoRecordData(
           data: getCurrentTimestamp,
-          pedidoRef: widget!.pedidoRef,
+          pedidoRef: widget.pedidoRef,
           solicitante: 'Renda Shop',
           motivo: 'Falha no pagamento',
           status: 'cancelado',
-          lojaRef: widget!.lojaRef,
+          lojaRef: widget.lojaRef,
           userRef: currentUserReference,
           iDSolicitacao: functions.idCancelamento(),
-          valorReembolso: widget!.totalPedido,
-          produtoRef: widget!.produtoRef,
+          valorReembolso: widget.totalPedido,
+          produtoRef: widget.produtoRef,
         ));
         await Future.delayed(
           Duration(

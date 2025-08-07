@@ -5,15 +5,10 @@ import '/carregando/carregando9/carregando9_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'detalhes_cancelamento_model.dart';
 export 'detalhes_cancelamento_model.dart';
 
@@ -57,7 +52,7 @@ class _DetalhesCancelamentoWidgetState
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<PedidosTotalRecord>(
-      stream: PedidosTotalRecord.getDocument(widget!.pedidoRef2!),
+      stream: PedidosTotalRecord.getDocument(widget.pedidoRef2!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -121,7 +116,7 @@ class _DetalhesCancelamentoWidgetState
             ),
             body: StreamBuilder<List<CancelamentoRecord>>(
               stream: queryCancelamentoRecord(
-                parent: widget!.pedidoRef2,
+                parent: widget.pedidoRef2,
                 singleRecord: true,
               ),
               builder: (context, snapshot) {
@@ -1250,7 +1245,7 @@ class _DetalhesCancelamentoWidgetState
                                                           onTap: () async {
                                                             await Clipboard.setData(
                                                                 ClipboardData(
-                                                                    text: stackCancelamentoRecord!
+                                                                    text: stackCancelamentoRecord
                                                                         .iDSolicitacao));
                                                           },
                                                           child: Text(

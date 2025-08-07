@@ -1,15 +1,11 @@
-import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_media_display.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -60,7 +56,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
     context.watch<FFAppState>();
 
     return StreamBuilder<LojasRecord>(
-      stream: LojasRecord.getDocument(widget!.lojaRef!),
+      stream: LojasRecord.getDocument(widget.lojaRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -850,7 +846,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                     0.0, 10.0, 0.0, 0.0),
                                 child: StreamBuilder<List<AvaliacaoLojaRecord>>(
                                   stream: queryAvaliacaoLojaRecord(
-                                    parent: widget!.lojaRef,
+                                    parent: widget.lojaRef,
                                   ),
                                   builder: (context, snapshot) {
                                     // Customize what your widget looks like when it's loading.
@@ -1346,7 +1342,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                         produtoRecord
                                             .where(
                                               'lojaRef',
-                                              isEqualTo: widget!.lojaRef,
+                                              isEqualTo: widget.lojaRef,
                                             )
                                             .orderBy('preco', descending: true),
                                   ),
@@ -1433,7 +1429,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                 safeSetState(() {});
                                                 if ((currentUserDocument
                                                                 ?.vistoRecente
-                                                                ?.toList() ??
+                                                                .toList() ??
                                                             [])
                                                         .length ==
                                                     6) {
@@ -1446,7 +1442,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                 .arrayRemove([
                                                           (currentUserDocument
                                                                       ?.vistoRecente
-                                                                      ?.toList() ??
+                                                                      .toList() ??
                                                                   [])
                                                               .firstOrNull
                                                         ]),
@@ -1570,9 +1566,6 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                 ),
                                                                 if (staggeredViewProdutoRecord
                                                                             .video !=
-                                                                        null &&
-                                                                    staggeredViewProdutoRecord
-                                                                            .video !=
                                                                         '')
                                                                   Align(
                                                                     alignment:
@@ -1612,9 +1605,6 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                     ),
                                                                   ),
                                                                 if (staggeredViewProdutoRecord
-                                                                            .capsula1 !=
-                                                                        null &&
-                                                                    staggeredViewProdutoRecord
                                                                             .capsula1 !=
                                                                         '')
                                                                   Align(
@@ -1683,7 +1673,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                                   ),
                                                                                 ),
                                                                               ),
-                                                                              if (staggeredViewProdutoRecord.capsula2 != null && staggeredViewProdutoRecord.capsula2 != '')
+                                                                              if (staggeredViewProdutoRecord.capsula2 != '')
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                   child: Container(
@@ -1710,7 +1700,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                                     ),
                                                                                   ),
                                                                                 ),
-                                                                              if (staggeredViewProdutoRecord.capsula3 != null && staggeredViewProdutoRecord.capsula3 != '')
+                                                                              if (staggeredViewProdutoRecord.capsula3 != '')
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                   child: Container(
@@ -1737,7 +1727,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                                     ),
                                                                                   ),
                                                                                 ),
-                                                                              if (staggeredViewProdutoRecord.capsulaExtra != null && staggeredViewProdutoRecord.capsulaExtra != '')
+                                                                              if (staggeredViewProdutoRecord.capsulaExtra != '')
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
                                                                                   child: Text(
@@ -1790,55 +1780,52 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                       MainAxisSize
                                                                           .max,
                                                                   children: [
-                                                                    if (staggeredViewProdutoRecord
-                                                                            .precoAntes !=
-                                                                        null)
-                                                                      Align(
-                                                                        alignment: AlignmentDirectional(
+                                                                    Align(
+                                                                      alignment: AlignmentDirectional(
+                                                                          0.0,
+                                                                          1.0),
+                                                                      child:
+                                                                          Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
-                                                                            1.0),
+                                                                            0.0,
+                                                                            3.0,
+                                                                            0.0),
                                                                         child:
-                                                                            Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0.0,
-                                                                              0.0,
-                                                                              3.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                29.0,
-                                                                            height:
-                                                                                16.0,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              borderRadius: BorderRadius.circular(4.0),
-                                                                              border: Border.all(
-                                                                                color: FlutterFlowTheme.of(context).primary,
-                                                                                width: 0.7,
-                                                                              ),
+                                                                            Container(
+                                                                          width:
+                                                                              29.0,
+                                                                          height:
+                                                                              16.0,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius: BorderRadius.circular(4.0),
+                                                                            border: Border.all(
+                                                                              color: FlutterFlowTheme.of(context).primary,
+                                                                              width: 0.7,
                                                                             ),
-                                                                            child:
-                                                                                Align(
-                                                                              alignment: AlignmentDirectional(0.0, 0.0),
-                                                                              child: Text(
-                                                                                functions.porcentagemPromo(staggeredViewProdutoRecord.precoAntes, staggeredViewProdutoRecord.titulo1 != null && staggeredViewProdutoRecord.titulo1 != '' ? staggeredViewProdutoRecord.menorPrecoRevenda : staggeredViewProdutoRecord.preco),
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      font: GoogleFonts.inter(
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                      color: FlutterFlowTheme.of(context).primary,
-                                                                                      fontSize: 10.0,
-                                                                                      letterSpacing: 0.0,
+                                                                          ),
+                                                                          child:
+                                                                              Align(
+                                                                            alignment: AlignmentDirectional(0.0, 0.0),
+                                                                            child: Text(
+                                                                              functions.porcentagemPromo(staggeredViewProdutoRecord.precoAntes, staggeredViewProdutoRecord.titulo1 != '' ? staggeredViewProdutoRecord.menorPrecoRevenda : staggeredViewProdutoRecord.preco),
+                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                    font: GoogleFonts.inter(
                                                                                       fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                                       fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                     ),
-                                                                              ),
+                                                                                    color: FlutterFlowTheme.of(context).primary,
+                                                                                    fontSize: 10.0,
+                                                                                    letterSpacing: 0.0,
+                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                  ),
                                                                             ),
                                                                           ),
                                                                         ),
                                                                       ),
+                                                                    ),
                                                                     SelectionArea(
                                                                         child:
                                                                             Text(
@@ -2062,8 +2049,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                             ),
                                                                       ),
                                                                       Text(
-                                                                        staggeredViewProdutoRecord.titulo1 != null &&
-                                                                                staggeredViewProdutoRecord.titulo1 != ''
+                                                                        staggeredViewProdutoRecord.titulo1 != ''
                                                                             ? functions.valorRealString(staggeredViewProdutoRecord.menorPrecoRevenda)
                                                                             : functions.valorRealString(staggeredViewProdutoRecord.preco),
                                                                         style: FlutterFlowTheme.of(context)
@@ -2081,8 +2067,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                             ),
                                                                       ),
                                                                       Text(
-                                                                        staggeredViewProdutoRecord.titulo1 != null &&
-                                                                                staggeredViewProdutoRecord.titulo1 != ''
+                                                                        staggeredViewProdutoRecord.titulo1 != ''
                                                                             ? functions.valorCentavosEmString(staggeredViewProdutoRecord.menorPrecoRevenda)
                                                                             : functions.valorCentavosEmString(staggeredViewProdutoRecord.preco),
                                                                         style: FlutterFlowTheme.of(context)
@@ -2440,7 +2425,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                         produtoRecord
                                             .where(
                                               'lojaRef',
-                                              isEqualTo: widget!.lojaRef,
+                                              isEqualTo: widget.lojaRef,
                                             )
                                             .orderBy('preco'),
                                   ),
@@ -2527,7 +2512,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                 safeSetState(() {});
                                                 if ((currentUserDocument
                                                                 ?.vistoRecente
-                                                                ?.toList() ??
+                                                                .toList() ??
                                                             [])
                                                         .length ==
                                                     6) {
@@ -2540,7 +2525,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                 .arrayRemove([
                                                           (currentUserDocument
                                                                       ?.vistoRecente
-                                                                      ?.toList() ??
+                                                                      .toList() ??
                                                                   [])
                                                               .firstOrNull
                                                         ]),
@@ -2664,9 +2649,6 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                 ),
                                                                 if (staggeredViewProdutoRecord
                                                                             .video !=
-                                                                        null &&
-                                                                    staggeredViewProdutoRecord
-                                                                            .video !=
                                                                         '')
                                                                   Align(
                                                                     alignment:
@@ -2706,9 +2688,6 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                     ),
                                                                   ),
                                                                 if (staggeredViewProdutoRecord
-                                                                            .capsula1 !=
-                                                                        null &&
-                                                                    staggeredViewProdutoRecord
                                                                             .capsula1 !=
                                                                         '')
                                                                   Align(
@@ -2777,7 +2756,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                                   ),
                                                                                 ),
                                                                               ),
-                                                                              if (staggeredViewProdutoRecord.capsula2 != null && staggeredViewProdutoRecord.capsula2 != '')
+                                                                              if (staggeredViewProdutoRecord.capsula2 != '')
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                   child: Container(
@@ -2804,7 +2783,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                                     ),
                                                                                   ),
                                                                                 ),
-                                                                              if (staggeredViewProdutoRecord.capsula3 != null && staggeredViewProdutoRecord.capsula3 != '')
+                                                                              if (staggeredViewProdutoRecord.capsula3 != '')
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                   child: Container(
@@ -2831,7 +2810,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                                     ),
                                                                                   ),
                                                                                 ),
-                                                                              if (staggeredViewProdutoRecord.capsulaExtra != null && staggeredViewProdutoRecord.capsulaExtra != '')
+                                                                              if (staggeredViewProdutoRecord.capsulaExtra != '')
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
                                                                                   child: Text(
@@ -2884,55 +2863,52 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                       MainAxisSize
                                                                           .max,
                                                                   children: [
-                                                                    if (staggeredViewProdutoRecord
-                                                                            .precoAntes !=
-                                                                        null)
-                                                                      Align(
-                                                                        alignment: AlignmentDirectional(
+                                                                    Align(
+                                                                      alignment: AlignmentDirectional(
+                                                                          0.0,
+                                                                          1.0),
+                                                                      child:
+                                                                          Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
-                                                                            1.0),
+                                                                            0.0,
+                                                                            3.0,
+                                                                            0.0),
                                                                         child:
-                                                                            Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0.0,
-                                                                              0.0,
-                                                                              3.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                29.0,
-                                                                            height:
-                                                                                16.0,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              borderRadius: BorderRadius.circular(4.0),
-                                                                              border: Border.all(
-                                                                                color: FlutterFlowTheme.of(context).primary,
-                                                                                width: 0.7,
-                                                                              ),
+                                                                            Container(
+                                                                          width:
+                                                                              29.0,
+                                                                          height:
+                                                                              16.0,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius: BorderRadius.circular(4.0),
+                                                                            border: Border.all(
+                                                                              color: FlutterFlowTheme.of(context).primary,
+                                                                              width: 0.7,
                                                                             ),
-                                                                            child:
-                                                                                Align(
-                                                                              alignment: AlignmentDirectional(0.0, 0.0),
-                                                                              child: Text(
-                                                                                functions.porcentagemPromo(staggeredViewProdutoRecord.precoAntes, staggeredViewProdutoRecord.titulo1 != null && staggeredViewProdutoRecord.titulo1 != '' ? staggeredViewProdutoRecord.menorPrecoRevenda : staggeredViewProdutoRecord.preco),
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      font: GoogleFonts.inter(
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                      color: FlutterFlowTheme.of(context).primary,
-                                                                                      fontSize: 10.0,
-                                                                                      letterSpacing: 0.0,
+                                                                          ),
+                                                                          child:
+                                                                              Align(
+                                                                            alignment: AlignmentDirectional(0.0, 0.0),
+                                                                            child: Text(
+                                                                              functions.porcentagemPromo(staggeredViewProdutoRecord.precoAntes, staggeredViewProdutoRecord.titulo1 != '' ? staggeredViewProdutoRecord.menorPrecoRevenda : staggeredViewProdutoRecord.preco),
+                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                    font: GoogleFonts.inter(
                                                                                       fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                                       fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                     ),
-                                                                              ),
+                                                                                    color: FlutterFlowTheme.of(context).primary,
+                                                                                    fontSize: 10.0,
+                                                                                    letterSpacing: 0.0,
+                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                  ),
                                                                             ),
                                                                           ),
                                                                         ),
                                                                       ),
+                                                                    ),
                                                                     SelectionArea(
                                                                         child:
                                                                             Text(
@@ -3156,8 +3132,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                             ),
                                                                       ),
                                                                       Text(
-                                                                        staggeredViewProdutoRecord.titulo1 != null &&
-                                                                                staggeredViewProdutoRecord.titulo1 != ''
+                                                                        staggeredViewProdutoRecord.titulo1 != ''
                                                                             ? functions.valorRealString(staggeredViewProdutoRecord.menorPrecoRevenda)
                                                                             : functions.valorRealString(staggeredViewProdutoRecord.preco),
                                                                         style: FlutterFlowTheme.of(context)
@@ -3175,8 +3150,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                             ),
                                                                       ),
                                                                       Text(
-                                                                        staggeredViewProdutoRecord.titulo1 != null &&
-                                                                                staggeredViewProdutoRecord.titulo1 != ''
+                                                                        staggeredViewProdutoRecord.titulo1 != ''
                                                                             ? functions.valorCentavosEmString(staggeredViewProdutoRecord.menorPrecoRevenda)
                                                                             : functions.valorCentavosEmString(staggeredViewProdutoRecord.preco),
                                                                         style: FlutterFlowTheme.of(context)
@@ -3534,7 +3508,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                         produtoRecord
                                             .where(
                                               'lojaRef',
-                                              isEqualTo: widget!.lojaRef,
+                                              isEqualTo: widget.lojaRef,
                                             )
                                             .orderBy('data', descending: true),
                                   ),
@@ -3621,7 +3595,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                 safeSetState(() {});
                                                 if ((currentUserDocument
                                                                 ?.vistoRecente
-                                                                ?.toList() ??
+                                                                .toList() ??
                                                             [])
                                                         .length ==
                                                     6) {
@@ -3634,7 +3608,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                 .arrayRemove([
                                                           (currentUserDocument
                                                                       ?.vistoRecente
-                                                                      ?.toList() ??
+                                                                      .toList() ??
                                                                   [])
                                                               .firstOrNull
                                                         ]),
@@ -3758,9 +3732,6 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                 ),
                                                                 if (staggeredViewProdutoRecord
                                                                             .video !=
-                                                                        null &&
-                                                                    staggeredViewProdutoRecord
-                                                                            .video !=
                                                                         '')
                                                                   Align(
                                                                     alignment:
@@ -3800,9 +3771,6 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                     ),
                                                                   ),
                                                                 if (staggeredViewProdutoRecord
-                                                                            .capsula1 !=
-                                                                        null &&
-                                                                    staggeredViewProdutoRecord
                                                                             .capsula1 !=
                                                                         '')
                                                                   Align(
@@ -3871,7 +3839,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                                   ),
                                                                                 ),
                                                                               ),
-                                                                              if (staggeredViewProdutoRecord.capsula2 != null && staggeredViewProdutoRecord.capsula2 != '')
+                                                                              if (staggeredViewProdutoRecord.capsula2 != '')
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                   child: Container(
@@ -3898,7 +3866,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                                     ),
                                                                                   ),
                                                                                 ),
-                                                                              if (staggeredViewProdutoRecord.capsula3 != null && staggeredViewProdutoRecord.capsula3 != '')
+                                                                              if (staggeredViewProdutoRecord.capsula3 != '')
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                   child: Container(
@@ -3925,7 +3893,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                                     ),
                                                                                   ),
                                                                                 ),
-                                                                              if (staggeredViewProdutoRecord.capsulaExtra != null && staggeredViewProdutoRecord.capsulaExtra != '')
+                                                                              if (staggeredViewProdutoRecord.capsulaExtra != '')
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
                                                                                   child: Text(
@@ -3978,55 +3946,52 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                       MainAxisSize
                                                                           .max,
                                                                   children: [
-                                                                    if (staggeredViewProdutoRecord
-                                                                            .precoAntes !=
-                                                                        null)
-                                                                      Align(
-                                                                        alignment: AlignmentDirectional(
+                                                                    Align(
+                                                                      alignment: AlignmentDirectional(
+                                                                          0.0,
+                                                                          1.0),
+                                                                      child:
+                                                                          Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
-                                                                            1.0),
+                                                                            0.0,
+                                                                            3.0,
+                                                                            0.0),
                                                                         child:
-                                                                            Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0.0,
-                                                                              0.0,
-                                                                              3.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                29.0,
-                                                                            height:
-                                                                                16.0,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              borderRadius: BorderRadius.circular(4.0),
-                                                                              border: Border.all(
-                                                                                color: FlutterFlowTheme.of(context).primary,
-                                                                                width: 0.7,
-                                                                              ),
+                                                                            Container(
+                                                                          width:
+                                                                              29.0,
+                                                                          height:
+                                                                              16.0,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius: BorderRadius.circular(4.0),
+                                                                            border: Border.all(
+                                                                              color: FlutterFlowTheme.of(context).primary,
+                                                                              width: 0.7,
                                                                             ),
-                                                                            child:
-                                                                                Align(
-                                                                              alignment: AlignmentDirectional(0.0, 0.0),
-                                                                              child: Text(
-                                                                                functions.porcentagemPromo(staggeredViewProdutoRecord.precoAntes, staggeredViewProdutoRecord.titulo1 != null && staggeredViewProdutoRecord.titulo1 != '' ? staggeredViewProdutoRecord.menorPrecoRevenda : staggeredViewProdutoRecord.preco),
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      font: GoogleFonts.inter(
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                      color: FlutterFlowTheme.of(context).primary,
-                                                                                      fontSize: 10.0,
-                                                                                      letterSpacing: 0.0,
+                                                                          ),
+                                                                          child:
+                                                                              Align(
+                                                                            alignment: AlignmentDirectional(0.0, 0.0),
+                                                                            child: Text(
+                                                                              functions.porcentagemPromo(staggeredViewProdutoRecord.precoAntes, staggeredViewProdutoRecord.titulo1 != '' ? staggeredViewProdutoRecord.menorPrecoRevenda : staggeredViewProdutoRecord.preco),
+                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                    font: GoogleFonts.inter(
                                                                                       fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                                       fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                     ),
-                                                                              ),
+                                                                                    color: FlutterFlowTheme.of(context).primary,
+                                                                                    fontSize: 10.0,
+                                                                                    letterSpacing: 0.0,
+                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                  ),
                                                                             ),
                                                                           ),
                                                                         ),
                                                                       ),
+                                                                    ),
                                                                     SelectionArea(
                                                                         child:
                                                                             Text(
@@ -4250,8 +4215,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                             ),
                                                                       ),
                                                                       Text(
-                                                                        staggeredViewProdutoRecord.titulo1 != null &&
-                                                                                staggeredViewProdutoRecord.titulo1 != ''
+                                                                        staggeredViewProdutoRecord.titulo1 != ''
                                                                             ? functions.valorRealString(staggeredViewProdutoRecord.menorPrecoRevenda)
                                                                             : functions.valorRealString(staggeredViewProdutoRecord.preco),
                                                                         style: FlutterFlowTheme.of(context)
@@ -4269,8 +4233,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                             ),
                                                                       ),
                                                                       Text(
-                                                                        staggeredViewProdutoRecord.titulo1 != null &&
-                                                                                staggeredViewProdutoRecord.titulo1 != ''
+                                                                        staggeredViewProdutoRecord.titulo1 != ''
                                                                             ? functions.valorCentavosEmString(staggeredViewProdutoRecord.menorPrecoRevenda)
                                                                             : functions.valorCentavosEmString(staggeredViewProdutoRecord.preco),
                                                                         style: FlutterFlowTheme.of(context)
@@ -4628,7 +4591,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                         produtoRecord
                                             .where(
                                               'lojaRef',
-                                              isEqualTo: widget!.lojaRef,
+                                              isEqualTo: widget.lojaRef,
                                             )
                                             .orderBy('vendas',
                                                 descending: true),
@@ -4716,7 +4679,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                 safeSetState(() {});
                                                 if ((currentUserDocument
                                                                 ?.vistoRecente
-                                                                ?.toList() ??
+                                                                .toList() ??
                                                             [])
                                                         .length ==
                                                     6) {
@@ -4729,7 +4692,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                 .arrayRemove([
                                                           (currentUserDocument
                                                                       ?.vistoRecente
-                                                                      ?.toList() ??
+                                                                      .toList() ??
                                                                   [])
                                                               .firstOrNull
                                                         ]),
@@ -4853,9 +4816,6 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                 ),
                                                                 if (staggeredViewProdutoRecord
                                                                             .video !=
-                                                                        null &&
-                                                                    staggeredViewProdutoRecord
-                                                                            .video !=
                                                                         '')
                                                                   Align(
                                                                     alignment:
@@ -4895,9 +4855,6 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                     ),
                                                                   ),
                                                                 if (staggeredViewProdutoRecord
-                                                                            .capsula1 !=
-                                                                        null &&
-                                                                    staggeredViewProdutoRecord
                                                                             .capsula1 !=
                                                                         '')
                                                                   Align(
@@ -4966,7 +4923,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                                   ),
                                                                                 ),
                                                                               ),
-                                                                              if (staggeredViewProdutoRecord.capsula2 != null && staggeredViewProdutoRecord.capsula2 != '')
+                                                                              if (staggeredViewProdutoRecord.capsula2 != '')
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                   child: Container(
@@ -4993,7 +4950,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                                     ),
                                                                                   ),
                                                                                 ),
-                                                                              if (staggeredViewProdutoRecord.capsula3 != null && staggeredViewProdutoRecord.capsula3 != '')
+                                                                              if (staggeredViewProdutoRecord.capsula3 != '')
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                   child: Container(
@@ -5020,7 +4977,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                                     ),
                                                                                   ),
                                                                                 ),
-                                                                              if (staggeredViewProdutoRecord.capsulaExtra != null && staggeredViewProdutoRecord.capsulaExtra != '')
+                                                                              if (staggeredViewProdutoRecord.capsulaExtra != '')
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
                                                                                   child: Text(
@@ -5073,55 +5030,52 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                       MainAxisSize
                                                                           .max,
                                                                   children: [
-                                                                    if (staggeredViewProdutoRecord
-                                                                            .precoAntes !=
-                                                                        null)
-                                                                      Align(
-                                                                        alignment: AlignmentDirectional(
+                                                                    Align(
+                                                                      alignment: AlignmentDirectional(
+                                                                          0.0,
+                                                                          1.0),
+                                                                      child:
+                                                                          Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
-                                                                            1.0),
+                                                                            0.0,
+                                                                            3.0,
+                                                                            0.0),
                                                                         child:
-                                                                            Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0.0,
-                                                                              0.0,
-                                                                              3.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                29.0,
-                                                                            height:
-                                                                                16.0,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              borderRadius: BorderRadius.circular(4.0),
-                                                                              border: Border.all(
-                                                                                color: FlutterFlowTheme.of(context).primary,
-                                                                                width: 0.7,
-                                                                              ),
+                                                                            Container(
+                                                                          width:
+                                                                              29.0,
+                                                                          height:
+                                                                              16.0,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius: BorderRadius.circular(4.0),
+                                                                            border: Border.all(
+                                                                              color: FlutterFlowTheme.of(context).primary,
+                                                                              width: 0.7,
                                                                             ),
-                                                                            child:
-                                                                                Align(
-                                                                              alignment: AlignmentDirectional(0.0, 0.0),
-                                                                              child: Text(
-                                                                                functions.porcentagemPromo(staggeredViewProdutoRecord.precoAntes, staggeredViewProdutoRecord.titulo1 != null && staggeredViewProdutoRecord.titulo1 != '' ? staggeredViewProdutoRecord.menorPrecoRevenda : staggeredViewProdutoRecord.preco),
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      font: GoogleFonts.inter(
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                      color: FlutterFlowTheme.of(context).primary,
-                                                                                      fontSize: 10.0,
-                                                                                      letterSpacing: 0.0,
+                                                                          ),
+                                                                          child:
+                                                                              Align(
+                                                                            alignment: AlignmentDirectional(0.0, 0.0),
+                                                                            child: Text(
+                                                                              functions.porcentagemPromo(staggeredViewProdutoRecord.precoAntes, staggeredViewProdutoRecord.titulo1 != '' ? staggeredViewProdutoRecord.menorPrecoRevenda : staggeredViewProdutoRecord.preco),
+                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                    font: GoogleFonts.inter(
                                                                                       fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                                       fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                     ),
-                                                                              ),
+                                                                                    color: FlutterFlowTheme.of(context).primary,
+                                                                                    fontSize: 10.0,
+                                                                                    letterSpacing: 0.0,
+                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                  ),
                                                                             ),
                                                                           ),
                                                                         ),
                                                                       ),
+                                                                    ),
                                                                     SelectionArea(
                                                                         child:
                                                                             Text(
@@ -5345,8 +5299,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                             ),
                                                                       ),
                                                                       Text(
-                                                                        staggeredViewProdutoRecord.titulo1 != null &&
-                                                                                staggeredViewProdutoRecord.titulo1 != ''
+                                                                        staggeredViewProdutoRecord.titulo1 != ''
                                                                             ? functions.valorRealString(staggeredViewProdutoRecord.menorPrecoRevenda)
                                                                             : functions.valorRealString(staggeredViewProdutoRecord.preco),
                                                                         style: FlutterFlowTheme.of(context)
@@ -5364,8 +5317,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                             ),
                                                                       ),
                                                                       Text(
-                                                                        staggeredViewProdutoRecord.titulo1 != null &&
-                                                                                staggeredViewProdutoRecord.titulo1 != ''
+                                                                        staggeredViewProdutoRecord.titulo1 != ''
                                                                             ? functions.valorCentavosEmString(staggeredViewProdutoRecord.menorPrecoRevenda)
                                                                             : functions.valorCentavosEmString(staggeredViewProdutoRecord.preco),
                                                                         style: FlutterFlowTheme.of(context)
@@ -5722,7 +5674,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                     queryBuilder: (produtoRecord) =>
                                         produtoRecord.where(
                                       'lojaRef',
-                                      isEqualTo: widget!.lojaRef,
+                                      isEqualTo: widget.lojaRef,
                                     ),
                                   ),
                                   builder: (context, snapshot) {
@@ -5808,7 +5760,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                 safeSetState(() {});
                                                 if ((currentUserDocument
                                                                 ?.vistoRecente
-                                                                ?.toList() ??
+                                                                .toList() ??
                                                             [])
                                                         .length ==
                                                     6) {
@@ -5821,7 +5773,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                 .arrayRemove([
                                                           (currentUserDocument
                                                                       ?.vistoRecente
-                                                                      ?.toList() ??
+                                                                      .toList() ??
                                                                   [])
                                                               .firstOrNull
                                                         ]),
@@ -5945,9 +5897,6 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                 ),
                                                                 if (staggeredViewProdutoRecord
                                                                             .video !=
-                                                                        null &&
-                                                                    staggeredViewProdutoRecord
-                                                                            .video !=
                                                                         '')
                                                                   Align(
                                                                     alignment:
@@ -5987,9 +5936,6 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                     ),
                                                                   ),
                                                                 if (staggeredViewProdutoRecord
-                                                                            .capsula1 !=
-                                                                        null &&
-                                                                    staggeredViewProdutoRecord
                                                                             .capsula1 !=
                                                                         '')
                                                                   Align(
@@ -6058,7 +6004,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                                   ),
                                                                                 ),
                                                                               ),
-                                                                              if (staggeredViewProdutoRecord.capsula2 != null && staggeredViewProdutoRecord.capsula2 != '')
+                                                                              if (staggeredViewProdutoRecord.capsula2 != '')
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                   child: Container(
@@ -6085,7 +6031,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                                     ),
                                                                                   ),
                                                                                 ),
-                                                                              if (staggeredViewProdutoRecord.capsula3 != null && staggeredViewProdutoRecord.capsula3 != '')
+                                                                              if (staggeredViewProdutoRecord.capsula3 != '')
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                   child: Container(
@@ -6112,7 +6058,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                                     ),
                                                                                   ),
                                                                                 ),
-                                                                              if (staggeredViewProdutoRecord.capsulaExtra != null && staggeredViewProdutoRecord.capsulaExtra != '')
+                                                                              if (staggeredViewProdutoRecord.capsulaExtra != '')
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
                                                                                   child: Text(
@@ -6165,55 +6111,52 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                       MainAxisSize
                                                                           .max,
                                                                   children: [
-                                                                    if (staggeredViewProdutoRecord
-                                                                            .precoAntes !=
-                                                                        null)
-                                                                      Align(
-                                                                        alignment: AlignmentDirectional(
+                                                                    Align(
+                                                                      alignment: AlignmentDirectional(
+                                                                          0.0,
+                                                                          1.0),
+                                                                      child:
+                                                                          Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
                                                                             0.0,
-                                                                            1.0),
+                                                                            0.0,
+                                                                            3.0,
+                                                                            0.0),
                                                                         child:
-                                                                            Padding(
-                                                                          padding: EdgeInsetsDirectional.fromSTEB(
-                                                                              0.0,
-                                                                              0.0,
-                                                                              3.0,
-                                                                              0.0),
-                                                                          child:
-                                                                              Container(
-                                                                            width:
-                                                                                29.0,
-                                                                            height:
-                                                                                16.0,
-                                                                            decoration:
-                                                                                BoxDecoration(
-                                                                              borderRadius: BorderRadius.circular(4.0),
-                                                                              border: Border.all(
-                                                                                color: FlutterFlowTheme.of(context).primary,
-                                                                                width: 0.7,
-                                                                              ),
+                                                                            Container(
+                                                                          width:
+                                                                              29.0,
+                                                                          height:
+                                                                              16.0,
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius: BorderRadius.circular(4.0),
+                                                                            border: Border.all(
+                                                                              color: FlutterFlowTheme.of(context).primary,
+                                                                              width: 0.7,
                                                                             ),
-                                                                            child:
-                                                                                Align(
-                                                                              alignment: AlignmentDirectional(0.0, 0.0),
-                                                                              child: Text(
-                                                                                functions.porcentagemPromo(staggeredViewProdutoRecord.precoAntes, staggeredViewProdutoRecord.titulo1 != null && staggeredViewProdutoRecord.titulo1 != '' ? staggeredViewProdutoRecord.menorPrecoRevenda : staggeredViewProdutoRecord.preco),
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      font: GoogleFonts.inter(
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                      color: FlutterFlowTheme.of(context).primary,
-                                                                                      fontSize: 10.0,
-                                                                                      letterSpacing: 0.0,
+                                                                          ),
+                                                                          child:
+                                                                              Align(
+                                                                            alignment: AlignmentDirectional(0.0, 0.0),
+                                                                            child: Text(
+                                                                              functions.porcentagemPromo(staggeredViewProdutoRecord.precoAntes, staggeredViewProdutoRecord.titulo1 != '' ? staggeredViewProdutoRecord.menorPrecoRevenda : staggeredViewProdutoRecord.preco),
+                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                    font: GoogleFonts.inter(
                                                                                       fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                                       fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                     ),
-                                                                              ),
+                                                                                    color: FlutterFlowTheme.of(context).primary,
+                                                                                    fontSize: 10.0,
+                                                                                    letterSpacing: 0.0,
+                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                  ),
                                                                             ),
                                                                           ),
                                                                         ),
                                                                       ),
+                                                                    ),
                                                                     SelectionArea(
                                                                         child:
                                                                             Text(
@@ -6437,8 +6380,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                             ),
                                                                       ),
                                                                       Text(
-                                                                        staggeredViewProdutoRecord.titulo1 != null &&
-                                                                                staggeredViewProdutoRecord.titulo1 != ''
+                                                                        staggeredViewProdutoRecord.titulo1 != ''
                                                                             ? functions.valorRealString(staggeredViewProdutoRecord.menorPrecoRevenda)
                                                                             : functions.valorRealString(staggeredViewProdutoRecord.preco),
                                                                         style: FlutterFlowTheme.of(context)
@@ -6456,8 +6398,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                                                             ),
                                                                       ),
                                                                       Text(
-                                                                        staggeredViewProdutoRecord.titulo1 != null &&
-                                                                                staggeredViewProdutoRecord.titulo1 != ''
+                                                                        staggeredViewProdutoRecord.titulo1 != ''
                                                                             ? functions.valorCentavosEmString(staggeredViewProdutoRecord.menorPrecoRevenda)
                                                                             : functions.valorCentavosEmString(staggeredViewProdutoRecord.preco),
                                                                         style: FlutterFlowTheme.of(context)
@@ -6819,7 +6760,7 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                               queryBuilder: (avaliacaoRecord) => avaliacaoRecord
                                   .where(
                                     'lojaRef',
-                                    isEqualTo: widget!.lojaRef,
+                                    isEqualTo: widget.lojaRef,
                                   )
                                   .orderBy('videoSet', descending: true),
                             ),
@@ -7275,9 +7216,6 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                             ),
                                             if (listViewAvaliacaoRecord
                                                         .variacao !=
-                                                    null &&
-                                                listViewAvaliacaoRecord
-                                                        .variacao !=
                                                     '')
                                               Align(
                                                 alignment: AlignmentDirectional(
@@ -7326,9 +7264,6 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                             if ((FFAppState().verTudo ==
                                                     false) &&
                                                 (listViewAvaliacaoRecord
-                                                            .comentario !=
-                                                        null &&
-                                                    listViewAvaliacaoRecord
                                                             .comentario !=
                                                         ''))
                                               Align(
@@ -7395,9 +7330,6 @@ class _HomeLojaVendedor2WidgetState extends State<HomeLojaVendedor2Widget> {
                                             if ((FFAppState().verTudo ==
                                                     true) &&
                                                 (listViewAvaliacaoRecord
-                                                            .comentario !=
-                                                        null &&
-                                                    listViewAvaliacaoRecord
                                                             .comentario !=
                                                         ''))
                                               Align(

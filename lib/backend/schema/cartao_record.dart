@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -46,21 +45,6 @@ class CartaoRecord extends FirestoreRecord {
   String get cpf => _cpf ?? '';
   bool hasCpf() => _cpf != null;
 
-  // "cep" field.
-  String? _cep;
-  String get cep => _cep ?? '';
-  bool hasCep() => _cep != null;
-
-  // "numero_casa" field.
-  String? _numeroCasa;
-  String get numeroCasa => _numeroCasa ?? '';
-  bool hasNumeroCasa() => _numeroCasa != null;
-
-  // "complemento_endereco" field.
-  String? _complementoEndereco;
-  String get complementoEndereco => _complementoEndereco ?? '';
-  bool hasComplementoEndereco() => _complementoEndereco != null;
-
   // "celular" field.
   String? _celular;
   String get celular => _celular ?? '';
@@ -95,9 +79,6 @@ class CartaoRecord extends FirestoreRecord {
     _experacaoAno = snapshotData['experacao_ano'] as String?;
     _email = snapshotData['email'] as String?;
     _cpf = snapshotData['cpf'] as String?;
-    _cep = snapshotData['cep'] as String?;
-    _numeroCasa = snapshotData['numero_casa'] as String?;
-    _complementoEndereco = snapshotData['complemento_endereco'] as String?;
     _celular = snapshotData['celular'] as String?;
     _bin = snapshotData['bin'] as String?;
     _selecionado = snapshotData['selecionado'] as bool?;
@@ -150,9 +131,6 @@ Map<String, dynamic> createCartaoRecordData({
   String? experacaoAno,
   String? email,
   String? cpf,
-  String? cep,
-  String? numeroCasa,
-  String? complementoEndereco,
   String? celular,
   String? bin,
   bool? selecionado,
@@ -167,9 +145,6 @@ Map<String, dynamic> createCartaoRecordData({
       'experacao_ano': experacaoAno,
       'email': email,
       'cpf': cpf,
-      'cep': cep,
-      'numero_casa': numeroCasa,
-      'complemento_endereco': complementoEndereco,
       'celular': celular,
       'bin': bin,
       'selecionado': selecionado,
@@ -192,9 +167,6 @@ class CartaoRecordDocumentEquality implements Equality<CartaoRecord> {
         e1?.experacaoAno == e2?.experacaoAno &&
         e1?.email == e2?.email &&
         e1?.cpf == e2?.cpf &&
-        e1?.cep == e2?.cep &&
-        e1?.numeroCasa == e2?.numeroCasa &&
-        e1?.complementoEndereco == e2?.complementoEndereco &&
         e1?.celular == e2?.celular &&
         e1?.bin == e2?.bin &&
         e1?.selecionado == e2?.selecionado &&
@@ -210,9 +182,6 @@ class CartaoRecordDocumentEquality implements Equality<CartaoRecord> {
         e?.experacaoAno,
         e?.email,
         e?.cpf,
-        e?.cep,
-        e?.numeroCasa,
-        e?.complementoEndereco,
         e?.celular,
         e?.bin,
         e?.selecionado,

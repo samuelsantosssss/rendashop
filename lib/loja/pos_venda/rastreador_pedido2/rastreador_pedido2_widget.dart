@@ -5,15 +5,10 @@ import '/carregando/carregando9/carregando9_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'rastreador_pedido2_model.dart';
 export 'rastreador_pedido2_model.dart';
 
@@ -56,7 +51,7 @@ class _RastreadorPedido2WidgetState extends State<RastreadorPedido2Widget> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<PedidosTotalRecord>(
-      stream: PedidosTotalRecord.getDocument(widget!.pedidoRef2!),
+      stream: PedidosTotalRecord.getDocument(widget.pedidoRef2!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -122,7 +117,7 @@ class _RastreadorPedido2WidgetState extends State<RastreadorPedido2Widget> {
               stream: queryRastreio2Record(
                 queryBuilder: (rastreio2Record) => rastreio2Record.where(
                   'pedidoRef2',
-                  isEqualTo: widget!.pedidoRef2,
+                  isEqualTo: widget.pedidoRef2,
                 ),
               ),
               builder: (context, snapshot) {
@@ -612,7 +607,7 @@ class _RastreadorPedido2WidgetState extends State<RastreadorPedido2Widget> {
                                           rastreio2Record
                                               .where(
                                                 'pedidoRef2',
-                                                isEqualTo: widget!.pedidoRef2,
+                                                isEqualTo: widget.pedidoRef2,
                                               )
                                               .orderBy('data',
                                                   descending: true),

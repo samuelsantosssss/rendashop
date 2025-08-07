@@ -3,15 +3,12 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/venda/saque_afiliado/saque_pix_atualizar/saque_pix_atualizar_widget.dart';
 import '/venda/saque_afiliado/saque_pix_cadastrar/saque_pix_cadastrar_widget.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'saque_model.dart';
 export 'saque_model.dart';
 
@@ -438,9 +435,6 @@ class _SaqueWidgetState extends State<SaqueWidget> {
                         onTap: () async {
                           if (valueOrDefault(
                                       currentUserDocument?.chavePix, '') !=
-                                  null &&
-                              valueOrDefault(
-                                      currentUserDocument?.chavePix, '') !=
                                   '') {
                             await showModalBottomSheet(
                               isScrollControlled: true,
@@ -504,11 +498,6 @@ class _SaqueWidgetState extends State<SaqueWidget> {
                                 child: AuthUserStreamWidget(
                                   builder: (context) => Text(
                                     valueOrDefault(
-                                                    currentUserDocument
-                                                        ?.chavePix,
-                                                    '') !=
-                                                null &&
-                                            valueOrDefault(
                                                     currentUserDocument
                                                         ?.chavePix,
                                                     '') !=

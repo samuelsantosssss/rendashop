@@ -1,4 +1,3 @@
-import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/carregando/carregando18/carregando18_widget.dart';
@@ -8,18 +7,15 @@ import '/carregando/carregando21/carregando21_widget.dart';
 import '/carregando/carregando25/carregando25_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/loja/promocao_relampago/time_promo_home/time_promo_home_widget.dart';
 import '/loja/promocao_relampago/updata_promo_home/updata_promo_home_widget.dart';
 import '/nav_bar/nav_bar_home/nav_bar_home_widget.dart';
-import 'dart:ui';
+import '/perfil/baixar_app/baixar_app_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -183,7 +179,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                   builder: (context) {
                                     final banner = containerBannerRecord
                                             ?.listaBanner
-                                            ?.toList() ??
+                                            .toList() ??
                                         [];
 
                                     return Container(
@@ -306,7 +302,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Roupas Femininas',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -436,7 +432,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Roupas Masculinas',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -578,7 +574,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Beleza',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -711,7 +707,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Acessórios de Moda',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -853,7 +849,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Casa e Decoração',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -977,7 +973,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Sapatos Femininos',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -1119,7 +1115,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Sapatos Masculinos',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -1243,7 +1239,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Moda Infantil',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -1394,7 +1390,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Relógios',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -1530,7 +1526,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Celulares e Dispositivos',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -1672,7 +1668,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Esporte e Lazer',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -1799,7 +1795,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Eletrodomésticos',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -1941,7 +1937,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Automóveis',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -2077,7 +2073,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Brinquedos e Hobbies',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -2219,7 +2215,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Saúde',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -2355,7 +2351,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Áudio',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -2506,7 +2502,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Mãe e Bebê',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -2642,7 +2638,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Bolsas Femininas',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -2793,7 +2789,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Bolsas Masculinas',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -2920,7 +2916,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Animais Domésticos',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -3071,7 +3067,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Papelaria',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -3207,7 +3203,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Computadores e Acessórios',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -3358,7 +3354,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Alimentos e Bebidas',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -3485,7 +3481,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Jogos e Consoles',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -3636,7 +3632,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Câmeras e Drones',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -3763,7 +3759,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Viagens e Bagagens',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -3914,7 +3910,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                 'Livros e Revistas',
                                                                 (currentUserDocument
                                                                             ?.historicoPesquisa
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .toList())
                                                             .toList()
@@ -4633,7 +4629,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                                   child: Padding(
                                                                                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 2.0, 0.0),
                                                                                     child: Text(
-                                                                                      functions.porcentagemPromo(produtoListItem.precoAntes, produtoListItem.titulo1 != null && produtoListItem.titulo1 != '' ? produtoListItem.promoRelampagoMenorValor : produtoListItem.preco),
+                                                                                      functions.porcentagemPromo(produtoListItem.precoAntes, produtoListItem.titulo1 != '' ? produtoListItem.promoRelampagoMenorValor : produtoListItem.preco),
                                                                                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                             font: GoogleFonts.inter(
                                                                                               fontWeight: FontWeight.w500,
@@ -4704,7 +4700,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                               0.0),
                                                                           child:
                                                                               Text(
-                                                                            functions.valorDoubleEmString(produtoListItem.titulo1 != null && produtoListItem.titulo1 != ''
+                                                                            functions.valorDoubleEmString(produtoListItem.titulo1 != ''
                                                                                 ? produtoListItem.menorPrecoRevenda
                                                                                 : produtoListItem.preco),
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -4962,11 +4958,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          _model.retorno5 = await actions.firebaseDiagnostic();
-                          FFAppState().apagar = _model.retorno5!;
-                          safeSetState(() {});
-
-                          safeSetState(() {});
+                          await actions.notificacaoVenda();
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -4992,51 +4984,6 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                       color:
                                           FlutterFlowTheme.of(context).primary,
                                       fontSize: 15.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
-                                    ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(-1.0, -1.0),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 5.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                        ),
-                        child: Visibility(
-                          visible:
-                              _model.retorno5 != null && _model.retorno5 != '',
-                          child: Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  19.0, 10.0, 0.0, 10.0),
-                              child: Text(
-                                FFAppState().apagar,
-                                style: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      font: GoogleFonts.interTight(
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .fontStyle,
-                                      ),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      fontSize: 12.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                       fontStyle: FlutterFlowTheme.of(context)
@@ -5079,20 +5026,20 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                           .recomendarProdutosPersonalizados(
                                               feed2ProdutoRecordList.toList(),
                                               (currentUserDocument?.favorito
-                                                          ?.toList() ??
+                                                          .toList() ??
                                                       [])
                                                   .toList(),
                                               (currentUserDocument?.historicoPesquisa
-                                                          ?.toList() ??
+                                                          .toList() ??
                                                       [])
                                                   .toList(),
                                               (currentUserDocument?.vistoRecente
-                                                          ?.toList() ??
+                                                          .toList() ??
                                                       [])
                                                   .toList(),
                                               (currentUserDocument
                                                           ?.comprasHistoricoProdutos
-                                                          ?.toList() ??
+                                                          .toList() ??
                                                       [])
                                                   .toList(),
                                               FFAppState()
@@ -5184,7 +5131,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                         safeSetState(() {});
                                                         if ((currentUserDocument
                                                                         ?.vistoRecente
-                                                                        ?.toList() ??
+                                                                        .toList() ??
                                                                     [])
                                                                 .length ==
                                                             6) {
@@ -5197,7 +5144,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                         .arrayRemove([
                                                                   (currentUserDocument
                                                                               ?.vistoRecente
-                                                                              ?.toList() ??
+                                                                              .toList() ??
                                                                           [])
                                                                       .firstOrNull
                                                                 ]),
@@ -5318,8 +5265,6 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                           ),
                                                                         ),
                                                                         if (containerProdutoRecord.video !=
-                                                                                null &&
-                                                                            containerProdutoRecord.video !=
                                                                                 '')
                                                                           Align(
                                                                             alignment:
@@ -5343,8 +5288,6 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                             ),
                                                                           ),
                                                                         if (containerProdutoRecord.capsula1 !=
-                                                                                null &&
-                                                                            containerProdutoRecord.capsula1 !=
                                                                                 '')
                                                                           Align(
                                                                             alignment:
@@ -5392,7 +5335,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                                           ),
                                                                                         ),
                                                                                       ),
-                                                                                      if (containerProdutoRecord.capsula2 != null && containerProdutoRecord.capsula2 != '')
+                                                                                      if (containerProdutoRecord.capsula2 != '')
                                                                                         Padding(
                                                                                           padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                           child: Container(
@@ -5419,7 +5362,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                                             ),
                                                                                           ),
                                                                                         ),
-                                                                                      if (containerProdutoRecord.capsula3 != null && containerProdutoRecord.capsula3 != '')
+                                                                                      if (containerProdutoRecord.capsula3 != '')
                                                                                         Padding(
                                                                                           padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                           child: Container(
@@ -5446,7 +5389,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                                             ),
                                                                                           ),
                                                                                         ),
-                                                                                      if (containerProdutoRecord.capsulaExtra != null && containerProdutoRecord.capsulaExtra != '')
+                                                                                      if (containerProdutoRecord.capsulaExtra != '')
                                                                                         Padding(
                                                                                           padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
                                                                                           child: Text(
@@ -5498,42 +5441,40 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                           mainAxisSize:
                                                                               MainAxisSize.max,
                                                                           children: [
-                                                                            if (containerProdutoRecord.precoAntes !=
-                                                                                null)
-                                                                              Align(
-                                                                                alignment: AlignmentDirectional(0.0, 1.0),
-                                                                                child: Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 3.0, 0.0),
-                                                                                  child: Container(
-                                                                                    width: 29.0,
-                                                                                    height: 16.0,
-                                                                                    decoration: BoxDecoration(
-                                                                                      borderRadius: BorderRadius.circular(4.0),
-                                                                                      border: Border.all(
-                                                                                        color: FlutterFlowTheme.of(context).primary,
-                                                                                        width: 0.7,
-                                                                                      ),
+                                                                            Align(
+                                                                              alignment: AlignmentDirectional(0.0, 1.0),
+                                                                              child: Padding(
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 3.0, 0.0),
+                                                                                child: Container(
+                                                                                  width: 29.0,
+                                                                                  height: 16.0,
+                                                                                  decoration: BoxDecoration(
+                                                                                    borderRadius: BorderRadius.circular(4.0),
+                                                                                    border: Border.all(
+                                                                                      color: FlutterFlowTheme.of(context).primary,
+                                                                                      width: 0.7,
                                                                                     ),
-                                                                                    child: Align(
-                                                                                      alignment: AlignmentDirectional(0.0, 0.0),
-                                                                                      child: Text(
-                                                                                        functions.porcentagemPromo(containerProdutoRecord.precoAntes, containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? containerProdutoRecord.menorPrecoRevenda : containerProdutoRecord.preco),
-                                                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                              font: GoogleFonts.inter(
-                                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                              ),
-                                                                                              color: FlutterFlowTheme.of(context).primary,
-                                                                                              fontSize: 10.0,
-                                                                                              letterSpacing: 0.0,
+                                                                                  ),
+                                                                                  child: Align(
+                                                                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                    child: Text(
+                                                                                      functions.porcentagemPromo(containerProdutoRecord.precoAntes, containerProdutoRecord.titulo1 != '' ? containerProdutoRecord.menorPrecoRevenda : containerProdutoRecord.preco),
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            font: GoogleFonts.inter(
                                                                                               fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                                               fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                             ),
-                                                                                      ),
+                                                                                            color: FlutterFlowTheme.of(context).primary,
+                                                                                            fontSize: 10.0,
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                          ),
                                                                                     ),
                                                                                   ),
                                                                                 ),
                                                                               ),
+                                                                            ),
                                                                             SelectionArea(
                                                                                 child: Text(
                                                                               containerProdutoRecord.nome.maybeHandleOverflow(
@@ -5711,7 +5652,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                                     ),
                                                                               ),
                                                                               Text(
-                                                                                containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? functions.valorRealString(containerProdutoRecord.menorPrecoRevenda) : functions.valorRealString(containerProdutoRecord.preco),
+                                                                                containerProdutoRecord.titulo1 != '' ? functions.valorRealString(containerProdutoRecord.menorPrecoRevenda) : functions.valorRealString(containerProdutoRecord.preco),
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       font: GoogleFonts.inter(
                                                                                         fontWeight: FontWeight.w600,
@@ -5725,7 +5666,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                                     ),
                                                                               ),
                                                                               Text(
-                                                                                containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? functions.valorCentavosEmString(containerProdutoRecord.menorPrecoRevenda) : functions.valorCentavosEmString(containerProdutoRecord.preco),
+                                                                                containerProdutoRecord.titulo1 != '' ? functions.valorCentavosEmString(containerProdutoRecord.menorPrecoRevenda) : functions.valorCentavosEmString(containerProdutoRecord.preco),
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       font: GoogleFonts.inter(
                                                                                         fontWeight: FontWeight.w600,
@@ -6019,8 +5960,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                               ),
                               if ((FFAppState().FeedAntes !=
                                       FFAppState().FeedDepois) ||
-                                  (FFAppState().FeedAntes == null ||
-                                      FFAppState().FeedAntes == ''))
+                                  (FFAppState().FeedAntes == ''))
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 15.0, 10.0, 0.0),
@@ -6034,20 +5974,20 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                           .recomendarProdutosPersonalizados(
                                               feed2ProdutoRecordList.toList(),
                                               (currentUserDocument?.favorito
-                                                          ?.toList() ??
+                                                          .toList() ??
                                                       [])
                                                   .toList(),
                                               (currentUserDocument?.historicoPesquisa
-                                                          ?.toList() ??
+                                                          .toList() ??
                                                       [])
                                                   .toList(),
                                               (currentUserDocument?.vistoRecente
-                                                          ?.toList() ??
+                                                          .toList() ??
                                                       [])
                                                   .toList(),
                                               (currentUserDocument
                                                           ?.comprasHistoricoProdutos
-                                                          ?.toList() ??
+                                                          .toList() ??
                                                       [])
                                                   .toList(),
                                               FFAppState()
@@ -6066,20 +6006,20 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                           .recomendarProdutosPersonalizados(
                                               feed2ProdutoRecordList.toList(),
                                               (currentUserDocument?.favorito
-                                                          ?.toList() ??
+                                                          .toList() ??
                                                       [])
                                                   .toList(),
                                               (currentUserDocument?.historicoPesquisa
-                                                          ?.toList() ??
+                                                          .toList() ??
                                                       [])
                                                   .toList(),
                                               (currentUserDocument?.vistoRecente
-                                                          ?.toList() ??
+                                                          .toList() ??
                                                       [])
                                                   .toList(),
                                               (currentUserDocument
                                                           ?.comprasHistoricoProdutos
-                                                          ?.toList() ??
+                                                          .toList() ??
                                                       [])
                                                   .toList(),
                                               FFAppState()
@@ -6154,8 +6094,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                     },
                   ),
                   if ((FFAppState().FeedAntes == FFAppState().FeedDepois) &&
-                      (FFAppState().FeedAntes != null &&
-                          FFAppState().FeedAntes != ''))
+                      (FFAppState().FeedAntes != ''))
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
@@ -6206,28 +6145,24 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
-                      _model.retorno = await actions.detectarAndroidOuIOS();
-                      if (_model.retorno!) {
-                        _model.respostaAndroid2 = await queryLinkRecordOnce(
-                          queryBuilder: (linkRecord) => linkRecord.where(
-                            'tipo',
-                            isEqualTo: 'baixarAndroid',
-                          ),
-                          singleRecord: true,
-                        ).then((s) => s.firstOrNull);
-                        await launchURL(_model.respostaAndroid2!.link);
-                      } else {
-                        _model.respostaIos2 = await queryLinkRecordOnce(
-                          queryBuilder: (linkRecord) => linkRecord.where(
-                            'tipo',
-                            isEqualTo: 'baixarIos',
-                          ),
-                          singleRecord: true,
-                        ).then((s) => s.firstOrNull);
-                        await launchURL(_model.respostaIos2!.link);
-                      }
-
-                      safeSetState(() {});
+                      await showModalBottomSheet(
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        enableDrag: false,
+                        context: context,
+                        builder: (context) {
+                          return GestureDetector(
+                            onTap: () {
+                              FocusScope.of(context).unfocus();
+                              FocusManager.instance.primaryFocus?.unfocus();
+                            },
+                            child: Padding(
+                              padding: MediaQuery.viewInsetsOf(context),
+                              child: BaixarAppWidget(),
+                            ),
+                          );
+                        },
+                      ).then((value) => safeSetState(() {}));
                     },
                     child: Container(
                       width: double.infinity,

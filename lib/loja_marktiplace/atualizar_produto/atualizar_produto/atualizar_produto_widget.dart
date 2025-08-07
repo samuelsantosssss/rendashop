@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
@@ -9,17 +8,14 @@ import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/loja_marktiplace/atualizar_produto/capsula_variacao_atualizar/capsula_variacao_atualizar_widget.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'atualizar_produto_model.dart';
 export 'atualizar_produto_model.dart';
@@ -82,7 +78,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
     context.watch<FFAppState>();
 
     return StreamBuilder<ProdutoRecord>(
-      stream: ProdutoRecord.getDocument(widget!.produtoRef!),
+      stream: ProdutoRecord.getDocument(widget.produtoRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -309,7 +305,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                                 }
                                               }
 
-                                              await widget!.produtoRef!.update({
+                                              await widget.produtoRef!.update({
                                                 ...mapToFirestore(
                                                   {
                                                     'imagens': functions
@@ -1161,7 +1157,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                                     width: 2,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .alternate!,
+                                                        .alternate,
                                                   )
                                                 : null,
                                             activeColor:
@@ -1479,7 +1475,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                                     width: 2,
                                                     color: FlutterFlowTheme.of(
                                                             context)
-                                                        .alternate!,
+                                                        .alternate,
                                                   )
                                                 : null,
                                             activeColor:
@@ -1678,7 +1674,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                               }
                                             }
 
-                                            await widget!.produtoRef!
+                                            await widget.produtoRef!
                                                 .update(createProdutoRecordData(
                                               video: _model
                                                   .uploadedFileUrl_uploadData33f4455684,
@@ -1746,8 +1742,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                 ),
                               ),
                             ),
-                            if (atualizarProdutoProdutoRecord.video != null &&
-                                atualizarProdutoProdutoRecord.video != '')
+                            if (atualizarProdutoProdutoRecord.video != '')
                               SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
@@ -1801,7 +1796,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    await widget!.produtoRef!
+                                                    await widget.produtoRef!
                                                         .update({
                                                       ...mapToFirestore(
                                                         {
@@ -2740,7 +2735,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                             AtualizarVarianteProdutoWidget.routeName,
                             queryParameters: {
                               'produtoRef': serializeParam(
-                                widget!.produtoRef,
+                                widget.produtoRef,
                                 ParamType.DocumentReference,
                               ),
                             }.withoutNulls,
@@ -2826,8 +2821,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                       ),
                     ),
                   ),
-                  if (atualizarProdutoProdutoRecord.titulo1 != null &&
-                      atualizarProdutoProdutoRecord.titulo1 != '')
+                  if (atualizarProdutoProdutoRecord.titulo1 != '')
                     Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -2857,7 +2851,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                   child: Padding(
                                     padding: MediaQuery.viewInsetsOf(context),
                                     child: CapsulaVariacaoAtualizarWidget(
-                                      produtoRef: widget!.produtoRef!,
+                                      produtoRef: widget.produtoRef!,
                                     ),
                                   ),
                                 );
@@ -3360,8 +3354,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                       ),
                     ),
                   ),
-                  if (atualizarProdutoProdutoRecord.titulo1 == null ||
-                      atualizarProdutoProdutoRecord.titulo1 == '')
+                  if (atualizarProdutoProdutoRecord.titulo1 == '')
                     Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -3503,8 +3496,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                               );
                                             });
                                           });
-                                          if (FFAppState().titulo1 != null &&
-                                              FFAppState().titulo1 != '') {
+                                          if (FFAppState().titulo1 != '') {
                                             safeSetState(() {
                                               _model.precoTextController
                                                   ?.clear();
@@ -3625,8 +3617,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                         ),
                       ),
                     ),
-                  if (FFAppState().titulo1 == null ||
-                      FFAppState().titulo1 == '')
+                  if (FFAppState().titulo1 == '')
                     Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -3774,7 +3765,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                                   if (atualizarProdutoProdutoRecord
                                                           .comissaoAfiliado !=
                                                       1) {
-                                                    await widget!.produtoRef!
+                                                    await widget.produtoRef!
                                                         .update({
                                                       ...mapToFirestore(
                                                         {
@@ -3938,7 +3929,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
-                                                await widget!.produtoRef!
+                                                await widget.produtoRef!
                                                     .update({
                                                   ...mapToFirestore(
                                                     {
@@ -4035,8 +4026,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                         ),
                       ),
                     ),
-                  if (atualizarProdutoProdutoRecord.titulo1 == null ||
-                      atualizarProdutoProdutoRecord.titulo1 == '')
+                  if (atualizarProdutoProdutoRecord.titulo1 == '')
                     Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
@@ -5019,7 +5009,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                                 .envioNaciona,
                                         onChanged: (newValue) async {
                                           safeSetState(() =>
-                                              _model.switchValue1 = newValue!);
+                                              _model.switchValue1 = newValue);
                                         },
                                         activeColor: Colors.white,
                                         activeTrackColor:
@@ -5125,7 +5115,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                                 .freteRapido,
                                         onChanged: (newValue) async {
                                           safeSetState(() =>
-                                              _model.switchValue2 = newValue!);
+                                              _model.switchValue2 = newValue);
                                         },
                                         activeColor: Colors.white,
                                         activeTrackColor:
@@ -5454,7 +5444,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                             ) ??
                             false;
                         if (confirmDialogResponse) {
-                          await widget!.produtoRef!.delete();
+                          await widget.produtoRef!.delete();
                           context.safePop();
                         }
                       },

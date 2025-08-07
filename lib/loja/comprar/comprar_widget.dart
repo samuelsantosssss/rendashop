@@ -1,4 +1,3 @@
-import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
@@ -16,13 +15,10 @@ import '/loja/imposto_importacao/imposto_importacao_widget.dart';
 import '/loja/pagamento/moedas_renda_shop/moedas_renda_shop_widget.dart';
 import '/loja/pagamento/moedas_renda_shop2/moedas_renda_shop2_widget.dart';
 import '/loja/taxa_processamento/taxa_processamento_widget.dart';
-import 'dart:ui';
-import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter/gestures.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -524,11 +520,6 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                               currentUserDocument
                                                   ?.enderecoCompleto,
                                               '') ==
-                                          null ||
-                                      valueOrDefault(
-                                              currentUserDocument
-                                                  ?.enderecoCompleto,
-                                              '') ==
                                           '')
                                     AuthUserStreamWidget(
                                       builder: (context) => InkWell(
@@ -852,6 +843,21 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                                         _model.textController,
                                                     focusNode: _model
                                                         .textFieldFocusNode,
+                                                    onChanged: (_) =>
+                                                        EasyDebounce.debounce(
+                                                      '_model.textController',
+                                                      Duration(
+                                                          milliseconds: 2000),
+                                                      () async {
+                                                        await currentUserReference!
+                                                            .update(
+                                                                createUserRecordData(
+                                                          cpf: _model
+                                                              .textController
+                                                              .text,
+                                                        ));
+                                                      },
+                                                    ),
                                                     autofocus: false,
                                                     obscureText: false,
                                                     decoration: InputDecoration(
@@ -1143,9 +1149,6 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                                                 ),
                                                           ),
                                                           if (carrinho2CarrinhoRecord
-                                                                      .variacao !=
-                                                                  null &&
-                                                              carrinho2CarrinhoRecord
                                                                       .variacao !=
                                                                   '')
                                                             Align(
@@ -2745,8 +2748,8 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                                           (newValue) async {
                                                         safeSetState(() =>
                                                             _model.switchValue =
-                                                                newValue!);
-                                                        if (newValue!) {
+                                                                newValue);
+                                                        if (newValue) {
                                                           FFAppState().moeda =
                                                               functions.moedaLimitar(
                                                                   valueOrDefault(
@@ -3028,7 +3031,7 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                                                   width: 2,
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .alternate!,
+                                                                      .alternate,
                                                                 )
                                                               : null,
                                                           activeColor:
@@ -3255,7 +3258,7 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                                                         width:
                                                                             2,
                                                                         color: FlutterFlowTheme.of(context)
-                                                                            .alternate!,
+                                                                            .alternate,
                                                                       )
                                                                     : null,
                                                                 activeColor:
@@ -3735,7 +3738,7 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                                                                 side: (FlutterFlowTheme.of(context).alternate != null)
                                                                                     ? BorderSide(
                                                                                         width: 2,
-                                                                                        color: FlutterFlowTheme.of(context).alternate!,
+                                                                                        color: FlutterFlowTheme.of(context).alternate,
                                                                                       )
                                                                                     : null,
                                                                                 activeColor: FlutterFlowTheme.of(context).primary,
@@ -3930,8 +3933,7 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                       ),
                                     ),
                                   ),
-                                  if (FFAppState().taxaProcessamento != null &&
-                                      FFAppState().taxaProcessamento != '')
+                                  if (FFAppState().taxaProcessamento != '')
                                     Align(
                                       alignment:
                                           AlignmentDirectional(-1.0, -1.0),
@@ -5537,594 +5539,9 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                                       snapshot.data!;
 
                                                   return FFButtonWidget(
-                                                    onPressed: () async {
-                                                      var _shouldSetState =
-                                                          false;
-                                                      if (valueOrDefault(
-                                                                  currentUserDocument
-                                                                      ?.enderecoCompleto,
-                                                                  '') !=
-                                                              null &&
-                                                          valueOrDefault(
-                                                                  currentUserDocument
-                                                                      ?.enderecoCompleto,
-                                                                  '') !=
-                                                              '') {
-                                                        if (valueOrDefault(
-                                                                    currentUserDocument
-                                                                        ?.cpf,
-                                                                    '') !=
-                                                                null &&
-                                                            valueOrDefault(
-                                                                    currentUserDocument
-                                                                        ?.cpf,
-                                                                    '') !=
-                                                                '') {
-                                                          if (FFAppState()
-                                                                      .metodoPagamento !=
-                                                                  null &&
-                                                              FFAppState()
-                                                                      .metodoPagamento !=
-                                                                  '') {
-                                                            if (valueOrDefault(
-                                                                        currentUserDocument
-                                                                            ?.iDAsaas,
-                                                                        '') !=
-                                                                    null &&
-                                                                valueOrDefault(
-                                                                        currentUserDocument
-                                                                            ?.iDAsaas,
-                                                                        '') !=
-                                                                    '') {
-                                                              FFAppState()
-                                                                      .IDasaas =
-                                                                  functions
-                                                                      .gerarID();
-                                                              FFAppState().totalPedido = functions.valorDoubleEmString(functions.somaXmaisY(
-                                                                  functions.somaXmaisY(
-                                                                      functions.impostoICMSTotal(
-                                                                          comprarCarrinhoRecordList
-                                                                              .toList(),
-                                                                          valueOrDefault(
-                                                                              currentUserDocument
-                                                                                  ?.enderecoCompleto,
-                                                                              '')),
-                                                                      functions.impostoDeImportacaoTotal(
-                                                                          comprarCarrinhoRecordList
-                                                                              .toList()))!,
-                                                                  functions.calcularTotalDeQueriesTrue2(
-                                                                      comprarCarrinhoRecordList
-                                                                          .toList(),
-                                                                      FFAppState()
-                                                                          .taxaCartaoDouble,
-                                                                      FFAppState()
-                                                                          .moeda))!);
-                                                              FFAppState().totalPedido2 = functions.somaXmaisY(
-                                                                  functions.somaXmaisY(
-                                                                      functions.impostoICMSTotal(
-                                                                          comprarCarrinhoRecordList
-                                                                              .toList(),
-                                                                          valueOrDefault(
-                                                                              currentUserDocument
-                                                                                  ?.enderecoCompleto,
-                                                                              '')),
-                                                                      functions.impostoDeImportacaoTotal(
-                                                                          comprarCarrinhoRecordList
-                                                                              .toList()))!,
-                                                                  functions.calcularTotalDeQueriesTrue2(
-                                                                      comprarCarrinhoRecordList
-                                                                          .toList(),
-                                                                      FFAppState()
-                                                                          .taxaCartaoDouble,
-                                                                      FFAppState()
-                                                                          .moeda))!;
-                                                              safeSetState(
-                                                                  () {});
-                                                              _model.apiResultIP =
-                                                                  await ObterIPCall
-                                                                      .call();
-
-                                                              _shouldSetState =
-                                                                  true;
-                                                              if ((_model
-                                                                      .apiResultIP
-                                                                      ?.succeeded ??
-                                                                  true)) {
-                                                                FFAppState()
-                                                                        .IP =
-                                                                    ObterIPCall
-                                                                        .ip(
-                                                                  (_model.apiResultIP
-                                                                          ?.jsonBody ??
-                                                                      ''),
-                                                                )!;
-                                                                safeSetState(
-                                                                    () {});
-                                                              }
-                                                              _model.apiResulto1xxxxxxx =
-                                                                  await AsaasPagamentoCall
-                                                                      .call(
-                                                                customer: valueOrDefault(
-                                                                    currentUserDocument
-                                                                        ?.iDAsaas,
-                                                                    ''),
-                                                                billingType:
-                                                                    'CREDIT_CARD',
-                                                                dueDate:
-                                                                    getCurrentTimestamp
-                                                                        .toString(),
-                                                                holderName:
-                                                                    cartaoCartaoRecord
-                                                                        .nomeCompleto,
-                                                                number: functions
-                                                                    .removerCaracteresString(
-                                                                        cartaoCartaoRecord
-                                                                            .numeroCartao),
-                                                                expiryMonth:
-                                                                    cartaoCartaoRecord
-                                                                        .expiracaoMes,
-                                                                expiryYear:
-                                                                    cartaoCartaoRecord
-                                                                        .experacaoAno,
-                                                                ccv:
-                                                                    FFAppState()
-                                                                        .ccv,
-                                                                name: cartaoCartaoRecord
-                                                                    .nomeCompleto,
-                                                                email:
-                                                                    cartaoCartaoRecord
-                                                                        .email,
-                                                                cpfCnpj:
-                                                                    cartaoCartaoRecord
-                                                                        .cpf,
-                                                                postalCode:
-                                                                    cartaoCartaoRecord
-                                                                        .cep,
-                                                                addressNumber:
-                                                                    cartaoCartaoRecord
-                                                                        .numeroCasa,
-                                                                addressComplement:
-                                                                    cartaoCartaoRecord
-                                                                        .complementoEndereco,
-                                                                mobilePhone:
-                                                                    cartaoCartaoRecord
-                                                                        .celular,
-                                                                remoteIp:
-                                                                    FFAppState()
-                                                                        .IP,
-                                                                value: functions
-                                                                    .valorTotalCartao(
-                                                                        FFAppState()
-                                                                            .parceladoApagagar),
-                                                                description:
-                                                                    FFAppState()
-                                                                        .IDasaas,
-                                                                totalValue:
-                                                                    FFAppState()
-                                                                        .totalPedido2,
-                                                                installmentCount: functions
-                                                                    .valorParcela(
-                                                                        FFAppState()
-                                                                            .parceladoApagagar)
-                                                                    .toDouble(),
-                                                              );
-
-                                                              _shouldSetState =
-                                                                  true;
-                                                              if ((_model
-                                                                      .apiResulto1xxxxxxx
-                                                                      ?.succeeded ??
-                                                                  true)) {
-                                                                FFAppState()
-                                                                        .statusPagamento =
-                                                                    'pago';
-                                                                safeSetState(
-                                                                    () {});
-                                                              } else {
-                                                                FFAppState()
-                                                                        .statusPagamento =
-                                                                    'naopago';
-                                                                safeSetState(
-                                                                    () {});
-                                                              }
-
-                                                              if (FFAppState()
-                                                                      .cupomSelecionadoRef !=
-                                                                  null) {
-                                                                await FFAppState()
-                                                                    .cupomSelecionadoRef!
-                                                                    .delete();
-                                                              }
-                                                              if (FFAppState()
-                                                                      .moeda !=
-                                                                  null) {
-                                                                await currentUserReference!
-                                                                    .update({
-                                                                  ...mapToFirestore(
-                                                                    {
-                                                                      'moedas':
-                                                                          FieldValue.increment(
-                                                                              -(FFAppState().moeda)),
-                                                                    },
-                                                                  ),
-                                                                });
-                                                              }
-                                                              if (FFAppState()
-                                                                      .statusPagamento ==
-                                                                  'pago') {
-                                                                if (Navigator.of(
-                                                                        context)
-                                                                    .canPop()) {
-                                                                  context.pop();
-                                                                }
-                                                                context.pushNamed(
-                                                                    CompraAprovadaWidget
-                                                                        .routeName);
-
-                                                                if (_shouldSetState)
-                                                                  safeSetState(
-                                                                      () {});
-                                                                return;
-                                                              } else {
-                                                                if (Navigator.of(
-                                                                        context)
-                                                                    .canPop()) {
-                                                                  context.pop();
-                                                                }
-                                                                context.pushNamed(
-                                                                    PagamentoReprovadoWidget
-                                                                        .routeName);
-
-                                                                if (_shouldSetState)
-                                                                  safeSetState(
-                                                                      () {});
-                                                                return;
-                                                              }
-                                                            } else {
-                                                              FFAppState()
-                                                                      .IDasaas =
-                                                                  functions
-                                                                      .gerarID();
-                                                              FFAppState().totalPedido = functions.valorDoubleEmString(functions.somaXmaisY(
-                                                                  functions.somaXmaisY(
-                                                                      functions.impostoICMSTotal(
-                                                                          comprarCarrinhoRecordList
-                                                                              .toList(),
-                                                                          valueOrDefault(
-                                                                              currentUserDocument
-                                                                                  ?.enderecoCompleto,
-                                                                              '')),
-                                                                      functions.impostoDeImportacaoTotal(
-                                                                          comprarCarrinhoRecordList
-                                                                              .toList()))!,
-                                                                  functions.calcularTotalDeQueriesTrue2(
-                                                                      comprarCarrinhoRecordList
-                                                                          .toList(),
-                                                                      FFAppState()
-                                                                          .taxaCartaoDouble,
-                                                                      FFAppState()
-                                                                          .moeda))!);
-                                                              FFAppState().totalPedido2 = functions.somaXmaisY(
-                                                                  functions.somaXmaisY(
-                                                                      functions.impostoICMSTotal(
-                                                                          comprarCarrinhoRecordList
-                                                                              .toList(),
-                                                                          valueOrDefault(
-                                                                              currentUserDocument
-                                                                                  ?.enderecoCompleto,
-                                                                              '')),
-                                                                      functions.impostoDeImportacaoTotal(
-                                                                          comprarCarrinhoRecordList
-                                                                              .toList()))!,
-                                                                  functions.calcularTotalDeQueriesTrue2(
-                                                                      comprarCarrinhoRecordList
-                                                                          .toList(),
-                                                                      FFAppState()
-                                                                          .taxaCartaoDouble,
-                                                                      FFAppState()
-                                                                          .moeda))!;
-                                                              safeSetState(
-                                                                  () {});
-                                                              _model.apiResultduu =
-                                                                  await AsaasTokenClienteCall
-                                                                      .call(
-                                                                dateCreated:
-                                                                    getCurrentTimestamp
-                                                                        .toString(),
-                                                                name: cartaoCartaoRecord
-                                                                    .nomeCompleto,
-                                                                email:
-                                                                    cartaoCartaoRecord
-                                                                        .email,
-                                                                mobilePhone:
-                                                                    cartaoCartaoRecord
-                                                                        .celular,
-                                                                address:
-                                                                    containerEnderecosRecord
-                                                                        .rua,
-                                                                addressNumber:
-                                                                    containerEnderecosRecord
-                                                                        .numero,
-                                                                province:
-                                                                    containerEnderecosRecord
-                                                                        .bairro,
-                                                                complement:
-                                                                    containerEnderecosRecord
-                                                                        .referencia,
-                                                                cpfCnpj:
-                                                                    cartaoCartaoRecord
-                                                                        .cpf,
-                                                                postalCode:
-                                                                    containerEnderecosRecord
-                                                                        .cep,
-                                                              );
-
-                                                              _shouldSetState =
-                                                                  true;
-                                                              await actions
-                                                                  .iCMScriar(
-                                                                comprarCarrinhoRecordList
-                                                                    .toList(),
-                                                                valueOrDefault(
-                                                                    currentUserDocument
-                                                                        ?.enderecoCompleto,
-                                                                    ''),
-                                                              );
-                                                              if ((_model
-                                                                      .apiResultduu
-                                                                      ?.succeeded ??
-                                                                  true)) {
-                                                                await currentUserReference!
-                                                                    .update(
-                                                                        createUserRecordData(
-                                                                  iDAsaas:
-                                                                      AsaasTokenClienteCall
-                                                                          .idCliente(
-                                                                    (_model.apiResultduu
-                                                                            ?.jsonBody ??
-                                                                        ''),
-                                                                  ),
-                                                                ));
-                                                              }
-                                                              _model.apiResultIPP =
-                                                                  await ObterIPCall
-                                                                      .call();
-
-                                                              _shouldSetState =
-                                                                  true;
-                                                              if ((_model
-                                                                      .apiResultIPP
-                                                                      ?.succeeded ??
-                                                                  true)) {
-                                                                FFAppState()
-                                                                        .IP =
-                                                                    ObterIPCall
-                                                                        .ip(
-                                                                  (_model.apiResultIPP
-                                                                          ?.jsonBody ??
-                                                                      ''),
-                                                                )!;
-                                                                safeSetState(
-                                                                    () {});
-                                                              }
-                                                              _model.apiResulto1xx =
-                                                                  await AsaasPagamentoCall
-                                                                      .call(
-                                                                customer: valueOrDefault(
-                                                                    currentUserDocument
-                                                                        ?.iDAsaas,
-                                                                    ''),
-                                                                billingType:
-                                                                    'CREDIT_CARD',
-                                                                dueDate:
-                                                                    getCurrentTimestamp
-                                                                        .toString(),
-                                                                holderName:
-                                                                    cartaoCartaoRecord
-                                                                        .nomeCompleto,
-                                                                number: functions
-                                                                    .removerCaracteresString(
-                                                                        cartaoCartaoRecord
-                                                                            .numeroCartao),
-                                                                expiryMonth:
-                                                                    cartaoCartaoRecord
-                                                                        .expiracaoMes,
-                                                                expiryYear:
-                                                                    cartaoCartaoRecord
-                                                                        .experacaoAno,
-                                                                ccv:
-                                                                    FFAppState()
-                                                                        .ccv,
-                                                                name: cartaoCartaoRecord
-                                                                    .nomeCompleto,
-                                                                email:
-                                                                    cartaoCartaoRecord
-                                                                        .email,
-                                                                cpfCnpj:
-                                                                    cartaoCartaoRecord
-                                                                        .cpf,
-                                                                postalCode:
-                                                                    cartaoCartaoRecord
-                                                                        .cep,
-                                                                addressNumber:
-                                                                    cartaoCartaoRecord
-                                                                        .numeroCasa,
-                                                                addressComplement:
-                                                                    cartaoCartaoRecord
-                                                                        .complementoEndereco,
-                                                                mobilePhone:
-                                                                    cartaoCartaoRecord
-                                                                        .celular,
-                                                                remoteIp:
-                                                                    FFAppState()
-                                                                        .IP,
-                                                                value: functions
-                                                                    .valorTotalCartao(
-                                                                        FFAppState()
-                                                                            .parceladoApagagar),
-                                                                description:
-                                                                    FFAppState()
-                                                                        .IDasaas,
-                                                                totalValue:
-                                                                    FFAppState()
-                                                                        .totalPedido2,
-                                                                installmentCount: functions
-                                                                    .valorParcela(
-                                                                        FFAppState()
-                                                                            .parceladoApagagar)
-                                                                    .toDouble(),
-                                                              );
-
-                                                              _shouldSetState =
-                                                                  true;
-                                                              if ((_model
-                                                                      .apiResulto1xx
-                                                                      ?.succeeded ??
-                                                                  true)) {
-                                                                FFAppState()
-                                                                        .statusPagamento =
-                                                                    'pago';
-                                                                safeSetState(
-                                                                    () {});
-                                                              } else {
-                                                                FFAppState()
-                                                                        .statusPagamento =
-                                                                    'naopago';
-                                                                safeSetState(
-                                                                    () {});
-                                                              }
-
-                                                              if (FFAppState()
-                                                                      .cupomSelecionadoRef !=
-                                                                  null) {
-                                                                await FFAppState()
-                                                                    .cupomSelecionadoRef!
-                                                                    .delete();
-                                                              }
-                                                              if (FFAppState()
-                                                                      .moeda !=
-                                                                  null) {
-                                                                await currentUserReference!
-                                                                    .update({
-                                                                  ...mapToFirestore(
-                                                                    {
-                                                                      'moedas':
-                                                                          FieldValue.increment(
-                                                                              -(FFAppState().moeda)),
-                                                                    },
-                                                                  ),
-                                                                });
-                                                              }
-                                                              if (FFAppState()
-                                                                      .statusPagamento ==
-                                                                  'pago') {
-                                                                if (Navigator.of(
-                                                                        context)
-                                                                    .canPop()) {
-                                                                  context.pop();
-                                                                }
-                                                                context.pushNamed(
-                                                                    CompraAprovadaWidget
-                                                                        .routeName);
-
-                                                                if (_shouldSetState)
-                                                                  safeSetState(
-                                                                      () {});
-                                                                return;
-                                                              } else {
-                                                                if (Navigator.of(
-                                                                        context)
-                                                                    .canPop()) {
-                                                                  context.pop();
-                                                                }
-                                                                context.pushNamed(
-                                                                    PagamentoReprovadoWidget
-                                                                        .routeName);
-
-                                                                if (_shouldSetState)
-                                                                  safeSetState(
-                                                                      () {});
-                                                                return;
-                                                              }
-                                                            }
-                                                          } else {
-                                                            ScaffoldMessenger
-                                                                    .of(context)
-                                                                .showSnackBar(
-                                                              SnackBar(
-                                                                content: Text(
-                                                                  'Adicione o método de pagamento',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: Color(
-                                                                        0xFFF60000),
-                                                                  ),
-                                                                ),
-                                                                duration: Duration(
-                                                                    milliseconds:
-                                                                        2000),
-                                                                backgroundColor:
-                                                                    Color(
-                                                                        0xFFFFCDCD),
-                                                              ),
-                                                            );
-                                                            if (_shouldSetState)
-                                                              safeSetState(
-                                                                  () {});
-                                                            return;
-                                                          }
-                                                        } else {
-                                                          ScaffoldMessenger.of(
-                                                                  context)
-                                                              .showSnackBar(
-                                                            SnackBar(
-                                                              content: Text(
-                                                                'Adicione o CPF',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Color(
-                                                                      0xFFF60000),
-                                                                ),
-                                                              ),
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      2000),
-                                                              backgroundColor:
-                                                                  Color(
-                                                                      0xFFFFCDCD),
-                                                            ),
-                                                          );
-                                                          if (_shouldSetState)
-                                                            safeSetState(() {});
-                                                          return;
-                                                        }
-                                                      } else {
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: Text(
-                                                              'Adicione um endereço para entrega',
-                                                              style: TextStyle(
-                                                                color: Color(
-                                                                    0xFFF60000),
-                                                              ),
-                                                            ),
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    2000),
-                                                            backgroundColor:
-                                                                Color(
-                                                                    0xFFFFCDCD),
-                                                          ),
-                                                        );
-                                                        if (_shouldSetState)
-                                                          safeSetState(() {});
-                                                        return;
-                                                      }
-
-                                                      if (_shouldSetState)
-                                                        safeSetState(() {});
+                                                    onPressed: () {
+                                                      print(
+                                                          'cartao pressed ...');
                                                     },
                                                     text: 'FAZER PEDIDO',
                                                     options: FFButtonOptions(
@@ -6209,26 +5626,13 @@ class _ComprarWidgetState extends State<ComprarWidget> {
                                                         currentUserDocument
                                                             ?.enderecoCompleto,
                                                         '') !=
-                                                    null &&
-                                                valueOrDefault(
-                                                        currentUserDocument
-                                                            ?.enderecoCompleto,
-                                                        '') !=
                                                     '') {
                                               if (valueOrDefault(
                                                           currentUserDocument
                                                               ?.cpf,
                                                           '') !=
-                                                      null &&
-                                                  valueOrDefault(
-                                                          currentUserDocument
-                                                              ?.cpf,
-                                                          '') !=
                                                       '') {
                                                 if (FFAppState()
-                                                            .metodoPagamento !=
-                                                        null &&
-                                                    FFAppState()
                                                             .metodoPagamento !=
                                                         '') {
                                                   FFAppState().totalPedido = functions.valorDoubleEmString(functions.somaXmaisY(

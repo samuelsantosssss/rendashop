@@ -4,11 +4,8 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -62,7 +59,7 @@ class _FreteWidgetState extends State<FreteWidget> {
     context.watch<FFAppState>();
 
     return StreamBuilder<ProdutoRecord>(
-      stream: ProdutoRecord.getDocument(widget!.produtoRef!),
+      stream: ProdutoRecord.getDocument(widget.produtoRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -268,16 +265,8 @@ class _FreteWidgetState extends State<FreteWidget> {
                                                                 currentUserDocument
                                                                     ?.enderecoCompleto,
                                                                 '') !=
-                                                            null &&
-                                                        valueOrDefault(
-                                                                currentUserDocument
-                                                                    ?.enderecoCompleto,
-                                                                '') !=
                                                             '') &&
                                                     (FFAppState()
-                                                                .enderecoTemporario ==
-                                                            null ||
-                                                        FFAppState()
                                                                 .enderecoTemporario ==
                                                             ''))
                                                   AuthUserStreamWidget(
@@ -325,9 +314,6 @@ class _FreteWidgetState extends State<FreteWidget> {
                                                     ),
                                                   ),
                                                 if (FFAppState()
-                                                            .enderecoTemporario !=
-                                                        null &&
-                                                    FFAppState()
                                                             .enderecoTemporario !=
                                                         '')
                                                   Text(
@@ -452,9 +438,6 @@ class _FreteWidgetState extends State<FreteWidget> {
                                                     functions.frete(() {
                                                       if (FFAppState()
                                                                   .enderecoTemporario !=
-                                                              null &&
-                                                          FFAppState()
-                                                                  .enderecoTemporario !=
                                                               '') {
                                                         return FFAppState()
                                                             .enderecoTemporario;
@@ -462,16 +445,8 @@ class _FreteWidgetState extends State<FreteWidget> {
                                                                       currentUserDocument
                                                                           ?.enderecoCompleto,
                                                                       '') !=
-                                                                  null &&
-                                                              valueOrDefault(
-                                                                      currentUserDocument
-                                                                          ?.enderecoCompleto,
-                                                                      '') !=
                                                                   '') &&
                                                           (FFAppState()
-                                                                      .enderecoTemporario ==
-                                                                  null ||
-                                                              FFAppState()
                                                                       .enderecoTemporario ==
                                                                   '')) {
                                                         return valueOrDefault(
@@ -530,9 +505,6 @@ class _FreteWidgetState extends State<FreteWidget> {
                                                           functions.frete(() {
                                                         if (FFAppState()
                                                                     .enderecoTemporario !=
-                                                                null &&
-                                                            FFAppState()
-                                                                    .enderecoTemporario !=
                                                                 '') {
                                                           return FFAppState()
                                                               .enderecoTemporario;
@@ -540,16 +512,8 @@ class _FreteWidgetState extends State<FreteWidget> {
                                                                         currentUserDocument
                                                                             ?.enderecoCompleto,
                                                                         '') !=
-                                                                    null &&
-                                                                valueOrDefault(
-                                                                        currentUserDocument
-                                                                            ?.enderecoCompleto,
-                                                                        '') !=
                                                                     '') &&
                                                             (FFAppState()
-                                                                        .enderecoTemporario ==
-                                                                    null ||
-                                                                FFAppState()
                                                                         .enderecoTemporario ==
                                                                     '')) {
                                                           return valueOrDefault(
@@ -647,9 +611,6 @@ class _FreteWidgetState extends State<FreteWidget> {
                                                 functions.frete(() {
                                               if (FFAppState()
                                                           .enderecoTemporario !=
-                                                      null &&
-                                                  FFAppState()
-                                                          .enderecoTemporario !=
                                                       '') {
                                                 return FFAppState()
                                                     .enderecoTemporario;
@@ -657,16 +618,8 @@ class _FreteWidgetState extends State<FreteWidget> {
                                                               currentUserDocument
                                                                   ?.enderecoCompleto,
                                                               '') !=
-                                                          null &&
-                                                      valueOrDefault(
-                                                              currentUserDocument
-                                                                  ?.enderecoCompleto,
-                                                              '') !=
                                                           '') &&
                                                   (FFAppState()
-                                                              .enderecoTemporario ==
-                                                          null ||
-                                                      FFAppState()
                                                               .enderecoTemporario ==
                                                           '')) {
                                                 return valueOrDefault(
@@ -762,9 +715,6 @@ class _FreteWidgetState extends State<FreteWidget> {
                                                 functions.frete(() {
                                               if (FFAppState()
                                                           .enderecoTemporario !=
-                                                      null &&
-                                                  FFAppState()
-                                                          .enderecoTemporario !=
                                                       '') {
                                                 return FFAppState()
                                                     .enderecoTemporario;
@@ -772,16 +722,8 @@ class _FreteWidgetState extends State<FreteWidget> {
                                                               currentUserDocument
                                                                   ?.enderecoCompleto,
                                                               '') !=
-                                                          null &&
-                                                      valueOrDefault(
-                                                              currentUserDocument
-                                                                  ?.enderecoCompleto,
-                                                              '') !=
                                                           '') &&
                                                   (FFAppState()
-                                                              .enderecoTemporario ==
-                                                          null ||
-                                                      FFAppState()
                                                               .enderecoTemporario ==
                                                           '')) {
                                                 return valueOrDefault(
@@ -1417,13 +1359,10 @@ class _FreteWidgetState extends State<FreteWidget> {
                                                         valueOrDefault<String>(
                                                           _model.cepTextController
                                                                           .text !=
-                                                                      null &&
-                                                                  _model.cepTextController
-                                                                          .text !=
                                                                       ''
                                                               ? valueOrDefault<
                                                                   String>(
-                                                                  '${FFAppState().cidade != null && FFAppState().cidade != '' ? FFAppState().cidade : 'Cidade'} - ${FFAppState().bairro != null && FFAppState().bairro != '' ? FFAppState().estado : 'Estado'}',
+                                                                  '${FFAppState().cidade != '' ? FFAppState().cidade : 'Cidade'} - ${FFAppState().bairro != '' ? FFAppState().estado : 'Estado'}',
                                                                   'Estado - Cidade',
                                                                 )
                                                               : 'Procurando...',

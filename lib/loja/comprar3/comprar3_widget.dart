@@ -1,4 +1,3 @@
-import '/auth/base_auth_user_provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
@@ -18,13 +17,11 @@ import '/loja/pagamento/moedas_renda_shop/moedas_renda_shop_widget.dart';
 import '/loja/pagamento/moedas_renda_shop2/moedas_renda_shop2_widget.dart';
 import '/loja/taxa_processamento/taxa_processamento_widget.dart';
 import 'dart:async';
-import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter/gestures.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -538,11 +535,6 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                               currentUserDocument
                                                   ?.enderecoCompleto,
                                               '') ==
-                                          null ||
-                                      valueOrDefault(
-                                              currentUserDocument
-                                                  ?.enderecoCompleto,
-                                              '') ==
                                           '')
                                     AuthUserStreamWidget(
                                       builder: (context) => InkWell(
@@ -767,7 +759,7 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     7.0, 0.0, 0.0, 0.0),
                                             child: Container(
-                                              width: 71.0,
+                                              width: 143.21,
                                               height: 100.0,
                                               decoration: BoxDecoration(),
                                               child: Row(
@@ -787,8 +779,16 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                   0.0),
                                                       child: Icon(
                                                         Icons.contact_emergency,
-                                                        color:
-                                                            Color(0xFF2EA597),
+                                                        color: valueOrDefault<
+                                                            Color>(
+                                                          FFAppState()
+                                                                  .cpfInvalido
+                                                              ? Color(
+                                                                  0xFFF41010)
+                                                              : Color(
+                                                                  0xFF2EA597),
+                                                          Color(0xFF2EA597),
+                                                        ),
                                                         size: 15.0,
                                                       ),
                                                     ),
@@ -806,7 +806,9 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                   0.0,
                                                                   0.0),
                                                       child: Text(
-                                                        'CPF',
+                                                        FFAppState().cpfInvalido
+                                                            ? 'CPF invalido*'
+                                                            : 'CPF',
                                                         style: FlutterFlowTheme
                                                                 .of(context)
                                                             .bodyMedium
@@ -822,8 +824,18 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                     .bodyMedium
                                                                     .fontStyle,
                                                               ),
-                                                              color: Color(
-                                                                  0xFF9E9B9B),
+                                                              color:
+                                                                  valueOrDefault<
+                                                                      Color>(
+                                                                FFAppState()
+                                                                        .cpfInvalido
+                                                                    ? Color(
+                                                                        0xFFF41010)
+                                                                    : Color(
+                                                                        0xFF9E9B9B),
+                                                                Color(
+                                                                    0xFF9E9B9B),
+                                                              ),
                                                               fontSize: 13.0,
                                                               letterSpacing:
                                                                   0.0,
@@ -866,6 +878,44 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                         _model.textController,
                                                     focusNode: _model
                                                         .textFieldFocusNode,
+                                                    onChanged: (_) =>
+                                                        EasyDebounce.debounce(
+                                                      '_model.textController',
+                                                      Duration(
+                                                          milliseconds: 2000),
+                                                      () async {
+                                                        if (functions
+                                                            .digitosCPF(_model
+                                                                .textController
+                                                                .text)) {
+                                                          if (functions
+                                                              .validarCPF(_model
+                                                                  .textController
+                                                                  .text)) {
+                                                            await currentUserReference!
+                                                                .update(
+                                                                    createUserRecordData(
+                                                              cpf: _model
+                                                                  .textController
+                                                                  .text,
+                                                            ));
+                                                            FFAppState()
+                                                                    .cpfInvalido =
+                                                                false;
+                                                            safeSetState(() {});
+                                                            return;
+                                                          } else {
+                                                            FFAppState()
+                                                                    .cpfInvalido =
+                                                                true;
+                                                            safeSetState(() {});
+                                                            return;
+                                                          }
+                                                        } else {
+                                                          return;
+                                                        }
+                                                      },
+                                                    ),
                                                     autofocus: false,
                                                     obscureText: false,
                                                     decoration: InputDecoration(
@@ -1657,9 +1707,6 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                             children: [
                                                               if (carrinho2CarrinhoFinalRecord
                                                                           .fretePromo !=
-                                                                      null &&
-                                                                  carrinho2CarrinhoFinalRecord
-                                                                          .fretePromo !=
                                                                       '')
                                                                 Row(
                                                                   mainAxisSize:
@@ -1743,9 +1790,6 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                   ],
                                                                 ),
                                                               if (carrinho2CarrinhoFinalRecord
-                                                                          .fretePromo ==
-                                                                      null ||
-                                                                  carrinho2CarrinhoFinalRecord
                                                                           .fretePromo ==
                                                                       '')
                                                                 Row(
@@ -1851,9 +1895,6 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                     ],
                                                   ),
                                                   if ((carrinho2CarrinhoFinalRecord
-                                                                  .fretePromo !=
-                                                              null &&
-                                                          carrinho2CarrinhoFinalRecord
                                                                   .fretePromo !=
                                                               '') &&
                                                       (carrinho2CarrinhoFinalRecord
@@ -2118,7 +2159,7 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                   37.0,
                                                                   0.0),
                                                       child: Text(
-                                                        'R\$ ${functions.valorDoubleEmString(functions.impostoImportacaoNovo(carrinho2CarrinhoFinalRecord.listProdutos.toList(), carrinho2CarrinhoFinalRecord.fretePromo != null && carrinho2CarrinhoFinalRecord.fretePromo != '' ? carrinho2CarrinhoFinalRecord.fretePromo : carrinho2CarrinhoFinalRecord.frete.toString(), carrinho2CarrinhoFinalRecord.nacional))}',
+                                                        'R\$ ${functions.valorDoubleEmString(functions.impostoImportacaoNovo(carrinho2CarrinhoFinalRecord.listProdutos.toList(), carrinho2CarrinhoFinalRecord.fretePromo != '' ? carrinho2CarrinhoFinalRecord.fretePromo : carrinho2CarrinhoFinalRecord.frete.toString(), carrinho2CarrinhoFinalRecord.nacional))}',
                                                         style: FlutterFlowTheme
                                                                 .of(context)
                                                             .bodyMedium
@@ -2297,7 +2338,7 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                           AuthUserStreamWidget(
                                                         builder: (context) =>
                                                             Text(
-                                                          'R\$ ${functions.valorDoubleEmString(functions.impostoICMSNovo(carrinho2CarrinhoFinalRecord.listProdutos.toList(), carrinho2CarrinhoFinalRecord.fretePromo != null && carrinho2CarrinhoFinalRecord.fretePromo != '' ? carrinho2CarrinhoFinalRecord.fretePromo : carrinho2CarrinhoFinalRecord.frete.toString(), valueOrDefault(currentUserDocument?.enderecoCompleto, ''), carrinho2CarrinhoFinalRecord.nacional))}',
+                                                          'R\$ ${functions.valorDoubleEmString(functions.impostoICMSNovo(carrinho2CarrinhoFinalRecord.listProdutos.toList(), carrinho2CarrinhoFinalRecord.fretePromo != '' ? carrinho2CarrinhoFinalRecord.fretePromo : carrinho2CarrinhoFinalRecord.frete.toString(), valueOrDefault(currentUserDocument?.enderecoCompleto, ''), carrinho2CarrinhoFinalRecord.nacional))}',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -2431,7 +2472,7 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                             builder:
                                                                 (context) =>
                                                                     Text(
-                                                              'R\$ ${functions.valorDoubleEmString(functions.totalProdutosChechout1(carrinho2CarrinhoFinalRecord.listProdutos.toList(), functions.impostoICMSNovo(carrinho2CarrinhoFinalRecord.listProdutos.toList(), carrinho2CarrinhoFinalRecord.fretePromo != null && carrinho2CarrinhoFinalRecord.fretePromo != '' ? carrinho2CarrinhoFinalRecord.fretePromo : carrinho2CarrinhoFinalRecord.frete.toString(), valueOrDefault(currentUserDocument?.enderecoCompleto, ''), carrinho2CarrinhoFinalRecord.nacional), functions.impostoImportacaoNovo(carrinho2CarrinhoFinalRecord.listProdutos.toList(), carrinho2CarrinhoFinalRecord.fretePromo != null && carrinho2CarrinhoFinalRecord.fretePromo != '' ? carrinho2CarrinhoFinalRecord.fretePromo : carrinho2CarrinhoFinalRecord.frete.toString(), carrinho2CarrinhoFinalRecord.nacional), carrinho2CarrinhoFinalRecord.fretePromo != null && carrinho2CarrinhoFinalRecord.fretePromo != '' ? functions.dinheiroStringemDouble(carrinho2CarrinhoFinalRecord.fretePromo) : carrinho2CarrinhoFinalRecord.frete))}',
+                                                              'R\$ ${functions.valorDoubleEmString(functions.totalProdutosChechout1(carrinho2CarrinhoFinalRecord.listProdutos.toList(), functions.impostoICMSNovo(carrinho2CarrinhoFinalRecord.listProdutos.toList(), carrinho2CarrinhoFinalRecord.fretePromo != '' ? carrinho2CarrinhoFinalRecord.fretePromo : carrinho2CarrinhoFinalRecord.frete.toString(), valueOrDefault(currentUserDocument?.enderecoCompleto, ''), carrinho2CarrinhoFinalRecord.nacional), functions.impostoImportacaoNovo(carrinho2CarrinhoFinalRecord.listProdutos.toList(), carrinho2CarrinhoFinalRecord.fretePromo != '' ? carrinho2CarrinhoFinalRecord.fretePromo : carrinho2CarrinhoFinalRecord.frete.toString(), carrinho2CarrinhoFinalRecord.nacional), carrinho2CarrinhoFinalRecord.fretePromo != '' ? functions.dinheiroStringemDouble(carrinho2CarrinhoFinalRecord.fretePromo) : carrinho2CarrinhoFinalRecord.frete))}',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -2740,8 +2781,8 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                           (newValue) async {
                                                         safeSetState(() =>
                                                             _model.switchValue =
-                                                                newValue!);
-                                                        if (newValue!) {
+                                                                newValue);
+                                                        if (newValue) {
                                                           FFAppState().moeda =
                                                               functions.moedaLimitar(
                                                                   valueOrDefault(
@@ -3023,7 +3064,7 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                   width: 2,
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .alternate!,
+                                                                      .alternate,
                                                                 )
                                                               : null,
                                                           activeColor:
@@ -3250,7 +3291,7 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                         width:
                                                                             2,
                                                                         color: FlutterFlowTheme.of(context)
-                                                                            .alternate!,
+                                                                            .alternate,
                                                                       )
                                                                     : null,
                                                                 activeColor:
@@ -3732,7 +3773,7 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                                 side: (FlutterFlowTheme.of(context).alternate != null)
                                                                                     ? BorderSide(
                                                                                         width: 2,
-                                                                                        color: FlutterFlowTheme.of(context).alternate!,
+                                                                                        color: FlutterFlowTheme.of(context).alternate,
                                                                                       )
                                                                                     : null,
                                                                                 activeColor: FlutterFlowTheme.of(context).primary,
@@ -3962,9 +4003,7 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                           ),
                                         ),
                                       ),
-                                      if (FFAppState().taxaProcessamento !=
-                                              null &&
-                                          FFAppState().taxaProcessamento != '')
+                                      if (FFAppState().taxaProcessamento != '')
                                         Align(
                                           alignment:
                                               AlignmentDirectional(-1.0, -1.0),
@@ -5656,34 +5695,16 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                       currentUserDocument
                                                                           ?.enderecoCompleto,
                                                                       '') !=
-                                                                  null &&
-                                                              valueOrDefault(
-                                                                      currentUserDocument
-                                                                          ?.enderecoCompleto,
-                                                                      '') !=
                                                                   '') {
                                                             if (valueOrDefault(
-                                                                        currentUserDocument
-                                                                            ?.cpf,
-                                                                        '') !=
-                                                                    null &&
-                                                                valueOrDefault(
                                                                         currentUserDocument
                                                                             ?.cpf,
                                                                         '') !=
                                                                     '') {
                                                               if (FFAppState()
                                                                           .metodoPagamento !=
-                                                                      null &&
-                                                                  FFAppState()
-                                                                          .metodoPagamento !=
                                                                       '') {
                                                                 if (valueOrDefault(
-                                                                            currentUserDocument
-                                                                                ?.iDAsaas,
-                                                                            '') !=
-                                                                        null &&
-                                                                    valueOrDefault(
                                                                             currentUserDocument?.iDAsaas,
                                                                             '') !=
                                                                         '') {
@@ -5786,17 +5807,16 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                         cartaoCartaoRecord
                                                                             .cpf,
                                                                     postalCode:
-                                                                        cartaoCartaoRecord
+                                                                        containerEnderecosRecord
                                                                             .cep,
                                                                     addressNumber:
-                                                                        cartaoCartaoRecord
-                                                                            .numeroCasa,
+                                                                        containerEnderecosRecord
+                                                                            .numero,
                                                                     addressComplement:
-                                                                        cartaoCartaoRecord
-                                                                            .complementoEndereco,
+                                                                        containerEnderecosRecord
+                                                                            .enderecoCompleto,
                                                                     mobilePhone:
-                                                                        cartaoCartaoRecord
-                                                                            .celular,
+                                                                        currentPhoneNumber,
                                                                     remoteIp:
                                                                         FFAppState()
                                                                             .IP,
@@ -5851,8 +5871,6 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                         .toList(),
                                                                   );
                                                                   if ((FFAppState().notificaafiliado !=
-                                                                              null &&
-                                                                          FFAppState().notificaafiliado !=
                                                                               '') &&
                                                                       (FFAppState()
                                                                               .statusPagamento ==
@@ -5872,40 +5890,17 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                           'home-Vendas',
                                                                       parameterData: {},
                                                                     );
-                                                                  } else {
-                                                                    await showDialog(
-                                                                      context:
-                                                                          context,
-                                                                      builder:
-                                                                          (alertDialogContext) {
-                                                                        return AlertDialog(
-                                                                          content:
-                                                                              Text('false'),
-                                                                          actions: [
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext),
-                                                                              child: Text('Ok'),
-                                                                            ),
-                                                                          ],
-                                                                        );
+                                                                  }
+                                                                  await currentUserReference!
+                                                                      .update({
+                                                                    ...mapToFirestore(
+                                                                      {
+                                                                        'moedas':
+                                                                            FieldValue.increment(-(FFAppState().moeda)),
                                                                       },
-                                                                    );
-                                                                  }
-
-                                                                  if (FFAppState()
-                                                                          .moeda !=
-                                                                      null) {
-                                                                    await currentUserReference!
-                                                                        .update({
-                                                                      ...mapToFirestore(
-                                                                        {
-                                                                          'moedas':
-                                                                              FieldValue.increment(-(FFAppState().moeda)),
-                                                                        },
-                                                                      ),
-                                                                    });
-                                                                  }
-                                                                  if (FFAppState()
+                                                                    ),
+                                                                  });
+                                                                                                                                  if (FFAppState()
                                                                           .statusPagamento ==
                                                                       'pago') {
                                                                     if (Navigator.of(
@@ -6091,23 +6086,22 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                         .ccv,
                                                                     name: cartaoCartaoRecord
                                                                         .nomeCompleto,
-                                                                    email: cartaoCartaoRecord
-                                                                        .email,
+                                                                    email:
+                                                                        currentUserEmail,
                                                                     cpfCnpj:
                                                                         cartaoCartaoRecord
                                                                             .cpf,
                                                                     postalCode:
-                                                                        cartaoCartaoRecord
+                                                                        containerEnderecosRecord
                                                                             .cep,
                                                                     addressNumber:
-                                                                        cartaoCartaoRecord
-                                                                            .numeroCasa,
+                                                                        containerEnderecosRecord
+                                                                            .numero,
                                                                     addressComplement:
-                                                                        cartaoCartaoRecord
-                                                                            .complementoEndereco,
+                                                                        containerEnderecosRecord
+                                                                            .enderecoCompleto,
                                                                     mobilePhone:
-                                                                        cartaoCartaoRecord
-                                                                            .celular,
+                                                                        currentPhoneNumber,
                                                                     remoteIp:
                                                                         FFAppState()
                                                                             .IP,
@@ -6160,20 +6154,16 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                                     containerCarrinhoFinalRecordList
                                                                         .toList(),
                                                                   );
-                                                                  if (FFAppState()
-                                                                          .moeda !=
-                                                                      null) {
-                                                                    await currentUserReference!
-                                                                        .update({
-                                                                      ...mapToFirestore(
-                                                                        {
-                                                                          'moedas':
-                                                                              FieldValue.increment(-(FFAppState().moeda)),
-                                                                        },
-                                                                      ),
-                                                                    });
-                                                                  }
-                                                                  if (FFAppState()
+                                                                  await currentUserReference!
+                                                                      .update({
+                                                                    ...mapToFirestore(
+                                                                      {
+                                                                        'moedas':
+                                                                            FieldValue.increment(-(FFAppState().moeda)),
+                                                                      },
+                                                                    ),
+                                                                  });
+                                                                                                                                  if (FFAppState()
                                                                           .statusPagamento ==
                                                                       'pago') {
                                                                     if (Navigator.of(
@@ -6379,26 +6369,13 @@ class _Comprar3WidgetState extends State<Comprar3Widget> {
                                                             currentUserDocument
                                                                 ?.enderecoCompleto,
                                                             '') !=
-                                                        null &&
-                                                    valueOrDefault(
-                                                            currentUserDocument
-                                                                ?.enderecoCompleto,
-                                                            '') !=
                                                         '') {
                                                   if (valueOrDefault(
                                                               currentUserDocument
                                                                   ?.cpf,
                                                               '') !=
-                                                          null &&
-                                                      valueOrDefault(
-                                                              currentUserDocument
-                                                                  ?.cpf,
-                                                              '') !=
                                                           '') {
                                                     if (FFAppState()
-                                                                .metodoPagamento !=
-                                                            null &&
-                                                        FFAppState()
                                                                 .metodoPagamento !=
                                                             '') {
                                                       FFAppState().totalPedido = functions.valorDoubleEmString(functions.somaXmaisY(

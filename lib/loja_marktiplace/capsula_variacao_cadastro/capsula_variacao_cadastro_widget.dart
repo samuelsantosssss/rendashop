@@ -3,10 +3,8 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
-import 'dart:ui';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
@@ -622,8 +620,7 @@ class _CapsulaVariacaoCadastroWidgetState
                                       ),
                                     ),
                                   ),
-                                if ((_model.textController.text != null &&
-                                        _model.textController.text != '') &&
+                                if ((_model.textController.text != '') &&
                                     _model.switchListTile3Value2!)
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
@@ -688,9 +685,9 @@ class _CapsulaVariacaoCadastroWidgetState
                               value: _model.switchListTile1Value ??= true,
                               onChanged: (newValue) async {
                                 safeSetState(() =>
-                                    _model.switchListTile1Value = newValue!);
+                                    _model.switchListTile1Value = newValue);
 
-                                if (!newValue!) {
+                                if (!newValue) {
                                   FFAppState().capsula1 = '';
                                   safeSetState(() {});
                                 }
@@ -732,9 +729,9 @@ class _CapsulaVariacaoCadastroWidgetState
                               value: _model.switchListTile2Value ??= true,
                               onChanged: (newValue) async {
                                 safeSetState(() =>
-                                    _model.switchListTile2Value = newValue!);
+                                    _model.switchListTile2Value = newValue);
 
-                                if (!newValue!) {
+                                if (!newValue) {
                                   FFAppState().capsula2 = '';
                                   safeSetState(() {});
                                 }
@@ -776,9 +773,9 @@ class _CapsulaVariacaoCadastroWidgetState
                               value: _model.switchListTile3Value1 ??= true,
                               onChanged: (newValue) async {
                                 safeSetState(() =>
-                                    _model.switchListTile3Value1 = newValue!);
+                                    _model.switchListTile3Value1 = newValue);
 
-                                if (!newValue!) {
+                                if (!newValue) {
                                   FFAppState().capsula3 = '';
                                   safeSetState(() {});
                                 }
@@ -820,8 +817,8 @@ class _CapsulaVariacaoCadastroWidgetState
                               value: _model.switchListTile3Value2 ??= true,
                               onChanged: (newValue) async {
                                 safeSetState(() =>
-                                    _model.switchListTile3Value2 = newValue!);
-                                if (newValue!) {
+                                    _model.switchListTile3Value2 = newValue);
+                                if (newValue) {
                                   FFAppState().capsulaextra = '2';
                                   safeSetState(() {});
                                 } else {

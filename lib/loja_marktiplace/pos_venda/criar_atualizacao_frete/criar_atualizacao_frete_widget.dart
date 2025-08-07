@@ -1,18 +1,13 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'dart:ui';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'criar_atualizacao_frete_model.dart';
 export 'criar_atualizacao_frete_model.dart';
 
@@ -64,7 +59,7 @@ class _CriarAtualizacaoFreteWidgetState
       child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 80.0),
         child: StreamBuilder<PedidosTotalRecord>(
-          stream: PedidosTotalRecord.getDocument(widget!.pedidoRef!),
+          stream: PedidosTotalRecord.getDocument(widget.pedidoRef!),
           builder: (context, snapshot) {
             // Customize what your widget looks like when it's loading.
             if (!snapshot.hasData) {
@@ -770,22 +765,22 @@ class _CriarAtualizacaoFreteWidgetState
                         EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 20.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        await Rastreio2Record.createDoc(widget!.pedidoRef!)
+                        await Rastreio2Record.createDoc(widget.pedidoRef!)
                             .set(createRastreio2RecordData(
                           data: _model.datePicked1,
                           mensagem: _model.descricaoTextController.text,
-                          pedidoRef2: widget!.pedidoRef,
+                          pedidoRef2: widget.pedidoRef,
                           userRef: containerPedidosTotalRecord.userRef,
                           codigoRastreio:
                               containerPedidosTotalRecord.codigoRastreio,
                         ));
 
-                        await widget!.pedidoRef!
+                        await widget.pedidoRef!
                             .update(createPedidosTotalRecordData(
                           status: _model.dropDownValue,
                         ));
                         if (_model.dropDownValue == 'entregue') {
-                          await widget!.pedidoRef!
+                          await widget.pedidoRef!
                               .update(createPedidosTotalRecordData(
                             dataEntregue: _model.datePicked2,
                           ));

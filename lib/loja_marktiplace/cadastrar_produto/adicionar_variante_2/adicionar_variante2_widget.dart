@@ -1,16 +1,12 @@
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:async';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'adicionar_variante2_model.dart';
@@ -1003,8 +999,7 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  if (FFAppState().titulo2 != null &&
-                      FFAppState().titulo2 != '')
+                  if (FFAppState().titulo2 != '')
                     Container(
                       width: 100.0,
                       height: 41.0,
@@ -1023,10 +1018,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().titulo2 == null ||
-                                      FFAppState().titulo2 == ''))
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().titulo2 == ''))
                                 Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -1040,11 +1033,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           if ((FFAppState().opcao1titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao1titulo1 !=
                                                       '') &&
-                                              (FFAppState().titulo2 == null ||
-                                                  FFAppState().titulo2 == '') &&
+                                              (FFAppState().titulo2 == '') &&
                                               FFAppState().fotoAtivoTitulo1)
                                             Padding(
                                               padding: EdgeInsetsDirectional
@@ -1652,10 +1642,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao2titulo1 != null &&
-                                      FFAppState().opcao2titulo1 != '') &&
-                                  (FFAppState().titulo2 == null ||
-                                      FFAppState().titulo2 == ''))
+                              if ((FFAppState().opcao2titulo1 != '') &&
+                                  (FFAppState().titulo2 == ''))
                                 Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -1669,11 +1657,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           if ((FFAppState().opcao2titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao2titulo1 !=
                                                       '') &&
-                                              (FFAppState().titulo2 == null ||
-                                                  FFAppState().titulo2 == '') &&
+                                              (FFAppState().titulo2 == '') &&
                                               FFAppState().fotoAtivoTitulo1)
                                             Padding(
                                               padding: EdgeInsetsDirectional
@@ -2281,10 +2266,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao3titulo1 != null &&
-                                      FFAppState().opcao3titulo1 != '') &&
-                                  (FFAppState().titulo2 == null ||
-                                      FFAppState().titulo2 == ''))
+                              if ((FFAppState().opcao3titulo1 != '') &&
+                                  (FFAppState().titulo2 == ''))
                                 Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -2298,11 +2281,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           if ((FFAppState().opcao3titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao3titulo1 !=
                                                       '') &&
-                                              (FFAppState().titulo2 == null ||
-                                                  FFAppState().titulo2 == '') &&
+                                              (FFAppState().titulo2 == '') &&
                                               FFAppState().fotoAtivoTitulo1)
                                             Padding(
                                               padding: EdgeInsetsDirectional
@@ -2910,10 +2890,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao4titulo1 != null &&
-                                      FFAppState().opcao4titulo1 != '') &&
-                                  (FFAppState().titulo2 == null ||
-                                      FFAppState().titulo2 == ''))
+                              if ((FFAppState().opcao4titulo1 != '') &&
+                                  (FFAppState().titulo2 == ''))
                                 Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -2927,11 +2905,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           if ((FFAppState().opcao4titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao4titulo1 !=
                                                       '') &&
-                                              (FFAppState().titulo2 == null ||
-                                                  FFAppState().titulo2 == '') &&
+                                              (FFAppState().titulo2 == '') &&
                                               FFAppState().fotoAtivoTitulo1)
                                             Padding(
                                               padding: EdgeInsetsDirectional
@@ -3539,10 +3514,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao5titulo1 != null &&
-                                      FFAppState().opcao5titulo1 != '') &&
-                                  (FFAppState().titulo2 == null ||
-                                      FFAppState().titulo2 == ''))
+                              if ((FFAppState().opcao5titulo1 != '') &&
+                                  (FFAppState().titulo2 == ''))
                                 Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -3556,11 +3529,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           if ((FFAppState().opcao5titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao5titulo1 !=
                                                       '') &&
-                                              (FFAppState().titulo2 == null ||
-                                                  FFAppState().titulo2 == '') &&
+                                              (FFAppState().titulo2 == '') &&
                                               FFAppState().fotoAtivoTitulo1)
                                             Padding(
                                               padding: EdgeInsetsDirectional
@@ -4168,10 +4138,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao6titulo1 != null &&
-                                      FFAppState().opcao6titulo1 != '') &&
-                                  (FFAppState().titulo2 == null ||
-                                      FFAppState().titulo2 == ''))
+                              if ((FFAppState().opcao6titulo1 != '') &&
+                                  (FFAppState().titulo2 == ''))
                                 Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -4185,11 +4153,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           if ((FFAppState().opcao6titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao6titulo1 !=
                                                       '') &&
-                                              (FFAppState().titulo2 == null ||
-                                                  FFAppState().titulo2 == '') &&
+                                              (FFAppState().titulo2 == '') &&
                                               FFAppState().fotoAtivoTitulo1)
                                             Padding(
                                               padding: EdgeInsetsDirectional
@@ -4797,10 +4762,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao7titulo1 != null &&
-                                      FFAppState().opcao7titulo1 != '') &&
-                                  (FFAppState().titulo2 == null ||
-                                      FFAppState().titulo2 == ''))
+                              if ((FFAppState().opcao7titulo1 != '') &&
+                                  (FFAppState().titulo2 == ''))
                                 Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -4814,11 +4777,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           if ((FFAppState().opcao7titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao7titulo1 !=
                                                       '') &&
-                                              (FFAppState().titulo2 == null ||
-                                                  FFAppState().titulo2 == '') &&
+                                              (FFAppState().titulo2 == '') &&
                                               FFAppState().fotoAtivoTitulo1)
                                             Padding(
                                               padding: EdgeInsetsDirectional
@@ -5429,10 +5389,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao8titulo1 != null &&
-                                      FFAppState().opcao8titulo1 != '') &&
-                                  (FFAppState().titulo2 == null ||
-                                      FFAppState().titulo2 == ''))
+                              if ((FFAppState().opcao8titulo1 != '') &&
+                                  (FFAppState().titulo2 == ''))
                                 Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -5446,11 +5404,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           if ((FFAppState().opcao8titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao8titulo1 !=
                                                       '') &&
-                                              (FFAppState().titulo2 == null ||
-                                                  FFAppState().titulo2 == '') &&
+                                              (FFAppState().titulo2 == '') &&
                                               FFAppState().fotoAtivoTitulo1)
                                             Padding(
                                               padding: EdgeInsetsDirectional
@@ -6061,10 +6016,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao9titulo1 != null &&
-                                      FFAppState().opcao9titulo1 != '') &&
-                                  (FFAppState().titulo2 == null ||
-                                      FFAppState().titulo2 == ''))
+                              if ((FFAppState().opcao9titulo1 != '') &&
+                                  (FFAppState().titulo2 == ''))
                                 Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -6078,11 +6031,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           if ((FFAppState().opcao9titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao9titulo1 !=
                                                       '') &&
-                                              (FFAppState().titulo2 == null ||
-                                                  FFAppState().titulo2 == '') &&
+                                              (FFAppState().titulo2 == '') &&
                                               FFAppState().fotoAtivoTitulo1)
                                             Padding(
                                               padding: EdgeInsetsDirectional
@@ -6693,10 +6643,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao10titulo1 != null &&
-                                      FFAppState().opcao10titulo1 != '') &&
-                                  (FFAppState().titulo2 == null ||
-                                      FFAppState().titulo2 == ''))
+                              if ((FFAppState().opcao10titulo1 != '') &&
+                                  (FFAppState().titulo2 == ''))
                                 Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(
@@ -6710,11 +6658,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           if ((FFAppState().opcao10titulo1 !=
-                                                      null &&
-                                                  FFAppState().opcao10titulo1 !=
                                                       '') &&
-                                              (FFAppState().titulo2 == null ||
-                                                  FFAppState().titulo2 == '') &&
+                                              (FFAppState().titulo2 == '') &&
                                               FFAppState().fotoAtivoTitulo1)
                                             Padding(
                                               padding: EdgeInsetsDirectional
@@ -7332,10 +7277,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao1titulo2 != null &&
-                                      FFAppState().opcao1titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao1titulo2 != '') &&
                                   FFAppState().opcao1selecionado)
                                 Container(
                                   width: double.infinity,
@@ -7956,10 +7899,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao2titulo2 != null &&
-                                      FFAppState().opcao2titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao2titulo2 != '') &&
                                   FFAppState().opcao1selecionado)
                                 Container(
                                   width: double.infinity,
@@ -8580,10 +8521,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao3titulo2 != null &&
-                                      FFAppState().opcao3titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao3titulo2 != '') &&
                                   FFAppState().opcao1selecionado)
                                 Container(
                                   width: double.infinity,
@@ -9204,10 +9143,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao4titulo2 != null &&
-                                      FFAppState().opcao4titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao4titulo2 != '') &&
                                   FFAppState().opcao1selecionado)
                                 Container(
                                   width: double.infinity,
@@ -9828,10 +9765,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao5titulo2 != null &&
-                                      FFAppState().opcao5titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao5titulo2 != '') &&
                                   FFAppState().opcao1selecionado)
                                 Container(
                                   width: double.infinity,
@@ -10452,10 +10387,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao6titulo2 != null &&
-                                      FFAppState().opcao6titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao6titulo2 != '') &&
                                   FFAppState().opcao1selecionado)
                                 Container(
                                   width: double.infinity,
@@ -11076,10 +11009,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao7titulo2 != null &&
-                                      FFAppState().opcao7titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao7titulo2 != '') &&
                                   FFAppState().opcao1selecionado)
                                 Container(
                                   width: double.infinity,
@@ -11703,10 +11634,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao8titulo2 != null &&
-                                      FFAppState().opcao8titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao8titulo2 != '') &&
                                   FFAppState().opcao1selecionado)
                                 Container(
                                   width: double.infinity,
@@ -12330,10 +12259,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao9titulo2 != null &&
-                                      FFAppState().opcao9titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao9titulo2 != '') &&
                                   FFAppState().opcao1selecionado)
                                 Container(
                                   width: double.infinity,
@@ -12957,10 +12884,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao10titulo2 != null &&
-                                      FFAppState().opcao10titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao10titulo2 != '') &&
                                   FFAppState().opcao1selecionado)
                                 Container(
                                   width: double.infinity,
@@ -13591,10 +13516,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao1titulo2 != null &&
-                                      FFAppState().opcao1titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao1titulo2 != '') &&
                                   FFAppState().opcao2selecionado)
                                 Container(
                                   width: double.infinity,
@@ -14215,10 +14138,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao2titulo2 != null &&
-                                      FFAppState().opcao2titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao2titulo2 != '') &&
                                   FFAppState().opcao2selecionado)
                                 Container(
                                   width: double.infinity,
@@ -14839,10 +14760,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao3titulo2 != null &&
-                                      FFAppState().opcao3titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao3titulo2 != '') &&
                                   FFAppState().opcao2selecionado)
                                 Container(
                                   width: double.infinity,
@@ -15463,10 +15382,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao4titulo2 != null &&
-                                      FFAppState().opcao4titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao4titulo2 != '') &&
                                   FFAppState().opcao2selecionado)
                                 Container(
                                   width: double.infinity,
@@ -16087,10 +16004,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao5titulo2 != null &&
-                                      FFAppState().opcao5titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao5titulo2 != '') &&
                                   FFAppState().opcao2selecionado)
                                 Container(
                                   width: double.infinity,
@@ -16711,10 +16626,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao6titulo2 != null &&
-                                      FFAppState().opcao6titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao6titulo2 != '') &&
                                   FFAppState().opcao2selecionado)
                                 Container(
                                   width: double.infinity,
@@ -17335,10 +17248,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao7titulo2 != null &&
-                                      FFAppState().opcao7titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao7titulo2 != '') &&
                                   FFAppState().opcao2selecionado)
                                 Container(
                                   width: double.infinity,
@@ -17962,10 +17873,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao8titulo2 != null &&
-                                      FFAppState().opcao8titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao8titulo2 != '') &&
                                   FFAppState().opcao2selecionado)
                                 Container(
                                   width: double.infinity,
@@ -18589,10 +18498,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao9titulo2 != null &&
-                                      FFAppState().opcao9titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao9titulo2 != '') &&
                                   FFAppState().opcao2selecionado)
                                 Container(
                                   width: double.infinity,
@@ -19216,10 +19123,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao10titulo2 != null &&
-                                      FFAppState().opcao10titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao10titulo2 != '') &&
                                   FFAppState().opcao2selecionado)
                                 Container(
                                   width: double.infinity,
@@ -19850,10 +19755,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao1titulo2 != null &&
-                                      FFAppState().opcao1titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao1titulo2 != '') &&
                                   FFAppState().opcao3selecionado)
                                 Container(
                                   width: double.infinity,
@@ -20474,10 +20377,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao2titulo2 != null &&
-                                      FFAppState().opcao2titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao2titulo2 != '') &&
                                   FFAppState().opcao3selecionado)
                                 Container(
                                   width: double.infinity,
@@ -21098,10 +20999,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao3titulo2 != null &&
-                                      FFAppState().opcao3titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao3titulo2 != '') &&
                                   FFAppState().opcao3selecionado)
                                 Container(
                                   width: double.infinity,
@@ -21722,10 +21621,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao4titulo2 != null &&
-                                      FFAppState().opcao4titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao4titulo2 != '') &&
                                   FFAppState().opcao3selecionado)
                                 Container(
                                   width: double.infinity,
@@ -22346,10 +22243,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao5titulo2 != null &&
-                                      FFAppState().opcao5titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao5titulo2 != '') &&
                                   FFAppState().opcao3selecionado)
                                 Container(
                                   width: double.infinity,
@@ -22970,10 +22865,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao6titulo2 != null &&
-                                      FFAppState().opcao6titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao6titulo2 != '') &&
                                   FFAppState().opcao3selecionado)
                                 Container(
                                   width: double.infinity,
@@ -23594,10 +23487,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao7titulo2 != null &&
-                                      FFAppState().opcao7titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao7titulo2 != '') &&
                                   FFAppState().opcao3selecionado)
                                 Container(
                                   width: double.infinity,
@@ -24221,10 +24112,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao8titulo2 != null &&
-                                      FFAppState().opcao8titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao8titulo2 != '') &&
                                   FFAppState().opcao3selecionado)
                                 Container(
                                   width: double.infinity,
@@ -24848,10 +24737,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao9titulo2 != null &&
-                                      FFAppState().opcao9titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao9titulo2 != '') &&
                                   FFAppState().opcao3selecionado)
                                 Container(
                                   width: double.infinity,
@@ -25475,10 +25362,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao10titulo2 != null &&
-                                      FFAppState().opcao10titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao10titulo2 != '') &&
                                   FFAppState().opcao3selecionado)
                                 Container(
                                   width: double.infinity,
@@ -26109,10 +25994,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao1titulo2 != null &&
-                                      FFAppState().opcao1titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao1titulo2 != '') &&
                                   FFAppState().opcao4selecionado)
                                 Container(
                                   width: double.infinity,
@@ -26733,10 +26616,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao2titulo2 != null &&
-                                      FFAppState().opcao2titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao2titulo2 != '') &&
                                   FFAppState().opcao4selecionado)
                                 Container(
                                   width: double.infinity,
@@ -27357,10 +27238,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao3titulo2 != null &&
-                                      FFAppState().opcao3titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao3titulo2 != '') &&
                                   FFAppState().opcao4selecionado)
                                 Container(
                                   width: double.infinity,
@@ -27981,10 +27860,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao4titulo2 != null &&
-                                      FFAppState().opcao4titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao4titulo2 != '') &&
                                   FFAppState().opcao4selecionado)
                                 Container(
                                   width: double.infinity,
@@ -28605,10 +28482,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao5titulo2 != null &&
-                                      FFAppState().opcao5titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao5titulo2 != '') &&
                                   FFAppState().opcao4selecionado)
                                 Container(
                                   width: double.infinity,
@@ -29229,10 +29104,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao6titulo2 != null &&
-                                      FFAppState().opcao6titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao6titulo2 != '') &&
                                   FFAppState().opcao4selecionado)
                                 Container(
                                   width: double.infinity,
@@ -29853,10 +29726,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao7titulo2 != null &&
-                                      FFAppState().opcao7titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao7titulo2 != '') &&
                                   FFAppState().opcao4selecionado)
                                 Container(
                                   width: double.infinity,
@@ -30480,10 +30351,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao8titulo2 != null &&
-                                      FFAppState().opcao8titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao8titulo2 != '') &&
                                   FFAppState().opcao4selecionado)
                                 Container(
                                   width: double.infinity,
@@ -31107,10 +30976,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao9titulo2 != null &&
-                                      FFAppState().opcao9titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao9titulo2 != '') &&
                                   FFAppState().opcao4selecionado)
                                 Container(
                                   width: double.infinity,
@@ -31734,10 +31601,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao10titulo2 != null &&
-                                      FFAppState().opcao10titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao10titulo2 != '') &&
                                   FFAppState().opcao4selecionado)
                                 Container(
                                   width: double.infinity,
@@ -32368,10 +32233,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao1titulo2 != null &&
-                                      FFAppState().opcao1titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao1titulo2 != '') &&
                                   FFAppState().opcao5selecionado)
                                 Container(
                                   width: double.infinity,
@@ -32992,10 +32855,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao2titulo2 != null &&
-                                      FFAppState().opcao2titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao2titulo2 != '') &&
                                   FFAppState().opcao5selecionado)
                                 Container(
                                   width: double.infinity,
@@ -33616,10 +33477,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao3titulo2 != null &&
-                                      FFAppState().opcao3titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao3titulo2 != '') &&
                                   FFAppState().opcao5selecionado)
                                 Container(
                                   width: double.infinity,
@@ -34240,10 +34099,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao4titulo2 != null &&
-                                      FFAppState().opcao4titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao4titulo2 != '') &&
                                   FFAppState().opcao5selecionado)
                                 Container(
                                   width: double.infinity,
@@ -34864,10 +34721,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao5titulo2 != null &&
-                                      FFAppState().opcao5titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao5titulo2 != '') &&
                                   FFAppState().opcao5selecionado)
                                 Container(
                                   width: double.infinity,
@@ -35488,10 +35343,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao6titulo2 != null &&
-                                      FFAppState().opcao6titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao6titulo2 != '') &&
                                   FFAppState().opcao5selecionado)
                                 Container(
                                   width: double.infinity,
@@ -36112,10 +35965,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao7titulo2 != null &&
-                                      FFAppState().opcao7titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao7titulo2 != '') &&
                                   FFAppState().opcao5selecionado)
                                 Container(
                                   width: double.infinity,
@@ -36739,10 +36590,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao8titulo2 != null &&
-                                      FFAppState().opcao8titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao8titulo2 != '') &&
                                   FFAppState().opcao5selecionado)
                                 Container(
                                   width: double.infinity,
@@ -37366,10 +37215,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao9titulo2 != null &&
-                                      FFAppState().opcao9titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao9titulo2 != '') &&
                                   FFAppState().opcao5selecionado)
                                 Container(
                                   width: double.infinity,
@@ -37993,10 +37840,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao10titulo2 != null &&
-                                      FFAppState().opcao10titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao10titulo2 != '') &&
                                   FFAppState().opcao5selecionado)
                                 Container(
                                   width: double.infinity,
@@ -38627,10 +38472,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao1titulo2 != null &&
-                                      FFAppState().opcao1titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao1titulo2 != '') &&
                                   FFAppState().opcao6selecionado)
                                 Container(
                                   width: double.infinity,
@@ -39251,10 +39094,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao2titulo2 != null &&
-                                      FFAppState().opcao2titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao2titulo2 != '') &&
                                   FFAppState().opcao6selecionado)
                                 Container(
                                   width: double.infinity,
@@ -39875,10 +39716,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao3titulo2 != null &&
-                                      FFAppState().opcao3titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao3titulo2 != '') &&
                                   FFAppState().opcao6selecionado)
                                 Container(
                                   width: double.infinity,
@@ -40499,10 +40338,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao4titulo2 != null &&
-                                      FFAppState().opcao4titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao4titulo2 != '') &&
                                   FFAppState().opcao6selecionado)
                                 Container(
                                   width: double.infinity,
@@ -41123,10 +40960,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao5titulo2 != null &&
-                                      FFAppState().opcao5titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao5titulo2 != '') &&
                                   FFAppState().opcao6selecionado)
                                 Container(
                                   width: double.infinity,
@@ -41747,10 +41582,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao6titulo2 != null &&
-                                      FFAppState().opcao6titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao6titulo2 != '') &&
                                   FFAppState().opcao6selecionado)
                                 Container(
                                   width: double.infinity,
@@ -42371,10 +42204,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao7titulo2 != null &&
-                                      FFAppState().opcao7titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao7titulo2 != '') &&
                                   FFAppState().opcao6selecionado)
                                 Container(
                                   width: double.infinity,
@@ -42998,10 +42829,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao8titulo2 != null &&
-                                      FFAppState().opcao8titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao8titulo2 != '') &&
                                   FFAppState().opcao6selecionado)
                                 Container(
                                   width: double.infinity,
@@ -43625,10 +43454,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao9titulo2 != null &&
-                                      FFAppState().opcao9titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao9titulo2 != '') &&
                                   FFAppState().opcao6selecionado)
                                 Container(
                                   width: double.infinity,
@@ -44252,10 +44079,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao10titulo2 != null &&
-                                      FFAppState().opcao10titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao10titulo2 != '') &&
                                   FFAppState().opcao6selecionado)
                                 Container(
                                   width: double.infinity,
@@ -44886,10 +44711,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao1titulo2 != null &&
-                                      FFAppState().opcao1titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao1titulo2 != '') &&
                                   FFAppState().opcao7selecionado)
                                 Container(
                                   width: double.infinity,
@@ -45510,10 +45333,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao2titulo2 != null &&
-                                      FFAppState().opcao2titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao2titulo2 != '') &&
                                   FFAppState().opcao7selecionado)
                                 Container(
                                   width: double.infinity,
@@ -46134,10 +45955,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao3titulo2 != null &&
-                                      FFAppState().opcao3titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao3titulo2 != '') &&
                                   FFAppState().opcao7selecionado)
                                 Container(
                                   width: double.infinity,
@@ -46758,10 +46577,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao4titulo2 != null &&
-                                      FFAppState().opcao4titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao4titulo2 != '') &&
                                   FFAppState().opcao7selecionado)
                                 Container(
                                   width: double.infinity,
@@ -47382,10 +47199,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao5titulo2 != null &&
-                                      FFAppState().opcao5titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao5titulo2 != '') &&
                                   FFAppState().opcao7selecionado)
                                 Container(
                                   width: double.infinity,
@@ -48006,10 +47821,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao6titulo2 != null &&
-                                      FFAppState().opcao6titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao6titulo2 != '') &&
                                   FFAppState().opcao7selecionado)
                                 Container(
                                   width: double.infinity,
@@ -48630,10 +48443,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao7titulo2 != null &&
-                                      FFAppState().opcao7titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao7titulo2 != '') &&
                                   FFAppState().opcao7selecionado)
                                 Container(
                                   width: double.infinity,
@@ -49257,10 +49068,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao8titulo2 != null &&
-                                      FFAppState().opcao8titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao8titulo2 != '') &&
                                   FFAppState().opcao7selecionado)
                                 Container(
                                   width: double.infinity,
@@ -49884,10 +49693,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao9titulo2 != null &&
-                                      FFAppState().opcao9titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao9titulo2 != '') &&
                                   FFAppState().opcao7selecionado)
                                 Container(
                                   width: double.infinity,
@@ -50511,10 +50318,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao10titulo2 != null &&
-                                      FFAppState().opcao10titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao10titulo2 != '') &&
                                   FFAppState().opcao7selecionado)
                                 Container(
                                   width: double.infinity,
@@ -51145,10 +50950,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao1titulo2 != null &&
-                                      FFAppState().opcao1titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao1titulo2 != '') &&
                                   FFAppState().opcao8selecionado)
                                 Container(
                                   width: double.infinity,
@@ -51769,10 +51572,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao2titulo2 != null &&
-                                      FFAppState().opcao2titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao2titulo2 != '') &&
                                   FFAppState().opcao8selecionado)
                                 Container(
                                   width: double.infinity,
@@ -52393,10 +52194,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao3titulo2 != null &&
-                                      FFAppState().opcao3titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao3titulo2 != '') &&
                                   FFAppState().opcao8selecionado)
                                 Container(
                                   width: double.infinity,
@@ -53017,10 +52816,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao4titulo2 != null &&
-                                      FFAppState().opcao4titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao4titulo2 != '') &&
                                   FFAppState().opcao8selecionado)
                                 Container(
                                   width: double.infinity,
@@ -53641,10 +53438,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao5titulo2 != null &&
-                                      FFAppState().opcao5titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao5titulo2 != '') &&
                                   FFAppState().opcao8selecionado)
                                 Container(
                                   width: double.infinity,
@@ -54265,10 +54060,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao6titulo2 != null &&
-                                      FFAppState().opcao6titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao6titulo2 != '') &&
                                   FFAppState().opcao8selecionado)
                                 Container(
                                   width: double.infinity,
@@ -54889,10 +54682,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao7titulo2 != null &&
-                                      FFAppState().opcao7titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao7titulo2 != '') &&
                                   FFAppState().opcao8selecionado)
                                 Container(
                                   width: double.infinity,
@@ -55516,10 +55307,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao8titulo2 != null &&
-                                      FFAppState().opcao8titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao8titulo2 != '') &&
                                   FFAppState().opcao8selecionado)
                                 Container(
                                   width: double.infinity,
@@ -56143,10 +55932,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao9titulo2 != null &&
-                                      FFAppState().opcao9titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao9titulo2 != '') &&
                                   FFAppState().opcao8selecionado)
                                 Container(
                                   width: double.infinity,
@@ -56770,10 +56557,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao10titulo2 != null &&
-                                      FFAppState().opcao10titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao10titulo2 != '') &&
                                   FFAppState().opcao8selecionado)
                                 Container(
                                   width: double.infinity,
@@ -57404,10 +57189,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao1titulo2 != null &&
-                                      FFAppState().opcao1titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao1titulo2 != '') &&
                                   FFAppState().opcao9selecionado)
                                 Container(
                                   width: double.infinity,
@@ -58028,10 +57811,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao2titulo2 != null &&
-                                      FFAppState().opcao2titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao2titulo2 != '') &&
                                   FFAppState().opcao9selecionado)
                                 Container(
                                   width: double.infinity,
@@ -58652,10 +58433,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao3titulo2 != null &&
-                                      FFAppState().opcao3titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao3titulo2 != '') &&
                                   FFAppState().opcao9selecionado)
                                 Container(
                                   width: double.infinity,
@@ -59276,10 +59055,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao4titulo2 != null &&
-                                      FFAppState().opcao4titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao4titulo2 != '') &&
                                   FFAppState().opcao9selecionado)
                                 Container(
                                   width: double.infinity,
@@ -59900,10 +59677,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao5titulo2 != null &&
-                                      FFAppState().opcao5titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao5titulo2 != '') &&
                                   FFAppState().opcao9selecionado)
                                 Container(
                                   width: double.infinity,
@@ -60524,10 +60299,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao6titulo2 != null &&
-                                      FFAppState().opcao6titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao6titulo2 != '') &&
                                   FFAppState().opcao9selecionado)
                                 Container(
                                   width: double.infinity,
@@ -61148,10 +60921,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao7titulo2 != null &&
-                                      FFAppState().opcao7titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao7titulo2 != '') &&
                                   FFAppState().opcao9selecionado)
                                 Container(
                                   width: double.infinity,
@@ -61775,10 +61546,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao8titulo2 != null &&
-                                      FFAppState().opcao8titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao8titulo2 != '') &&
                                   FFAppState().opcao9selecionado)
                                 Container(
                                   width: double.infinity,
@@ -62402,10 +62171,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao9titulo2 != null &&
-                                      FFAppState().opcao9titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao9titulo2 != '') &&
                                   FFAppState().opcao9selecionado)
                                 Container(
                                   width: double.infinity,
@@ -63029,10 +62796,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao10titulo2 != null &&
-                                      FFAppState().opcao10titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao10titulo2 != '') &&
                                   FFAppState().opcao9selecionado)
                                 Container(
                                   width: double.infinity,
@@ -63663,10 +63428,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao1titulo2 != null &&
-                                      FFAppState().opcao1titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao1titulo2 != '') &&
                                   FFAppState().opcao10selecionado)
                                 Container(
                                   width: double.infinity,
@@ -64287,10 +64050,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao2titulo2 != null &&
-                                      FFAppState().opcao2titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao2titulo2 != '') &&
                                   FFAppState().opcao10selecionado)
                                 Container(
                                   width: double.infinity,
@@ -64911,10 +64672,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao3titulo2 != null &&
-                                      FFAppState().opcao3titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao3titulo2 != '') &&
                                   FFAppState().opcao10selecionado)
                                 Container(
                                   width: double.infinity,
@@ -65535,10 +65294,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao4titulo2 != null &&
-                                      FFAppState().opcao4titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao4titulo2 != '') &&
                                   FFAppState().opcao10selecionado)
                                 Container(
                                   width: double.infinity,
@@ -66159,10 +65916,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao5titulo2 != null &&
-                                      FFAppState().opcao5titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao5titulo2 != '') &&
                                   FFAppState().opcao10selecionado)
                                 Container(
                                   width: double.infinity,
@@ -66783,10 +66538,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao6titulo2 != null &&
-                                      FFAppState().opcao6titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao6titulo2 != '') &&
                                   FFAppState().opcao10selecionado)
                                 Container(
                                   width: double.infinity,
@@ -67407,10 +67160,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao7titulo2 != null &&
-                                      FFAppState().opcao7titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao7titulo2 != '') &&
                                   FFAppState().opcao10selecionado)
                                 Container(
                                   width: double.infinity,
@@ -68034,10 +67785,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao8titulo2 != null &&
-                                      FFAppState().opcao8titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao8titulo2 != '') &&
                                   FFAppState().opcao10selecionado)
                                 Container(
                                   width: double.infinity,
@@ -68661,10 +68410,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao9titulo2 != null &&
-                                      FFAppState().opcao9titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao9titulo2 != '') &&
                                   FFAppState().opcao10selecionado)
                                 Container(
                                   width: double.infinity,
@@ -69288,10 +69035,8 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                                     ],
                                   ),
                                 ),
-                              if ((FFAppState().opcao1titulo1 != null &&
-                                      FFAppState().opcao1titulo1 != '') &&
-                                  (FFAppState().opcao10titulo2 != null &&
-                                      FFAppState().opcao10titulo2 != '') &&
+                              if ((FFAppState().opcao1titulo1 != '') &&
+                                  (FFAppState().opcao10titulo2 != '') &&
                                   FFAppState().opcao10selecionado)
                                 Container(
                                   width: double.infinity,
@@ -69924,7 +69669,7 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                 ],
               ),
             ),
-            if (FFAppState().titulo2 != null && FFAppState().titulo2 != '')
+            if (FFAppState().titulo2 != '')
               Align(
                 alignment: AlignmentDirectional(0.0, -1.0),
                 child: Container(
@@ -69939,8 +69684,7 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     children: [
-                      if (FFAppState().opcao1titulo1 != null &&
-                          FFAppState().opcao1titulo1 != '')
+                      if (FFAppState().opcao1titulo1 != '')
                         Align(
                           alignment: AlignmentDirectional(0.0, -1.0),
                           child: InkWell(
@@ -70016,8 +69760,7 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                             ),
                           ),
                         ),
-                      if (FFAppState().opcao2titulo1 != null &&
-                          FFAppState().opcao2titulo1 != '')
+                      if (FFAppState().opcao2titulo1 != '')
                         Align(
                           alignment: AlignmentDirectional(0.0, -1.0),
                           child: InkWell(
@@ -70093,8 +69836,7 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                             ),
                           ),
                         ),
-                      if (FFAppState().opcao3titulo1 != null &&
-                          FFAppState().opcao3titulo1 != '')
+                      if (FFAppState().opcao3titulo1 != '')
                         Align(
                           alignment: AlignmentDirectional(0.0, -1.0),
                           child: InkWell(
@@ -70170,8 +69912,7 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                             ),
                           ),
                         ),
-                      if (FFAppState().opcao4titulo1 != null &&
-                          FFAppState().opcao4titulo1 != '')
+                      if (FFAppState().opcao4titulo1 != '')
                         Align(
                           alignment: AlignmentDirectional(0.0, -1.0),
                           child: InkWell(
@@ -70247,8 +69988,7 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                             ),
                           ),
                         ),
-                      if (FFAppState().opcao5titulo1 != null &&
-                          FFAppState().opcao5titulo1 != '')
+                      if (FFAppState().opcao5titulo1 != '')
                         Align(
                           alignment: AlignmentDirectional(0.0, -1.0),
                           child: InkWell(
@@ -70324,8 +70064,7 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                             ),
                           ),
                         ),
-                      if (FFAppState().opcao6titulo1 != null &&
-                          FFAppState().opcao6titulo1 != '')
+                      if (FFAppState().opcao6titulo1 != '')
                         Align(
                           alignment: AlignmentDirectional(0.0, -1.0),
                           child: InkWell(
@@ -70401,8 +70140,7 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                             ),
                           ),
                         ),
-                      if (FFAppState().opcao7titulo1 != null &&
-                          FFAppState().opcao7titulo1 != '')
+                      if (FFAppState().opcao7titulo1 != '')
                         Align(
                           alignment: AlignmentDirectional(0.0, -1.0),
                           child: InkWell(
@@ -70478,8 +70216,7 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                             ),
                           ),
                         ),
-                      if (FFAppState().opcao8titulo1 != null &&
-                          FFAppState().opcao8titulo1 != '')
+                      if (FFAppState().opcao8titulo1 != '')
                         Align(
                           alignment: AlignmentDirectional(0.0, -1.0),
                           child: InkWell(
@@ -70555,8 +70292,7 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                             ),
                           ),
                         ),
-                      if (FFAppState().opcao9titulo1 != null &&
-                          FFAppState().opcao9titulo1 != '')
+                      if (FFAppState().opcao9titulo1 != '')
                         Align(
                           alignment: AlignmentDirectional(0.0, -1.0),
                           child: InkWell(
@@ -70632,8 +70368,7 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                             ),
                           ),
                         ),
-                      if (FFAppState().opcao10titulo1 != null &&
-                          FFAppState().opcao10titulo1 != '')
+                      if (FFAppState().opcao10titulo1 != '')
                         Align(
                           alignment: AlignmentDirectional(0.0, -1.0),
                           child: InkWell(
@@ -70738,7 +70473,7 @@ class _AdicionarVariante2WidgetState extends State<AdicionarVariante2Widget> {
                           CadastrarProdutoWidget.routeName,
                           queryParameters: {
                             'lojaRef': serializeParam(
-                              widget!.lojaRef,
+                              widget.lojaRef,
                               ParamType.DocumentReference,
                             ),
                           }.withoutNulls,

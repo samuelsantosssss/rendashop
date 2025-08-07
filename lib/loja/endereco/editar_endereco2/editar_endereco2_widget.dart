@@ -5,10 +5,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -48,7 +45,7 @@ class _EditarEndereco2WidgetState extends State<EditarEndereco2Widget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.apiResultlknnnnn = await PuxarCEPCall.call(
-        cepVariavel: FFAppState().cep != null && FFAppState().cep != ''
+        cepVariavel: FFAppState().cep != ''
             ? FFAppState().cep
             : functions.apenasNumeros(_model.cepTextController.text),
       );
@@ -144,7 +141,7 @@ class _EditarEndereco2WidgetState extends State<EditarEndereco2Widget> {
           elevation: 2.0,
         ),
         body: StreamBuilder<EnderecosRecord>(
-          stream: EnderecosRecord.getDocument(widget!.enderecoRef!),
+          stream: EnderecosRecord.getDocument(widget.enderecoRef!),
           builder: (context, snapshot) {
             // Customize what your widget looks like when it's loading.
             if (!snapshot.hasData) {
@@ -525,21 +522,78 @@ class _EditarEndereco2WidgetState extends State<EditarEndereco2Widget> {
                                       Duration(milliseconds: 300),
                                       () async {
                                         var _shouldSetState = false;
-                                        _model.apiResult1rf =
-                                            await PuxarCEPCall.call(
-                                          cepVariavel: functions.apenasNumeros(
-                                              _model.cepTextController.text),
-                                        );
+                                        if (functions.cepCompleto(
+                                            columnEnderecosRecord.cep)) {
+                                          _model.apiResult1rf =
+                                              await PuxarCEPCall.call(
+                                            cepVariavel:
+                                                functions.apenasNumeros(_model
+                                                    .cepTextController.text),
+                                          );
 
-                                        _shouldSetState = true;
-                                        if ((_model.apiResult1rf?.succeeded ??
-                                            true)) {
-                                          if (PuxarCEPCall.erro(
+                                          _shouldSetState = true;
+                                          if ((_model.apiResult1rf?.succeeded ??
+                                              true)) {
+                                            if (PuxarCEPCall.erro(
+                                                  (_model.apiResult1rf
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                ) ==
+                                                'true') {
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                    'Insira um CEP válido',
+                                                    style: TextStyle(
+                                                      color: Color(0xFFF60000),
+                                                    ),
+                                                  ),
+                                                  duration: Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      Color(0xFFFFCDCD),
+                                                ),
+                                              );
+                                              FFAppState().rua = '';
+                                              FFAppState().estado = '';
+                                              FFAppState().cidade = '';
+                                              FFAppState().bairro = '';
+                                              safeSetState(() {});
+                                              if (_shouldSetState)
+                                                safeSetState(() {});
+                                              return;
+                                            } else {
+                                              FFAppState().rua =
+                                                  PuxarCEPCall.rua(
                                                 (_model.apiResult1rf
                                                         ?.jsonBody ??
                                                     ''),
-                                              ) ==
-                                              'true') {
+                                              )!;
+                                              FFAppState().estado =
+                                                  PuxarCEPCall.estado(
+                                                (_model.apiResult1rf
+                                                        ?.jsonBody ??
+                                                    ''),
+                                              )!;
+                                              FFAppState().cidade =
+                                                  PuxarCEPCall.cidade(
+                                                (_model.apiResult1rf
+                                                        ?.jsonBody ??
+                                                    ''),
+                                              )!;
+                                              FFAppState().bairro =
+                                                  PuxarCEPCall.bairro(
+                                                (_model.apiResult1rf
+                                                        ?.jsonBody ??
+                                                    ''),
+                                              )!;
+                                              safeSetState(() {});
+                                              if (_shouldSetState)
+                                                safeSetState(() {});
+                                              return;
+                                            }
+                                          } else {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               SnackBar(
@@ -563,52 +617,8 @@ class _EditarEndereco2WidgetState extends State<EditarEndereco2Widget> {
                                             if (_shouldSetState)
                                               safeSetState(() {});
                                             return;
-                                          } else {
-                                            FFAppState().rua = PuxarCEPCall.rua(
-                                              (_model.apiResult1rf?.jsonBody ??
-                                                  ''),
-                                            )!;
-                                            FFAppState().estado =
-                                                PuxarCEPCall.estado(
-                                              (_model.apiResult1rf?.jsonBody ??
-                                                  ''),
-                                            )!;
-                                            FFAppState().cidade =
-                                                PuxarCEPCall.cidade(
-                                              (_model.apiResult1rf?.jsonBody ??
-                                                  ''),
-                                            )!;
-                                            FFAppState().bairro =
-                                                PuxarCEPCall.bairro(
-                                              (_model.apiResult1rf?.jsonBody ??
-                                                  ''),
-                                            )!;
-                                            safeSetState(() {});
-                                            if (_shouldSetState)
-                                              safeSetState(() {});
-                                            return;
                                           }
                                         } else {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                'Insira um CEP válido',
-                                                style: TextStyle(
-                                                  color: Color(0xFFF60000),
-                                                ),
-                                              ),
-                                              duration:
-                                                  Duration(milliseconds: 4000),
-                                              backgroundColor:
-                                                  Color(0xFFFFCDCD),
-                                            ),
-                                          );
-                                          FFAppState().rua = '';
-                                          FFAppState().estado = '';
-                                          FFAppState().cidade = '';
-                                          FFAppState().bairro = '';
-                                          safeSetState(() {});
                                           if (_shouldSetState)
                                             safeSetState(() {});
                                           return;
@@ -728,8 +738,7 @@ class _EditarEndereco2WidgetState extends State<EditarEndereco2Widget> {
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
-                      if (!(_model.cepTextController.text != null &&
-                          _model.cepTextController.text != '')) {
+                      if (!(_model.cepTextController.text != '')) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
@@ -768,10 +777,9 @@ class _EditarEndereco2WidgetState extends State<EditarEndereco2Widget> {
                                     10.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    _model.cepTextController.text != null &&
-                                            _model.cepTextController.text != ''
+                                    _model.cepTextController.text != ''
                                         ? valueOrDefault<String>(
-                                            '${FFAppState().cidade != null && FFAppState().cidade != '' ? FFAppState().cidade : 'Cidade'} - ${FFAppState().bairro != null && FFAppState().bairro != '' ? FFAppState().estado : 'Estado'}',
+                                            '${FFAppState().cidade != '' ? FFAppState().cidade : 'Cidade'} - ${FFAppState().bairro != '' ? FFAppState().estado : 'Estado'}',
                                             'Estado - Cidade',
                                           )
                                         : 'Estado - Cidade',
@@ -791,13 +799,9 @@ class _EditarEndereco2WidgetState extends State<EditarEndereco2Widget> {
                                                   .fontStyle,
                                         ),
                                         color: valueOrDefault<Color>(
-                                          (FFAppState().estado != null &&
-                                                      FFAppState().estado !=
+                                          (FFAppState().estado !=
                                                           '') &&
                                                   (_model.cepTextController
-                                                              .text !=
-                                                          null &&
-                                                      _model.cepTextController
                                                               .text !=
                                                           '')
                                               ? Color(0xFF323233)
@@ -826,8 +830,7 @@ class _EditarEndereco2WidgetState extends State<EditarEndereco2Widget> {
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
-                      if (!(_model.cepTextController.text != null &&
-                          _model.cepTextController.text != '')) {
+                      if (!(_model.cepTextController.text != '')) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
@@ -865,8 +868,7 @@ class _EditarEndereco2WidgetState extends State<EditarEndereco2Widget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     10.0, 0.0, 0.0, 0.0),
                                 child: Text(
-                                  FFAppState().bairro != null &&
-                                          FFAppState().bairro != ''
+                                  FFAppState().bairro != ''
                                       ? FFAppState().bairro
                                       : 'Bairro',
                                   style: FlutterFlowTheme.of(context)
@@ -883,8 +885,7 @@ class _EditarEndereco2WidgetState extends State<EditarEndereco2Widget> {
                                                   .fontStyle,
                                         ),
                                         color: valueOrDefault<Color>(
-                                          FFAppState().estado != null &&
-                                                  FFAppState().estado != ''
+                                          FFAppState().estado != ''
                                               ? Color(0xFF323233)
                                               : Color(0x8575787A),
                                           Color(0x8575787A),
@@ -934,8 +935,7 @@ class _EditarEndereco2WidgetState extends State<EditarEndereco2Widget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  if (!(_model.cepTextController.text != null &&
-                                      _model.cepTextController.text != '')) {
+                                  if (!(_model.cepTextController.text != '')) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
@@ -951,8 +951,7 @@ class _EditarEndereco2WidgetState extends State<EditarEndereco2Widget> {
                                   }
                                 },
                                 child: Text(
-                                  FFAppState().rua != null &&
-                                          FFAppState().rua != ''
+                                  FFAppState().rua != ''
                                       ? FFAppState().rua
                                       : 'Rua',
                                   style: FlutterFlowTheme.of(context)
@@ -969,8 +968,7 @@ class _EditarEndereco2WidgetState extends State<EditarEndereco2Widget> {
                                                   .fontStyle,
                                         ),
                                         color: valueOrDefault<Color>(
-                                          FFAppState().estado != null &&
-                                                  FFAppState().estado != ''
+                                          FFAppState().estado != ''
                                               ? Color(0xFF323233)
                                               : Color(0x8575787A),
                                           Color(0x8575787A),
@@ -1633,7 +1631,7 @@ class _EditarEndereco2WidgetState extends State<EditarEndereco2Widget> {
                                           },
                                         );
                                       } else {
-                                        await widget!.enderecoRef!.delete();
+                                        await widget.enderecoRef!.delete();
                                         context.safePop();
                                       }
 
@@ -1684,17 +1682,11 @@ class _EditarEndereco2WidgetState extends State<EditarEndereco2Widget> {
                                   5.0, 0.0, 5.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  if (_model.textController1.text != null &&
-                                      _model.textController1.text != '') {
-                                    if (_model.textController2.text != null &&
-                                        _model.textController2.text != '') {
-                                      if (_model.cepTextController.text !=
-                                              null &&
-                                          _model.cepTextController.text != '') {
-                                        if (_model.textController4.text !=
-                                                null &&
-                                            _model.textController4.text != '') {
-                                          await widget!.enderecoRef!
+                                  if (_model.textController1.text != '') {
+                                    if (_model.textController2.text != '') {
+                                      if (_model.cepTextController.text != '') {
+                                        if (_model.textController4.text != '') {
+                                          await widget.enderecoRef!
                                               .update(createEnderecosRecordData(
                                             nome: _model.textController1.text,
                                             contato:
@@ -1705,10 +1697,7 @@ class _EditarEndereco2WidgetState extends State<EditarEndereco2Widget> {
                                             bairro: FFAppState().bairro,
                                             rua: FFAppState().rua,
                                             numero: _model.textController4.text,
-                                            casaTrabalho: FFAppState()
-                                                            .enderecoCer !=
-                                                        null &&
-                                                    FFAppState().enderecoCer !=
+                                            casaTrabalho: FFAppState().enderecoCer !=
                                                         ''
                                                 ? FFAppState().enderecoCer
                                                 : columnEnderecosRecord
@@ -1731,7 +1720,7 @@ class _EditarEndereco2WidgetState extends State<EditarEndereco2Widget> {
                                             enderecoCompleto:
                                                 columnEnderecosRecord
                                                     .enderecoCompleto,
-                                            enderecoRef: widget!.enderecoRef,
+                                            enderecoRef: widget.enderecoRef,
                                           ));
                                           FFAppState().cupomSelecionadoRef =
                                               null;

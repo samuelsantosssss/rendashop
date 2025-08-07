@@ -5,10 +5,7 @@ import '/flutter_flow/flutter_flow_media_display.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -112,7 +109,7 @@ class _TodasAvaliacaoWidgetState extends State<TodasAvaliacaoWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                   child: StreamBuilder<List<AvaliacaoRecord>>(
                     stream: queryAvaliacaoRecord(
-                      parent: widget!.produtoRef,
+                      parent: widget.produtoRef,
                       queryBuilder: (avaliacaoRecord) =>
                           avaliacaoRecord.orderBy('videoSet', descending: true),
                     ),
@@ -543,9 +540,7 @@ class _TodasAvaliacaoWidgetState extends State<TodasAvaliacaoWidget> {
                                         ),
                                       ],
                                     ),
-                                    if (listViewAvaliacaoRecord.variacao !=
-                                            null &&
-                                        listViewAvaliacaoRecord.variacao != '')
+                                    if (listViewAvaliacaoRecord.variacao != '')
                                       Align(
                                         alignment:
                                             AlignmentDirectional(-1.0, -1.0),
@@ -588,9 +583,7 @@ class _TodasAvaliacaoWidgetState extends State<TodasAvaliacaoWidget> {
                                         ),
                                       ),
                                     if ((FFAppState().verTudo == false) &&
-                                        (listViewAvaliacaoRecord.comentario !=
-                                                null &&
-                                            listViewAvaliacaoRecord
+                                        (listViewAvaliacaoRecord
                                                     .comentario !=
                                                 ''))
                                       Align(
@@ -649,9 +642,7 @@ class _TodasAvaliacaoWidgetState extends State<TodasAvaliacaoWidget> {
                                         ),
                                       ),
                                     if ((FFAppState().verTudo == true) &&
-                                        (listViewAvaliacaoRecord.comentario !=
-                                                null &&
-                                            listViewAvaliacaoRecord
+                                        (listViewAvaliacaoRecord
                                                     .comentario !=
                                                 ''))
                                       Align(
@@ -800,7 +791,7 @@ class _TodasAvaliacaoWidgetState extends State<TodasAvaliacaoWidget> {
                                                                         ),
                                                                         'produtoRef':
                                                                             serializeParam(
-                                                                          widget!
+                                                                          widget
                                                                               .produtoRef,
                                                                           ParamType
                                                                               .DocumentReference,
@@ -921,7 +912,7 @@ class _TodasAvaliacaoWidgetState extends State<TodasAvaliacaoWidget> {
                                                         ),
                                                         'produtoRef':
                                                             serializeParam(
-                                                          widget!.produtoRef,
+                                                          widget.produtoRef,
                                                           ParamType
                                                               .DocumentReference,
                                                         ),

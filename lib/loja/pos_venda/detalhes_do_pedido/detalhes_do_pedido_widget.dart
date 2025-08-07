@@ -17,11 +17,9 @@ import '/loja/pos_venda/cencelando_pedido2/cencelando_pedido2_widget.dart';
 import '/loja/pos_venda/pedido_faturado/pedido_faturado_widget.dart';
 import '/loja/pos_venda/time_pix4/time_pix4_widget.dart';
 import '/loja/taxa_processamento2/taxa_processamento2_widget.dart';
-import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -72,7 +70,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
     context.watch<FFAppState>();
 
     return StreamBuilder<PedidosTotalRecord>(
-      stream: PedidosTotalRecord.getDocument(widget!.pedidoRef2!),
+      stream: PedidosTotalRecord.getDocument(widget.pedidoRef2!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -689,7 +687,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                   queryParameters: {
                                                     'pedidoRef2':
                                                         serializeParam(
-                                                      widget!.pedidoRef2,
+                                                      widget.pedidoRef2,
                                                       ParamType
                                                           .DocumentReference,
                                                     ),
@@ -988,7 +986,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                             rastreio2Record
                                                 .where(
                                                   'pedidoRef2',
-                                                  isEqualTo: widget!.pedidoRef2,
+                                                  isEqualTo: widget.pedidoRef2,
                                                 )
                                                 .orderBy('data',
                                                     descending: true),
@@ -1035,7 +1033,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                       queryParameters: {
                                                         'pedidoRef2':
                                                             serializeParam(
-                                                          widget!.pedidoRef2,
+                                                          widget.pedidoRef2,
                                                           ParamType
                                                               .DocumentReference,
                                                         ),
@@ -1636,9 +1634,6 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                         .spaceBetween,
                                                 children: [
                                                   if (detalhesDoPedidoPedidosTotalRecord
-                                                              .variacao !=
-                                                          null &&
-                                                      detalhesDoPedidoPedidosTotalRecord
                                                               .variacao !=
                                                           '')
                                                     Align(
@@ -3190,8 +3185,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                         mainAxisAlignment:
                                                                             MainAxisAlignment.spaceBetween,
                                                                         children: [
-                                                                          if (containerPedidosTotalRecord.variacao != null &&
-                                                                              containerPedidosTotalRecord.variacao != '')
+                                                                          if (containerPedidosTotalRecord.variacao != '')
                                                                             Align(
                                                                               alignment: AlignmentDirectional(-1.0, 0.0),
                                                                               child: Text(
@@ -4161,9 +4155,6 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                     onTap: () async {
                                       if (detalhesDoPedidoPedidosTotalRecord
                                                   .codigoRastreio !=
-                                              null &&
-                                          detalhesDoPedidoPedidosTotalRecord
-                                                  .codigoRastreio !=
                                               '') {
                                         await showModalBottomSheet(
                                           isScrollControlled: true,
@@ -4208,7 +4199,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                     MediaQuery.viewInsetsOf(
                                                         context),
                                                 child: CencelandoPedidoWidget(
-                                                  pedidoRef: widget!.pedidoRef2,
+                                                  pedidoRef: widget.pedidoRef2,
                                                 ),
                                               ),
                                             );
@@ -4296,9 +4287,6 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
                                       if (detalhesDoPedidoPedidosTotalRecord
-                                                  .codigoRastreio !=
-                                              null &&
-                                          detalhesDoPedidoPedidosTotalRecord
                                                   .codigoRastreio !=
                                               '') {
                                         await showModalBottomSheet(
@@ -5005,22 +4993,22 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                   feed2ProdutoRecordList
                                                       .toList(),
                                                   (currentUserDocument?.favorito
-                                                              ?.toList() ??
+                                                              .toList() ??
                                                           [])
                                                       .toList(),
                                                   (currentUserDocument
                                                               ?.historicoPesquisa
-                                                              ?.toList() ??
+                                                              .toList() ??
                                                           [])
                                                       .toList(),
                                                   (currentUserDocument
                                                               ?.vistoRecente
-                                                              ?.toList() ??
+                                                              .toList() ??
                                                           [])
                                                       .toList(),
                                                   (currentUserDocument
                                                               ?.comprasHistoricoProdutos
-                                                              ?.toList() ??
+                                                              .toList() ??
                                                           [])
                                                       .toList(),
                                                   FFAppState()
@@ -5121,7 +5109,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                             safeSetState(() {});
                                                             if ((currentUserDocument
                                                                             ?.vistoRecente
-                                                                            ?.toList() ??
+                                                                            .toList() ??
                                                                         [])
                                                                     .length ==
                                                                 6) {
@@ -5132,7 +5120,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                     'vistoRecente':
                                                                         FieldValue
                                                                             .arrayRemove([
-                                                                      (currentUserDocument?.vistoRecente?.toList() ??
+                                                                      (currentUserDocument?.vistoRecente.toList() ??
                                                                               [])
                                                                           .firstOrNull
                                                                     ]),
@@ -5241,8 +5229,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                                 alignment: Alignment(0.0, -1.0),
                                                                               ),
                                                                             ),
-                                                                            if (containerProdutoRecord.video != null &&
-                                                                                containerProdutoRecord.video != '')
+                                                                            if (containerProdutoRecord.video != '')
                                                                               Align(
                                                                                 alignment: AlignmentDirectional(-1.0, 1.0),
                                                                                 child: Padding(
@@ -5262,8 +5249,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                                   ),
                                                                                 ),
                                                                               ),
-                                                                            if (containerProdutoRecord.capsula1 != null &&
-                                                                                containerProdutoRecord.capsula1 != '')
+                                                                            if (containerProdutoRecord.capsula1 != '')
                                                                               Align(
                                                                                 alignment: AlignmentDirectional(1.0, 1.0),
                                                                                 child: Padding(
@@ -5308,7 +5294,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                                               ),
                                                                                             ),
                                                                                           ),
-                                                                                          if (containerProdutoRecord.capsula2 != null && containerProdutoRecord.capsula2 != '')
+                                                                                          if (containerProdutoRecord.capsula2 != '')
                                                                                             Padding(
                                                                                               padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                               child: Container(
@@ -5335,7 +5321,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                             ),
-                                                                                          if (containerProdutoRecord.capsula3 != null && containerProdutoRecord.capsula3 != '')
+                                                                                          if (containerProdutoRecord.capsula3 != '')
                                                                                             Padding(
                                                                                               padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
                                                                                               child: Container(
@@ -5362,7 +5348,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                                                 ),
                                                                                               ),
                                                                                             ),
-                                                                                          if (containerProdutoRecord.capsulaExtra != null && containerProdutoRecord.capsulaExtra != '')
+                                                                                          if (containerProdutoRecord.capsulaExtra != '')
                                                                                             Padding(
                                                                                               padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
                                                                                               child: Text(
@@ -5410,41 +5396,40 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                             Row(
                                                                               mainAxisSize: MainAxisSize.max,
                                                                               children: [
-                                                                                if (containerProdutoRecord.precoAntes != null)
-                                                                                  Align(
-                                                                                    alignment: AlignmentDirectional(0.0, 1.0),
-                                                                                    child: Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 3.0, 0.0),
-                                                                                      child: Container(
-                                                                                        width: 29.0,
-                                                                                        height: 16.0,
-                                                                                        decoration: BoxDecoration(
-                                                                                          borderRadius: BorderRadius.circular(4.0),
-                                                                                          border: Border.all(
-                                                                                            color: FlutterFlowTheme.of(context).primary,
-                                                                                            width: 0.7,
-                                                                                          ),
+                                                                                Align(
+                                                                                  alignment: AlignmentDirectional(0.0, 1.0),
+                                                                                  child: Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 3.0, 0.0),
+                                                                                    child: Container(
+                                                                                      width: 29.0,
+                                                                                      height: 16.0,
+                                                                                      decoration: BoxDecoration(
+                                                                                        borderRadius: BorderRadius.circular(4.0),
+                                                                                        border: Border.all(
+                                                                                          color: FlutterFlowTheme.of(context).primary,
+                                                                                          width: 0.7,
                                                                                         ),
-                                                                                        child: Align(
-                                                                                          alignment: AlignmentDirectional(0.0, 0.0),
-                                                                                          child: Text(
-                                                                                            functions.porcentagemPromo(containerProdutoRecord.precoAntes, containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? containerProdutoRecord.menorPrecoRevenda : containerProdutoRecord.preco),
-                                                                                            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                                  font: GoogleFonts.inter(
-                                                                                                    fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                                  ),
-                                                                                                  color: FlutterFlowTheme.of(context).primary,
-                                                                                                  fontSize: 10.0,
-                                                                                                  letterSpacing: 0.0,
+                                                                                      ),
+                                                                                      child: Align(
+                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                        child: Text(
+                                                                                          functions.porcentagemPromo(containerProdutoRecord.precoAntes, containerProdutoRecord.titulo1 != '' ? containerProdutoRecord.menorPrecoRevenda : containerProdutoRecord.preco),
+                                                                                          style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                font: GoogleFonts.inter(
                                                                                                   fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                                                   fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                                 ),
-                                                                                          ),
+                                                                                                color: FlutterFlowTheme.of(context).primary,
+                                                                                                fontSize: 10.0,
+                                                                                                letterSpacing: 0.0,
+                                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                              ),
                                                                                         ),
                                                                                       ),
                                                                                     ),
                                                                                   ),
+                                                                                ),
                                                                                 SelectionArea(
                                                                                     child: Text(
                                                                                   containerProdutoRecord.nome.maybeHandleOverflow(
@@ -5610,7 +5595,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                                         ),
                                                                                   ),
                                                                                   Text(
-                                                                                    containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? functions.valorRealString(containerProdutoRecord.menorPrecoRevenda) : functions.valorRealString(containerProdutoRecord.preco),
+                                                                                    containerProdutoRecord.titulo1 != '' ? functions.valorRealString(containerProdutoRecord.menorPrecoRevenda) : functions.valorRealString(containerProdutoRecord.preco),
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                           font: GoogleFonts.inter(
                                                                                             fontWeight: FontWeight.w600,
@@ -5624,7 +5609,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                                         ),
                                                                                   ),
                                                                                   Text(
-                                                                                    containerProdutoRecord.titulo1 != null && containerProdutoRecord.titulo1 != '' ? functions.valorCentavosEmString(containerProdutoRecord.menorPrecoRevenda) : functions.valorCentavosEmString(containerProdutoRecord.preco),
+                                                                                    containerProdutoRecord.titulo1 != '' ? functions.valorCentavosEmString(containerProdutoRecord.menorPrecoRevenda) : functions.valorCentavosEmString(containerProdutoRecord.preco),
                                                                                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                           font: GoogleFonts.inter(
                                                                                             fontWeight: FontWeight.w600,
@@ -5912,8 +5897,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                   ),
                                   if ((FFAppState().FeedAntes !=
                                           FFAppState().FeedDepois) ||
-                                      (FFAppState().FeedAntes == null ||
-                                          FFAppState().FeedAntes == ''))
+                                      (FFAppState().FeedAntes == ''))
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           10.0, 15.0, 10.0, 0.0),
@@ -5928,22 +5912,22 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                   feed2ProdutoRecordList
                                                       .toList(),
                                                   (currentUserDocument?.favorito
-                                                              ?.toList() ??
+                                                              .toList() ??
                                                           [])
                                                       .toList(),
                                                   (currentUserDocument
                                                               ?.historicoPesquisa
-                                                              ?.toList() ??
+                                                              .toList() ??
                                                           [])
                                                       .toList(),
                                                   (currentUserDocument
                                                               ?.vistoRecente
-                                                              ?.toList() ??
+                                                              .toList() ??
                                                           [])
                                                       .toList(),
                                                   (currentUserDocument
                                                               ?.comprasHistoricoProdutos
-                                                              ?.toList() ??
+                                                              .toList() ??
                                                           [])
                                                       .toList(),
                                                   FFAppState()
@@ -5963,22 +5947,22 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                   feed2ProdutoRecordList
                                                       .toList(),
                                                   (currentUserDocument?.favorito
-                                                              ?.toList() ??
+                                                              .toList() ??
                                                           [])
                                                       .toList(),
                                                   (currentUserDocument
                                                               ?.historicoPesquisa
-                                                              ?.toList() ??
+                                                              .toList() ??
                                                           [])
                                                       .toList(),
                                                   (currentUserDocument
                                                               ?.vistoRecente
-                                                              ?.toList() ??
+                                                              .toList() ??
                                                           [])
                                                       .toList(),
                                                   (currentUserDocument
                                                               ?.comprasHistoricoProdutos
-                                                              ?.toList() ??
+                                                              .toList() ??
                                                           [])
                                                       .toList(),
                                                   FFAppState()
@@ -6215,9 +6199,6 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                   onPressed: () async {
                                     if (detalhesDoPedidoPedidosTotalRecord
                                                 .codigoRastreio !=
-                                            null &&
-                                        detalhesDoPedidoPedidosTotalRecord
-                                                .codigoRastreio !=
                                             '') {
                                       await showModalBottomSheet(
                                         isScrollControlled: true,
@@ -6256,7 +6237,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                               padding: MediaQuery.viewInsetsOf(
                                                   context),
                                               child: CencelandoPedidoWidget(
-                                                pedidoRef: widget!.pedidoRef2,
+                                                pedidoRef: widget.pedidoRef2,
                                               ),
                                             ),
                                           );
@@ -6315,9 +6296,6 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                 FFButtonWidget(
                                   onPressed: () async {
                                     if (detalhesDoPedidoPedidosTotalRecord
-                                                .codigoRastreio !=
-                                            null &&
-                                        detalhesDoPedidoPedidosTotalRecord
                                                 .codigoRastreio !=
                                             '') {
                                       await showModalBottomSheet(

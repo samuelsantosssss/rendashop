@@ -2,12 +2,9 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import '/loja/promocao_relampago/time_promo/time_promo_widget.dart';
-import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -1845,7 +1842,7 @@ class _HomePromoRelampagoWidgetState extends State<HomePromoRelampagoWidget> {
                                                                       functions.porcentagemPromo(
                                                                           listViewProdutoRecord
                                                                               .precoAntes,
-                                                                          listViewProdutoRecord.titulo1 != null && listViewProdutoRecord.titulo1 != ''
+                                                                          listViewProdutoRecord.titulo1 != ''
                                                                               ? listViewProdutoRecord.promoRelampagoMenorValor
                                                                               : listViewProdutoRecord.preco),
                                                                       style: FlutterFlowTheme.of(
@@ -1984,13 +1981,12 @@ class _HomePromoRelampagoWidgetState extends State<HomePromoRelampagoWidget> {
                                                                   child: Text(
                                                                     functions.verificarIntervaloPromocional2(FFAppState().horaPromo) ==
                                                                             false
-                                                                        ? functions.formatarNumeroMisterioso(listViewProdutoRecord.titulo1 != null && listViewProdutoRecord.titulo1 != ''
+                                                                        ? functions.formatarNumeroMisterioso(listViewProdutoRecord.titulo1 != ''
                                                                             ? listViewProdutoRecord
                                                                                 .promoRelampagoMenorValor
                                                                             : listViewProdutoRecord
                                                                                 .promoRelampagoValor)
-                                                                        : (listViewProdutoRecord.titulo1 != null &&
-                                                                                listViewProdutoRecord.titulo1 != ''
+                                                                        : (listViewProdutoRecord.titulo1 != ''
                                                                             ? functions.valorRealString(listViewProdutoRecord.promoRelampagoMenorValor)
                                                                             : functions.valorRealString(listViewProdutoRecord.preco)),
                                                                     style: FlutterFlowTheme.of(
@@ -2028,13 +2024,12 @@ class _HomePromoRelampagoWidgetState extends State<HomePromoRelampagoWidget> {
                                                                   child: Text(
                                                                     functions.verificarIntervaloPromocional2(FFAppState().horaPromo) ==
                                                                             false
-                                                                        ? (listViewProdutoRecord.titulo1 != null && listViewProdutoRecord.titulo1 != ''
+                                                                        ? (listViewProdutoRecord.titulo1 != ''
                                                                             ? functions.valorCentavosEmString(listViewProdutoRecord
                                                                                 .promoRelampagoMenorValor)
                                                                             : functions.valorCentavosEmString(listViewProdutoRecord
                                                                                 .promoRelampagoValor))
-                                                                        : (listViewProdutoRecord.titulo1 != null &&
-                                                                                listViewProdutoRecord.titulo1 != ''
+                                                                        : (listViewProdutoRecord.titulo1 != ''
                                                                             ? functions.valorCentavosEmString(listViewProdutoRecord.promoRelampagoMenorValor)
                                                                             : functions.valorCentavosEmString(listViewProdutoRecord.preco)),
                                                                     style: FlutterFlowTheme.of(

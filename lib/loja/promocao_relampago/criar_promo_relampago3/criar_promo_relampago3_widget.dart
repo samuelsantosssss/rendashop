@@ -4,15 +4,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:async';
-import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
@@ -1504,9 +1500,7 @@ class _CriarPromoRelampago3WidgetState
                             10.0, 0.0, 10.0, 8.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            if (_model.textField111TextController.text !=
-                                    null &&
-                                _model.textField111TextController.text != '') {
+                            if (_model.textField111TextController.text != '') {
                               await actions.criarPromoRelampago(
                                 FFAppState().promoRelampagoListRef.toList(),
                                 int.tryParse(
@@ -1637,8 +1631,7 @@ class _CriarPromoRelampago3WidgetState
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
                             color: valueOrDefault<Color>(
-                              _model.textField111TextController.text != null &&
-                                      _model.textField111TextController.text !=
+                              _model.textField111TextController.text !=
                                           ''
                                   ? FlutterFlowTheme.of(context).primary
                                   : Color(0xFF9C9A9A),
