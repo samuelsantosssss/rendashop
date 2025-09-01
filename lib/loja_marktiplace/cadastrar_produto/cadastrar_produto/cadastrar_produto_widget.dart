@@ -3,7 +3,6 @@ import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -14,6 +13,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -51,12 +51,13 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
         TextEditingController(text: FFAppState().tituloProduto);
     _model.nomeProdutoFocusNode ??= FocusNode();
 
-    _model.descricaoTextController1 ??=
+    _model.descricaoTextController ??=
         TextEditingController(text: FFAppState().descicaoProduto);
-    _model.descricaoFocusNode1 ??= FocusNode();
+    _model.descricaoFocusNode ??= FocusNode();
 
-    _model.descricaoTextController2 ??= TextEditingController();
-    _model.descricaoFocusNode2 ??= FocusNode();
+    _model.descricao333TextController ??=
+        TextEditingController(text: FFAppState().palavraChaveProduto);
+    _model.descricao333FocusNode ??= FocusNode();
 
     _model.precoantesTextController ??= TextEditingController();
     _model.precoantesFocusNode ??= FocusNode();
@@ -225,7 +226,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                                       m.storagePath,
                                                       context))) {
                                             safeSetState(() => _model
-                                                    .isDataUploading_uploadData33f455 =
+                                                    .isDataUploading_uploadData33f4556 =
                                                 true);
                                             var selectedUploadedFiles =
                                                 <FFUploadedFile>[];
@@ -262,7 +263,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                                   .map((u) => u!)
                                                   .toList();
                                             } finally {
-                                              _model.isDataUploading_uploadData33f455 =
+                                              _model.isDataUploading_uploadData33f4556 =
                                                   false;
                                             }
                                             if (selectedUploadedFiles.length ==
@@ -270,9 +271,9 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                                 downloadUrls.length ==
                                                     selectedMedia.length) {
                                               safeSetState(() {
-                                                _model.uploadedLocalFiles_uploadData33f455 =
+                                                _model.uploadedLocalFiles_uploadData33f4556 =
                                                     selectedUploadedFiles;
-                                                _model.uploadedFileUrls_uploadData33f455 =
+                                                _model.uploadedFileUrls_uploadData33f4556 =
                                                     downloadUrls;
                                               });
                                             } else {
@@ -282,7 +283,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                           }
 
                                           FFAppState().fotoProduto = _model
-                                              .uploadedFileUrls_uploadData33f455
+                                              .uploadedFileUrls_uploadData33f4556
                                               .toList()
                                               .cast<String>();
                                           safeSetState(() {});
@@ -2073,14 +2074,14 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                             child: Container(
                               width: double.infinity,
                               child: TextFormField(
-                                controller: _model.descricaoTextController1,
-                                focusNode: _model.descricaoFocusNode1,
+                                controller: _model.descricaoTextController,
+                                focusNode: _model.descricaoFocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
-                                  '_model.descricaoTextController1',
+                                  '_model.descricaoTextController',
                                   Duration(milliseconds: 0),
                                   () async {
                                     FFAppState().descicaoProduto =
-                                        _model.descricaoTextController1.text;
+                                        _model.descricaoTextController.text;
                                     safeSetState(() {});
                                   },
                                 ),
@@ -2150,7 +2151,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                                   .bodyLarge
                                                   .fontStyle,
                                         ),
-                                        color: Color(0xFFC1C2C5),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
                                         fontSize: 13.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FlutterFlowTheme.of(context)
@@ -2217,7 +2219,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     MaxLengthEnforcement.enforced,
                                 cursorColor: Color(0xFFC1C2C5),
                                 validator: _model
-                                    .descricaoTextController1Validator
+                                    .descricaoTextControllerValidator
                                     .asValidator(context),
                                 inputFormatters: [
                                   if (!isAndroid && !isiOS)
@@ -2342,14 +2344,14 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                             child: Container(
                               width: double.infinity,
                               child: TextFormField(
-                                controller: _model.descricaoTextController2,
-                                focusNode: _model.descricaoFocusNode2,
+                                controller: _model.descricao333TextController,
+                                focusNode: _model.descricao333FocusNode,
                                 onChanged: (_) => EasyDebounce.debounce(
-                                  '_model.descricaoTextController2',
+                                  '_model.descricao333TextController',
                                   Duration(milliseconds: 0),
                                   () async {
                                     FFAppState().palavraChave =
-                                        _model.descricaoTextController2.text;
+                                        _model.descricao333TextController.text;
                                     safeSetState(() {});
                                   },
                                 ),
@@ -2484,7 +2486,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                 maxLines: 4,
                                 cursorColor: Color(0xFFC1C2C5),
                                 validator: _model
-                                    .descricaoTextController2Validator
+                                    .descricao333TextControllerValidator
                                     .asValidator(context),
                                 inputFormatters: [
                                   if (!isAndroid && !isiOS)
@@ -4969,7 +4971,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                       functions.dinheiroStringemDouble(
                                           _model.freteSpTextController.text)),
                                   'palavras_chaveList': functions.palavrachave(
-                                      _model.descricaoTextController2.text),
+                                      _model.descricao333TextController.text),
                                 },
                               ),
                             });
@@ -5066,7 +5068,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                       functions.dinheiroStringemDouble(
                                           _model.freteSpTextController.text)),
                                   'palavras_chaveList': functions.palavrachave(
-                                      _model.descricaoTextController2.text),
+                                      _model.descricao333TextController.text),
                                 },
                               ),
                             }, produtoRecordReference);
@@ -5080,6 +5082,11 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                   capsula3: FFAppState().capsula3,
                                   capsulaExtra: FFAppState().capsulaextra,
                                 ));
+                                FFAppState().capsula1 = '';
+                                FFAppState().capsula2 = '';
+                                FFAppState().capsula3 = '';
+                                FFAppState().capsulaextra = '';
+                                safeSetState(() {});
                               }
                             } else {
                               await _model.produtoCriado!.reference
@@ -5095,6 +5102,11 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                             FFAppState().videoProduto = '';
                             FFAppState().tituloProduto = '';
                             FFAppState().descicaoProduto = '';
+                            FFAppState().lider1 = '';
+                            FFAppState().lider2 = '';
+                            FFAppState().lider3 = '';
+                            FFAppState().lider4 = '';
+                            FFAppState().palavraChaveProduto = '';
                             safeSetState(() {});
 
                             await _model.produtoCriado!.reference

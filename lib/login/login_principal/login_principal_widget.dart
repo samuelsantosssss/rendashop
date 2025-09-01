@@ -1,12 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
 import 'package:collection/collection.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -521,6 +521,9 @@ class _LoginPrincipalWidgetState extends State<LoginPrincipalWidget>
                                 _shouldSetState = true;
                                 if (_model.exiteContaQuery2?.contaGoogle ==
                                     true) {
+                                  if (Navigator.of(context).canPop()) {
+                                    context.pop();
+                                  }
                                   context.pushNamedAuth(
                                     LoginCardTemGoogleWidget.routeName,
                                     context.mounted,
@@ -600,76 +603,86 @@ class _LoginPrincipalWidgetState extends State<LoginPrincipalWidget>
                           child: FFButtonWidget(
                             onPressed: () async {
                               var _shouldSetState = false;
-                              _model.exiteContaQuery =
-                                  await queryUserRecordOnce(
-                                queryBuilder: (userRecord) => userRecord.where(
-                                  'email',
-                                  isEqualTo:
-                                      _model.emailAddressTextController.text,
-                                ),
-                                singleRecord: true,
-                              ).then((s) => s.firstOrNull);
-                              _shouldSetState = true;
-                              FFAppState().NaoTemConta =
-                                  _model.exiteContaQuery?.reference != null
-                                      ? 'temconta'
-                                      : 'naotem';
-                              safeSetState(() {});
-                              if (FFAppState().NaoTemConta == 'temconta') {
-                                if (_model.exiteContaQuery?.contaGoogle ==
-                                    true) {
-                                  context.pushNamedAuth(
-                                    LoginAfiliadoCardTemGoogleWidget.routeName,
-                                    context.mounted,
-                                    queryParameters: {
-                                      'userRef': serializeParam(
-                                        _model.exiteContaQuery2?.reference,
-                                        ParamType.DocumentReference,
-                                      ),
-                                    }.withoutNulls,
-                                  );
-
-                                  if (_shouldSetState) safeSetState(() {});
-                                  return;
-                                } else {
-                                  if (_shouldSetState) safeSetState(() {});
-                                  return;
-                                }
-                              } else {
-                                if (_model.senhaTextController.text != '') {
-                                  GoRouter.of(context).prepareAuthEvent();
-
-                                  final user =
-                                      await authManager.createAccountWithEmail(
-                                    context,
-                                    _model.emailAddressTextController.text,
-                                    _model.senhaTextController.text,
-                                  );
-                                  if (user == null) {
-                                    return;
-                                  }
-
-                                  if (valueOrDefault<bool>(
-                                          currentUserDocument
-                                              ?.ganhouCupomPosLogin,
-                                          false) !=
+                              if (_model.emailAddressTextController.text !=
+                                      '') {
+                                _model.exiteContaQuery =
+                                    await queryUserRecordOnce(
+                                  queryBuilder: (userRecord) =>
+                                      userRecord.where(
+                                    'email',
+                                    isEqualTo:
+                                        _model.emailAddressTextController.text,
+                                  ),
+                                  singleRecord: true,
+                                ).then((s) => s.firstOrNull);
+                                _shouldSetState = true;
+                                FFAppState().NaoTemConta =
+                                    _model.exiteContaQuery?.reference != null
+                                        ? 'temconta'
+                                        : 'naotem';
+                                safeSetState(() {});
+                                if (FFAppState().NaoTemConta == 'temconta') {
+                                  if (_model.exiteContaQuery?.contaGoogle ==
                                       true) {
-                                    await actions.crearCupomNovoUser(
-                                      currentUserReference!,
+                                    if (Navigator.of(context).canPop()) {
+                                      context.pop();
+                                    }
+                                    context.pushNamedAuth(
+                                      LoginCardTemGoogleWidget.routeName,
+                                      context.mounted,
+                                      queryParameters: {
+                                        'userRef': serializeParam(
+                                          _model.exiteContaQuery?.reference,
+                                          ParamType.DocumentReference,
+                                        ),
+                                      }.withoutNulls,
                                     );
 
-                                    await currentUserReference!
-                                        .update(createUserRecordData(
-                                      ganhouCupomPosLogin: true,
-                                    ));
+                                    if (_shouldSetState) safeSetState(() {});
+                                    return;
+                                  } else {
+                                    if (_shouldSetState) safeSetState(() {});
+                                    return;
                                   }
-                                  context.safePop();
-                                  if (_shouldSetState) safeSetState(() {});
-                                  return;
                                 } else {
-                                  if (_shouldSetState) safeSetState(() {});
-                                  return;
+                                  if (_model.senhaTextController.text != '') {
+                                    GoRouter.of(context).prepareAuthEvent();
+
+                                    final user = await authManager
+                                        .createAccountWithEmail(
+                                      context,
+                                      _model.emailAddressTextController.text,
+                                      _model.senhaTextController.text,
+                                    );
+                                    if (user == null) {
+                                      return;
+                                    }
+
+                                    if (valueOrDefault<bool>(
+                                            currentUserDocument
+                                                ?.ganhouCupomPosLogin,
+                                            false) !=
+                                        true) {
+                                      await actions.crearCupomNovoUser(
+                                        currentUserReference!,
+                                      );
+
+                                      await currentUserReference!
+                                          .update(createUserRecordData(
+                                        ganhouCupomPosLogin: true,
+                                      ));
+                                    }
+                                    context.safePop();
+                                    if (_shouldSetState) safeSetState(() {});
+                                    return;
+                                  } else {
+                                    if (_shouldSetState) safeSetState(() {});
+                                    return;
+                                  }
                                 }
+                              } else {
+                                if (_shouldSetState) safeSetState(() {});
+                                return;
                               }
 
                               if (_shouldSetState) safeSetState(() {});

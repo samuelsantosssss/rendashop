@@ -1,3 +1,5 @@
+import '/backend/api_requests/api_calls.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/loja/promocao_relampago/time_promo_home/time_promo_home_widget.dart';
 import '/loja/promocao_relampago/updata_promo_home/updata_promo_home_widget.dart';
@@ -10,6 +12,14 @@ import 'package:flutter/material.dart';
 class HomeLojaModel extends FlutterFlowModel<HomeLojaWidget> {
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Backend Call - API (ObterIP)] action in Home-loja widget.
+  ApiCallResponse? apiResultp48;
+  // Stores action output result for [Firestore Query - Query a collection] action in Home-loja widget.
+  List<BaixarAppRecord>? query357;
+  // Stores action output result for [Custom Action - mapeamentoBaixarHomePaginaProduto] action in Home-loja widget.
+  DocumentReference? retorno1;
+  // Stores action output result for [Firestore Query - Query a collection] action in Home-loja widget.
+  BaixarAppRecord? query4;
   // State field(s) for Carousel widget.
   CarouselSliderController? carouselController;
   int carouselCurrentIndex = 2;

@@ -231,6 +231,11 @@ class PedidosTotalRecord extends FirestoreRecord {
   bool get afiliadoLiberarSaque => _afiliadoLiberarSaque ?? false;
   bool hasAfiliadoLiberarSaque() => _afiliadoLiberarSaque != null;
 
+  // "produtoExcluido" field.
+  bool? _produtoExcluido;
+  bool get produtoExcluido => _produtoExcluido ?? false;
+  bool hasProdutoExcluido() => _produtoExcluido != null;
+
   void _initializeFields() {
     _userRef = snapshotData['userRef'] as DocumentReference?;
     _produtoRef = snapshotData['produtoRef'] as DocumentReference?;
@@ -276,6 +281,7 @@ class PedidosTotalRecord extends FirestoreRecord {
     _afiliadoRef = snapshotData['afiliadoRef'] as DocumentReference?;
     _afiliadoSacouDinheiro = snapshotData['afiliadoSacouDinheiro'] as bool?;
     _afiliadoLiberarSaque = snapshotData['afiliadoLiberarSaque'] as bool?;
+    _produtoExcluido = snapshotData['produtoExcluido'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -355,6 +361,7 @@ Map<String, dynamic> createPedidosTotalRecordData({
   DocumentReference? afiliadoRef,
   bool? afiliadoSacouDinheiro,
   bool? afiliadoLiberarSaque,
+  bool? produtoExcluido,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -400,6 +407,7 @@ Map<String, dynamic> createPedidosTotalRecordData({
       'afiliadoRef': afiliadoRef,
       'afiliadoSacouDinheiro': afiliadoSacouDinheiro,
       'afiliadoLiberarSaque': afiliadoLiberarSaque,
+      'produtoExcluido': produtoExcluido,
     }.withoutNulls,
   );
 
@@ -455,7 +463,8 @@ class PedidosTotalRecordDocumentEquality
         e1?.impostoImportacao == e2?.impostoImportacao &&
         e1?.afiliadoRef == e2?.afiliadoRef &&
         e1?.afiliadoSacouDinheiro == e2?.afiliadoSacouDinheiro &&
-        e1?.afiliadoLiberarSaque == e2?.afiliadoLiberarSaque;
+        e1?.afiliadoLiberarSaque == e2?.afiliadoLiberarSaque &&
+        e1?.produtoExcluido == e2?.produtoExcluido;
   }
 
   @override
@@ -502,7 +511,8 @@ class PedidosTotalRecordDocumentEquality
         e?.impostoImportacao,
         e?.afiliadoRef,
         e?.afiliadoSacouDinheiro,
-        e?.afiliadoLiberarSaque
+        e?.afiliadoLiberarSaque,
+        e?.produtoExcluido
       ]);
 
   @override

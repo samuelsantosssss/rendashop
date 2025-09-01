@@ -13,6 +13,9 @@ import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
 
+import 'package:branchio_dynamic_linking_akp5u6/library_values.dart'
+    as branchio_dynamic_linking_akp5u6_library_values;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   GoRouter.optionURLReflectsImperativeAPIs = true;
@@ -21,6 +24,14 @@ void main() async {
   final environmentValues = FFDevEnvironmentValues();
   await environmentValues.initialize();
 
+  branchio_dynamic_linking_akp5u6_library_values.FFLibraryValues()
+      .branchApiKey = FFDevEnvironmentValues().branchKey;
+  branchio_dynamic_linking_akp5u6_library_values.FFLibraryValues()
+      .branchLinkDomain = 'rendashop.app.link';
+  branchio_dynamic_linking_akp5u6_library_values.FFLibraryValues().isTestMode =
+      false;
+  branchio_dynamic_linking_akp5u6_library_values.FFLibraryValues()
+      .branchAlternateLinkDomain = 'rendashop-alternate.app.link';
   await initFirebase();
 
   final appState = FFAppState(); // Initialize FFAppState
@@ -30,8 +41,12 @@ void main() async {
   await actions.initBranch();
   // End final custom actions code
 
-  runApp(ChangeNotifierProvider(
-    create: (context) => appState,
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (context) => appState,
+      ),
+    ],
     child: MyApp(),
   ));
 }

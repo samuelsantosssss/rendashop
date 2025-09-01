@@ -7,7 +7,6 @@ import '/carregando/carregando19/carregando19_widget.dart';
 import '/components/avaliacao_loja_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_media_display.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/loja/addto_card/addto_card_widget.dart';
@@ -25,6 +24,7 @@ import 'dart:async';
 import 'dart:math' as math;
 import 'package:badges/badges.dart' as badges;
 import 'package:collection/collection.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -365,6 +365,19 @@ class _PaginaProdutoAfiliadoWidgetState
           ),
         ],
       ),
+      'containerOnActionTriggerAnimation10': AnimationInfo(
+        trigger: AnimationTrigger.onActionTrigger,
+        applyInitialState: true,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 1900.0.ms,
+            duration: 0.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
       'transformOnActionTriggerAnimation3': AnimationInfo(
         trigger: AnimationTrigger.onActionTrigger,
         applyInitialState: true,
@@ -391,7 +404,7 @@ class _PaginaProdutoAfiliadoWidgetState
           ),
         ],
       ),
-      'containerOnActionTriggerAnimation10': AnimationInfo(
+      'containerOnActionTriggerAnimation11': AnimationInfo(
         trigger: AnimationTrigger.onActionTrigger,
         applyInitialState: true,
         effectsBuilder: () => [
@@ -451,7 +464,7 @@ class _PaginaProdutoAfiliadoWidgetState
           ),
         ],
       ),
-      'containerOnActionTriggerAnimation11': AnimationInfo(
+      'containerOnActionTriggerAnimation12': AnimationInfo(
         trigger: AnimationTrigger.onActionTrigger,
         applyInitialState: true,
         effectsBuilder: () => [
@@ -477,7 +490,7 @@ class _PaginaProdutoAfiliadoWidgetState
           ),
         ],
       ),
-      'containerOnActionTriggerAnimation12': AnimationInfo(
+      'containerOnActionTriggerAnimation13': AnimationInfo(
         trigger: AnimationTrigger.onActionTrigger,
         applyInitialState: true,
         effectsBuilder: () => [
@@ -490,7 +503,7 @@ class _PaginaProdutoAfiliadoWidgetState
           ),
         ],
       ),
-      'containerOnActionTriggerAnimation13': AnimationInfo(
+      'containerOnActionTriggerAnimation14': AnimationInfo(
         trigger: AnimationTrigger.onActionTrigger,
         applyInitialState: true,
         effectsBuilder: () => [
@@ -1718,10 +1731,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                       (queryProdutProdutoRecord
                                                                   .titulo2 ==
                                                               '') &&
-                                                      ((queryProdutProdutoRecord
-                                                              .varianteImgList
-                                                              .isNotEmpty) ==
-                                                          false))
+                                                      (FFAppState()
+                                                                  .selecionarVariante1 !=
+                                                              ''))
                                                     Align(
                                                       alignment:
                                                           AlignmentDirectional(
@@ -5141,7 +5153,10 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                 color: FlutterFlowTheme.of(context).secondaryBackground,
                                                                                 borderRadius: BorderRadius.circular(20.0),
                                                                                 border: Border.all(
-                                                                                  color: variantes1opcVarianteRecord?.opcaoTitulo1 == opcao1ListttItem ? FlutterFlowTheme.of(context).primaryText : Color(0x8575787A),
+                                                                                  color: valueOrDefault<Color>(
+                                                                                    FFAppState().selecionarVariante1 == opcao1ListttItem ? FlutterFlowTheme.of(context).primaryText : Color(0x8575787A),
+                                                                                    Color(0x8575787A),
+                                                                                  ),
                                                                                   width: 1.4,
                                                                                 ),
                                                                               ),
@@ -8991,8 +9006,8 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                                   Padding(
                                                                                                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.5, 0.0, 0.0),
                                                                                                     child: Container(
-                                                                                                      width: 9.5,
-                                                                                                      height: 9.5,
+                                                                                                      width: 11.0,
+                                                                                                      height: 11.0,
                                                                                                       decoration: BoxDecoration(
                                                                                                         color: Color(0xE2FFFFFF),
                                                                                                         shape: BoxShape.circle,
@@ -9000,8 +9015,8 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                                       child: Align(
                                                                                                         alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                         child: Container(
-                                                                                                          width: 9.0,
-                                                                                                          height: 9.0,
+                                                                                                          width: 10.2,
+                                                                                                          height: 10.2,
                                                                                                           clipBehavior: Clip.antiAlias,
                                                                                                           decoration: BoxDecoration(
                                                                                                             shape: BoxShape.circle,
@@ -9016,10 +9031,10 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                                   ),
                                                                                                   if (containerProdutoRecord.capsula2 != '')
                                                                                                     Padding(
-                                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
+                                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
                                                                                                       child: Container(
-                                                                                                        width: 9.5,
-                                                                                                        height: 9.5,
+                                                                                                        width: 11.0,
+                                                                                                        height: 11.0,
                                                                                                         decoration: BoxDecoration(
                                                                                                           color: Color(0xE2FFFFFF),
                                                                                                           shape: BoxShape.circle,
@@ -9027,8 +9042,8 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                                         child: Align(
                                                                                                           alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                           child: Container(
-                                                                                                            width: 9.0,
-                                                                                                            height: 9.0,
+                                                                                                            width: 10.2,
+                                                                                                            height: 10.2,
                                                                                                             clipBehavior: Clip.antiAlias,
                                                                                                             decoration: BoxDecoration(
                                                                                                               shape: BoxShape.circle,
@@ -9043,10 +9058,10 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                                     ),
                                                                                                   if (containerProdutoRecord.capsula3 != '')
                                                                                                     Padding(
-                                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
+                                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
                                                                                                       child: Container(
-                                                                                                        width: 9.5,
-                                                                                                        height: 9.5,
+                                                                                                        width: 11.0,
+                                                                                                        height: 11.0,
                                                                                                         decoration: BoxDecoration(
                                                                                                           color: Color(0xE2FFFFFF),
                                                                                                           shape: BoxShape.circle,
@@ -9054,8 +9069,8 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                                         child: Align(
                                                                                                           alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                           child: Container(
-                                                                                                            width: 9.0,
-                                                                                                            height: 9.0,
+                                                                                                            width: 10.2,
+                                                                                                            height: 10.2,
                                                                                                             clipBehavior: Clip.antiAlias,
                                                                                                             decoration: BoxDecoration(
                                                                                                               shape: BoxShape.circle,
@@ -9070,7 +9085,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                                                     ),
                                                                                                   if (containerProdutoRecord.capsulaExtra != '')
                                                                                                     Padding(
-                                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
+                                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 1.0),
                                                                                                       child: Text(
                                                                                                         containerProdutoRecord.capsulaExtra,
                                                                                                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -9795,6 +9810,10 @@ class _PaginaProdutoAfiliadoWidgetState
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
+                          FFAppState().afiliadoRef =
+                              stackProdutoAfiliadoRecord.reference;
+                          FFAppState().status = 'paginaProdutoAfiliado';
+                          safeSetState(() {});
                           await showModalBottomSheet(
                             isScrollControlled: true,
                             backgroundColor: Colors.transparent,
@@ -10994,8 +11013,8 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                       FFAppState().CarrinhoTemporarioNacional = functions
                                                                           .addCarrinhoTemporario(
                                                                               getCurrentTimestamp,
-                                                                              containerVarianteRecord!.foto,
-                                                                              containerVarianteRecord.produtoRef!,
+                                                                              containerVarianteRecord?.foto != null && containerVarianteRecord?.foto != '' ? containerVarianteRecord!.foto : carinhoVarianteOpc1Opc2ProdutoRecord.imagens.firstOrNull!,
+                                                                              containerVarianteRecord!.produtoRef!,
                                                                               carinhoVarianteOpc1Opc2ProdutoRecord.lojaRef!,
                                                                               carinhoVarianteOpc1Opc2ProdutoRecord.envioNaciona,
                                                                               functions.valorProdutoAfiliado(containerVarianteRecord.reference, stackProdutoAfiliadoRecord.valorComRef.toList()),
@@ -11017,11 +11036,11 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                       FFAppState().CarrinhoTemporarioInternacional = functions
                                                                           .addCarrinhoTemporario(
                                                                               getCurrentTimestamp,
-                                                                              containerVarianteRecord!.foto,
+                                                                              containerVarianteRecord?.foto != null && containerVarianteRecord?.foto != '' ? containerVarianteRecord!.foto : carinhoVarianteOpc1Opc2ProdutoRecord.imagens.firstOrNull!,
                                                                               carinhoVarianteOpc1Opc2ProdutoRecord.reference,
                                                                               carinhoVarianteOpc1Opc2ProdutoRecord.lojaRef!,
                                                                               carinhoVarianteOpc1Opc2ProdutoRecord.envioNaciona,
-                                                                              functions.valorProdutoAfiliado(containerVarianteRecord.reference, stackProdutoAfiliadoRecord.valorComRef.toList()),
+                                                                              functions.valorProdutoAfiliado(containerVarianteRecord!.reference, stackProdutoAfiliadoRecord.valorComRef.toList()),
                                                                               carinhoVarianteOpc1Opc2ProdutoRecord.precoAntes,
                                                                               FFAppState().quantidadeProduto,
                                                                               true,
@@ -11481,9 +11500,12 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                 FFAppState().CarrinhoTemporarioNacional = functions
                                                                     .addCarrinhoTemporario(
                                                                         getCurrentTimestamp,
+                                                                        text4444fotoVarianteRecord?.foto != null && text4444fotoVarianteRecord?.foto != ''
+                                                                            ? text4444fotoVarianteRecord!
+                                                                                .foto
+                                                                            : carinhoVarianteOpc1Opc2ProdutoRecord
+                                                                                .imagens.firstOrNull!,
                                                                         text4444fotoVarianteRecord!
-                                                                            .foto,
-                                                                        text4444fotoVarianteRecord
                                                                             .produtoRef!,
                                                                         carinhoVarianteOpc1Opc2ProdutoRecord
                                                                             .lojaRef!,
@@ -11523,8 +11545,11 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                 FFAppState().CarrinhoTemporarioInternacional = functions
                                                                     .addCarrinhoTemporario(
                                                                         getCurrentTimestamp,
-                                                                        text4444fotoVarianteRecord!
-                                                                            .foto,
+                                                                        text4444fotoVarianteRecord?.foto != null && text4444fotoVarianteRecord?.foto != ''
+                                                                            ? text4444fotoVarianteRecord!
+                                                                                .foto
+                                                                            : carinhoVarianteOpc1Opc2ProdutoRecord
+                                                                                .imagens.firstOrNull!,
                                                                         carinhoVarianteOpc1Opc2ProdutoRecord
                                                                             .reference,
                                                                         carinhoVarianteOpc1Opc2ProdutoRecord
@@ -11532,7 +11557,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         carinhoVarianteOpc1Opc2ProdutoRecord
                                                                             .envioNaciona,
                                                                         functions.valorProdutoAfiliado(
-                                                                            text4444fotoVarianteRecord
+                                                                            text4444fotoVarianteRecord!
                                                                                 .reference,
                                                                             stackProdutoAfiliadoRecord.valorComRef
                                                                                 .toList()),
@@ -11949,6 +11974,556 @@ class _PaginaProdutoAfiliadoWidgetState
                                                               ),
                                                         ),
                                                       ),
+                                                    if (FFAppState()
+                                                                .selecionarVariante1foto !=
+                                                            '')
+                                                      FutureBuilder<
+                                                          List<VarianteRecord>>(
+                                                        future:
+                                                            queryVarianteRecordOnce(
+                                                          parent:
+                                                              carinhoVarianteOpc12ProdutoRecord
+                                                                  .reference,
+                                                          queryBuilder:
+                                                              (varianteRecord) =>
+                                                                  varianteRecord
+                                                                      .where(
+                                                            'foto',
+                                                            isEqualTo: FFAppState()
+                                                                .selecionarVariante1foto,
+                                                          ),
+                                                          singleRecord: true,
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 0.01,
+                                                                height: 0.01,
+                                                                child:
+                                                                    CircularProgressIndicator(
+                                                                  valueColor:
+                                                                      AlwaysStoppedAnimation<
+                                                                          Color>(
+                                                                    Color(
+                                                                        0x004AA756),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                          List<VarianteRecord>
+                                                              textFotoVarianteRecordList =
+                                                              snapshot.data!;
+                                                          // Return an empty Container when the item does not exist.
+                                                          if (snapshot
+                                                              .data!.isEmpty) {
+                                                            return Container();
+                                                          }
+                                                          final textFotoVarianteRecord =
+                                                              textFotoVarianteRecordList
+                                                                      .isNotEmpty
+                                                                  ? textFotoVarianteRecordList
+                                                                      .first
+                                                                  : null;
+
+                                                          return InkWell(
+                                                            splashColor: Colors
+                                                                .transparent,
+                                                            focusColor: Colors
+                                                                .transparent,
+                                                            hoverColor: Colors
+                                                                .transparent,
+                                                            highlightColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            onTap: () async {
+                                                              if (currentUserReference !=
+                                                                  null) {
+                                                                if (animationsMap[
+                                                                        'transformOnActionTriggerAnimation2'] !=
+                                                                    null) {
+                                                                  animationsMap[
+                                                                          'transformOnActionTriggerAnimation2']!
+                                                                      .controller
+                                                                      .forward(
+                                                                          from:
+                                                                              0.0);
+                                                                }
+                                                                if (animationsMap[
+                                                                        'iconOnActionTriggerAnimation4'] !=
+                                                                    null) {
+                                                                  animationsMap[
+                                                                          'iconOnActionTriggerAnimation4']!
+                                                                      .controller
+                                                                      .forward(
+                                                                          from:
+                                                                              0.0);
+                                                                }
+                                                                if (animationsMap[
+                                                                        'containerOnActionTriggerAnimation6'] !=
+                                                                    null) {
+                                                                  animationsMap[
+                                                                          'containerOnActionTriggerAnimation6']!
+                                                                      .controller
+                                                                      .forward(
+                                                                          from:
+                                                                              0.0);
+                                                                }
+                                                                if (animationsMap[
+                                                                        'iconOnActionTriggerAnimation5'] !=
+                                                                    null) {
+                                                                  animationsMap[
+                                                                          'iconOnActionTriggerAnimation5']!
+                                                                      .controller
+                                                                      .forward(
+                                                                          from:
+                                                                              0.0);
+                                                                }
+                                                                if (animationsMap[
+                                                                        'iconOnActionTriggerAnimation6'] !=
+                                                                    null) {
+                                                                  animationsMap[
+                                                                          'iconOnActionTriggerAnimation6']!
+                                                                      .controller
+                                                                      .forward(
+                                                                          from:
+                                                                              0.0);
+                                                                }
+                                                                if (animationsMap[
+                                                                        'containerOnActionTriggerAnimation7'] !=
+                                                                    null) {
+                                                                  animationsMap[
+                                                                          'containerOnActionTriggerAnimation7']!
+                                                                      .controller
+                                                                      .forward(
+                                                                          from:
+                                                                              0.0);
+                                                                }
+                                                                if (animationsMap[
+                                                                        'textOnActionTriggerAnimation2'] !=
+                                                                    null) {
+                                                                  animationsMap[
+                                                                          'textOnActionTriggerAnimation2']!
+                                                                      .controller
+                                                                      .forward(
+                                                                          from:
+                                                                              0.0);
+                                                                }
+                                                                if (animationsMap[
+                                                                        'containerOnActionTriggerAnimation8'] !=
+                                                                    null) {
+                                                                  animationsMap[
+                                                                          'containerOnActionTriggerAnimation8']!
+                                                                      .controller
+                                                                      .forward(
+                                                                          from:
+                                                                              0.0);
+                                                                }
+                                                                if (animationsMap[
+                                                                        'containerOnActionTriggerAnimation9'] !=
+                                                                    null) {
+                                                                  animationsMap[
+                                                                          'containerOnActionTriggerAnimation9']!
+                                                                      .controller
+                                                                      .forward(
+                                                                          from:
+                                                                              0.0);
+                                                                }
+                                                                FFAppState()
+                                                                        .adicionarCarrinho =
+                                                                    true;
+                                                                safeSetState(
+                                                                    () {});
+                                                                _model.respostaCarrinhooo =
+                                                                    await queryCarrinhoRecordOnce(
+                                                                  parent:
+                                                                      currentUserReference,
+                                                                );
+                                                                if (functions.addCardEvitarDuplicar(
+                                                                    textFotoVarianteRecord!
+                                                                        .produtoRef!,
+                                                                    '${textFotoVarianteRecord.opcaoTitulo1}${textFotoVarianteRecord.opcaoTitulo2 != '' ? ', ${textFotoVarianteRecord.opcaoTitulo2}' : ' '}',
+                                                                    _model
+                                                                        .respostaCarrinhooo!
+                                                                        .toList())) {
+                                                                  await CarrinhoRecord
+                                                                          .createDoc(
+                                                                              currentUserReference!)
+                                                                      .set(
+                                                                          createCarrinhoRecordData(
+                                                                    userRef:
+                                                                        currentUserReference,
+                                                                    itens: textFotoVarianteRecord
+                                                                        .produtoRef,
+                                                                    quantidade:
+                                                                        FFAppState()
+                                                                            .quantidadeProduto,
+                                                                    dataAdicao:
+                                                                        getCurrentTimestamp,
+                                                                    fotoCapa: textFotoVarianteRecord.foto !=
+                                                                                ''
+                                                                        ? textFotoVarianteRecord
+                                                                            .foto
+                                                                        : carinhoVarianteOpc12ProdutoRecord
+                                                                            .imagens
+                                                                            .firstOrNull,
+                                                                    titulo:
+                                                                        carinhoVarianteOpc12ProdutoRecord
+                                                                            .nome,
+                                                                    selecionado:
+                                                                        true,
+                                                                    variacao:
+                                                                        '${textFotoVarianteRecord.opcaoTitulo1}${textFotoVarianteRecord.opcaoTitulo2 != '' ? ', ${textFotoVarianteRecord.opcaoTitulo2}' : ' '}',
+                                                                    lojaRef:
+                                                                        carinhoVarianteOpc12ProdutoRecord
+                                                                            .lojaRef,
+                                                                    preco: functions.valorProdutoAfiliado(
+                                                                        textFotoVarianteRecord
+                                                                            .reference,
+                                                                        stackProdutoAfiliadoRecord
+                                                                            .valorComRef
+                                                                            .toList()),
+                                                                    precoAntes:
+                                                                        carinhoVarianteOpc12ProdutoRecord
+                                                                            .precoAntes,
+                                                                    nacional:
+                                                                        carinhoVarianteOpc12ProdutoRecord
+                                                                            .envioNaciona,
+                                                                    afiliadoComissao:
+                                                                        stackProdutoAfiliadoRecord
+                                                                            .comissao,
+                                                                    afiliadoRef:
+                                                                        stackProdutoAfiliadoRecord
+                                                                            .parentReference,
+                                                                    varianteRef:
+                                                                        textFotoVarianteRecord
+                                                                            .reference,
+                                                                  ));
+                                                                } else {
+                                                                  await actions
+                                                                      .addCartEvitarDuplicar(
+                                                                    textFotoVarianteRecord
+                                                                        .produtoRef!,
+                                                                    '${textFotoVarianteRecord.opcaoTitulo1}${textFotoVarianteRecord.opcaoTitulo2 != '' ? ', ${textFotoVarianteRecord.opcaoTitulo2}' : ' '}',
+                                                                    _model
+                                                                        .respostaCarrinhooo!
+                                                                        .toList(),
+                                                                    FFAppState()
+                                                                        .quantidadeProduto,
+                                                                  );
+                                                                }
+
+                                                                FFAppState()
+                                                                        .adicionarCarrinho =
+                                                                    true;
+                                                                safeSetState(
+                                                                    () {});
+                                                                await Future
+                                                                    .delayed(
+                                                                  Duration(
+                                                                    milliseconds:
+                                                                        1500,
+                                                                  ),
+                                                                );
+                                                                FFAppState()
+                                                                        .verCarrinhoLogado =
+                                                                    true;
+                                                                safeSetState(
+                                                                    () {});
+                                                                await Future
+                                                                    .delayed(
+                                                                  Duration(
+                                                                    milliseconds:
+                                                                        3000,
+                                                                  ),
+                                                                );
+                                                                FFAppState()
+                                                                        .adicionarCarrinho =
+                                                                    false;
+                                                                FFAppState()
+                                                                        .verCarrinhoLogado =
+                                                                    false;
+                                                                safeSetState(
+                                                                    () {});
+                                                              } else {
+                                                                if (animationsMap[
+                                                                        'transformOnActionTriggerAnimation2'] !=
+                                                                    null) {
+                                                                  animationsMap[
+                                                                          'transformOnActionTriggerAnimation2']!
+                                                                      .controller
+                                                                      .forward(
+                                                                          from:
+                                                                              0.0);
+                                                                }
+                                                                if (animationsMap[
+                                                                        'iconOnActionTriggerAnimation4'] !=
+                                                                    null) {
+                                                                  animationsMap[
+                                                                          'iconOnActionTriggerAnimation4']!
+                                                                      .controller
+                                                                      .forward(
+                                                                          from:
+                                                                              0.0);
+                                                                }
+                                                                if (animationsMap[
+                                                                        'containerOnActionTriggerAnimation6'] !=
+                                                                    null) {
+                                                                  animationsMap[
+                                                                          'containerOnActionTriggerAnimation6']!
+                                                                      .controller
+                                                                      .forward(
+                                                                          from:
+                                                                              0.0);
+                                                                }
+                                                                if (animationsMap[
+                                                                        'iconOnActionTriggerAnimation5'] !=
+                                                                    null) {
+                                                                  animationsMap[
+                                                                          'iconOnActionTriggerAnimation5']!
+                                                                      .controller
+                                                                      .forward(
+                                                                          from:
+                                                                              0.0);
+                                                                }
+                                                                if (animationsMap[
+                                                                        'iconOnActionTriggerAnimation6'] !=
+                                                                    null) {
+                                                                  animationsMap[
+                                                                          'iconOnActionTriggerAnimation6']!
+                                                                      .controller
+                                                                      .forward(
+                                                                          from:
+                                                                              0.0);
+                                                                }
+                                                                if (animationsMap[
+                                                                        'containerOnActionTriggerAnimation7'] !=
+                                                                    null) {
+                                                                  animationsMap[
+                                                                          'containerOnActionTriggerAnimation7']!
+                                                                      .controller
+                                                                      .forward(
+                                                                          from:
+                                                                              0.0);
+                                                                }
+                                                                if (animationsMap[
+                                                                        'textOnActionTriggerAnimation2'] !=
+                                                                    null) {
+                                                                  animationsMap[
+                                                                          'textOnActionTriggerAnimation2']!
+                                                                      .controller
+                                                                      .forward(
+                                                                          from:
+                                                                              0.0);
+                                                                }
+                                                                if (animationsMap[
+                                                                        'containerOnActionTriggerAnimation8'] !=
+                                                                    null) {
+                                                                  animationsMap[
+                                                                          'containerOnActionTriggerAnimation8']!
+                                                                      .controller
+                                                                      .forward(
+                                                                          from:
+                                                                              0.0);
+                                                                }
+                                                                if (animationsMap[
+                                                                        'containerOnActionTriggerAnimation9'] !=
+                                                                    null) {
+                                                                  animationsMap[
+                                                                          'containerOnActionTriggerAnimation9']!
+                                                                      .controller
+                                                                      .forward(
+                                                                          from:
+                                                                              0.0);
+                                                                }
+                                                                if (carinhoVarianteOpc12ProdutoRecord
+                                                                        .envioNaciona ==
+                                                                    true) {
+                                                                  FFAppState().CarrinhoTemporarioNacional = functions
+                                                                      .addCarrinhoTemporario(
+                                                                          getCurrentTimestamp,
+                                                                          textFotoVarianteRecord?.foto != null && textFotoVarianteRecord?.foto != ''
+                                                                              ? textFotoVarianteRecord!
+                                                                                  .foto
+                                                                              : carinhoVarianteOpc12ProdutoRecord
+                                                                                  .imagens.firstOrNull!,
+                                                                          textFotoVarianteRecord!
+                                                                              .produtoRef!,
+                                                                          carinhoVarianteOpc12ProdutoRecord
+                                                                              .lojaRef!,
+                                                                          carinhoVarianteOpc12ProdutoRecord
+                                                                              .envioNaciona,
+                                                                          functions.valorProdutoAfiliado(
+                                                                              textFotoVarianteRecord
+                                                                                  .reference,
+                                                                              stackProdutoAfiliadoRecord.valorComRef
+                                                                                  .toList()),
+                                                                          carinhoVarianteOpc12ProdutoRecord
+                                                                              .precoAntes,
+                                                                          FFAppState()
+                                                                              .quantidadeProduto,
+                                                                          true,
+                                                                          carinhoVarianteOpc12ProdutoRecord
+                                                                              .nome,
+                                                                          textFotoVarianteRecord
+                                                                              .opcaoTitulo1,
+                                                                          FFAppState()
+                                                                              .CarrinhoTemporarioNacional
+                                                                              .toList(),
+                                                                          stackProdutoAfiliadoRecord
+                                                                              .parentReference,
+                                                                          stackProdutoAfiliadoRecord
+                                                                              .comissao,
+                                                                          textFotoVarianteRecord
+                                                                              .opcaoTitulo2,
+                                                                          textFotoVarianteRecord
+                                                                              .reference)
+                                                                      .toList()
+                                                                      .cast<
+                                                                          String>();
+                                                                  safeSetState(
+                                                                      () {});
+                                                                } else {
+                                                                  FFAppState().CarrinhoTemporarioInternacional = functions
+                                                                      .addCarrinhoTemporario(
+                                                                          getCurrentTimestamp,
+                                                                          textFotoVarianteRecord?.foto != null && textFotoVarianteRecord?.foto != ''
+                                                                              ? textFotoVarianteRecord!
+                                                                                  .foto
+                                                                              : carinhoVarianteOpc12ProdutoRecord
+                                                                                  .imagens.firstOrNull!,
+                                                                          textFotoVarianteRecord!
+                                                                              .produtoRef!,
+                                                                          carinhoVarianteOpc12ProdutoRecord
+                                                                              .lojaRef!,
+                                                                          carinhoVarianteOpc12ProdutoRecord
+                                                                              .envioNaciona,
+                                                                          functions.valorProdutoAfiliado(
+                                                                              textFotoVarianteRecord
+                                                                                  .reference,
+                                                                              stackProdutoAfiliadoRecord.valorComRef
+                                                                                  .toList()),
+                                                                          carinhoVarianteOpc12ProdutoRecord
+                                                                              .precoAntes,
+                                                                          FFAppState()
+                                                                              .quantidadeProduto,
+                                                                          true,
+                                                                          carinhoVarianteOpc12ProdutoRecord
+                                                                              .nome,
+                                                                          textFotoVarianteRecord
+                                                                              .opcaoTitulo1,
+                                                                          FFAppState()
+                                                                              .CarrinhoTemporarioInternacional
+                                                                              .toList(),
+                                                                          stackProdutoAfiliadoRecord
+                                                                              .parentReference,
+                                                                          stackProdutoAfiliadoRecord
+                                                                              .comissao,
+                                                                          textFotoVarianteRecord
+                                                                              .opcaoTitulo2,
+                                                                          textFotoVarianteRecord
+                                                                              .reference)
+                                                                      .toList()
+                                                                      .cast<
+                                                                          String>();
+                                                                  safeSetState(
+                                                                      () {});
+                                                                }
+
+                                                                FFAppState()
+                                                                        .adicionarCarrinho =
+                                                                    true;
+                                                                safeSetState(
+                                                                    () {});
+                                                                await Future
+                                                                    .delayed(
+                                                                  Duration(
+                                                                    milliseconds:
+                                                                        1500,
+                                                                  ),
+                                                                );
+                                                                FFAppState()
+                                                                        .verCarrinhoAfiliado =
+                                                                    true;
+                                                                safeSetState(
+                                                                    () {});
+                                                                await Future
+                                                                    .delayed(
+                                                                  Duration(
+                                                                    milliseconds:
+                                                                        3000,
+                                                                  ),
+                                                                );
+                                                                FFAppState()
+                                                                        .verCarrinhoAfiliado =
+                                                                    false;
+                                                                FFAppState()
+                                                                        .adicionarCarrinho =
+                                                                    false;
+                                                                safeSetState(
+                                                                    () {});
+                                                              }
+
+                                                              safeSetState(
+                                                                  () {});
+                                                            },
+                                                            child: Container(
+                                                              width: double
+                                                                  .infinity,
+                                                              height: double
+                                                                  .infinity,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            10.0),
+                                                              ),
+                                                              child: Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        0.0,
+                                                                        0.0),
+                                                                child: Text(
+                                                                  'Adicionar ao carrinho',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        font: GoogleFonts
+                                                                            .inter(
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w600,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ).animateOnActionTrigger(
+                                                            animationsMap[
+                                                                'containerOnActionTriggerAnimation9']!,
+                                                          );
+                                                        },
+                                                      ),
                                                     FutureBuilder<
                                                         List<VarianteRecord>>(
                                                       future:
@@ -11960,9 +12535,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                             (varianteRecord) =>
                                                                 varianteRecord
                                                                     .where(
-                                                          'foto',
+                                                          'opcao_titulo1',
                                                           isEqualTo: FFAppState()
-                                                              .selecionarVariante1foto,
+                                                              .selecionarVariante1,
                                                         ),
                                                         singleRecord: true,
                                                       ),
@@ -11987,17 +12562,17 @@ class _PaginaProdutoAfiliadoWidgetState
                                                           );
                                                         }
                                                         List<VarianteRecord>
-                                                            text22222VarianteRecordList =
+                                                            textSemFotoVarianteRecordList =
                                                             snapshot.data!;
                                                         // Return an empty Container when the item does not exist.
                                                         if (snapshot
                                                             .data!.isEmpty) {
                                                           return Container();
                                                         }
-                                                        final text22222VarianteRecord =
-                                                            text22222VarianteRecordList
+                                                        final textSemFotoVarianteRecord =
+                                                            textSemFotoVarianteRecordList
                                                                     .isNotEmpty
-                                                                ? text22222VarianteRecordList
+                                                                ? textSemFotoVarianteRecordList
                                                                     .first
                                                                 : null;
 
@@ -12094,10 +12669,10 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                             0.0);
                                                               }
                                                               if (animationsMap[
-                                                                      'containerOnActionTriggerAnimation9'] !=
+                                                                      'containerOnActionTriggerAnimation10'] !=
                                                                   null) {
                                                                 animationsMap[
-                                                                        'containerOnActionTriggerAnimation9']!
+                                                                        'containerOnActionTriggerAnimation10']!
                                                                     .controller
                                                                     .forward(
                                                                         from:
@@ -12108,17 +12683,17 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                   true;
                                                               safeSetState(
                                                                   () {});
-                                                              _model.respostaCarrinhooo =
+                                                              _model.respostaCarrinhooo3 =
                                                                   await queryCarrinhoRecordOnce(
                                                                 parent:
                                                                     currentUserReference,
                                                               );
                                                               if (functions.addCardEvitarDuplicar(
-                                                                  text22222VarianteRecord!
+                                                                  textSemFotoVarianteRecord!
                                                                       .produtoRef!,
-                                                                  '${text22222VarianteRecord.opcaoTitulo1}${text22222VarianteRecord.opcaoTitulo2 != '' ? ', ${text22222VarianteRecord.opcaoTitulo2}' : ' '}',
+                                                                  '${textSemFotoVarianteRecord.opcaoTitulo1}${textSemFotoVarianteRecord.opcaoTitulo2 != '' ? ', ${textSemFotoVarianteRecord.opcaoTitulo2}' : ' '}',
                                                                   _model
-                                                                      .respostaCarrinhooo!
+                                                                      .respostaCarrinhooo3!
                                                                       .toList())) {
                                                                 await CarrinhoRecord
                                                                         .createDoc(
@@ -12127,16 +12702,16 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         createCarrinhoRecordData(
                                                                   userRef:
                                                                       currentUserReference,
-                                                                  itens: text22222VarianteRecord
+                                                                  itens: textSemFotoVarianteRecord
                                                                       .produtoRef,
                                                                   quantidade:
                                                                       FFAppState()
                                                                           .quantidadeProduto,
                                                                   dataAdicao:
                                                                       getCurrentTimestamp,
-                                                                  fotoCapa: text22222VarianteRecord.foto !=
+                                                                  fotoCapa: textSemFotoVarianteRecord.foto !=
                                                                               ''
-                                                                      ? text22222VarianteRecord
+                                                                      ? textSemFotoVarianteRecord
                                                                           .foto
                                                                       : carinhoVarianteOpc12ProdutoRecord
                                                                           .imagens
@@ -12147,12 +12722,12 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                   selecionado:
                                                                       true,
                                                                   variacao:
-                                                                      '${text22222VarianteRecord.opcaoTitulo1}${text22222VarianteRecord.opcaoTitulo2 != '' ? ', ${text22222VarianteRecord.opcaoTitulo2}' : ' '}',
+                                                                      '${textSemFotoVarianteRecord.opcaoTitulo1}${textSemFotoVarianteRecord.opcaoTitulo2 != '' ? ', ${textSemFotoVarianteRecord.opcaoTitulo2}' : ' '}',
                                                                   lojaRef:
                                                                       carinhoVarianteOpc12ProdutoRecord
                                                                           .lojaRef,
                                                                   preco: functions.valorProdutoAfiliado(
-                                                                      text22222VarianteRecord
+                                                                      textSemFotoVarianteRecord
                                                                           .reference,
                                                                       stackProdutoAfiliadoRecord
                                                                           .valorComRef
@@ -12170,17 +12745,17 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                       stackProdutoAfiliadoRecord
                                                                           .parentReference,
                                                                   varianteRef:
-                                                                      text22222VarianteRecord
+                                                                      textSemFotoVarianteRecord
                                                                           .reference,
                                                                 ));
                                                               } else {
                                                                 await actions
                                                                     .addCartEvitarDuplicar(
-                                                                  text22222VarianteRecord
+                                                                  textSemFotoVarianteRecord
                                                                       .produtoRef!,
-                                                                  '${text22222VarianteRecord.opcaoTitulo1}${text22222VarianteRecord.opcaoTitulo2 != '' ? ', ${text22222VarianteRecord.opcaoTitulo2}' : ' '}',
+                                                                  '${textSemFotoVarianteRecord.opcaoTitulo1}${textSemFotoVarianteRecord.opcaoTitulo2 != '' ? ', ${textSemFotoVarianteRecord.opcaoTitulo2}' : ' '}',
                                                                   _model
-                                                                      .respostaCarrinhooo!
+                                                                      .respostaCarrinhooo3!
                                                                       .toList(),
                                                                   FFAppState()
                                                                       .quantidadeProduto,
@@ -12301,10 +12876,10 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                             0.0);
                                                               }
                                                               if (animationsMap[
-                                                                      'containerOnActionTriggerAnimation9'] !=
+                                                                      'containerOnActionTriggerAnimation10'] !=
                                                                   null) {
                                                                 animationsMap[
-                                                                        'containerOnActionTriggerAnimation9']!
+                                                                        'containerOnActionTriggerAnimation10']!
                                                                     .controller
                                                                     .forward(
                                                                         from:
@@ -12316,16 +12891,19 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                 FFAppState().CarrinhoTemporarioNacional = functions
                                                                     .addCarrinhoTemporario(
                                                                         getCurrentTimestamp,
-                                                                        text22222VarianteRecord!
-                                                                            .foto,
-                                                                        text22222VarianteRecord
+                                                                        textSemFotoVarianteRecord?.foto != null && textSemFotoVarianteRecord?.foto != ''
+                                                                            ? textSemFotoVarianteRecord!
+                                                                                .foto
+                                                                            : carinhoVarianteOpc12ProdutoRecord
+                                                                                .imagens.firstOrNull!,
+                                                                        textSemFotoVarianteRecord!
                                                                             .produtoRef!,
                                                                         carinhoVarianteOpc12ProdutoRecord
                                                                             .lojaRef!,
                                                                         carinhoVarianteOpc12ProdutoRecord
                                                                             .envioNaciona,
                                                                         functions.valorProdutoAfiliado(
-                                                                            text22222VarianteRecord
+                                                                            textSemFotoVarianteRecord
                                                                                 .reference,
                                                                             stackProdutoAfiliadoRecord.valorComRef
                                                                                 .toList()),
@@ -12336,7 +12914,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         true,
                                                                         carinhoVarianteOpc12ProdutoRecord
                                                                             .nome,
-                                                                        text22222VarianteRecord
+                                                                        textSemFotoVarianteRecord
                                                                             .opcaoTitulo1,
                                                                         FFAppState()
                                                                             .CarrinhoTemporarioNacional
@@ -12345,9 +12923,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                             .parentReference,
                                                                         stackProdutoAfiliadoRecord
                                                                             .comissao,
-                                                                        text22222VarianteRecord
+                                                                        textSemFotoVarianteRecord
                                                                             .opcaoTitulo2,
-                                                                        text22222VarianteRecord
+                                                                        textSemFotoVarianteRecord
                                                                             .reference)
                                                                     .toList()
                                                                     .cast<
@@ -12358,16 +12936,19 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                 FFAppState().CarrinhoTemporarioInternacional = functions
                                                                     .addCarrinhoTemporario(
                                                                         getCurrentTimestamp,
-                                                                        text22222VarianteRecord!
-                                                                            .foto,
-                                                                        text22222VarianteRecord
+                                                                        textSemFotoVarianteRecord?.foto != null && textSemFotoVarianteRecord?.foto != ''
+                                                                            ? textSemFotoVarianteRecord!
+                                                                                .foto
+                                                                            : carinhoVarianteOpc12ProdutoRecord
+                                                                                .imagens.firstOrNull!,
+                                                                        textSemFotoVarianteRecord!
                                                                             .produtoRef!,
                                                                         carinhoVarianteOpc12ProdutoRecord
                                                                             .lojaRef!,
                                                                         carinhoVarianteOpc12ProdutoRecord
                                                                             .envioNaciona,
                                                                         functions.valorProdutoAfiliado(
-                                                                            text22222VarianteRecord
+                                                                            textSemFotoVarianteRecord
                                                                                 .reference,
                                                                             stackProdutoAfiliadoRecord.valorComRef
                                                                                 .toList()),
@@ -12378,7 +12959,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                         true,
                                                                         carinhoVarianteOpc12ProdutoRecord
                                                                             .nome,
-                                                                        text22222VarianteRecord
+                                                                        textSemFotoVarianteRecord
                                                                             .opcaoTitulo1,
                                                                         FFAppState()
                                                                             .CarrinhoTemporarioInternacional
@@ -12387,9 +12968,9 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                             .parentReference,
                                                                         stackProdutoAfiliadoRecord
                                                                             .comissao,
-                                                                        text22222VarianteRecord
+                                                                        textSemFotoVarianteRecord
                                                                             .opcaoTitulo2,
-                                                                        text22222VarianteRecord
+                                                                        textSemFotoVarianteRecord
                                                                             .reference)
                                                                     .toList()
                                                                     .cast<
@@ -12485,7 +13066,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                           ),
                                                         ).animateOnActionTrigger(
                                                           animationsMap[
-                                                              'containerOnActionTriggerAnimation9']!,
+                                                              'containerOnActionTriggerAnimation10']!,
                                                         );
                                                       },
                                                     ),
@@ -12603,7 +13184,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                               ),
                                                             ).animateOnActionTrigger(
                                                               animationsMap[
-                                                                  'containerOnActionTriggerAnimation10']!,
+                                                                  'containerOnActionTriggerAnimation11']!,
                                                             ),
                                                           ),
                                                         ),
@@ -12661,7 +13242,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                               ),
                                                             ).animateOnActionTrigger(
                                                               animationsMap[
-                                                                  'containerOnActionTriggerAnimation11']!,
+                                                                  'containerOnActionTriggerAnimation12']!,
                                                             ),
                                                           ),
                                                         ),
@@ -12727,7 +13308,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                               ),
                                                             ).animateOnActionTrigger(
                                                               animationsMap[
-                                                                  'containerOnActionTriggerAnimation12']!,
+                                                                  'containerOnActionTriggerAnimation13']!,
                                                             ),
                                                           ),
                                                         ),
@@ -12805,10 +13386,10 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                   from: 0.0);
                                                         }
                                                         if (animationsMap[
-                                                                'containerOnActionTriggerAnimation10'] !=
+                                                                'containerOnActionTriggerAnimation11'] !=
                                                             null) {
                                                           animationsMap[
-                                                                  'containerOnActionTriggerAnimation10']!
+                                                                  'containerOnActionTriggerAnimation11']!
                                                               .controller
                                                               .forward(
                                                                   from: 0.0);
@@ -12832,10 +13413,10 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                   from: 0.0);
                                                         }
                                                         if (animationsMap[
-                                                                'containerOnActionTriggerAnimation11'] !=
+                                                                'containerOnActionTriggerAnimation12'] !=
                                                             null) {
                                                           animationsMap[
-                                                                  'containerOnActionTriggerAnimation11']!
+                                                                  'containerOnActionTriggerAnimation12']!
                                                               .controller
                                                               .forward(
                                                                   from: 0.0);
@@ -12850,19 +13431,19 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                   from: 0.0);
                                                         }
                                                         if (animationsMap[
-                                                                'containerOnActionTriggerAnimation12'] !=
+                                                                'containerOnActionTriggerAnimation13'] !=
                                                             null) {
                                                           animationsMap[
-                                                                  'containerOnActionTriggerAnimation12']!
+                                                                  'containerOnActionTriggerAnimation13']!
                                                               .controller
                                                               .forward(
                                                                   from: 0.0);
                                                         }
                                                         if (animationsMap[
-                                                                'containerOnActionTriggerAnimation13'] !=
+                                                                'containerOnActionTriggerAnimation14'] !=
                                                             null) {
                                                           animationsMap[
-                                                                  'containerOnActionTriggerAnimation13']!
+                                                                  'containerOnActionTriggerAnimation14']!
                                                               .controller
                                                               .forward(
                                                                   from: 0.0);
@@ -12977,10 +13558,10 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                   from: 0.0);
                                                         }
                                                         if (animationsMap[
-                                                                'containerOnActionTriggerAnimation10'] !=
+                                                                'containerOnActionTriggerAnimation11'] !=
                                                             null) {
                                                           animationsMap[
-                                                                  'containerOnActionTriggerAnimation10']!
+                                                                  'containerOnActionTriggerAnimation11']!
                                                               .controller
                                                               .forward(
                                                                   from: 0.0);
@@ -13004,10 +13585,10 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                   from: 0.0);
                                                         }
                                                         if (animationsMap[
-                                                                'containerOnActionTriggerAnimation11'] !=
+                                                                'containerOnActionTriggerAnimation12'] !=
                                                             null) {
                                                           animationsMap[
-                                                                  'containerOnActionTriggerAnimation11']!
+                                                                  'containerOnActionTriggerAnimation12']!
                                                               .controller
                                                               .forward(
                                                                   from: 0.0);
@@ -13022,19 +13603,19 @@ class _PaginaProdutoAfiliadoWidgetState
                                                                   from: 0.0);
                                                         }
                                                         if (animationsMap[
-                                                                'containerOnActionTriggerAnimation12'] !=
+                                                                'containerOnActionTriggerAnimation13'] !=
                                                             null) {
                                                           animationsMap[
-                                                                  'containerOnActionTriggerAnimation12']!
+                                                                  'containerOnActionTriggerAnimation13']!
                                                               .controller
                                                               .forward(
                                                                   from: 0.0);
                                                         }
                                                         if (animationsMap[
-                                                                'containerOnActionTriggerAnimation13'] !=
+                                                                'containerOnActionTriggerAnimation14'] !=
                                                             null) {
                                                           animationsMap[
-                                                                  'containerOnActionTriggerAnimation13']!
+                                                                  'containerOnActionTriggerAnimation14']!
                                                               .controller
                                                               .forward(
                                                                   from: 0.0);
@@ -13193,7 +13774,7 @@ class _PaginaProdutoAfiliadoWidgetState
                                                     ),
                                                   ).animateOnActionTrigger(
                                                     animationsMap[
-                                                        'containerOnActionTriggerAnimation13']!,
+                                                        'containerOnActionTriggerAnimation14']!,
                                                   ),
                                                 ],
                                               ),

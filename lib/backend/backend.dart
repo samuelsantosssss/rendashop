@@ -32,6 +32,7 @@ import 'schema/link_record.dart';
 import 'schema/midia_afiliado_record.dart';
 import 'schema/chat_record.dart';
 import 'schema/texto_venda_record.dart';
+import 'schema/baixar_app_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -67,6 +68,7 @@ export 'schema/link_record.dart';
 export 'schema/midia_afiliado_record.dart';
 export 'schema/chat_record.dart';
 export 'schema/texto_venda_record.dart';
+export 'schema/baixar_app_record.dart';
 
 /// Functions to query UserRecords (as a Stream and as a Future).
 Future<int> queryUserRecordCount({
@@ -1101,6 +1103,43 @@ Future<List<TextoVendaRecord>> queryTextoVendaRecordOnce({
     queryCollectionOnce(
       TextoVendaRecord.collection,
       TextoVendaRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query BaixarAppRecords (as a Stream and as a Future).
+Future<int> queryBaixarAppRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      BaixarAppRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<BaixarAppRecord>> queryBaixarAppRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      BaixarAppRecord.collection,
+      BaixarAppRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<BaixarAppRecord>> queryBaixarAppRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      BaixarAppRecord.collection,
+      BaixarAppRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

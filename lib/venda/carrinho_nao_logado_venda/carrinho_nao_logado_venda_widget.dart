@@ -1,11 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/perfil/baixar_app/baixar_app_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -88,6 +88,8 @@ class _CarrinhoNaoLogadoVendaWidgetState
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
+                        FFAppState().status = 'carrinhoOff';
+                        safeSetState(() {});
                         await showModalBottomSheet(
                           isScrollControlled: true,
                           backgroundColor: Colors.transparent,
@@ -3084,6 +3086,155 @@ class _CarrinhoNaoLogadoVendaWidgetState
                                                                                 FlutterFlowTheme.of(context).secondaryBackground,
                                                                             size:
                                                                                 17.0,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  if (containerProdutoRecord
+                                                                              .capsula1 !=
+                                                                          '')
+                                                                    Align(
+                                                                      alignment:
+                                                                          AlignmentDirectional(
+                                                                              1.0,
+                                                                              1.0),
+                                                                      child:
+                                                                          Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            0.0,
+                                                                            0.0,
+                                                                            3.0,
+                                                                            6.0),
+                                                                        child:
+                                                                            Container(
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            color:
+                                                                                Color(0x4E000000),
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(100.0),
+                                                                            border:
+                                                                                Border.all(
+                                                                              color: Color(0xBBFFFFFF),
+                                                                              width: 0.4,
+                                                                            ),
+                                                                          ),
+                                                                          child:
+                                                                              Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                0.4,
+                                                                                0.2,
+                                                                                0.4,
+                                                                                0.2),
+                                                                            child:
+                                                                                Column(
+                                                                              mainAxisSize: MainAxisSize.min,
+                                                                              children: [
+                                                                                Padding(
+                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.5, 0.0, 0.0),
+                                                                                  child: Container(
+                                                                                    width: 11.0,
+                                                                                    height: 11.0,
+                                                                                    decoration: BoxDecoration(
+                                                                                      color: Color(0xE2FFFFFF),
+                                                                                      shape: BoxShape.circle,
+                                                                                    ),
+                                                                                    child: Align(
+                                                                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                      child: Container(
+                                                                                        width: 10.2,
+                                                                                        height: 10.2,
+                                                                                        clipBehavior: Clip.antiAlias,
+                                                                                        decoration: BoxDecoration(
+                                                                                          shape: BoxShape.circle,
+                                                                                        ),
+                                                                                        child: Image.network(
+                                                                                          containerProdutoRecord.capsula1,
+                                                                                          fit: BoxFit.cover,
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                ),
+                                                                                if (containerProdutoRecord.capsula2 != '')
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
+                                                                                    child: Container(
+                                                                                      width: 11.0,
+                                                                                      height: 11.0,
+                                                                                      decoration: BoxDecoration(
+                                                                                        color: Color(0xE2FFFFFF),
+                                                                                        shape: BoxShape.circle,
+                                                                                      ),
+                                                                                      child: Align(
+                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                        child: Container(
+                                                                                          width: 10.2,
+                                                                                          height: 10.2,
+                                                                                          clipBehavior: Clip.antiAlias,
+                                                                                          decoration: BoxDecoration(
+                                                                                            shape: BoxShape.circle,
+                                                                                          ),
+                                                                                          child: Image.network(
+                                                                                            containerProdutoRecord.capsula2,
+                                                                                            fit: BoxFit.cover,
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                if (containerProdutoRecord.capsula3 != '')
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
+                                                                                    child: Container(
+                                                                                      width: 11.0,
+                                                                                      height: 11.0,
+                                                                                      decoration: BoxDecoration(
+                                                                                        color: Color(0xE2FFFFFF),
+                                                                                        shape: BoxShape.circle,
+                                                                                      ),
+                                                                                      child: Align(
+                                                                                        alignment: AlignmentDirectional(0.0, 0.0),
+                                                                                        child: Container(
+                                                                                          width: 10.2,
+                                                                                          height: 10.2,
+                                                                                          clipBehavior: Clip.antiAlias,
+                                                                                          decoration: BoxDecoration(
+                                                                                            shape: BoxShape.circle,
+                                                                                          ),
+                                                                                          child: Image.network(
+                                                                                            containerProdutoRecord.capsula3,
+                                                                                            fit: BoxFit.cover,
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                if (containerProdutoRecord.capsulaExtra != '')
+                                                                                  Padding(
+                                                                                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 1.0),
+                                                                                    child: Text(
+                                                                                      containerProdutoRecord.capsulaExtra,
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            font: GoogleFonts.inter(
+                                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                            ),
+                                                                                            color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                            fontSize: 8.0,
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                  ),
+                                                                                Container(
+                                                                                  width: 1.0,
+                                                                                  height: 0.5,
+                                                                                  decoration: BoxDecoration(),
+                                                                                ),
+                                                                              ],
+                                                                            ),
                                                                           ),
                                                                         ),
                                                                       ),

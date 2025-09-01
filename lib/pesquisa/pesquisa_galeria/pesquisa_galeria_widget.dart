@@ -1,9 +1,9 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -1523,8 +1523,8 @@ class _PesquisaGaleriaWidgetState extends State<PesquisaGaleriaWidget> {
                                                                             Padding(
                                                                               padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.5, 0.0, 0.0),
                                                                               child: Container(
-                                                                                width: 9.5,
-                                                                                height: 9.5,
+                                                                                width: 11.0,
+                                                                                height: 11.0,
                                                                                 decoration: BoxDecoration(
                                                                                   color: Color(0xE2FFFFFF),
                                                                                   shape: BoxShape.circle,
@@ -1532,8 +1532,8 @@ class _PesquisaGaleriaWidgetState extends State<PesquisaGaleriaWidget> {
                                                                                 child: Align(
                                                                                   alignment: AlignmentDirectional(0.0, 0.0),
                                                                                   child: Container(
-                                                                                    width: 9.0,
-                                                                                    height: 9.0,
+                                                                                    width: 10.2,
+                                                                                    height: 10.2,
                                                                                     clipBehavior: Clip.antiAlias,
                                                                                     decoration: BoxDecoration(
                                                                                       shape: BoxShape.circle,
@@ -1548,10 +1548,10 @@ class _PesquisaGaleriaWidgetState extends State<PesquisaGaleriaWidget> {
                                                                             ),
                                                                             if (containerProdutoRecord.capsula2 != '')
                                                                               Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
                                                                                 child: Container(
-                                                                                  width: 9.5,
-                                                                                  height: 9.5,
+                                                                                  width: 11.0,
+                                                                                  height: 11.0,
                                                                                   decoration: BoxDecoration(
                                                                                     color: Color(0xE2FFFFFF),
                                                                                     shape: BoxShape.circle,
@@ -1559,8 +1559,8 @@ class _PesquisaGaleriaWidgetState extends State<PesquisaGaleriaWidget> {
                                                                                   child: Align(
                                                                                     alignment: AlignmentDirectional(0.0, 0.0),
                                                                                     child: Container(
-                                                                                      width: 9.0,
-                                                                                      height: 9.0,
+                                                                                      width: 10.2,
+                                                                                      height: 10.2,
                                                                                       clipBehavior: Clip.antiAlias,
                                                                                       decoration: BoxDecoration(
                                                                                         shape: BoxShape.circle,
@@ -1575,10 +1575,10 @@ class _PesquisaGaleriaWidgetState extends State<PesquisaGaleriaWidget> {
                                                                               ),
                                                                             if (containerProdutoRecord.capsula3 != '')
                                                                               Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
                                                                                 child: Container(
-                                                                                  width: 9.5,
-                                                                                  height: 9.5,
+                                                                                  width: 11.0,
+                                                                                  height: 11.0,
                                                                                   decoration: BoxDecoration(
                                                                                     color: Color(0xE2FFFFFF),
                                                                                     shape: BoxShape.circle,
@@ -1586,8 +1586,8 @@ class _PesquisaGaleriaWidgetState extends State<PesquisaGaleriaWidget> {
                                                                                   child: Align(
                                                                                     alignment: AlignmentDirectional(0.0, 0.0),
                                                                                     child: Container(
-                                                                                      width: 9.0,
-                                                                                      height: 9.0,
+                                                                                      width: 10.2,
+                                                                                      height: 10.2,
                                                                                       clipBehavior: Clip.antiAlias,
                                                                                       decoration: BoxDecoration(
                                                                                         shape: BoxShape.circle,
@@ -1602,7 +1602,7 @@ class _PesquisaGaleriaWidgetState extends State<PesquisaGaleriaWidget> {
                                                                               ),
                                                                             if (containerProdutoRecord.capsulaExtra != '')
                                                                               Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
+                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 1.0),
                                                                                 child: Text(
                                                                                   containerProdutoRecord.capsulaExtra,
                                                                                   style: FlutterFlowTheme.of(context).bodyMedium.override(

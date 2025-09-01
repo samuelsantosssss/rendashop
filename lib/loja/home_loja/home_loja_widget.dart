@@ -1,11 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/carregando/carregando18/carregando18_widget.dart';
 import '/carregando/carregando19/carregando19_widget.dart';
 import '/carregando/carregando20/carregando20_widget.dart';
 import '/carregando/carregando21/carregando21_widget.dart';
 import '/carregando/carregando25/carregando25_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
+import '/carregando/carregando26/carregando26_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/loja/promocao_relampago/time_promo_home/time_promo_home_widget.dart';
 import '/loja/promocao_relampago/updata_promo_home/updata_promo_home_widget.dart';
@@ -16,8 +17,10 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:collection/collection.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -45,6 +48,95 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => HomeLojaModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (isWeb == true) {
+        return;
+      }
+
+      if (FFAppState().LoginPrimeiraVez) {
+        return;
+      }
+
+      FFAppState().LoginPrimeiraVez = true;
+      safeSetState(() {});
+      _model.apiResultp48 = await ObterIPCall.call();
+
+      _model.query357 = await queryBaixarAppRecordOnce();
+      _model.retorno1 = await actions.mapeamentoBaixarHomePaginaProduto(
+        context,
+        ObterIPCall.ip(
+          (_model.apiResultp48?.jsonBody ?? ''),
+        ),
+        _model.query357!.toList(),
+      );
+      if (_model.retorno1 != null) {
+        _model.query4 = await queryBaixarAppRecordOnce(
+          queryBuilder: (baixarAppRecord) => baixarAppRecord.where(
+            'baixarRef',
+            isEqualTo: _model.retorno1,
+          ),
+          singleRecord: true,
+        ).then((s) => s.firstOrNull);
+        if (_model.query4?.status == 'paginaProdutoAfiliado') {
+          await _model.query4!.reference.update(createBaixarAppRecordData(
+            acessouMobile: true,
+          ));
+          FFAppState().CarrinhoTemporarioNacional =
+              _model.query4!.carrinhoNacional.toList().cast<String>();
+          FFAppState().CarrinhoTemporarioInternacional =
+              _model.query4!.carrinhoInternacional.toList().cast<String>();
+          safeSetState(() {});
+
+          context.pushNamed(
+            PaginaProdutoAfiliadoWidget.routeName,
+            queryParameters: {
+              'produtoRef2': serializeParam(
+                _model.query4?.produtoAfiliadoRef,
+                ParamType.DocumentReference,
+              ),
+            }.withoutNulls,
+          );
+
+          return;
+        } else {
+          if (_model.query4?.status == 'carrinhoOff') {
+            await _model.query4!.reference.update(createBaixarAppRecordData(
+              acessouMobile: true,
+            ));
+            FFAppState().CarrinhoTemporarioNacional =
+                _model.query4!.carrinhoNacional.toList().cast<String>();
+            FFAppState().CarrinhoTemporarioInternacional =
+                _model.query4!.carrinhoInternacional.toList().cast<String>();
+            safeSetState(() {});
+
+            context.pushNamed(CarrinhoNaoLogadoVendaWidget.routeName);
+
+            return;
+          } else {
+            if (_model.query4?.status == 'carrinho') {
+              await _model.query4!.reference.update(createBaixarAppRecordData(
+                acessouMobile: true,
+              ));
+              FFAppState().CarrinhoTemporarioNacional =
+                  _model.query4!.carrinhoNacional.toList().cast<String>();
+              FFAppState().CarrinhoTemporarioInternacional =
+                  _model.query4!.carrinhoInternacional.toList().cast<String>();
+              safeSetState(() {});
+
+              context.pushNamed(CarrinhoWidget.routeName);
+
+              return;
+            } else {
+              return;
+            }
+          }
+        }
+      } else {
+        return;
+      }
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -132,17 +224,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                             builder: (context, snapshot) {
                               // Customize what your widget looks like when it's loading.
                               if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 26.0,
-                                    height: 26.0,
-                                    child: SpinKitCircle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      size: 26.0,
-                                    ),
-                                  ),
-                                );
+                                return Carregando26Widget();
                               }
                               List<BannerRecord> containerBannerRecordList =
                                   snapshot.data!;
@@ -2838,7 +2920,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                           0.0),
                                                                   image: Image
                                                                       .network(
-                                                                    'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/Categorias%2Fbr-11134207-7r98o-ln6mlhiuvcjn09.webp?alt=media&token=bfe32ea6-d35f-4c02-9be1-4a5f19d516d4',
+                                                                    'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/Capturarasdasdasdasdasd.PNG?alt=media&token=90aa4b44-5db7-41e6-98a3-514ff101e718',
                                                                   ).image,
                                                                 ),
                                                                 borderRadius:
@@ -4056,16 +4138,26 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                     .first
                                                 : null;
 
-                                        return Container(
-                                          width: double.infinity,
-                                          height: 113.0,
-                                          decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                              fit: BoxFit.contain,
-                                              image: Image.network(
-                                                containerBannerRecord!
-                                                    .listaBanner.firstOrNull!,
-                                              ).image,
+                                        return InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.pushNamed(
+                                                HomePCWidget.routeName);
+                                          },
+                                          child: Container(
+                                            width: double.infinity,
+                                            height: 113.0,
+                                            decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                fit: BoxFit.contain,
+                                                image: Image.network(
+                                                  containerBannerRecord!
+                                                      .listaBanner.firstOrNull!,
+                                                ).image,
+                                              ),
                                             ),
                                           ),
                                         );
@@ -4952,45 +5044,35 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                     child: Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 5.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          await actions.notificacaoVenda();
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                          ),
-                          child: Align(
-                            alignment: AlignmentDirectional(-1.0, 0.0),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  19.0, 10.0, 0.0, 10.0),
-                              child: Text(
-                                'DESCOBERTAS DO DIA',
-                                style: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      font: GoogleFonts.interTight(
-                                        fontWeight: FontWeight.w500,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .fontStyle,
-                                      ),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      fontSize: 15.0,
-                                      letterSpacing: 0.0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: Align(
+                          alignment: AlignmentDirectional(-1.0, 0.0),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                19.0, 10.0, 0.0, 10.0),
+                            child: Text(
+                              'DESCOBERTAS DO DIA',
+                              style: FlutterFlowTheme.of(context)
+                                  .titleSmall
+                                  .override(
+                                    font: GoogleFonts.interTight(
                                       fontWeight: FontWeight.w500,
                                       fontStyle: FlutterFlowTheme.of(context)
                                           .titleSmall
                                           .fontStyle,
                                     ),
-                              ),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    fontSize: 15.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w500,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .fontStyle,
+                                  ),
                             ),
                           ),
                         ),
@@ -5312,8 +5394,8 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                                       Padding(
                                                                                         padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.5, 0.0, 0.0),
                                                                                         child: Container(
-                                                                                          width: 9.5,
-                                                                                          height: 9.5,
+                                                                                          width: 11.0,
+                                                                                          height: 11.0,
                                                                                           decoration: BoxDecoration(
                                                                                             color: Color(0xE2FFFFFF),
                                                                                             shape: BoxShape.circle,
@@ -5321,8 +5403,8 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                                           child: Align(
                                                                                             alignment: AlignmentDirectional(0.0, 0.0),
                                                                                             child: Container(
-                                                                                              width: 9.0,
-                                                                                              height: 9.0,
+                                                                                              width: 10.2,
+                                                                                              height: 10.2,
                                                                                               clipBehavior: Clip.antiAlias,
                                                                                               decoration: BoxDecoration(
                                                                                                 shape: BoxShape.circle,
@@ -5337,10 +5419,10 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                                       ),
                                                                                       if (containerProdutoRecord.capsula2 != '')
                                                                                         Padding(
-                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
                                                                                           child: Container(
-                                                                                            width: 9.5,
-                                                                                            height: 9.5,
+                                                                                            width: 11.0,
+                                                                                            height: 11.0,
                                                                                             decoration: BoxDecoration(
                                                                                               color: Color(0xE2FFFFFF),
                                                                                               shape: BoxShape.circle,
@@ -5348,8 +5430,8 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                                             child: Align(
                                                                                               alignment: AlignmentDirectional(0.0, 0.0),
                                                                                               child: Container(
-                                                                                                width: 9.0,
-                                                                                                height: 9.0,
+                                                                                                width: 10.2,
+                                                                                                height: 10.2,
                                                                                                 clipBehavior: Clip.antiAlias,
                                                                                                 decoration: BoxDecoration(
                                                                                                   shape: BoxShape.circle,
@@ -5364,10 +5446,10 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                                         ),
                                                                                       if (containerProdutoRecord.capsula3 != '')
                                                                                         Padding(
-                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
                                                                                           child: Container(
-                                                                                            width: 9.5,
-                                                                                            height: 9.5,
+                                                                                            width: 11.0,
+                                                                                            height: 11.0,
                                                                                             decoration: BoxDecoration(
                                                                                               color: Color(0xE2FFFFFF),
                                                                                               shape: BoxShape.circle,
@@ -5375,8 +5457,8 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                                             child: Align(
                                                                                               alignment: AlignmentDirectional(0.0, 0.0),
                                                                                               child: Container(
-                                                                                                width: 9.0,
-                                                                                                height: 9.0,
+                                                                                                width: 10.2,
+                                                                                                height: 10.2,
                                                                                                 clipBehavior: Clip.antiAlias,
                                                                                                 decoration: BoxDecoration(
                                                                                                   shape: BoxShape.circle,
@@ -5391,7 +5473,7 @@ class _HomeLojaWidgetState extends State<HomeLojaWidget> {
                                                                                         ),
                                                                                       if (containerProdutoRecord.capsulaExtra != '')
                                                                                         Padding(
-                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
+                                                                                          padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 1.0),
                                                                                           child: Text(
                                                                                             containerProdutoRecord.capsulaExtra,
                                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(

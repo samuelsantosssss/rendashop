@@ -2,10 +2,10 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/apagar_produto_nao_existe_afiliado_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -1059,7 +1059,7 @@ class _MeusProdutosAfiliadoWidgetState
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryText,
-                                                          size: 15.0,
+                                                          size: 17.0,
                                                         ),
                                                       ),
                                                       Padding(
@@ -1260,7 +1260,7 @@ class _MeusProdutosAfiliadoWidgetState
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
-                                                                size: 14.0,
+                                                                size: 17.0,
                                                               ),
                                                             ),
                                                             Padding(
@@ -1290,7 +1290,7 @@ class _MeusProdutosAfiliadoWidgetState
                                                                               context)
                                                                           .secondaryText,
                                                                       fontSize:
-                                                                          13.0,
+                                                                          15.0,
                                                                       letterSpacing:
                                                                           0.0,
                                                                       fontWeight: FlutterFlowTheme.of(

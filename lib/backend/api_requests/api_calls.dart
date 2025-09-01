@@ -4,9 +4,10 @@ import '../cloud_functions/cloud_functions.dart';
 import 'package:flutter/foundation.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
-import 'api_manager.dart';
+import 'package:ff_commons/api_requests/api_manager.dart';
 
-export 'api_manager.dart' show ApiCallResponse;
+
+export 'package:ff_commons/api_requests/api_manager.dart' show ApiCallResponse;
 
 const _kPrivateApiFunctionName = 'pagamentoRendaShop';
 
@@ -74,47 +75,27 @@ class AsaasTokenClienteCall {
     String? personType = '',
     String? postalCode = '',
   }) async {
-    final ffApiRequestBody = '''
-{
-  "id": "${escapeStringForJson(id)}",
-  "name": "${escapeStringForJson(name)}",
-  "email": "${escapeStringForJson(email)}",
-  "mobilePhone": "${escapeStringForJson(mobilePhone)}",
-  "cpfCnpj": "${escapeStringForJson(cpfCnpj)}",
-  "personType": "${escapeStringForJson(personType)}",
-  "postalCode": "${escapeStringForJson(postalCode)}",
-  "address": "${escapeStringForJson(address)}",
-  "addressNumber": "${escapeStringForJson(addressNumber)}",
-  "complement": "${escapeStringForJson(complement)}",
-  "province": "${escapeStringForJson(province)}",
-  "dateCreated": "${escapeStringForJson(dateCreated)}",
-  "transaction": {
-    "value": <value>,
-    "dueDate": "<dueDate>",
-    "description": "<description>"
-  }
-}
-''';
-    return ApiManager.instance.makeApiCall(
-      callName: 'Asaas Token  Cliente',
-      apiUrl: 'https://api-sandbox.asaas.com/v3/customers',
-      callType: ApiCallType.POST,
-      headers: {
-        'Content-Type': 'application/json',
-        'accept': 'application/json',
-        'access_token':
-            '\$aact_MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OjYzYTc1M2JhLWM0YjUtNDJiMC04ZDdhLTc3ZWU2ZTc3ZDQ1Yzo6JGFhY2hfZTNhOWQyZDYtYzAyMC00YTRjLWIyMGEtYTU3ZDEyMmVkMjZj',
+    final response = await makeCloudCall(
+      _kPrivateApiFunctionName,
+      {
+        'callName': 'AsaasTokenClienteCall',
+        'variables': {
+          'id': id,
+          'dateCreated': dateCreated,
+          'name': name,
+          'email': email,
+          'mobilePhone': mobilePhone,
+          'address': address,
+          'addressNumber': addressNumber,
+          'complement': complement,
+          'province': province,
+          'cpfCnpj': cpfCnpj,
+          'personType': personType,
+          'postalCode': postalCode,
+        },
       },
-      params: {},
-      body: ffApiRequestBody,
-      bodyType: BodyType.JSON,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      isStreamingApi: false,
-      alwaysAllowBody: false,
     );
+    return ApiCallResponse.fromCloudCallResponse(response);
   }
 
   static String? idCliente(dynamic response) => castToType<String>(getJsonField(
@@ -316,20 +297,32 @@ class StatusPixMPCall {
       ));
 }
 
-class ApiPagingParams {
-  int nextPageNumber = 0;
-  int numItems = 0;
-  dynamic lastResponse;
+class GerarQrCodeCall {
+  static Future<ApiCallResponse> call({
+    String? pixCode = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'gerarQrCode',
+      apiUrl: 'https://api.qrserver.com/v1/create-qr-code/',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'data': pixCode,
+        'size': "200x200",
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
 
-  ApiPagingParams({
-    required this.nextPageNumber,
-    required this.numItems,
-    required this.lastResponse,
-  });
-
-  @override
-  String toString() =>
-      'PagingParams(nextPageNumber: $nextPageNumber, numItems: $numItems, lastResponse: $lastResponse,)';
+  static dynamic imagem(dynamic response) => getJsonField(
+        response,
+        r'''$''',
+      );
 }
 
 String _toEncodable(dynamic item) {

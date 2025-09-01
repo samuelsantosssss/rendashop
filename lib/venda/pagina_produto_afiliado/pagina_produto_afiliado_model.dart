@@ -26,8 +26,10 @@ class PaginaProdutoAfiliadoModel
   List<CarrinhoRecord>? respostaCarrinho2;
   // Stores action output result for [Firestore Query - Query a collection] action in Text4444foto widget.
   List<CarrinhoRecord>? respostaCarrinho;
-  // Stores action output result for [Firestore Query - Query a collection] action in Text22222 widget.
+  // Stores action output result for [Firestore Query - Query a collection] action in TextFoto widget.
   List<CarrinhoRecord>? respostaCarrinhooo;
+  // Stores action output result for [Firestore Query - Query a collection] action in TextSemFoto widget.
+  List<CarrinhoRecord>? respostaCarrinhooo3;
   // Stores action output result for [Firestore Query - Query a collection] action in Text3333 widget.
   List<CarrinhoRecord>? respostaCarrinhSemVariante1;
   // Model for atualizarAfiliadoProduto component.

@@ -1,12 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'esqueceu_senhaa_model.dart';
 export 'esqueceu_senhaa_model.dart';
 
@@ -137,8 +136,6 @@ class _EsqueceuSenhaaWidgetState extends State<EsqueceuSenhaaWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -370,81 +367,80 @@ class _EsqueceuSenhaaWidgetState extends State<EsqueceuSenhaaWidget>
                         ),
                       ),
                     ),
-                    if (FFAppState().NaoTemConta == 'temconta')
-                      Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 20.0, 0.0, 20.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              if (_model
-                                  .emailAddressTextController.text.isEmpty) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Email required!',
-                                    ),
+                    Align(
+                      alignment: AlignmentDirectional(0.0, 0.0),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            0.0, 20.0, 0.0, 20.0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            if (_model
+                                .emailAddressTextController.text.isEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Email required!',
                                   ),
-                                );
-                                return;
-                              }
-                              await authManager.resetPassword(
-                                email: _model.emailAddressTextController.text,
-                                context: context,
+                                ),
                               );
-                              await showDialog(
-                                context: context,
-                                builder: (alertDialogContext) {
-                                  return AlertDialog(
-                                    title: Text('Atenção'),
-                                    content: Text(
-                                        'Nova senha enviada em seu E-mail'),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(alertDialogContext),
-                                        child: Text('Ok'),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-                              context.safePop();
-                            },
-                            text: 'Confirmar E-mail',
-                            options: FFButtonOptions(
-                              width: 230.0,
-                              height: 38.8,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              iconAlignment: IconAlignment.start,
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    font: GoogleFonts.interTight(
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
+                              return;
+                            }
+                            await authManager.resetPassword(
+                              email: _model.emailAddressTextController.text,
+                              context: context,
+                            );
+                            await showDialog(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: Text('Atenção'),
+                                  content:
+                                      Text('Nova senha enviada em seu E-mail'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: Text('Ok'),
                                     ),
-                                    color: Colors.white,
-                                    fontSize: 15.0,
-                                    letterSpacing: 0.0,
+                                  ],
+                                );
+                              },
+                            );
+                            context.safePop();
+                          },
+                          text: 'Confirmar E-mail',
+                          options: FFButtonOptions(
+                            width: 230.0,
+                            height: 38.8,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            iconAlignment: IconAlignment.start,
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  font: GoogleFonts.interTight(
                                     fontWeight: FontWeight.w500,
                                     fontStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
                                         .fontStyle,
                                   ),
-                              elevation: 3.0,
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
+                                  color: Colors.white,
+                                  fontSize: 15.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .titleSmall
+                                      .fontStyle,
+                                ),
+                            elevation: 3.0,
+                            borderRadius: BorderRadius.circular(20.0),
                           ),
                         ),
                       ),
+                    ),
                   ],
                 ).animateOnPageLoad(
                     animationsMap['columnOnPageLoadAnimation']!),

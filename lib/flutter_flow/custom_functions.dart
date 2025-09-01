@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'lat_lng.dart';
-import 'place.dart';
-import 'uploaded_file.dart';
+import 'package:ff_commons/flutter_flow/lat_lng.dart';
+import 'package:ff_commons/flutter_flow/place.dart';
+import 'package:ff_commons/flutter_flow/uploaded_file.dart';
 import '/backend/backend.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '/auth/firebase_auth/auth_util.dart';
+import 'package:branchio_dynamic_linking_akp5u6/flutter_flow/custom_functions.dart'
+    as branchio_dynamic_linking_akp5u6_functions;
 
 double contaMultiplicacao(
   double valorX,
@@ -6144,34 +6146,52 @@ List<String> carrinhoAfiliadoSelecionado(
   List<String> listaCarrinho,
   String produto,
 ) {
-  // Primeiro, extraímos o produtoRef do produto que queremos modificar
+  // Extrai o produtoRef do produto que queremos modificar
   final produtoRefMatch =
       RegExp(r'\(produtoRef\s+"([^"]+)"\)').firstMatch(produto);
   if (produtoRefMatch == null || produtoRefMatch.groupCount < 1) {
-    return listaCarrinho; // Retorna a lista original se não encontrar o produtoRef
+    return listaCarrinho;
   }
   final produtoRef = produtoRefMatch.group(1);
+
+  // Extrai o variacaoRef do produto, se existir
+  final variacaoRefMatch =
+      RegExp(r'\(variacaoRef\s+"([^"]+)"\)').firstMatch(produto);
+  final variacaoRef = variacaoRefMatch?.group(1);
 
   // Criamos uma nova lista para armazenar os resultados
   List<String> novaLista = [];
 
   for (String item in listaCarrinho) {
-    // Verificamos se este item é o que queremos modificar (comparando produtoRef)
+    // Verifica o produtoRef do item atual
     final itemProdutoRefMatch =
         RegExp(r'\(produtoRef\s+"([^"]+)"\)').firstMatch(item);
     final itemProdutoRef = itemProdutoRefMatch?.group(1);
 
+    // Verifica se é o mesmo produto
     if (itemProdutoRef == produtoRef) {
-      // Este é o item que queremos modificar
-      // Extraímos o valor atual de "selecionado"
+      // Se tiver variacaoRef no produto original, verifica se é a mesma variante
+      if (variacaoRef != null) {
+        final itemVariacaoRefMatch =
+            RegExp(r'\(variacaoRef\s+"([^"]+)"\)').firstMatch(item);
+        final itemVariacaoRef = itemVariacaoRefMatch?.group(1);
+
+        // Se as variacoes forem diferentes, mantém o item original
+        if (itemVariacaoRef != variacaoRef) {
+          novaLista.add(item);
+          continue;
+        }
+      }
+
+      // Extrai o valor atual de "selecionado"
       final selecionadoMatch =
           RegExp(r'\(selecionado\s+"([^"]+)"\)').firstMatch(item);
       final valorAtual = selecionadoMatch?.group(1) ?? 'Não';
 
-      // Determinamos o novo valor
+      // Determina o novo valor
       final novoValor = valorAtual == 'Sim' ? 'Não' : 'Sim';
 
-      // Substituímos o valor antigo pelo novo
+      // Atualiza o item
       final itemAtualizado = item.replaceAll(
         '(selecionado "$valorAtual")',
         '(selecionado "$novoValor")',
@@ -6179,7 +6199,7 @@ List<String> carrinhoAfiliadoSelecionado(
 
       novaLista.add(itemAtualizado);
     } else {
-      // Mantém o item original se não for o que queremos modificar
+      // Mantém o item original se não for o produto que queremos modificar
       novaLista.add(item);
     }
   }
@@ -7164,4 +7184,86 @@ bool digitosCPF(String cpf) {
   // Verifica se o comprimento da string limpa é exatamente 11.
   // O CPF brasileiro tem 11 dígitos.
   return cpfLimpo.length == 11;
+}
+
+DocumentReference stringEmDocRef(String id) {
+  // Verifica se o ID não é nulo ou vazio
+  if (id == null || id.isEmpty) {
+    throw ArgumentError('O ID não pode ser nulo ou vazio');
+  }
+
+  // Retorna a referência do documento no formato /produto/[ID]
+  return FirebaseFirestore.instance.collection('produto').doc(id);
+}
+
+String peridoCriacaoLoja(DateTime data) {
+  final agora = DateTime.now();
+  final diferencaEmMeses =
+      (agora.year - data.year) * 12 + (agora.month - data.month);
+
+  if (diferencaEmMeses < 24) {
+    final unidade = diferencaEmMeses == 1 ? 'mês' : 'meses';
+    return '$diferencaEmMeses $unidade atrás';
+  } else {
+    final anos = (diferencaEmMeses / 12).floor();
+    final unidade = anos == 1 ? 'ano' : 'anos';
+    return '$anos $unidade atrás';
+  }
+}
+
+String gerarQrPagamento(String pixCode) {
+  // Use Uri.encodeComponent para garantir que o código Pix seja seguro para a URL
+  final encodedPixCode = Uri.encodeComponent(pixCode);
+
+  // Defina os parâmetros da URL
+  final String baseUrl = 'https://api.qrserver.com/v1/create-qr-code/';
+  final String color = '000000';
+  final String bgColor = 'FFFFFF';
+  final String size = '400x400';
+  final String ecc = 'L';
+  final String qzone = '1';
+  final String margin = '0';
+
+  // Constrói a URL completa com os parâmetros
+  final String url =
+      '$baseUrl?color=$color&bgcolor=$bgColor&data=$encodedPixCode&qzone=$qzone&margin=$margin&size=$size&ecc=$ecc';
+
+  return url;
+}
+
+double menorValirAfiliado(List<String> listaTexto) {
+  double menorPreco = double.infinity;
+
+  for (String texto in listaTexto) {
+    try {
+      // Encontrar a posição do padrão (Preco "X.XX")
+      int inicioPreco = texto.indexOf('(Preco "');
+      if (inicioPreco == -1) continue;
+
+      // Avançar para o início do valor numérico
+      inicioPreco += 8; // Tamanho de '(Preco "'
+
+      // Encontrar o fim do valor (fechamento das aspas)
+      int fimPreco = texto.indexOf('"', inicioPreco);
+      if (fimPreco == -1) continue;
+
+      // Extrair a string do preço
+      String precoStr = texto.substring(inicioPreco, fimPreco);
+
+      // Converter para double, tratando possíveis vírgulas como ponto
+      precoStr = precoStr.replaceAll(',', '.');
+      double preco = double.tryParse(precoStr) ?? 0.0;
+
+      // Atualizar o menor preço encontrado
+      if (preco < menorPreco) {
+        menorPreco = preco;
+      }
+    } catch (e) {
+      // Continuar processando mesmo se um item falhar
+      continue;
+    }
+  }
+
+  // Retornar 0.0 se nenhum preço válido foi encontrado
+  return menorPreco == double.infinity ? 0.0 : menorPreco;
 }

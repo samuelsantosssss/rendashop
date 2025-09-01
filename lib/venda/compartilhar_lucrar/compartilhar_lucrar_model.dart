@@ -13,6 +13,8 @@ class CompartilharLucrarModel
   // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
   List<VarianteRecord>? listPorduct2;
   // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  ProdutoAfiliadoRecord? queryExiste2;
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
   List<VarianteRecord>? listPorduct;
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
   ProdutoAfiliadoRecord? updateLink1;

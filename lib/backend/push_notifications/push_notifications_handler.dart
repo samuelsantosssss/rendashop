@@ -394,6 +394,27 @@ final parametersBuilderMap =
   'excluirconta': ParameterData.none(),
   'politicaPrivacidade': ParameterData.none(),
   'CarrinhoPCNaoLogado': ParameterData.none(),
+  'comprarPC': ParameterData.none(),
+  'pixPC': ParameterData.none(),
+  'perfilPC': ParameterData.none(),
+  'pixPagamentoPendentePC': (data) async => ParameterData(
+        allParams: {
+          'pedidoRef': getParameter<DocumentReference>(data, 'pedidoRef'),
+        },
+      ),
+  'Rastreador_PedidoPC': (data) async => ParameterData(
+        allParams: {
+          'pedidoRef2': getParameter<DocumentReference>(data, 'pedidoRef2'),
+        },
+      ),
+  'pcCategoria': ParameterData.none(),
+  'CarrinhoPC': ParameterData.none(),
+  'homeLogistaPC': ParameterData.none(),
+  'cadastrarProdutoPC': (data) async => ParameterData(
+        allParams: {
+          'lojaRef': getParameter<DocumentReference>(data, 'lojaRef'),
+        },
+      ),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

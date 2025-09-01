@@ -1,6 +1,67 @@
 const axios = require("axios").default;
 const qs = require("qs");
 
+async function _asaasTokenClienteCall(context, ffVariables) {
+  if (!context.auth) {
+    return _unauthenticatedResponse;
+  }
+  var id = ffVariables["id"];
+  var dateCreated = ffVariables["dateCreated"];
+  var name = ffVariables["name"];
+  var email = ffVariables["email"];
+  var mobilePhone = ffVariables["mobilePhone"];
+  var address = ffVariables["address"];
+  var addressNumber = ffVariables["addressNumber"];
+  var complement = ffVariables["complement"];
+  var province = ffVariables["province"];
+  var cpfCnpj = ffVariables["cpfCnpj"];
+  var personType = ffVariables["personType"];
+  var postalCode = ffVariables["postalCode"];
+
+  var url = `https://api-sandbox.asaas.com/v3/customers`;
+  var headers = {
+    "Content-Type": `application/json`,
+    accept: `application/json`,
+    access_token: `\$aact_MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OjYzYTc1M2JhLWM0YjUtNDJiMC04ZDdhLTc3ZWU2ZTc3ZDQ1Yzo6JGFhY2hfZTNhOWQyZDYtYzAyMC00YTRjLWIyMGEtYTU3ZDEyMmVkMjZj`,
+  };
+  var params = {};
+  var ffApiRequestBody = `
+{
+  "id": "${escapeStringForJson(id)}",
+  "name": "${escapeStringForJson(name)}",
+  "email": "${escapeStringForJson(email)}",
+  "mobilePhone": "${escapeStringForJson(mobilePhone)}",
+  "cpfCnpj": "${escapeStringForJson(cpfCnpj)}",
+  "personType": "${escapeStringForJson(personType)}",
+  "postalCode": "${escapeStringForJson(postalCode)}",
+  "address": "${escapeStringForJson(address)}",
+  "addressNumber": "${escapeStringForJson(addressNumber)}",
+  "complement": "${escapeStringForJson(complement)}",
+  "province": "${escapeStringForJson(province)}",
+  "dateCreated": "${escapeStringForJson(dateCreated)}",
+  "transaction": {
+    "value": <value>,
+    "dueDate": "<dueDate>",
+    "description": "<description>"
+  }
+}
+`;
+
+  return makeApiRequest({
+    method: "post",
+    url,
+    headers,
+    params,
+    body: createBody({
+      headers,
+      params,
+      body: ffApiRequestBody,
+      bodyType: "JSON",
+    }),
+    returnBody: true,
+    isStreamingApi: false,
+  });
+}
 async function _asaasPagamentoCall(context, ffVariables) {
   if (!context.auth) {
     return _unauthenticatedResponse;
@@ -135,6 +196,7 @@ async function makeApiCall(context, data) {
   var variables = data["variables"] || {};
 
   const callMap = {
+    AsaasTokenClienteCall: _asaasTokenClienteCall,
     AsaasPagamentoCall: _asaasPagamentoCall,
     PagPixMPCall: _pagPixMPCall,
   };

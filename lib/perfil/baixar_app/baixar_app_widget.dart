@@ -1,11 +1,13 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'baixar_app_model.dart';
 export 'baixar_app_model.dart';
 
@@ -60,6 +62,8 @@ class _BaixarAppWidgetState extends State<BaixarAppWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Align(
       alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
@@ -178,9 +182,25 @@ class _BaixarAppWidgetState extends State<BaixarAppWidget>
                   Expanded(
                     child: FFButtonWidget(
                       onPressed: () async {
+                        _model.apiResultIPo = await ObterIPCall.call();
+
+                        await actions.mapeamentoBaixar(
+                          context,
+                          ObterIPCall.ip(
+                            (_model.apiResultIPo?.jsonBody ?? ''),
+                          ),
+                          FFAppState().afiliadoRef != null
+                              ? FFAppState().afiliadoRef
+                              : null,
+                          FFAppState().status,
+                          FFAppState().CarrinhoTemporarioNacional.toList(),
+                          FFAppState().CarrinhoTemporarioInternacional.toList(),
+                        );
                         await actions.alertLinkWeb(
                           'https://play.google.com/store/search?q=renda%20shop&c=apps&hl=pt_BR',
                         );
+
+                        safeSetState(() {});
                       },
                       text: 'IOS',
                       options: FFButtonOptions(
@@ -224,9 +244,25 @@ class _BaixarAppWidgetState extends State<BaixarAppWidget>
                   Expanded(
                     child: FFButtonWidget(
                       onPressed: () async {
+                        _model.apiResultIP = await ObterIPCall.call();
+
+                        await actions.mapeamentoBaixar(
+                          context,
+                          ObterIPCall.ip(
+                            (_model.apiResultIP?.jsonBody ?? ''),
+                          ),
+                          FFAppState().afiliadoRef != null
+                              ? FFAppState().afiliadoRef
+                              : null,
+                          FFAppState().status,
+                          FFAppState().CarrinhoTemporarioNacional.toList(),
+                          FFAppState().CarrinhoTemporarioInternacional.toList(),
+                        );
                         await actions.alertLinkWeb(
                           'https://play.google.com/store/search?q=renda%20shop&c=apps&hl=pt_BR',
                         );
+
+                        safeSetState(() {});
                       },
                       text: 'Android',
                       options: FFButtonOptions(

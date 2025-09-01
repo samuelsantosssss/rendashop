@@ -14,8 +14,8 @@ class VarianteModel extends FlutterFlowModel<VarianteWidget> {
   List<CarrinhoRecord>? respostaCarrinho;
   // Stores action output result for [Firestore Query - Query a collection] action in baixo2 widget.
   List<CarrinhoRecord>? respostaCarrinho1;
-  // Stores action output result for [Firestore Query - Query a collection] action in baixo2 widget.
-  List<CarrinhoRecord>? respostaCarrinho11;
+  // Stores action output result for [Firestore Query - Query a collection] action in Stack widget.
+  List<CarrinhoRecord>? respostaCarrinho5;
   // Stores action output result for [Firestore Query - Query a collection] action in baixo widget.
   List<CarrinhoRecord>? respostaCarrinho2;
 

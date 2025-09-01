@@ -10,5 +10,12 @@
       <string>applinks:rendashop.app.link</string>
     </array>
     <!-- End of Associated Domains -->
+    <!-- Start of Support for Universal Links -->
+    <key>com.apple.developer.associated-domains</key>
+    <array>
+      <string>applinks:rendashop.app.link</string>
+      <string>applinks:rendashop-alternate.app.link</string>
+    </array>
+    <!-- End of Support for Universal Links -->
   </dict>
 </plist>

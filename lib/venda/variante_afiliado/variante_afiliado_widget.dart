@@ -5,13 +5,13 @@ import '/carregando/caregando2/caregando2_widget.dart';
 import '/components/addtocard2_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'dart:math' as math;
 import 'package:collection/collection.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -2478,7 +2478,11 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                         itens: containerProdutoRecord
                                                                             .reference,
                                                                         quantidade:
-                                                                            FFAppState().quantidadeProduto,
+                                                                            valueOrDefault<int>(
+                                                                          FFAppState()
+                                                                              .quantidadeProduto,
+                                                                          1,
+                                                                        ),
                                                                         dataAdicao:
                                                                             getCurrentTimestamp,
                                                                         fotoCapa: baixoVarianteRecord.foto != ''
@@ -2515,8 +2519,12 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                         _model
                                                                             .respostaCarrinho3!
                                                                             .toList(),
-                                                                        FFAppState()
-                                                                            .quantidadeProduto,
+                                                                        valueOrDefault<
+                                                                            int>(
+                                                                          FFAppState()
+                                                                              .quantidadeProduto,
+                                                                          1,
+                                                                        ),
                                                                       );
                                                                     }
 
@@ -2540,10 +2548,10 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                       ),
                                                                     );
                                                                     FFAppState()
-                                                                            .adicionarCarrinho =
+                                                                            .verCarrinhoLogado =
                                                                         false;
                                                                     FFAppState()
-                                                                            .verCarrinhoLogado =
+                                                                            .adicionarCarrinho =
                                                                         false;
                                                                     safeSetState(
                                                                         () {});
@@ -2635,13 +2643,16 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                       FFAppState().CarrinhoTemporarioNacional = functions
                                                                           .addCarrinhoTemporario(
                                                                               getCurrentTimestamp,
-                                                                              baixoVarianteRecord!.foto,
-                                                                              baixoVarianteRecord.produtoRef!,
+                                                                              baixoVarianteRecord?.foto != null && baixoVarianteRecord?.foto != '' ? baixoVarianteRecord!.foto : containerProdutoRecord.imagens.firstOrNull!,
+                                                                              baixoVarianteRecord!.produtoRef!,
                                                                               containerProdutoRecord.lojaRef!,
                                                                               containerProdutoRecord.envioNaciona,
                                                                               functions.valorProdutoAfiliado(baixoVarianteRecord.reference, containerProdutoAfiliadoRecord.valorComRef.toList()),
                                                                               containerProdutoRecord.precoAntes,
-                                                                              FFAppState().quantidadeProduto,
+                                                                              valueOrDefault<int>(
+                                                                                FFAppState().quantidadeProduto,
+                                                                                1,
+                                                                              ),
                                                                               true,
                                                                               containerProdutoRecord.nome,
                                                                               baixoVarianteRecord.opcaoTitulo1,
@@ -2658,13 +2669,16 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                       FFAppState().CarrinhoTemporarioInternacional = functions
                                                                           .addCarrinhoTemporario(
                                                                               getCurrentTimestamp,
-                                                                              baixoVarianteRecord!.foto,
-                                                                              baixoVarianteRecord.produtoRef!,
+                                                                              baixoVarianteRecord?.foto != null && baixoVarianteRecord?.foto != '' ? baixoVarianteRecord!.foto : containerProdutoRecord.imagens.firstOrNull!,
+                                                                              baixoVarianteRecord!.produtoRef!,
                                                                               containerProdutoRecord.lojaRef!,
                                                                               containerProdutoRecord.envioNaciona,
                                                                               functions.valorProdutoAfiliado(baixoVarianteRecord.reference, containerProdutoAfiliadoRecord.valorComRef.toList()),
                                                                               containerProdutoRecord.precoAntes,
-                                                                              FFAppState().quantidadeProduto,
+                                                                              valueOrDefault<int>(
+                                                                                FFAppState().quantidadeProduto,
+                                                                                1,
+                                                                              ),
                                                                               true,
                                                                               containerProdutoRecord.nome,
                                                                               baixoVarianteRecord.opcaoTitulo1,
@@ -4698,7 +4712,11 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                         itens: baixo2VarianteRecord
                                                                             ?.produtoRef,
                                                                         quantidade:
-                                                                            FFAppState().quantidadeProduto,
+                                                                            valueOrDefault<int>(
+                                                                          FFAppState()
+                                                                              .quantidadeProduto,
+                                                                          1,
+                                                                        ),
                                                                         dataAdicao:
                                                                             getCurrentTimestamp,
                                                                         fotoCapa: baixo2VarianteRecord?.foto != null &&
@@ -4731,8 +4749,12 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                         _model
                                                                             .respostaCarrinho1!
                                                                             .toList(),
-                                                                        FFAppState()
-                                                                            .quantidadeProduto,
+                                                                        valueOrDefault<
+                                                                            int>(
+                                                                          FFAppState()
+                                                                              .quantidadeProduto,
+                                                                          1,
+                                                                        ),
                                                                       );
                                                                     }
 
@@ -4851,13 +4873,16 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                       FFAppState().CarrinhoTemporarioNacional = functions
                                                                           .addCarrinhoTemporario(
                                                                               getCurrentTimestamp,
-                                                                              baixo2VarianteRecord!.foto,
-                                                                              baixo2VarianteRecord.produtoRef!,
+                                                                              baixo2VarianteRecord?.foto != null && baixo2VarianteRecord?.foto != '' ? baixo2VarianteRecord!.foto : containerProdutoRecord.imagens.firstOrNull!,
+                                                                              baixo2VarianteRecord!.produtoRef!,
                                                                               containerProdutoRecord.lojaRef!,
                                                                               true,
                                                                               baixo2VarianteRecord.preco,
                                                                               containerProdutoRecord.precoAntes,
-                                                                              FFAppState().quantidadeProduto,
+                                                                              valueOrDefault<int>(
+                                                                                FFAppState().quantidadeProduto,
+                                                                                1,
+                                                                              ),
                                                                               true,
                                                                               containerProdutoRecord.nome,
                                                                               baixo2VarianteRecord.opcaoTitulo1,
@@ -4874,13 +4899,16 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                       FFAppState().CarrinhoTemporarioInternacional = functions
                                                                           .addCarrinhoTemporario(
                                                                               getCurrentTimestamp,
-                                                                              baixo2VarianteRecord!.foto,
-                                                                              baixo2VarianteRecord.produtoRef!,
+                                                                              baixo2VarianteRecord?.foto != null && baixo2VarianteRecord?.foto != '' ? baixo2VarianteRecord!.foto : containerProdutoRecord.imagens.firstOrNull!,
+                                                                              baixo2VarianteRecord!.produtoRef!,
                                                                               containerProdutoRecord.lojaRef!,
                                                                               false,
                                                                               baixo2VarianteRecord.preco,
                                                                               containerProdutoRecord.precoAntes,
-                                                                              FFAppState().quantidadeProduto,
+                                                                              valueOrDefault<int>(
+                                                                                FFAppState().quantidadeProduto,
+                                                                                1,
+                                                                              ),
                                                                               true,
                                                                               containerProdutoRecord.nome,
                                                                               baixo2VarianteRecord.opcaoTitulo1,
@@ -4908,7 +4936,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                       ),
                                                                     );
                                                                     FFAppState()
-                                                                            .verCarrinhoLogado =
+                                                                            .verCarrinhoAfiliado =
                                                                         true;
                                                                     safeSetState(
                                                                         () {});
@@ -4923,7 +4951,7 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                             .adicionarCarrinho =
                                                                         false;
                                                                     FFAppState()
-                                                                            .verCarrinhoLogado =
+                                                                            .verCarrinhoAfiliado =
                                                                         false;
                                                                     safeSetState(
                                                                         () {});
@@ -7006,7 +7034,11 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                         itens: containerProdutoRecord
                                                                             .reference,
                                                                         quantidade:
-                                                                            FFAppState().quantidadeProduto,
+                                                                            valueOrDefault<int>(
+                                                                          FFAppState()
+                                                                              .quantidadeProduto,
+                                                                          1,
+                                                                        ),
                                                                         dataAdicao:
                                                                             getCurrentTimestamp,
                                                                         fotoCapa: baixoVarianteRecord.foto != ''
@@ -7043,8 +7075,12 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                         _model
                                                                             .respostaCarrinho4!
                                                                             .toList(),
-                                                                        FFAppState()
-                                                                            .quantidadeProduto,
+                                                                        valueOrDefault<
+                                                                            int>(
+                                                                          FFAppState()
+                                                                              .quantidadeProduto,
+                                                                          1,
+                                                                        ),
                                                                       );
                                                                     }
 
@@ -7163,13 +7199,16 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                       FFAppState().CarrinhoTemporarioNacional = functions
                                                                           .addCarrinhoTemporario(
                                                                               getCurrentTimestamp,
-                                                                              baixoVarianteRecord!.foto,
-                                                                              baixoVarianteRecord.produtoRef!,
+                                                                              baixoVarianteRecord?.foto != null && baixoVarianteRecord?.foto != '' ? baixoVarianteRecord!.foto : containerProdutoRecord.imagens.firstOrNull!,
+                                                                              baixoVarianteRecord!.produtoRef!,
                                                                               containerProdutoRecord.lojaRef!,
                                                                               containerProdutoRecord.envioNaciona,
                                                                               functions.valorProdutoAfiliado(baixoVarianteRecord.reference, containerProdutoAfiliadoRecord.valorComRef.toList()),
                                                                               containerProdutoRecord.precoAntes,
-                                                                              FFAppState().quantidadeProduto,
+                                                                              valueOrDefault<int>(
+                                                                                FFAppState().quantidadeProduto,
+                                                                                1,
+                                                                              ),
                                                                               true,
                                                                               containerProdutoRecord.nome,
                                                                               baixoVarianteRecord.opcaoTitulo1,
@@ -7186,13 +7225,16 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                       FFAppState().CarrinhoTemporarioInternacional = functions
                                                                           .addCarrinhoTemporario(
                                                                               getCurrentTimestamp,
-                                                                              baixoVarianteRecord!.foto,
-                                                                              baixoVarianteRecord.produtoRef!,
+                                                                              baixoVarianteRecord?.foto != null && baixoVarianteRecord?.foto != '' ? baixoVarianteRecord!.foto : containerProdutoRecord.imagens.firstOrNull!,
+                                                                              baixoVarianteRecord!.produtoRef!,
                                                                               containerProdutoRecord.lojaRef!,
                                                                               containerProdutoRecord.envioNaciona,
                                                                               functions.valorProdutoAfiliado(baixoVarianteRecord.reference, containerProdutoAfiliadoRecord.valorComRef.toList()),
                                                                               containerProdutoRecord.precoAntes,
-                                                                              FFAppState().quantidadeProduto,
+                                                                              valueOrDefault<int>(
+                                                                                FFAppState().quantidadeProduto,
+                                                                                1,
+                                                                              ),
                                                                               true,
                                                                               containerProdutoRecord.nome,
                                                                               baixoVarianteRecord.opcaoTitulo1,
@@ -8727,13 +8769,9 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                       varianteRecord
                                                                           .where(
                                                                 'opcao_titulo1',
-                                                                isEqualTo: FFAppState().selecionarVariante1 !=
-                                                                            ''
-                                                                    ? FFAppState()
-                                                                        .selecionarVariante1
-                                                                    : containerProdutoRecord
-                                                                        .varianteTitulo1List
-                                                                        .firstOrNull,
+                                                                isEqualTo:
+                                                                    FFAppState()
+                                                                        .selecionarVariante1,
                                                               ),
                                                               singleRecord:
                                                                   true,
@@ -8761,372 +8799,345 @@ class _VarianteAfiliadoWidgetState extends State<VarianteAfiliadoWidget>
                                                                           .first
                                                                       : null;
 
-                                                              return InkWell(
-                                                                splashColor: Colors
-                                                                    .transparent,
-                                                                focusColor: Colors
-                                                                    .transparent,
-                                                                hoverColor: Colors
-                                                                    .transparent,
-                                                                highlightColor:
-                                                                    Colors
-                                                                        .transparent,
-                                                                onTap:
-                                                                    () async {
-                                                                  if (currentUserReference !=
-                                                                      null) {
-                                                                    if (animationsMap[
-                                                                            'transformOnActionTriggerAnimation4'] !=
+                                                              return Container(
+                                                                width: double
+                                                                    .infinity,
+                                                                height: 58.0,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryBackground,
+                                                                ),
+                                                                child: InkWell(
+                                                                  splashColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  focusColor: Colors
+                                                                      .transparent,
+                                                                  hoverColor: Colors
+                                                                      .transparent,
+                                                                  highlightColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  onTap:
+                                                                      () async {
+                                                                    if (currentUserReference !=
                                                                         null) {
-                                                                      animationsMap[
-                                                                              'transformOnActionTriggerAnimation4']!
-                                                                          .controller
-                                                                          .forward(
-                                                                              from: 0.0);
-                                                                    }
-                                                                    if (animationsMap[
-                                                                            'iconOnActionTriggerAnimation10'] !=
-                                                                        null) {
-                                                                      animationsMap[
-                                                                              'iconOnActionTriggerAnimation10']!
-                                                                          .controller
-                                                                          .forward(
-                                                                              from: 0.0);
-                                                                    }
-                                                                    if (animationsMap[
-                                                                            'containerOnActionTriggerAnimation15'] !=
-                                                                        null) {
-                                                                      animationsMap[
-                                                                              'containerOnActionTriggerAnimation15']!
-                                                                          .controller
-                                                                          .forward(
-                                                                              from: 0.0);
-                                                                    }
-                                                                    if (animationsMap[
-                                                                            'iconOnActionTriggerAnimation11'] !=
-                                                                        null) {
-                                                                      animationsMap[
-                                                                              'iconOnActionTriggerAnimation11']!
-                                                                          .controller
-                                                                          .forward(
-                                                                              from: 0.0);
-                                                                    }
-                                                                    if (animationsMap[
-                                                                            'iconOnActionTriggerAnimation12'] !=
-                                                                        null) {
-                                                                      animationsMap[
-                                                                              'iconOnActionTriggerAnimation12']!
-                                                                          .controller
-                                                                          .forward(
-                                                                              from: 0.0);
-                                                                    }
-                                                                    if (animationsMap[
-                                                                            'containerOnActionTriggerAnimation16'] !=
-                                                                        null) {
-                                                                      animationsMap[
-                                                                              'containerOnActionTriggerAnimation16']!
-                                                                          .controller
-                                                                          .forward(
-                                                                              from: 0.0);
-                                                                    }
-                                                                    if (animationsMap[
-                                                                            'textOnActionTriggerAnimation4'] !=
-                                                                        null) {
-                                                                      animationsMap[
-                                                                              'textOnActionTriggerAnimation4']!
-                                                                          .controller
-                                                                          .forward(
-                                                                              from: 0.0);
-                                                                    }
-                                                                    if (animationsMap[
-                                                                            'containerOnActionTriggerAnimation17'] !=
-                                                                        null) {
-                                                                      animationsMap[
-                                                                              'containerOnActionTriggerAnimation17']!
-                                                                          .controller
-                                                                          .forward(
-                                                                              from: 0.0);
-                                                                    }
-                                                                    if (animationsMap[
-                                                                            'containerOnActionTriggerAnimation18'] !=
-                                                                        null) {
-                                                                      animationsMap[
-                                                                              'containerOnActionTriggerAnimation18']!
-                                                                          .controller
-                                                                          .forward(
-                                                                              from: 0.0);
-                                                                    }
-                                                                    FFAppState()
-                                                                            .adicionarCarrinho =
-                                                                        true;
-                                                                    safeSetState(
-                                                                        () {});
-                                                                    _model.respostaCarrinho11 =
-                                                                        await queryCarrinhoRecordOnce(
-                                                                      parent:
-                                                                          currentUserReference,
-                                                                    );
-                                                                    if (functions.addCardEvitarDuplicar(
-                                                                        containerProdutoRecord
-                                                                            .reference,
-                                                                        '${baixo2VarianteRecord?.opcaoTitulo1}${baixo2VarianteRecord?.opcaoTitulo2 != null && baixo2VarianteRecord?.opcaoTitulo2 != '' ? ', ${baixo2VarianteRecord?.opcaoTitulo2}' : ' '}',
-                                                                        _model
-                                                                            .respostaCarrinho11!
-                                                                            .toList())) {
-                                                                      await CarrinhoRecord.createDoc(
-                                                                              currentUserReference!)
-                                                                          .set(
-                                                                              createCarrinhoRecordData(
-                                                                        userRef:
+                                                                      if (animationsMap[
+                                                                              'transformOnActionTriggerAnimation4'] !=
+                                                                          null) {
+                                                                        animationsMap['transformOnActionTriggerAnimation4']!
+                                                                            .controller
+                                                                            .forward(from: 0.0);
+                                                                      }
+                                                                      if (animationsMap[
+                                                                              'iconOnActionTriggerAnimation10'] !=
+                                                                          null) {
+                                                                        animationsMap['iconOnActionTriggerAnimation10']!
+                                                                            .controller
+                                                                            .forward(from: 0.0);
+                                                                      }
+                                                                      if (animationsMap[
+                                                                              'containerOnActionTriggerAnimation15'] !=
+                                                                          null) {
+                                                                        animationsMap['containerOnActionTriggerAnimation15']!
+                                                                            .controller
+                                                                            .forward(from: 0.0);
+                                                                      }
+                                                                      if (animationsMap[
+                                                                              'iconOnActionTriggerAnimation11'] !=
+                                                                          null) {
+                                                                        animationsMap['iconOnActionTriggerAnimation11']!
+                                                                            .controller
+                                                                            .forward(from: 0.0);
+                                                                      }
+                                                                      if (animationsMap[
+                                                                              'iconOnActionTriggerAnimation12'] !=
+                                                                          null) {
+                                                                        animationsMap['iconOnActionTriggerAnimation12']!
+                                                                            .controller
+                                                                            .forward(from: 0.0);
+                                                                      }
+                                                                      if (animationsMap[
+                                                                              'containerOnActionTriggerAnimation16'] !=
+                                                                          null) {
+                                                                        animationsMap['containerOnActionTriggerAnimation16']!
+                                                                            .controller
+                                                                            .forward(from: 0.0);
+                                                                      }
+                                                                      if (animationsMap[
+                                                                              'textOnActionTriggerAnimation4'] !=
+                                                                          null) {
+                                                                        animationsMap['textOnActionTriggerAnimation4']!
+                                                                            .controller
+                                                                            .forward(from: 0.0);
+                                                                      }
+                                                                      if (animationsMap[
+                                                                              'containerOnActionTriggerAnimation17'] !=
+                                                                          null) {
+                                                                        animationsMap['containerOnActionTriggerAnimation17']!
+                                                                            .controller
+                                                                            .forward(from: 0.0);
+                                                                      }
+                                                                      if (animationsMap[
+                                                                              'containerOnActionTriggerAnimation18'] !=
+                                                                          null) {
+                                                                        animationsMap['containerOnActionTriggerAnimation18']!
+                                                                            .controller
+                                                                            .forward(from: 0.0);
+                                                                      }
+                                                                      FFAppState()
+                                                                              .adicionarCarrinho =
+                                                                          true;
+                                                                      safeSetState(
+                                                                          () {});
+                                                                      _model.respostaCarrinho5 =
+                                                                          await queryCarrinhoRecordOnce(
+                                                                        parent:
                                                                             currentUserReference,
-                                                                        itens: baixo2VarianteRecord
-                                                                            ?.produtoRef,
-                                                                        quantidade:
-                                                                            FFAppState().quantidadeProduto,
-                                                                        dataAdicao:
-                                                                            getCurrentTimestamp,
-                                                                        fotoCapa: baixo2VarianteRecord?.foto != null &&
-                                                                                baixo2VarianteRecord?.foto != ''
-                                                                            ? baixo2VarianteRecord?.foto
-                                                                            : containerProdutoRecord.imagens.firstOrNull,
-                                                                        titulo:
-                                                                            containerProdutoRecord.nome,
-                                                                        selecionado:
-                                                                            true,
-                                                                        variacao:
-                                                                            '${baixo2VarianteRecord?.opcaoTitulo1}${baixo2VarianteRecord?.promoRelampagoLimiteCompra != null ? ', ${baixo2VarianteRecord?.opcaoTitulo2}' : ' '}',
-                                                                        lojaRef:
-                                                                            containerProdutoRecord.lojaRef,
-                                                                        preco: baixo2VarianteRecord
-                                                                            ?.preco,
-                                                                        precoAntes:
-                                                                            containerProdutoRecord.precoAntes,
-                                                                        nacional:
-                                                                            containerProdutoRecord.envioNaciona,
-                                                                        varianteRef:
-                                                                            baixo2VarianteRecord?.reference,
-                                                                      ));
-                                                                    } else {
-                                                                      await actions
-                                                                          .addCartEvitarDuplicar(
-                                                                        baixo2VarianteRecord!
-                                                                            .produtoRef!,
-                                                                        '${baixo2VarianteRecord.opcaoTitulo1}${baixo2VarianteRecord.opcaoTitulo2 != '' ? ', ${baixo2VarianteRecord.opcaoTitulo2}' : ' '}',
-                                                                        _model
-                                                                            .respostaCarrinho11!
-                                                                            .toList(),
-                                                                        FFAppState()
-                                                                            .quantidadeProduto,
                                                                       );
-                                                                    }
-
-                                                                    await Future
-                                                                        .delayed(
-                                                                      Duration(
-                                                                        milliseconds:
-                                                                            1500,
-                                                                      ),
-                                                                    );
-                                                                    FFAppState()
-                                                                            .verCarrinhoLogado =
-                                                                        true;
-                                                                    safeSetState(
-                                                                        () {});
-                                                                    await Future
-                                                                        .delayed(
-                                                                      Duration(
-                                                                        milliseconds:
-                                                                            3000,
-                                                                      ),
-                                                                    );
-                                                                    FFAppState()
-                                                                            .adicionarCarrinho =
-                                                                        false;
-                                                                    FFAppState()
-                                                                            .verCarrinhoLogado =
-                                                                        false;
-                                                                    safeSetState(
-                                                                        () {});
-                                                                  } else {
-                                                                    if (animationsMap[
-                                                                            'transformOnActionTriggerAnimation4'] !=
-                                                                        null) {
-                                                                      animationsMap[
-                                                                              'transformOnActionTriggerAnimation4']!
-                                                                          .controller
-                                                                          .forward(
-                                                                              from: 0.0);
-                                                                    }
-                                                                    if (animationsMap[
-                                                                            'iconOnActionTriggerAnimation10'] !=
-                                                                        null) {
-                                                                      animationsMap[
-                                                                              'iconOnActionTriggerAnimation10']!
-                                                                          .controller
-                                                                          .forward(
-                                                                              from: 0.0);
-                                                                    }
-                                                                    if (animationsMap[
-                                                                            'containerOnActionTriggerAnimation15'] !=
-                                                                        null) {
-                                                                      animationsMap[
-                                                                              'containerOnActionTriggerAnimation15']!
-                                                                          .controller
-                                                                          .forward(
-                                                                              from: 0.0);
-                                                                    }
-                                                                    if (animationsMap[
-                                                                            'iconOnActionTriggerAnimation11'] !=
-                                                                        null) {
-                                                                      animationsMap[
-                                                                              'iconOnActionTriggerAnimation11']!
-                                                                          .controller
-                                                                          .forward(
-                                                                              from: 0.0);
-                                                                    }
-                                                                    if (animationsMap[
-                                                                            'iconOnActionTriggerAnimation12'] !=
-                                                                        null) {
-                                                                      animationsMap[
-                                                                              'iconOnActionTriggerAnimation12']!
-                                                                          .controller
-                                                                          .forward(
-                                                                              from: 0.0);
-                                                                    }
-                                                                    if (animationsMap[
-                                                                            'containerOnActionTriggerAnimation16'] !=
-                                                                        null) {
-                                                                      animationsMap[
-                                                                              'containerOnActionTriggerAnimation16']!
-                                                                          .controller
-                                                                          .forward(
-                                                                              from: 0.0);
-                                                                    }
-                                                                    if (animationsMap[
-                                                                            'textOnActionTriggerAnimation4'] !=
-                                                                        null) {
-                                                                      animationsMap[
-                                                                              'textOnActionTriggerAnimation4']!
-                                                                          .controller
-                                                                          .forward(
-                                                                              from: 0.0);
-                                                                    }
-                                                                    if (animationsMap[
-                                                                            'containerOnActionTriggerAnimation17'] !=
-                                                                        null) {
-                                                                      animationsMap[
-                                                                              'containerOnActionTriggerAnimation17']!
-                                                                          .controller
-                                                                          .forward(
-                                                                              from: 0.0);
-                                                                    }
-                                                                    if (animationsMap[
-                                                                            'containerOnActionTriggerAnimation18'] !=
-                                                                        null) {
-                                                                      animationsMap[
-                                                                              'containerOnActionTriggerAnimation18']!
-                                                                          .controller
-                                                                          .forward(
-                                                                              from: 0.0);
-                                                                    }
-                                                                    if (containerProdutoRecord
-                                                                            .envioNaciona ==
-                                                                        true) {
-                                                                      FFAppState().CarrinhoTemporarioNacional = functions
-                                                                          .addCarrinhoTemporario(
+                                                                      if (functions.addCardEvitarDuplicar(
+                                                                          baixo2VarianteRecord!
+                                                                              .produtoRef!,
+                                                                          '${baixo2VarianteRecord.opcaoTitulo1}${baixo2VarianteRecord.opcaoTitulo2 != '' ? ', ${baixo2VarianteRecord.opcaoTitulo2}' : ' '}',
+                                                                          _model
+                                                                              .respostaCarrinho5!
+                                                                              .toList())) {
+                                                                        await CarrinhoRecord.createDoc(currentUserReference!)
+                                                                            .set(createCarrinhoRecordData(
+                                                                          userRef:
+                                                                              currentUserReference,
+                                                                          itens:
+                                                                              baixo2VarianteRecord.produtoRef,
+                                                                          quantidade:
+                                                                              valueOrDefault<int>(
+                                                                            FFAppState().quantidadeProduto,
+                                                                            1,
+                                                                          ),
+                                                                          dataAdicao:
                                                                               getCurrentTimestamp,
-                                                                              baixo2VarianteRecord!.foto,
-                                                                              baixo2VarianteRecord.produtoRef!,
-                                                                              containerProdutoRecord.lojaRef!,
-                                                                              true,
-                                                                              baixo2VarianteRecord.preco,
-                                                                              containerProdutoRecord.precoAntes,
-                                                                              FFAppState().quantidadeProduto,
-                                                                              true,
+                                                                          fotoCapa: baixo2VarianteRecord.foto != ''
+                                                                              ? baixo2VarianteRecord.foto
+                                                                              : containerProdutoRecord.imagens.firstOrNull,
+                                                                          titulo:
                                                                               containerProdutoRecord.nome,
-                                                                              baixo2VarianteRecord.opcaoTitulo1,
-                                                                              FFAppState().CarrinhoTemporarioNacional.toList(),
-                                                                              null,
-                                                                              null,
-                                                                              baixo2VarianteRecord.opcaoTitulo2,
-                                                                              baixo2VarianteRecord.reference)
-                                                                          .toList()
-                                                                          .cast<String>();
+                                                                          selecionado:
+                                                                              true,
+                                                                          variacao:
+                                                                              '${baixo2VarianteRecord.opcaoTitulo1}${baixo2VarianteRecord.opcaoTitulo2 != '' ? ', ${baixo2VarianteRecord.opcaoTitulo2}' : ' '}',
+                                                                          lojaRef:
+                                                                              containerProdutoRecord.lojaRef,
+                                                                          preco:
+                                                                              baixo2VarianteRecord.preco,
+                                                                          precoAntes:
+                                                                              containerProdutoRecord.precoAntes,
+                                                                          nacional:
+                                                                              containerProdutoRecord.envioNaciona,
+                                                                          varianteRef:
+                                                                              baixo2VarianteRecord.reference,
+                                                                        ));
+                                                                      } else {
+                                                                        await actions
+                                                                            .addCartEvitarDuplicar(
+                                                                          baixo2VarianteRecord
+                                                                              .produtoRef!,
+                                                                          '${baixo2VarianteRecord.opcaoTitulo1}${baixo2VarianteRecord.opcaoTitulo2 != '' ? ', ${baixo2VarianteRecord.opcaoTitulo2}' : ' '}',
+                                                                          _model
+                                                                              .respostaCarrinho5!
+                                                                              .toList(),
+                                                                          valueOrDefault<
+                                                                              int>(
+                                                                            FFAppState().quantidadeProduto,
+                                                                            1,
+                                                                          ),
+                                                                        );
+                                                                      }
+
+                                                                      await Future
+                                                                          .delayed(
+                                                                        Duration(
+                                                                          milliseconds:
+                                                                              1500,
+                                                                        ),
+                                                                      );
+                                                                      FFAppState()
+                                                                              .verCarrinhoLogado =
+                                                                          true;
+                                                                      safeSetState(
+                                                                          () {});
+                                                                      await Future
+                                                                          .delayed(
+                                                                        Duration(
+                                                                          milliseconds:
+                                                                              3000,
+                                                                        ),
+                                                                      );
+                                                                      FFAppState()
+                                                                              .adicionarCarrinho =
+                                                                          false;
+                                                                      FFAppState()
+                                                                              .verCarrinhoLogado =
+                                                                          false;
                                                                       safeSetState(
                                                                           () {});
                                                                     } else {
-                                                                      FFAppState().CarrinhoTemporarioInternacional = functions
-                                                                          .addCarrinhoTemporario(
-                                                                              getCurrentTimestamp,
-                                                                              baixo2VarianteRecord!.foto,
-                                                                              baixo2VarianteRecord.produtoRef!,
-                                                                              containerProdutoRecord.lojaRef!,
-                                                                              false,
-                                                                              baixo2VarianteRecord.preco,
-                                                                              containerProdutoRecord.precoAntes,
-                                                                              FFAppState().quantidadeProduto,
-                                                                              true,
-                                                                              containerProdutoRecord.nome,
-                                                                              baixo2VarianteRecord.opcaoTitulo1,
-                                                                              FFAppState().CarrinhoTemporarioInternacional.toList(),
-                                                                              null,
-                                                                              null,
-                                                                              baixo2VarianteRecord.opcaoTitulo2,
-                                                                              baixo2VarianteRecord.reference)
-                                                                          .toList()
-                                                                          .cast<String>();
+                                                                      if (animationsMap[
+                                                                              'transformOnActionTriggerAnimation4'] !=
+                                                                          null) {
+                                                                        animationsMap['transformOnActionTriggerAnimation4']!
+                                                                            .controller
+                                                                            .forward(from: 0.0);
+                                                                      }
+                                                                      if (animationsMap[
+                                                                              'iconOnActionTriggerAnimation10'] !=
+                                                                          null) {
+                                                                        animationsMap['iconOnActionTriggerAnimation10']!
+                                                                            .controller
+                                                                            .forward(from: 0.0);
+                                                                      }
+                                                                      if (animationsMap[
+                                                                              'containerOnActionTriggerAnimation15'] !=
+                                                                          null) {
+                                                                        animationsMap['containerOnActionTriggerAnimation15']!
+                                                                            .controller
+                                                                            .forward(from: 0.0);
+                                                                      }
+                                                                      if (animationsMap[
+                                                                              'iconOnActionTriggerAnimation11'] !=
+                                                                          null) {
+                                                                        animationsMap['iconOnActionTriggerAnimation11']!
+                                                                            .controller
+                                                                            .forward(from: 0.0);
+                                                                      }
+                                                                      if (animationsMap[
+                                                                              'iconOnActionTriggerAnimation12'] !=
+                                                                          null) {
+                                                                        animationsMap['iconOnActionTriggerAnimation12']!
+                                                                            .controller
+                                                                            .forward(from: 0.0);
+                                                                      }
+                                                                      if (animationsMap[
+                                                                              'containerOnActionTriggerAnimation16'] !=
+                                                                          null) {
+                                                                        animationsMap['containerOnActionTriggerAnimation16']!
+                                                                            .controller
+                                                                            .forward(from: 0.0);
+                                                                      }
+                                                                      if (animationsMap[
+                                                                              'textOnActionTriggerAnimation4'] !=
+                                                                          null) {
+                                                                        animationsMap['textOnActionTriggerAnimation4']!
+                                                                            .controller
+                                                                            .forward(from: 0.0);
+                                                                      }
+                                                                      if (animationsMap[
+                                                                              'containerOnActionTriggerAnimation17'] !=
+                                                                          null) {
+                                                                        animationsMap['containerOnActionTriggerAnimation17']!
+                                                                            .controller
+                                                                            .forward(from: 0.0);
+                                                                      }
+                                                                      if (animationsMap[
+                                                                              'containerOnActionTriggerAnimation18'] !=
+                                                                          null) {
+                                                                        animationsMap['containerOnActionTriggerAnimation18']!
+                                                                            .controller
+                                                                            .forward(from: 0.0);
+                                                                      }
+                                                                      if (containerProdutoRecord
+                                                                              .envioNaciona ==
+                                                                          true) {
+                                                                        FFAppState().CarrinhoTemporarioNacional = functions
+                                                                            .addCarrinhoTemporario(
+                                                                                getCurrentTimestamp,
+                                                                                baixo2VarianteRecord?.foto != null && baixo2VarianteRecord?.foto != '' ? baixo2VarianteRecord!.foto : containerProdutoRecord.imagens.firstOrNull!,
+                                                                                baixo2VarianteRecord!.produtoRef!,
+                                                                                containerProdutoRecord.lojaRef!,
+                                                                                true,
+                                                                                baixo2VarianteRecord.preco,
+                                                                                containerProdutoRecord.precoAntes,
+                                                                                valueOrDefault<int>(
+                                                                                  FFAppState().quantidadeProduto,
+                                                                                  1,
+                                                                                ),
+                                                                                true,
+                                                                                containerProdutoRecord.nome,
+                                                                                baixo2VarianteRecord.opcaoTitulo1,
+                                                                                FFAppState().CarrinhoTemporarioNacional.toList(),
+                                                                                null,
+                                                                                null,
+                                                                                baixo2VarianteRecord.opcaoTitulo2,
+                                                                                baixo2VarianteRecord.reference)
+                                                                            .toList()
+                                                                            .cast<String>();
+                                                                        safeSetState(
+                                                                            () {});
+                                                                      } else {
+                                                                        FFAppState().CarrinhoTemporarioInternacional = functions
+                                                                            .addCarrinhoTemporario(
+                                                                                getCurrentTimestamp,
+                                                                                baixo2VarianteRecord?.foto != null && baixo2VarianteRecord?.foto != '' ? baixo2VarianteRecord!.foto : containerProdutoRecord.imagens.firstOrNull!,
+                                                                                baixo2VarianteRecord!.produtoRef!,
+                                                                                containerProdutoRecord.lojaRef!,
+                                                                                false,
+                                                                                baixo2VarianteRecord.preco,
+                                                                                containerProdutoRecord.precoAntes,
+                                                                                valueOrDefault<int>(
+                                                                                  FFAppState().quantidadeProduto,
+                                                                                  1,
+                                                                                ),
+                                                                                true,
+                                                                                containerProdutoRecord.nome,
+                                                                                baixo2VarianteRecord.opcaoTitulo1,
+                                                                                FFAppState().CarrinhoTemporarioInternacional.toList(),
+                                                                                null,
+                                                                                null,
+                                                                                baixo2VarianteRecord.opcaoTitulo2,
+                                                                                baixo2VarianteRecord.reference)
+                                                                            .toList()
+                                                                            .cast<String>();
+                                                                        safeSetState(
+                                                                            () {});
+                                                                      }
+
+                                                                      FFAppState()
+                                                                              .adicionarCarrinho =
+                                                                          true;
+                                                                      safeSetState(
+                                                                          () {});
+                                                                      await Future
+                                                                          .delayed(
+                                                                        Duration(
+                                                                          milliseconds:
+                                                                              1500,
+                                                                        ),
+                                                                      );
+                                                                      FFAppState()
+                                                                              .verCarrinhoAfiliado =
+                                                                          true;
+                                                                      safeSetState(
+                                                                          () {});
+                                                                      await Future
+                                                                          .delayed(
+                                                                        Duration(
+                                                                          milliseconds:
+                                                                              3000,
+                                                                        ),
+                                                                      );
+                                                                      FFAppState()
+                                                                              .adicionarCarrinho =
+                                                                          false;
+                                                                      FFAppState()
+                                                                              .verCarrinhoAfiliado =
+                                                                          false;
                                                                       safeSetState(
                                                                           () {});
                                                                     }
 
-                                                                    FFAppState()
-                                                                            .adicionarCarrinho =
-                                                                        true;
                                                                     safeSetState(
                                                                         () {});
-                                                                    await Future
-                                                                        .delayed(
-                                                                      Duration(
-                                                                        milliseconds:
-                                                                            1500,
-                                                                      ),
-                                                                    );
-                                                                    FFAppState()
-                                                                            .verCarrinhoLogado =
-                                                                        true;
-                                                                    safeSetState(
-                                                                        () {});
-                                                                    await Future
-                                                                        .delayed(
-                                                                      Duration(
-                                                                        milliseconds:
-                                                                            3000,
-                                                                      ),
-                                                                    );
-                                                                    FFAppState()
-                                                                            .adicionarCarrinho =
-                                                                        false;
-                                                                    FFAppState()
-                                                                            .verCarrinhoLogado =
-                                                                        false;
-                                                                    safeSetState(
-                                                                        () {});
-                                                                  }
-
-                                                                  safeSetState(
-                                                                      () {});
-                                                                },
-                                                                child:
-                                                                    Container(
-                                                                  width: double
-                                                                      .infinity,
-                                                                  height: 58.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                  ),
+                                                                  },
                                                                   child: Stack(
                                                                     children: [
                                                                       Padding(

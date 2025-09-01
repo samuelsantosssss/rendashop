@@ -1,4 +1,6 @@
 export 'criar_pedidos.dart' show criarPedidos;
+export 'mapeamento_baixar_home_pagina_produto.dart'
+    show mapeamentoBaixarHomePaginaProduto;
 export 'add_cart_evitar_duplicar_sem_variente.dart'
     show addCartEvitarDuplicarSemVariente;
 export 'promo_relampagolimpeza.dart' show promoRelampagolimpeza;
@@ -49,3 +51,4 @@ export 'detectar_android_ou_i_o_s.dart' show detectarAndroidOuIOS;
 export 'firebase_diagnostic.dart' show firebaseDiagnostic;
 export 'alert_link_web.dart' show alertLinkWeb;
 export 'notificacao_venda.dart' show notificacaoVenda;
+export 'mapeamento_baixar.dart' show mapeamentoBaixar;

@@ -26,6 +26,10 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _afiliadoid = prefs.getString('ff_afiliadoid') ?? _afiliadoid;
     });
+    _safeInit(() {
+      _LoginPrimeiraVez =
+          prefs.getBool('ff_LoginPrimeiraVez') ?? _LoginPrimeiraVez;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -2866,6 +2870,199 @@ class FFAppState extends ChangeNotifier {
   bool get cpfInvalido => _cpfInvalido;
   set cpfInvalido(bool value) {
     _cpfInvalido = value;
+  }
+
+  bool _loginGooglePC = false;
+  bool get loginGooglePC => _loginGooglePC;
+  set loginGooglePC(bool value) {
+    _loginGooglePC = value;
+  }
+
+  DocumentReference? _loginUserRefPC;
+  DocumentReference? get loginUserRefPC => _loginUserRefPC;
+  set loginUserRefPC(DocumentReference? value) {
+    _loginUserRefPC = value;
+  }
+
+  bool _PCSemVarianteSetado = false;
+  bool get PCSemVarianteSetado => _PCSemVarianteSetado;
+  set PCSemVarianteSetado(bool value) {
+    _PCSemVarianteSetado = value;
+  }
+
+  String _imgPix = '';
+  String get imgPix => _imgPix;
+  set imgPix(String value) {
+    _imgPix = value;
+  }
+
+  DocumentReference? _pedidoRef;
+  DocumentReference? get pedidoRef => _pedidoRef;
+  set pedidoRef(DocumentReference? value) {
+    _pedidoRef = value;
+  }
+
+  String _pcPosvendaStatus = '';
+  String get pcPosvendaStatus => _pcPosvendaStatus;
+  set pcPosvendaStatus(String value) {
+    _pcPosvendaStatus = value;
+  }
+
+  String _pcEnderecoStatus = '';
+  String get pcEnderecoStatus => _pcEnderecoStatus;
+  set pcEnderecoStatus(String value) {
+    _pcEnderecoStatus = value;
+  }
+
+  DocumentReference? _pcEnderecoRef;
+  DocumentReference? get pcEnderecoRef => _pcEnderecoRef;
+  set pcEnderecoRef(DocumentReference? value) {
+    _pcEnderecoRef = value;
+  }
+
+  DocumentReference? _afiliadoRef;
+  DocumentReference? get afiliadoRef => _afiliadoRef;
+  set afiliadoRef(DocumentReference? value) {
+    _afiliadoRef = value;
+  }
+
+  String _palavraChaveProduto = '';
+  String get palavraChaveProduto => _palavraChaveProduto;
+  set palavraChaveProduto(String value) {
+    _palavraChaveProduto = value;
+  }
+
+  bool _LoginPrimeiraVez = false;
+  bool get LoginPrimeiraVez => _LoginPrimeiraVez;
+  set LoginPrimeiraVez(bool value) {
+    _LoginPrimeiraVez = value;
+    prefs.setBool('ff_LoginPrimeiraVez', value);
+  }
+
+  bool _veropcao1titulo1 = false;
+  bool get veropcao1titulo1 => _veropcao1titulo1;
+  set veropcao1titulo1(bool value) {
+    _veropcao1titulo1 = value;
+  }
+
+  bool _veropcao2titulo1 = false;
+  bool get veropcao2titulo1 => _veropcao2titulo1;
+  set veropcao2titulo1(bool value) {
+    _veropcao2titulo1 = value;
+  }
+
+  bool _veropcao3titulo1 = false;
+  bool get veropcao3titulo1 => _veropcao3titulo1;
+  set veropcao3titulo1(bool value) {
+    _veropcao3titulo1 = value;
+  }
+
+  bool _veropcao4titulo1 = false;
+  bool get veropcao4titulo1 => _veropcao4titulo1;
+  set veropcao4titulo1(bool value) {
+    _veropcao4titulo1 = value;
+  }
+
+  bool _veropcao5titulo1 = false;
+  bool get veropcao5titulo1 => _veropcao5titulo1;
+  set veropcao5titulo1(bool value) {
+    _veropcao5titulo1 = value;
+  }
+
+  bool _veropcao6titulo1 = false;
+  bool get veropcao6titulo1 => _veropcao6titulo1;
+  set veropcao6titulo1(bool value) {
+    _veropcao6titulo1 = value;
+  }
+
+  bool _veropcao7titulo1 = false;
+  bool get veropcao7titulo1 => _veropcao7titulo1;
+  set veropcao7titulo1(bool value) {
+    _veropcao7titulo1 = value;
+  }
+
+  bool _veropcao8titulo1 = false;
+  bool get veropcao8titulo1 => _veropcao8titulo1;
+  set veropcao8titulo1(bool value) {
+    _veropcao8titulo1 = value;
+  }
+
+  bool _veropcao9titulo1 = false;
+  bool get veropcao9titulo1 => _veropcao9titulo1;
+  set veropcao9titulo1(bool value) {
+    _veropcao9titulo1 = value;
+  }
+
+  bool _veropcao10titulo1 = false;
+  bool get veropcao10titulo1 => _veropcao10titulo1;
+  set veropcao10titulo1(bool value) {
+    _veropcao10titulo1 = value;
+  }
+
+  bool _veropcao1titulo2 = false;
+  bool get veropcao1titulo2 => _veropcao1titulo2;
+  set veropcao1titulo2(bool value) {
+    _veropcao1titulo2 = value;
+  }
+
+  bool _veropcao2titulo2 = false;
+  bool get veropcao2titulo2 => _veropcao2titulo2;
+  set veropcao2titulo2(bool value) {
+    _veropcao2titulo2 = value;
+  }
+
+  bool _veropcao3titulo2 = false;
+  bool get veropcao3titulo2 => _veropcao3titulo2;
+  set veropcao3titulo2(bool value) {
+    _veropcao3titulo2 = value;
+  }
+
+  bool _veropcao4titulo2 = false;
+  bool get veropcao4titulo2 => _veropcao4titulo2;
+  set veropcao4titulo2(bool value) {
+    _veropcao4titulo2 = value;
+  }
+
+  bool _veropcao5titulo2 = false;
+  bool get veropcao5titulo2 => _veropcao5titulo2;
+  set veropcao5titulo2(bool value) {
+    _veropcao5titulo2 = value;
+  }
+
+  bool _veropcao6titulo2 = false;
+  bool get veropcao6titulo2 => _veropcao6titulo2;
+  set veropcao6titulo2(bool value) {
+    _veropcao6titulo2 = value;
+  }
+
+  bool _veropcao7titulo2 = false;
+  bool get veropcao7titulo2 => _veropcao7titulo2;
+  set veropcao7titulo2(bool value) {
+    _veropcao7titulo2 = value;
+  }
+
+  bool _veropcao8titulo2 = false;
+  bool get veropcao8titulo2 => _veropcao8titulo2;
+  set veropcao8titulo2(bool value) {
+    _veropcao8titulo2 = value;
+  }
+
+  bool _veropcao9titulo2 = false;
+  bool get veropcao9titulo2 => _veropcao9titulo2;
+  set veropcao9titulo2(bool value) {
+    _veropcao9titulo2 = value;
+  }
+
+  bool _veropcao10titulo2 = false;
+  bool get veropcao10titulo2 => _veropcao10titulo2;
+  set veropcao10titulo2(bool value) {
+    _veropcao10titulo2 = value;
+  }
+
+  bool _addTitulo2 = false;
+  bool get addTitulo2 => _addTitulo2;
+  set addTitulo2(bool value) {
+    _addTitulo2 = value;
   }
 }
 

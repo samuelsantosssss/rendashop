@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 class CadastrarProdutoModel extends FlutterFlowModel<CadastrarProdutoWidget> {
   ///  State fields for stateful widgets in this page.
 
-  bool isDataUploading_uploadData33f455 = false;
-  List<FFUploadedFile> uploadedLocalFiles_uploadData33f455 = [];
-  List<String> uploadedFileUrls_uploadData33f455 = [];
+  bool isDataUploading_uploadData33f4556 = false;
+  List<FFUploadedFile> uploadedLocalFiles_uploadData33f4556 = [];
+  List<String> uploadedFileUrls_uploadData33f4556 = [];
 
   // State field(s) for Checkbox1 widget.
   bool? checkbox1Value;
@@ -25,13 +25,13 @@ class CadastrarProdutoModel extends FlutterFlowModel<CadastrarProdutoWidget> {
   TextEditingController? nomeProdutoTextController;
   String? Function(BuildContext, String?)? nomeProdutoTextControllerValidator;
   // State field(s) for descricao widget.
-  FocusNode? descricaoFocusNode1;
-  TextEditingController? descricaoTextController1;
-  String? Function(BuildContext, String?)? descricaoTextController1Validator;
-  // State field(s) for descricao widget.
-  FocusNode? descricaoFocusNode2;
-  TextEditingController? descricaoTextController2;
-  String? Function(BuildContext, String?)? descricaoTextController2Validator;
+  FocusNode? descricaoFocusNode;
+  TextEditingController? descricaoTextController;
+  String? Function(BuildContext, String?)? descricaoTextControllerValidator;
+  // State field(s) for descricao333 widget.
+  FocusNode? descricao333FocusNode;
+  TextEditingController? descricao333TextController;
+  String? Function(BuildContext, String?)? descricao333TextControllerValidator;
   // State field(s) for precoantes widget.
   FocusNode? precoantesFocusNode;
   TextEditingController? precoantesTextController;
@@ -71,11 +71,11 @@ class CadastrarProdutoModel extends FlutterFlowModel<CadastrarProdutoWidget> {
     nomeProdutoFocusNode?.dispose();
     nomeProdutoTextController?.dispose();
 
-    descricaoFocusNode1?.dispose();
-    descricaoTextController1?.dispose();
+    descricaoFocusNode?.dispose();
+    descricaoTextController?.dispose();
 
-    descricaoFocusNode2?.dispose();
-    descricaoTextController2?.dispose();
+    descricao333FocusNode?.dispose();
+    descricao333TextController?.dispose();
 
     precoantesFocusNode?.dispose();
     precoantesTextController?.dispose();

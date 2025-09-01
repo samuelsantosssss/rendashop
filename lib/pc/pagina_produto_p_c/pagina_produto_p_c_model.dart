@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/loja/promocao_relampago/time_promo/time_promo_widget.dart';
+import '/pc/rodape/rodape_widget.dart';
 import '/index.dart';
 import 'pagina_produto_p_c_widget.dart' show PaginaProdutoPCWidget;
 import 'package:flutter/material.dart';
@@ -28,6 +29,12 @@ class PaginaProdutoPCModel extends FlutterFlowModel<PaginaProdutoPCWidget> {
   bool mouseRegionHovered = false;
   // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
   List<CarrinhoRecord>? respostaCarrinhSemVariante1Copy;
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  List<CarrinhoRecord>? respostaCarrinho3;
+  // Stores action output result for [Firestore Query - Query a collection] action in Container widget.
+  List<CarrinhoRecord>? respostaCarrinho2;
+  // Stores action output result for [Firestore Query - Query a collection] action in Text4444foto widget.
+  List<CarrinhoRecord>? respostaCarrinho;
   // State field(s) for cep widget.
   FocusNode? cepFocusNode;
   TextEditingController? cepTextController;
@@ -35,10 +42,13 @@ class PaginaProdutoPCModel extends FlutterFlowModel<PaginaProdutoPCWidget> {
   String? Function(BuildContext, String?)? cepTextControllerValidator;
   // Stores action output result for [Backend Call - API (Puxar CEP)] action in cep widget.
   ApiCallResponse? apiResult1rf;
+  // Model for rodape component.
+  late RodapeModel rodapeModel;
 
   @override
   void initState(BuildContext context) {
     timePromoModel = createModel(context, () => TimePromoModel());
+    rodapeModel = createModel(context, () => RodapeModel());
   }
 
   @override
@@ -49,5 +59,7 @@ class PaginaProdutoPCModel extends FlutterFlowModel<PaginaProdutoPCWidget> {
     timePromoModel.dispose();
     cepFocusNode?.dispose();
     cepTextController?.dispose();
+
+    rodapeModel.dispose();
   }
 }

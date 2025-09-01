@@ -63,6 +63,10 @@ class _AtualizarCarrinhoProdutoWidgetState
             utimaAtializacaoCarrinho: widget.dataAtualizacaoProduto,
           ));
         }
+
+        if (!(widget.produtoRef != null)) {
+          await widget.carrinhoRef!.delete();
+        }
       } else {
         return;
       }

@@ -16,8 +16,8 @@ class VarianteAfiliadoModel extends FlutterFlowModel<VarianteAfiliadoWidget> {
   List<CarrinhoRecord>? respostaCarrinho1;
   // Stores action output result for [Firestore Query - Query a collection] action in baixo widget.
   List<CarrinhoRecord>? respostaCarrinho4;
-  // Stores action output result for [Firestore Query - Query a collection] action in baixo2 widget.
-  List<CarrinhoRecord>? respostaCarrinho11;
+  // Stores action output result for [Firestore Query - Query a collection] action in Stack widget.
+  List<CarrinhoRecord>? respostaCarrinho5;
 
   @override
   void initState(BuildContext context) {}

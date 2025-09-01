@@ -2,12 +2,14 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/carregando/carregando18/carregando18_widget.dart';
 import '/carregando/carregando19/carregando19_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/pc/login_p_c_compra/login_p_c_compra_widget.dart';
+import '/pc/login_p_c_principal/login_p_c_principal_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -209,77 +211,203 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                         ],
                                       ),
                                     ),
-                                    Container(
-                                      width: 130.0,
-                                      height: 16.0,
-                                      decoration: BoxDecoration(),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Text(
-                                            'Cadastre',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  fontSize: 13.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
+                                    if (loggedIn == false)
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          await showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            enableDrag: false,
+                                            context: context,
+                                            builder: (context) {
+                                              return GestureDetector(
+                                                onTap: () {
+                                                  FocusScope.of(context)
+                                                      .unfocus();
+                                                  FocusManager
+                                                      .instance.primaryFocus
+                                                      ?.unfocus();
+                                                },
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child:
+                                                      LoginPCPrincipalWidget(),
                                                 ),
-                                          ),
-                                          Container(
-                                            width: 1.0,
-                                            height: 100.0,
-                                            decoration: BoxDecoration(
-                                              color: Color(0x88FFFFFF),
-                                            ),
-                                          ),
-                                          Text(
-                                            'Entre',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  font: GoogleFonts.inter(
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                  fontSize: 13.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontStyle,
+                                              );
+                                            },
+                                          ).then(
+                                              (value) => safeSetState(() {}));
+                                        },
+                                        child: Container(
+                                          width: 130.0,
+                                          height: 16.0,
+                                          decoration: BoxDecoration(),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Text(
+                                                'Cadastre',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          font:
+                                                              GoogleFonts.inter(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          fontSize: 13.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                              ),
+                                              Container(
+                                                width: 1.0,
+                                                height: 100.0,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0x88FFFFFF),
                                                 ),
+                                              ),
+                                              Text(
+                                                'Entre',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          font:
+                                                              GoogleFonts.inter(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          fontSize: 13.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                              ),
+                                            ],
                                           ),
-                                        ],
+                                        ),
                                       ),
-                                    ),
+                                    if (loggedIn == true)
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          FFAppState().statusNaopago = true;
+                                          FFAppState().statusPreparando = false;
+                                          FFAppState().statusEnviado = false;
+                                          FFAppState().statusReembolso = false;
+                                          FFAppState().statusFinalizado = false;
+                                          FFAppState().statusCancelado = false;
+                                          safeSetState(() {});
+
+                                          context.pushNamed(
+                                              PerfilPCWidget.routeName);
+                                        },
+                                        child: Container(
+                                          height: 27.0,
+                                          decoration: BoxDecoration(),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              AuthUserStreamWidget(
+                                                builder: (context) => Container(
+                                                  width: 27.0,
+                                                  height: 27.0,
+                                                  clipBehavior: Clip.antiAlias,
+                                                  decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: Image.network(
+                                                    valueOrDefault<String>(
+                                                      currentUserPhoto,
+                                                      'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/Ainda%20n%C3%A3o%20Existem%20Pedidos%20(11).png?alt=media&token=e5c7f1ab-12eb-4a45-9c2b-a2830445c928',
+                                                    ),
+                                                    fit: BoxFit.cover,
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        7.0, 0.0, 0.0, 0.0),
+                                                child: AuthUserStreamWidget(
+                                                  builder: (context) => Text(
+                                                    currentUserDisplayName,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          font:
+                                                              GoogleFonts.inter(
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          fontSize: 13.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
                                   ],
                                 ),
                               ),
@@ -303,7 +431,7 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                           image: DecorationImage(
                                             fit: BoxFit.contain,
                                             image: Image.network(
-                                              'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/logoooooooo2.png?alt=media&token=569797ff-53e3-4cac-ba5a-0210ddc61237',
+                                              'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/logo%20PC.jpg?alt=media&token=e8ba2377-16d0-4711-b1fb-dbbe7af71b83',
                                             ).image,
                                           ),
                                         ),
@@ -402,6 +530,51 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                                       _model.textController,
                                                   focusNode:
                                                       _model.textFieldFocusNode,
+                                                  onFieldSubmitted: (_) async {
+                                                    FFAppState().palavraChavePesquisa = functions
+                                                        .listaBuscaHistorico(
+                                                            _model
+                                                                .textController
+                                                                .text,
+                                                            (currentUserDocument
+                                                                        ?.historicoPesquisa
+                                                                        .toList() ??
+                                                                    [])
+                                                                .toList())
+                                                        .toList()
+                                                        .cast<String>();
+                                                    safeSetState(() {});
+                                                    FFAppState()
+                                                            .filtroRelevencia =
+                                                        true;
+                                                    FFAppState()
+                                                        .FiltroDestaque = false;
+                                                    FFAppState().filtroRecente =
+                                                        false;
+                                                    FFAppState().filtroPreco =
+                                                        '';
+                                                    FFAppState()
+                                                            .feedDocumentoAntes =
+                                                        '4';
+                                                    FFAppState().liberarMais =
+                                                        30;
+                                                    safeSetState(() {});
+
+                                                    context.pushNamed(
+                                                        PcCategoriaWidget
+                                                            .routeName);
+
+                                                    await currentUserReference!
+                                                        .update({
+                                                      ...mapToFirestore(
+                                                        {
+                                                          'historicoPesquisa':
+                                                              FFAppState()
+                                                                  .palavraChavePesquisa,
+                                                        },
+                                                      ),
+                                                    });
+                                                  },
                                                   autofocus: false,
                                                   obscureText: false,
                                                   decoration: InputDecoration(
@@ -531,12 +704,100 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                               borderRadius:
                                                   BorderRadius.circular(5.0),
                                             ),
-                                            child: Icon(
-                                              Icons.search_rounded,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              size: 20.0,
+                                            child: GestureDetector(
+                                              onTap: () async {
+                                                FFAppState()
+                                                        .palavraChavePesquisa =
+                                                    functions
+                                                        .listaBuscaHistorico(
+                                                            _model
+                                                                .textController
+                                                                .text,
+                                                            (currentUserDocument
+                                                                        ?.historicoPesquisa
+                                                                        .toList() ??
+                                                                    [])
+                                                                .toList())
+                                                        .toList()
+                                                        .cast<String>();
+                                                safeSetState(() {});
+                                                FFAppState().filtroRelevencia =
+                                                    true;
+                                                FFAppState().FiltroDestaque =
+                                                    false;
+                                                FFAppState().filtroRecente =
+                                                    false;
+                                                FFAppState().filtroPreco = '';
+                                                FFAppState()
+                                                    .feedDocumentoAntes = '4';
+                                                FFAppState().liberarMais = 30;
+                                                safeSetState(() {});
+
+                                                context.pushNamed(
+                                                    PcCategoriaWidget
+                                                        .routeName);
+
+                                                await currentUserReference!
+                                                    .update({
+                                                  ...mapToFirestore(
+                                                    {
+                                                      'historicoPesquisa':
+                                                          FFAppState()
+                                                              .palavraChavePesquisa,
+                                                    },
+                                                  ),
+                                                });
+                                              },
+                                              onForcePressEnd: (details) async {
+                                                FFAppState()
+                                                        .palavraChavePesquisa =
+                                                    functions
+                                                        .listaBuscaHistorico(
+                                                            _model
+                                                                .textController
+                                                                .text,
+                                                            (currentUserDocument
+                                                                        ?.historicoPesquisa
+                                                                        .toList() ??
+                                                                    [])
+                                                                .toList())
+                                                        .toList()
+                                                        .cast<String>();
+                                                safeSetState(() {});
+                                                FFAppState().filtroRelevencia =
+                                                    true;
+                                                FFAppState().FiltroDestaque =
+                                                    false;
+                                                FFAppState().filtroRecente =
+                                                    false;
+                                                FFAppState().filtroPreco = '';
+                                                FFAppState()
+                                                    .feedDocumentoAntes = '4';
+                                                FFAppState().liberarMais = 30;
+                                                safeSetState(() {});
+
+                                                context.pushNamed(
+                                                    PcCategoriaWidget
+                                                        .routeName);
+
+                                                await currentUserReference!
+                                                    .update({
+                                                  ...mapToFirestore(
+                                                    {
+                                                      'historicoPesquisa':
+                                                          FFAppState()
+                                                              .palavraChavePesquisa,
+                                                    },
+                                                  ),
+                                                });
+                                              },
+                                              child: Icon(
+                                                Icons.search_rounded,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                size: 20.0,
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -544,91 +805,133 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                     ),
                                   ),
                                 ),
-                                Align(
-                                  alignment: AlignmentDirectional(1.0, -1.0),
-                                  child: Container(
-                                    width: 88.38,
-                                    height: 55.6,
-                                    decoration: BoxDecoration(),
-                                    child: Align(
-                                      alignment:
-                                          AlignmentDirectional(0.0, -1.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Flexible(
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 10.0, 20.0, 0.0),
-                                              child: badges.Badge(
-                                                badgeContent: Text(
-                                                  '1',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .titleSmall
-                                                      .override(
-                                                        font: GoogleFonts
-                                                            .interTight(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmall
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .titleSmall
-                                                                  .fontStyle,
-                                                        ),
-                                                        color: Colors.white,
-                                                        fontSize: 15.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleSmall
-                                                                .fontStyle,
-                                                      ),
+                                Container(
+                                  decoration: BoxDecoration(),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      if (currentUserReference == null)
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(1.0, -1.0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    20.0, 0.0, 0.0, 10.0),
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                context.pushNamed(
+                                                    CarrinhoPCNaoLogadoWidget
+                                                        .routeName);
+                                              },
+                                              child: Container(
+                                                width: 31.0,
+                                                height: 31.0,
+                                                decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
                                                 ),
-                                                showBadge: false,
-                                                shape: badges.BadgeShape.circle,
-                                                badgeColor:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                elevation: 1.0,
-                                                padding: EdgeInsets.all(6.0),
-                                                position: badges.BadgePosition
-                                                    .topEnd(),
-                                                animationType: badges
-                                                    .BadgeAnimationType.scale,
-                                                toAnimate: true,
                                                 child: Align(
                                                   alignment:
                                                       AlignmentDirectional(
-                                                          1.0, -1.0),
-                                                  child: Icon(
-                                                    Icons
-                                                        .shopping_cart_outlined,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryBackground,
-                                                    size: 30.0,
+                                                          -1.0, 1.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 6.0,
+                                                                4.0, 0.0),
+                                                    child: badges.Badge(
+                                                      badgeContent: Text(
+                                                        functions
+                                                            .somarQuantidadesCarrinhoSemLogin(
+                                                                FFAppState()
+                                                                    .CarrinhoTemporarioNacional
+                                                                    .toList(),
+                                                                FFAppState()
+                                                                    .CarrinhoTemporarioInternacional
+                                                                    .toList())
+                                                            .toString(),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .titleSmall
+                                                            .override(
+                                                              font: GoogleFonts
+                                                                  .interTight(
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .fontStyle,
+                                                              ),
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 10.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .fontWeight,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .fontStyle,
+                                                            ),
+                                                      ),
+                                                      showBadge: ((FFAppState()
+                                                                  .CarrinhoTemporarioNacional
+                                                                  .isNotEmpty) ==
+                                                              true) ||
+                                                          ((FFAppState()
+                                                                  .CarrinhoTemporarioInternacional
+                                                                  .isNotEmpty) ==
+                                                              true),
+                                                      shape: badges
+                                                          .BadgeShape.circle,
+                                                      badgeColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      elevation: 11.0,
+                                                      padding:
+                                                          EdgeInsets.all(6.0),
+                                                      position:
+                                                          badges.BadgePosition
+                                                              .topEnd(),
+                                                      animationType: badges
+                                                          .BadgeAnimationType
+                                                          .scale,
+                                                      toAnimate: true,
+                                                      child: Align(
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                1.0, -1.0),
+                                                        child: Icon(
+                                                          Icons
+                                                              .shopping_cart_outlined,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          size: 30.0,
+                                                        ),
+                                                      ),
+                                                    ),
                                                   ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                    ),
+                                        ),
+                                    ],
                                   ),
                                 ),
                               ],
@@ -648,6 +951,60 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
+                            if ((functions
+                                    .juntarListaCarrinhoAfiliado(
+                                        FFAppState()
+                                            .CarrinhoTemporarioNacional
+                                            .toList(),
+                                        FFAppState()
+                                            .CarrinhoTemporarioInternacional
+                                            .toList())
+                                    .isNotEmpty) ==
+                                false)
+                              Container(
+                                width: 800.0,
+                                decoration: BoxDecoration(),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 30.0, 0.0, 0.0),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.network(
+                                          'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/Ainda%20n%C3%A3o%20Existem%20Pedidos%20-%202025-08-08T235911.101.png?alt=media&token=d5858734-4b7f-43e1-a245-3892ecf3084b',
+                                          width: 200.0,
+                                          height: 200.0,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      'Seu carrinho está vazio',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            font: GoogleFonts.inter(
+                                              fontWeight: FontWeight.w600,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                            fontSize: 22.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w600,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             Container(
                               width: 800.0,
                               decoration: BoxDecoration(),
@@ -1255,8 +1612,8 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                                                               borderRadius: BorderRadius.circular(5.0),
                                                                               child: Image.network(
                                                                                 functions.carrinhoTemporarioImg(listaStringItem),
-                                                                                width: 95.0,
-                                                                                height: 97.0,
+                                                                                width: 125.0,
+                                                                                height: 124.6,
                                                                                 fit: BoxFit.cover,
                                                                               ),
                                                                             ),
@@ -1861,7 +2218,7 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                                                         color: Color(
                                                                             0xFF3E3D3D),
                                                                         fontSize:
-                                                                            15.0,
+                                                                            17.0,
                                                                         letterSpacing:
                                                                             0.0,
                                                                         fontWeight:
@@ -2103,7 +2460,7 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                                                                 Icon(
                                                                                   Icons.storefront_outlined,
                                                                                   color: Color(0xFF3E3D3D),
-                                                                                  size: 17.0,
+                                                                                  size: 19.0,
                                                                                 ),
                                                                                 Padding(
                                                                                   padding: EdgeInsetsDirectional.fromSTEB(3.0, 0.0, 0.0, 0.0),
@@ -2115,7 +2472,7 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                                                                             fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                           ),
                                                                                           color: Color(0xFF3E3D3D),
-                                                                                          fontSize: 15.0,
+                                                                                          fontSize: 17.0,
                                                                                           letterSpacing: 0.0,
                                                                                           fontWeight: FontWeight.w500,
                                                                                           fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
@@ -2261,8 +2618,8 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                                                               borderRadius: BorderRadius.circular(5.0),
                                                                               child: Image.network(
                                                                                 functions.carrinhoTemporarioImg(listaStringItem),
-                                                                                width: 86.6,
-                                                                                height: 87.7,
+                                                                                width: 125.0,
+                                                                                height: 124.6,
                                                                                 fit: BoxFit.cover,
                                                                               ),
                                                                             ),
@@ -2296,7 +2653,7 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                                                                       fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                     ),
                                                                                     color: Color(0xFF303131),
-                                                                                    fontSize: 14.0,
+                                                                                    fontSize: 16.0,
                                                                                     letterSpacing: 0.0,
                                                                                     fontWeight: FontWeight.w500,
                                                                                     fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
@@ -2331,7 +2688,7 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                                                                                   fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                                 ),
                                                                                                 color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                                fontSize: 13.0,
+                                                                                                fontSize: 15.0,
                                                                                                 letterSpacing: 0.0,
                                                                                                 fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
                                                                                                 fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
@@ -2378,7 +2735,7 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                                                                                           fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                                         ),
                                                                                                         color: FlutterFlowTheme.of(context).primary,
-                                                                                                        fontSize: 10.0,
+                                                                                                        fontSize: 12.0,
                                                                                                         letterSpacing: 0.0,
                                                                                                         fontWeight: FontWeight.w500,
                                                                                                         fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
@@ -2398,7 +2755,7 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                                                                                           fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                                         ),
                                                                                                         color: FlutterFlowTheme.of(context).primary,
-                                                                                                        fontSize: 17.0,
+                                                                                                        fontSize: 19.0,
                                                                                                         letterSpacing: 0.0,
                                                                                                         fontWeight: FontWeight.w500,
                                                                                                         fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
@@ -2418,7 +2775,7 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                                                                                           fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                                         ),
                                                                                                         color: FlutterFlowTheme.of(context).primary,
-                                                                                                        fontSize: 10.0,
+                                                                                                        fontSize: 12.0,
                                                                                                         letterSpacing: 0.0,
                                                                                                         fontWeight: FontWeight.w500,
                                                                                                         fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
@@ -2438,7 +2795,7 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                                                                                           fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                                         ),
                                                                                                         color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                                        fontSize: 10.0,
+                                                                                                        fontSize: 12.0,
                                                                                                         letterSpacing: 0.0,
                                                                                                         fontWeight: FontWeight.w500,
                                                                                                         fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
@@ -2662,149 +3019,80 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              20.0, 10.0, 0.0, 0.0),
-                          child: Container(
-                            width: 400.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Align(
-                                  alignment: AlignmentDirectional(-1.0, -1.0),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        15.0, 10.0, 0.0, 9.0),
-                                    child: Text(
-                                      'Resumo do Pedido',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.inter(
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                            fontSize: 18.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                  ),
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 10.0, 0.0, 0.0),
+                              child: Container(
+                                width: 400.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      15.0, 0.0, 0.0, 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(5.0),
-                                        child: Image.network(
-                                          'https://picsum.photos/seed/919/600',
-                                          width: 70.0,
-                                          height: 75.0,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 10.0, 0.0, 0.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Padding(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional(-1.0, -1.0),
+                                      child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 0.0, 0.0, 0.0),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                          ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        5.0, 0.0, 0.0, 0.0),
-                                                child: Text(
-                                                  'Preço estimado:',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font: GoogleFonts.inter(
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                        fontSize: 15.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
+                                            15.0, 10.0, 0.0, 9.0),
+                                        child: Text(
+                                          'Resumo do Pedido',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                font: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
                                                 ),
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w600,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
                                               ),
-                                            ],
-                                          ),
                                         ),
                                       ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(1.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 10.0, 0.0),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 0.0, 10.0, 0.0),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 10.0, 0.0, 0.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 0.0, 0.0, 0.0),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                              ),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.end,
                                                 children: [
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                8.0, 0.0),
+                                                            .fromSTEB(5.0, 0.0,
+                                                                0.0, 0.0),
                                                     child: Text(
-                                                      'R\$',
+                                                      'Preço estimado:',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
@@ -2813,20 +3101,17 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                                                 .inter(
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .w600,
+                                                                      .w500,
                                                               fontStyle:
                                                                   FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
                                                                       .fontStyle,
                                                             ),
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
-                                                            fontSize: 17.0,
+                                                            fontSize: 15.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
-                                                                FontWeight.w600,
+                                                                FontWeight.w500,
                                                             fontStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
@@ -2835,60 +3120,131 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                                           ),
                                                     ),
                                                   ),
-                                                  Text(
-                                                    functions.calcularTotalDeQueriesAfiliado(functions
-                                                        .juntarListaCarrinhoAfiliado(
-                                                            FFAppState()
-                                                                .CarrinhoTemporarioNacional
-                                                                .toList(),
-                                                            FFAppState()
-                                                                .CarrinhoTemporarioInternacional
-                                                                .toList())
-                                                        .toList()),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          font:
-                                                              GoogleFonts.inter(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 25.0,
-                                                          letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                  ),
                                                 ],
                                               ),
                                             ),
                                           ),
-                                        ),
+                                          Align(
+                                            alignment:
+                                                AlignmentDirectional(1.0, 0.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 0.0, 10.0, 0.0),
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 0.0, 10.0, 0.0),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.end,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    8.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          'R\$',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font:
+                                                                    GoogleFonts
+                                                                        .inter(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                fontSize: 17.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        functions.calcularTotalDeQueriesAfiliado(functions
+                                                            .juntarListaCarrinhoAfiliado(
+                                                                FFAppState()
+                                                                    .CarrinhoTemporarioNacional
+                                                                    .toList(),
+                                                                FFAppState()
+                                                                    .CarrinhoTemporarioInternacional
+                                                                    .toList())
+                                                            .toList()),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  font:
+                                                                      GoogleFonts
+                                                                          .inter(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  fontSize:
+                                                                      25.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 16.0, 20.0, 16.0),
-                                  child: FFButtonWidget(
-                                    onPressed: () async {
-                                      if (functions.carrinhoAfiliadTodosListaBoolean(
-                                              functions
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          20.0, 16.0, 20.0, 16.0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          if (functions.carrinhoAfiliadTodosListaBoolean(functions
                                                   .juntarListaCarrinhoAfiliado(
                                                       FFAppState()
                                                           .CarrinhoTemporarioNacional
@@ -2897,76 +3253,168 @@ class _CarrinhoPCNaoLogadoWidgetState extends State<CarrinhoPCNaoLogadoWidget> {
                                                           .CarrinhoTemporarioInternacional
                                                           .toList())
                                                   .toList()) ==
-                                          true) {
-                                        context.pushNamed(
-                                            LoginAfiliadoCardWidget.routeName);
-
-                                        FFAppState().NaoTemConta = '';
-                                        safeSetState(() {});
-                                      } else {
-                                        ScaffoldMessenger.of(context)
-                                            .showSnackBar(
-                                          SnackBar(
-                                            content: Text(
-                                              'Selecione algum produto para continuar',
-                                              style: TextStyle(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
+                                              true) {
+                                            FFAppState().NaoTemConta = '';
+                                            safeSetState(() {});
+                                            await showModalBottomSheet(
+                                              isScrollControlled: true,
+                                              backgroundColor:
+                                                  Colors.transparent,
+                                              enableDrag: false,
+                                              context: context,
+                                              builder: (context) {
+                                                return GestureDetector(
+                                                  onTap: () {
+                                                    FocusScope.of(context)
+                                                        .unfocus();
+                                                    FocusManager
+                                                        .instance.primaryFocus
+                                                        ?.unfocus();
+                                                  },
+                                                  child: Padding(
+                                                    padding:
+                                                        MediaQuery.viewInsetsOf(
+                                                            context),
+                                                    child:
+                                                        LoginPCCompraWidget(),
+                                                  ),
+                                                );
+                                              },
+                                            ).then(
+                                                (value) => safeSetState(() {}));
+                                          } else {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  'Selecione algum produto para continuar',
+                                                  style: TextStyle(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
                                                         .secondaryBackground,
+                                                  ),
+                                                ),
+                                                duration: Duration(
+                                                    milliseconds: 2000),
+                                                backgroundColor:
+                                                    Color(0xFFF85757),
                                               ),
-                                            ),
-                                            duration:
-                                                Duration(milliseconds: 2000),
-                                            backgroundColor: Color(0xFFF85757),
-                                          ),
-                                        );
-                                      }
-                                    },
-                                    text: 'Continuar',
-                                    options: FFButtonOptions(
-                                      width: double.infinity,
-                                      height: 45.5,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 16.0, 0.0),
-                                      iconAlignment: IconAlignment.start,
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            font: GoogleFonts.interTight(
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .titleSmall
-                                                      .fontStyle,
-                                            ),
-                                            color: Colors.white,
-                                            fontSize: 18.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .fontWeight,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmall
-                                                    .fontStyle,
-                                          ),
-                                      elevation: 0.0,
-                                      borderRadius: BorderRadius.circular(8.0),
+                                            );
+                                          }
+                                        },
+                                        text: 'Continuar',
+                                        options: FFButtonOptions(
+                                          width: double.infinity,
+                                          height: 45.5,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 0.0, 16.0, 0.0),
+                                          iconAlignment: IconAlignment.start,
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .titleSmall
+                                              .override(
+                                                font: GoogleFonts.interTight(
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmall
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmall
+                                                          .fontStyle,
+                                                ),
+                                                color: Colors.white,
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .fontStyle,
+                                              ),
+                                          elevation: 0.0,
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 10.0, 0.0, 0.0),
+                              child: Container(
+                                width: 400.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional(-1.0, -1.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            15.0, 10.0, 0.0, 9.0),
+                                        child: Text(
+                                          'Pagamento',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                font: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
+                                                fontSize: 18.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w600,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 0.0, 15.0, 10.0),
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                        child: Image.network(
+                                          'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/Captura%20de%20tela%202025-08-08%20225820.jpg?alt=media&token=978dc040-3847-4320-8a95-26b2f4d02ed2',
+                                          width: double.infinity,
+                                          height: 153.8,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),

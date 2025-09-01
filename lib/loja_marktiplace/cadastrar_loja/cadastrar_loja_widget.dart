@@ -2,11 +2,11 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/index.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -1212,6 +1212,7 @@ class _CadastrarLojaWidgetState extends State<CadastrarLojaWidget> {
                               userRef: currentUserReference,
                               descricao: _model.descricaoTextController.text,
                               url: '',
+                              dataCriacao: getCurrentTimestamp,
                             ));
                             _model.loja1 = LojasRecord.getDocumentFromData(
                                 createLojasRecordData(
@@ -1222,6 +1223,7 @@ class _CadastrarLojaWidgetState extends State<CadastrarLojaWidget> {
                                   descricao:
                                       _model.descricaoTextController.text,
                                   url: '',
+                                  dataCriacao: getCurrentTimestamp,
                                 ),
                                 lojasRecordReference);
 

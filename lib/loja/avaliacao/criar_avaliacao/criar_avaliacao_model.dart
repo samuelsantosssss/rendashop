@@ -11,10 +11,10 @@ class CriarAvaliacaoModel extends FlutterFlowModel<CriarAvaliacaoWidget> {
   List<FFUploadedFile> uploadedLocalFiles_uploadData33f4555 = [];
   List<String> uploadedFileUrls_uploadData33f4555 = [];
 
-  bool isDataUploading_uploadData33f445555 = false;
-  FFUploadedFile uploadedLocalFile_uploadData33f445555 =
+  bool isDataUploading_uploadData33f4455555 = false;
+  FFUploadedFile uploadedLocalFile_uploadData33f4455555 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl_uploadData33f445555 = '';
+  String uploadedFileUrl_uploadData33f4455555 = '';
 
   // State field(s) for descricao widget.
   FocusNode? descricaoFocusNode;

@@ -61,6 +61,11 @@ class LojasRecord extends FirestoreRecord {
   int get produtosTotal => _produtosTotal ?? 0;
   bool hasProdutosTotal() => _produtosTotal != null;
 
+  // "dataCriacao" field.
+  DateTime? _dataCriacao;
+  DateTime? get dataCriacao => _dataCriacao;
+  bool hasDataCriacao() => _dataCriacao != null;
+
   void _initializeFields() {
     _fotoperfil = snapshotData['fotoperfil'] as String?;
     _nome = snapshotData['nome'] as String?;
@@ -71,6 +76,7 @@ class LojasRecord extends FirestoreRecord {
     _userRef = snapshotData['userRef'] as DocumentReference?;
     _avaliacao = castToType<double>(snapshotData['avaliacao']);
     _produtosTotal = castToType<int>(snapshotData['produtos_total']);
+    _dataCriacao = snapshotData['dataCriacao'] as DateTime?;
   }
 
   static CollectionReference get collection =>
@@ -115,6 +121,7 @@ Map<String, dynamic> createLojasRecordData({
   DocumentReference? userRef,
   double? avaliacao,
   int? produtosTotal,
+  DateTime? dataCriacao,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -126,6 +133,7 @@ Map<String, dynamic> createLojasRecordData({
       'userRef': userRef,
       'avaliacao': avaliacao,
       'produtos_total': produtosTotal,
+      'dataCriacao': dataCriacao,
     }.withoutNulls,
   );
 
@@ -146,7 +154,8 @@ class LojasRecordDocumentEquality implements Equality<LojasRecord> {
         listEquality.equals(e1?.seguidores, e2?.seguidores) &&
         e1?.userRef == e2?.userRef &&
         e1?.avaliacao == e2?.avaliacao &&
-        e1?.produtosTotal == e2?.produtosTotal;
+        e1?.produtosTotal == e2?.produtosTotal &&
+        e1?.dataCriacao == e2?.dataCriacao;
   }
 
   @override
@@ -159,7 +168,8 @@ class LojasRecordDocumentEquality implements Equality<LojasRecord> {
         e?.seguidores,
         e?.userRef,
         e?.avaliacao,
-        e?.produtosTotal
+        e?.produtosTotal,
+        e?.dataCriacao
       ]);
 
   @override

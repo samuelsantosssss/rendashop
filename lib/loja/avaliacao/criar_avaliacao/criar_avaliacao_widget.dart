@@ -3,7 +3,6 @@ import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -12,6 +11,7 @@ import '/loja/avaliacao/avaliacao_notificacao/avaliacao_notificacao_widget.dart'
 import '/loja/avaliacao/moeda_info/moeda_info_widget.dart';
 import 'dart:async';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -1056,7 +1056,7 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                                                                   m.storagePath,
                                                                   context))) {
                                                         safeSetState(() => _model
-                                                                .isDataUploading_uploadData33f445555 =
+                                                                .isDataUploading_uploadData33f4455555 =
                                                             true);
                                                         var selectedUploadedFiles =
                                                             <FFUploadedFile>[];
@@ -1101,7 +1101,7 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                                                                       (u) => u!)
                                                                   .toList();
                                                         } finally {
-                                                          _model.isDataUploading_uploadData33f445555 =
+                                                          _model.isDataUploading_uploadData33f4455555 =
                                                               false;
                                                         }
                                                         if (selectedUploadedFiles
@@ -1113,10 +1113,10 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                                                                 selectedMedia
                                                                     .length) {
                                                           safeSetState(() {
-                                                            _model.uploadedLocalFile_uploadData33f445555 =
+                                                            _model.uploadedLocalFile_uploadData33f4455555 =
                                                                 selectedUploadedFiles
                                                                     .first;
-                                                            _model.uploadedFileUrl_uploadData33f445555 =
+                                                            _model.uploadedFileUrl_uploadData33f4455555 =
                                                                 downloadUrls
                                                                     .first;
                                                           });
@@ -1129,7 +1129,7 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                                                       FFAppState()
                                                               .videoProduto =
                                                           _model
-                                                              .uploadedFileUrl_uploadData33f445555;
+                                                              .uploadedFileUrl_uploadData33f4455555;
                                                       safeSetState(() {});
                                                     },
                                                     text: '',
@@ -1200,7 +1200,7 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                                           ),
                                         ),
                                       ),
-                                      if (_model.uploadedFileUrl_uploadData33f445555 !=
+                                      if (_model.uploadedFileUrl_uploadData33f4455555 !=
                                               '')
                                         SingleChildScrollView(
                                           scrollDirection: Axis.horizontal,
@@ -1227,7 +1227,7 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                                                           child:
                                                               FlutterFlowVideoPlayer(
                                                             path: _model
-                                                                .uploadedFileUrl_uploadData33f445555,
+                                                                .uploadedFileUrl_uploadData33f4455555,
                                                             videoType: VideoType
                                                                 .network,
                                                             width: MediaQuery
@@ -1265,13 +1265,13 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                                                                     .transparent,
                                                             onTap: () async {
                                                               safeSetState(() {
-                                                                _model.isDataUploading_uploadData33f445555 =
+                                                                _model.isDataUploading_uploadData33f4455555 =
                                                                     false;
-                                                                _model.uploadedLocalFile_uploadData33f445555 =
+                                                                _model.uploadedLocalFile_uploadData33f4455555 =
                                                                     FFUploadedFile(
                                                                         bytes: Uint8List.fromList(
                                                                             []));
-                                                                _model.uploadedFileUrl_uploadData33f445555 =
+                                                                _model.uploadedFileUrl_uploadData33f4455555 =
                                                                     '';
                                                               });
                                                             },
@@ -1949,7 +1949,7 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                                     nota: _model.ratingBarValue1?.round(),
                                     data: getCurrentTimestamp,
                                     video: _model
-                                        .uploadedFileUrl_uploadData33f445555,
+                                        .uploadedFileUrl_uploadData33f4455555,
                                     lojaRef: columnPedidosTotalRecord.lojaRef,
                                     nomeUser: currentUserDisplayName,
                                     fotoUser: currentUserPhoto,
@@ -1957,10 +1957,10 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                                     servicoEntregador:
                                         _model.ratingBarValue3?.round(),
                                     videoSet: () {
-                                      if (_model.uploadedFileUrl_uploadData33f445555 !=
+                                      if (_model.uploadedFileUrl_uploadData33f4455555 !=
                                               '') {
                                         return 2;
-                                      } else if ((_model.uploadedFileUrl_uploadData33f445555 ==
+                                      } else if ((_model.uploadedFileUrl_uploadData33f4455555 ==
                                                   '') &&
                                           ((_model.uploadedFileUrls_uploadData33f4555
                                                   .isNotEmpty) ==
@@ -1978,7 +1978,7 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                                               .uploadedFileUrls_uploadData33f4555
                                               .toList(),
                                           _model
-                                              .uploadedFileUrl_uploadData33f445555),
+                                              .uploadedFileUrl_uploadData33f4455555),
                                     },
                                   ),
                                 });
@@ -1990,21 +1990,21 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                                         if (((_model.uploadedFileUrls_uploadData33f4555
                                                     .isNotEmpty) !=
                                                 null) &&
-                                            (_model.uploadedFileUrl_uploadData33f445555 !=
+                                            (_model.uploadedFileUrl_uploadData33f4455555 !=
                                                     '')) {
                                           return 0.10;
                                         } else if (((_model
                                                     .uploadedFileUrls_uploadData33f4555
                                                     .isNotEmpty) !=
                                                 null) &&
-                                            (_model.uploadedFileUrl_uploadData33f445555 ==
+                                            (_model.uploadedFileUrl_uploadData33f4455555 ==
                                                     '')) {
                                           return 0.5;
                                         } else if (((_model
                                                     .uploadedFileUrls_uploadData33f4555
                                                     .isNotEmpty) ==
                                                 null) &&
-                                            (_model.uploadedFileUrl_uploadData33f445555 !=
+                                            (_model.uploadedFileUrl_uploadData33f4455555 !=
                                                     '')) {
                                           return 0.5;
                                         } else {

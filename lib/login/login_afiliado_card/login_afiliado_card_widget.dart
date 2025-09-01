@@ -1,13 +1,13 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:collection/collection.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -523,12 +523,15 @@ class _LoginAfiliadoCardWidgetState extends State<LoginAfiliadoCardWidget>
                                 _shouldSetState = true;
                                 if (_model.exiteContaQuery2?.contaGoogle ==
                                     true) {
+                                  if (Navigator.of(context).canPop()) {
+                                    context.pop();
+                                  }
                                   context.pushNamedAuth(
                                     LoginAfiliadoCardTemGoogleWidget.routeName,
                                     context.mounted,
                                     queryParameters: {
                                       'userRef': serializeParam(
-                                        _model.exiteContaQuery?.reference,
+                                        _model.exiteContaQuery2?.reference,
                                         ParamType.DocumentReference,
                                       ),
                                     }.withoutNulls,
@@ -705,182 +708,196 @@ class _LoginAfiliadoCardWidgetState extends State<LoginAfiliadoCardWidget>
                           child: FFButtonWidget(
                             onPressed: () async {
                               var _shouldSetState = false;
-                              _model.exiteContaQuery =
-                                  await queryUserRecordOnce(
-                                queryBuilder: (userRecord) => userRecord.where(
-                                  'email',
-                                  isEqualTo:
-                                      _model.emailAddressTextController.text,
-                                ),
-                                singleRecord: true,
-                              ).then((s) => s.firstOrNull);
-                              _shouldSetState = true;
-                              FFAppState().NaoTemConta =
-                                  _model.exiteContaQuery?.reference != null
-                                      ? 'temconta'
-                                      : 'naotem';
-                              safeSetState(() {});
-                              if (FFAppState().NaoTemConta == 'temconta') {
-                                if (_model.exiteContaQuery?.contaGoogle ==
-                                    true) {
-                                  context.pushNamedAuth(
-                                    LoginAfiliadoCardTemGoogleWidget.routeName,
-                                    context.mounted,
-                                    queryParameters: {
-                                      'userRef': serializeParam(
-                                        _model.exiteContaQuery?.reference,
-                                        ParamType.DocumentReference,
-                                      ),
-                                    }.withoutNulls,
-                                  );
-
-                                  if (_shouldSetState) safeSetState(() {});
-                                  return;
-                                } else {
-                                  if (_shouldSetState) safeSetState(() {});
-                                  return;
-                                }
-                              } else {
-                                if (_model.senhaTextController.text != '') {
-                                  GoRouter.of(context).prepareAuthEvent();
-
-                                  final user =
-                                      await authManager.createAccountWithEmail(
-                                    context,
-                                    _model.emailAddressTextController.text,
-                                    _model.senhaTextController.text,
-                                  );
-                                  if (user == null) {
-                                    return;
-                                  }
-
-                                  await actions.criarCarrinhoPosLogin(
-                                    functions
-                                        .juntarListaCarrinhoAfiliado(
-                                            FFAppState()
-                                                .CarrinhoTemporarioNacional
-                                                .toList(),
-                                            FFAppState()
-                                                .CarrinhoTemporarioInternacional
-                                                .toList())
-                                        .toList(),
-                                    currentUserReference!,
-                                  );
-                                  _model.queryList77 =
-                                      await queryCarrinhoRecordOnce(
-                                    parent: currentUserReference,
-                                  );
-                                  _shouldSetState = true;
-                                  await actions.calcularFrete2(
-                                    _model.queryList77!.toList(),
-                                    valueOrDefault(
-                                        currentUserDocument?.enderecoCompleto,
-                                        ''),
-                                  );
-                                  FFAppState().cupomSelecionadoRef = null;
-                                  FFAppState().gerarICSM = true;
-                                  FFAppState().freteantes = 0.0;
-                                  FFAppState().FezLoginPeloAfiliado = true;
-                                  safeSetState(() {});
-                                  if (valueOrDefault<bool>(
-                                          currentUserDocument
-                                              ?.ganhouCupomPosLogin,
-                                          false) !=
+                              if (_model.emailAddressTextController.text !=
+                                      '') {
+                                _model.exiteContaQuery =
+                                    await queryUserRecordOnce(
+                                  queryBuilder: (userRecord) =>
+                                      userRecord.where(
+                                    'email',
+                                    isEqualTo:
+                                        _model.emailAddressTextController.text,
+                                  ),
+                                  singleRecord: true,
+                                ).then((s) => s.firstOrNull);
+                                _shouldSetState = true;
+                                FFAppState().NaoTemConta =
+                                    _model.exiteContaQuery?.reference != null
+                                        ? 'temconta'
+                                        : 'naotem';
+                                safeSetState(() {});
+                                if (FFAppState().NaoTemConta == 'temconta') {
+                                  if (_model.exiteContaQuery?.contaGoogle ==
                                       true) {
-                                    await actions.crearCupomNovoUser(
-                                      currentUserReference!,
-                                    );
-
-                                    await currentUserReference!
-                                        .update(createUserRecordData(
-                                      ganhouCupomPosLogin: true,
-                                    ));
-                                  }
-                                  if (valueOrDefault(
-                                              currentUserDocument
-                                                  ?.enderecoCompleto,
-                                              '') !=
-                                          '') {
-                                    FFAppState().metodoPagamento = '';
-                                    FFAppState().parceladoApagagar = '';
-                                    FFAppState().cartaoRef = null;
-                                    FFAppState().taxaProcessamento = '';
-                                    FFAppState().moeda = 0.0;
-                                    FFAppState().taxaCartaoDouble = 0.0;
-                                    safeSetState(() {});
-                                    await actions.checkoutFinalSemFrete(
-                                      _model.queryList77?.toList(),
-                                      currentUserReference!,
-                                    );
-                                    _model.listCardFinal22 =
-                                        await queryCarrinhoFinalRecordOnce(
-                                      parent: currentUserReference,
-                                    );
-                                    _shouldSetState = true;
-                                    await actions.calcularFreteCarrinhoFinal(
-                                      _model.listCardFinal22!.toList(),
-                                      valueOrDefault(
-                                          currentUserDocument?.enderecoCompleto,
-                                          ''),
-                                    );
                                     if (Navigator.of(context).canPop()) {
                                       context.pop();
                                     }
                                     context.pushNamedAuth(
-                                        Comprar3Widget.routeName,
-                                        context.mounted);
+                                      LoginAfiliadoCardTemGoogleWidget
+                                          .routeName,
+                                      context.mounted,
+                                      queryParameters: {
+                                        'userRef': serializeParam(
+                                          _model.exiteContaQuery?.reference,
+                                          ParamType.DocumentReference,
+                                        ),
+                                      }.withoutNulls,
+                                    );
 
                                     if (_shouldSetState) safeSetState(() {});
                                     return;
                                   } else {
-                                    FFAppState().metodoPagamento = '';
-                                    FFAppState().parceladoApagagar = '';
-                                    FFAppState().cartaoRef = null;
-                                    FFAppState().taxaProcessamento = '';
-                                    FFAppState().moeda = 0.0;
-                                    FFAppState().taxaCartaoDouble = 0.0;
-                                    safeSetState(() {});
-                                    await actions.checkoutFinalSemFrete(
-                                      _model.queryList77?.toList(),
-                                      currentUserReference!,
-                                    );
-                                    _model.listCardFinall =
-                                        await queryCarrinhoFinalRecordOnce(
-                                      parent: currentUserReference,
-                                    );
-                                    _shouldSetState = true;
-                                    await actions.calcularFreteCarrinhoFinal(
-                                      _model.listCardFinall!.toList(),
-                                      valueOrDefault(
-                                          currentUserDocument?.enderecoCompleto,
-                                          ''),
-                                    );
-                                    if (Navigator.of(context).canPop()) {
-                                      context.pop();
-                                    }
-                                    context.pushNamedAuth(
-                                      CadastrarEnderecoRecenLoginWidget
-                                          .routeName,
-                                      context.mounted,
-                                      queryParameters: {
-                                        'queryCarrinhoList': serializeParam(
-                                          _model.queryList77,
-                                          ParamType.Document,
-                                          isList: true,
-                                        ),
-                                      }.withoutNulls,
-                                      extra: <String, dynamic>{
-                                        'queryCarrinhoList': _model.queryList77,
-                                      },
-                                    );
-
                                     if (_shouldSetState) safeSetState(() {});
                                     return;
                                   }
                                 } else {
-                                  if (_shouldSetState) safeSetState(() {});
-                                  return;
+                                  if (_model.senhaTextController.text != '') {
+                                    GoRouter.of(context).prepareAuthEvent();
+
+                                    final user = await authManager
+                                        .createAccountWithEmail(
+                                      context,
+                                      _model.emailAddressTextController.text,
+                                      _model.senhaTextController.text,
+                                    );
+                                    if (user == null) {
+                                      return;
+                                    }
+
+                                    await actions.criarCarrinhoPosLogin(
+                                      functions
+                                          .juntarListaCarrinhoAfiliado(
+                                              FFAppState()
+                                                  .CarrinhoTemporarioNacional
+                                                  .toList(),
+                                              FFAppState()
+                                                  .CarrinhoTemporarioInternacional
+                                                  .toList())
+                                          .toList(),
+                                      currentUserReference!,
+                                    );
+                                    _model.queryList77 =
+                                        await queryCarrinhoRecordOnce(
+                                      parent: currentUserReference,
+                                    );
+                                    _shouldSetState = true;
+                                    await actions.calcularFrete2(
+                                      _model.queryList77!.toList(),
+                                      valueOrDefault(
+                                          currentUserDocument?.enderecoCompleto,
+                                          ''),
+                                    );
+                                    FFAppState().cupomSelecionadoRef = null;
+                                    FFAppState().gerarICSM = true;
+                                    FFAppState().freteantes = 0.0;
+                                    FFAppState().FezLoginPeloAfiliado = true;
+                                    safeSetState(() {});
+                                    if (valueOrDefault<bool>(
+                                            currentUserDocument
+                                                ?.ganhouCupomPosLogin,
+                                            false) !=
+                                        true) {
+                                      await actions.crearCupomNovoUser(
+                                        currentUserReference!,
+                                      );
+
+                                      await currentUserReference!
+                                          .update(createUserRecordData(
+                                        ganhouCupomPosLogin: true,
+                                      ));
+                                    }
+                                    if (valueOrDefault(
+                                                currentUserDocument
+                                                    ?.enderecoCompleto,
+                                                '') !=
+                                            '') {
+                                      FFAppState().metodoPagamento = '';
+                                      FFAppState().parceladoApagagar = '';
+                                      FFAppState().cartaoRef = null;
+                                      FFAppState().taxaProcessamento = '';
+                                      FFAppState().moeda = 0.0;
+                                      FFAppState().taxaCartaoDouble = 0.0;
+                                      safeSetState(() {});
+                                      await actions.checkoutFinalSemFrete(
+                                        _model.queryList77?.toList(),
+                                        currentUserReference!,
+                                      );
+                                      _model.listCardFinal22 =
+                                          await queryCarrinhoFinalRecordOnce(
+                                        parent: currentUserReference,
+                                      );
+                                      _shouldSetState = true;
+                                      await actions.calcularFreteCarrinhoFinal(
+                                        _model.listCardFinal22!.toList(),
+                                        valueOrDefault(
+                                            currentUserDocument
+                                                ?.enderecoCompleto,
+                                            ''),
+                                      );
+                                      if (Navigator.of(context).canPop()) {
+                                        context.pop();
+                                      }
+                                      context.pushNamedAuth(
+                                          Comprar3Widget.routeName,
+                                          context.mounted);
+
+                                      if (_shouldSetState) safeSetState(() {});
+                                      return;
+                                    } else {
+                                      FFAppState().metodoPagamento = '';
+                                      FFAppState().parceladoApagagar = '';
+                                      FFAppState().cartaoRef = null;
+                                      FFAppState().taxaProcessamento = '';
+                                      FFAppState().moeda = 0.0;
+                                      FFAppState().taxaCartaoDouble = 0.0;
+                                      safeSetState(() {});
+                                      await actions.checkoutFinalSemFrete(
+                                        _model.queryList77?.toList(),
+                                        currentUserReference!,
+                                      );
+                                      _model.listCardFinall =
+                                          await queryCarrinhoFinalRecordOnce(
+                                        parent: currentUserReference,
+                                      );
+                                      _shouldSetState = true;
+                                      await actions.calcularFreteCarrinhoFinal(
+                                        _model.listCardFinall!.toList(),
+                                        valueOrDefault(
+                                            currentUserDocument
+                                                ?.enderecoCompleto,
+                                            ''),
+                                      );
+                                      if (Navigator.of(context).canPop()) {
+                                        context.pop();
+                                      }
+                                      context.pushNamedAuth(
+                                        CadastrarEnderecoRecenLoginWidget
+                                            .routeName,
+                                        context.mounted,
+                                        queryParameters: {
+                                          'queryCarrinhoList': serializeParam(
+                                            _model.queryList77,
+                                            ParamType.Document,
+                                            isList: true,
+                                          ),
+                                        }.withoutNulls,
+                                        extra: <String, dynamic>{
+                                          'queryCarrinhoList':
+                                              _model.queryList77,
+                                        },
+                                      );
+
+                                      if (_shouldSetState) safeSetState(() {});
+                                      return;
+                                    }
+                                  } else {
+                                    if (_shouldSetState) safeSetState(() {});
+                                    return;
+                                  }
                                 }
+                              } else {
+                                if (_shouldSetState) safeSetState(() {});
+                                return;
                               }
 
                               if (_shouldSetState) safeSetState(() {});

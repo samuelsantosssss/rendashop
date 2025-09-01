@@ -1,12 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/loja/cupom/cupom_acima10/cupom_acima10_widget.dart';
 import '/loja/cupom/cupom_acima19/cupom_acima19_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -1698,7 +1698,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                                               5.0),
                                                                           child:
                                                                               Text(
-                                                                            functions.cupomData(containerCupomRecord.data!),
+                                                                            'Termina em ${functions.cupomData(containerCupomRecord.data!)} dias',
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   font: GoogleFonts.inter(
                                                                                     fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -3150,7 +3150,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                                               5.0),
                                                                           child:
                                                                               Text(
-                                                                            functions.cupomData(containerCupomRecord.data!),
+                                                                            'Termina em ${functions.cupomData(containerCupomRecord.data!)} dias',
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   font: GoogleFonts.inter(
                                                                                     fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
@@ -4565,7 +4565,7 @@ class _Cupom2WidgetState extends State<Cupom2Widget> {
                                                                               5.0),
                                                                           child:
                                                                               Text(
-                                                                            functions.cupomData(containerCupomRecord.data!),
+                                                                            'Termina em ${functions.cupomData(containerCupomRecord.data!)} dias',
                                                                             style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                   font: GoogleFonts.inter(
                                                                                     fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,

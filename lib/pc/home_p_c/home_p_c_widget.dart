@@ -2,15 +2,19 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/carregando/carregando18/carregando18_widget.dart';
 import '/carregando/carregando19/carregando19_widget.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
+import '/carregando/carregando26/carregando26_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/loja/promocao_relampago/time_promo_home/time_promo_home_widget.dart';
 import '/loja/promocao_relampago/updata_promo_home/updata_promo_home_widget.dart';
-import '/custom_code/actions/index.dart' as actions;
+import '/pc/login_p_c_principal/login_p_c_principal_widget.dart';
+import '/pc/rodape/rodape_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -96,28 +100,39 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Text(
-                                      'Venda na Renda Shop',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.inter(
+                                    InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        context.pushNamed(
+                                            HomeLogistaPCWidget.routeName);
+                                      },
+                                      child: Text(
+                                        'Venda na Renda Shop',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.inter(
+                                                fontWeight: FontWeight.w300,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              fontSize: 13.0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.w300,
                                               fontStyle:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
                                                       .fontStyle,
                                             ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 13.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w300,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
+                                      ),
                                     ),
                                     Container(
                                       width: 1.0,
@@ -194,71 +209,178 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                   ],
                                 ),
                               ),
-                              Container(
-                                width: 130.0,
-                                height: 16.0,
-                                decoration: BoxDecoration(),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      'Cadastre',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.inter(
-                                              fontWeight: FontWeight.w500,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 13.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
+                              if (loggedIn == false)
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor: Colors.transparent,
+                                      enableDrag: false,
+                                      context: context,
+                                      builder: (context) {
+                                        return Padding(
+                                          padding:
+                                              MediaQuery.viewInsetsOf(context),
+                                          child: LoginPCPrincipalWidget(),
+                                        );
+                                      },
+                                    ).then((value) => safeSetState(() {}));
+                                  },
+                                  child: Container(
+                                    width: 130.0,
+                                    height: 16.0,
+                                    decoration: BoxDecoration(),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          'Cadastre',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                font: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                fontSize: 13.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                        ),
+                                        Container(
+                                          width: 1.0,
+                                          height: 100.0,
+                                          decoration: BoxDecoration(
+                                            color: Color(0x88FFFFFF),
                                           ),
+                                        ),
+                                        Text(
+                                          'Entre',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                font: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                fontSize: 13.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                        ),
+                                      ],
                                     ),
-                                    Container(
-                                      width: 1.0,
-                                      height: 100.0,
-                                      decoration: BoxDecoration(
-                                        color: Color(0x88FFFFFF),
-                                      ),
-                                    ),
-                                    Text(
-                                      'Entre',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            font: GoogleFonts.inter(
-                                              fontWeight: FontWeight.w500,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 13.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
-                                            fontStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMedium
-                                                    .fontStyle,
-                                          ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
+                              if (loggedIn == true)
+                                InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    FFAppState().statusNaopago = true;
+                                    FFAppState().statusPreparando = false;
+                                    FFAppState().statusEnviado = false;
+                                    FFAppState().statusReembolso = false;
+                                    FFAppState().statusFinalizado = false;
+                                    FFAppState().statusCancelado = false;
+                                    safeSetState(() {});
+
+                                    context.pushNamed(PerfilPCWidget.routeName);
+                                  },
+                                  child: Container(
+                                    height: 27.0,
+                                    decoration: BoxDecoration(),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        AuthUserStreamWidget(
+                                          builder: (context) => Container(
+                                            width: 27.0,
+                                            height: 27.0,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: Image.network(
+                                              valueOrDefault<String>(
+                                                currentUserPhoto,
+                                                'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/Ainda%20n%C3%A3o%20Existem%20Pedidos%20(11).png?alt=media&token=e5c7f1ab-12eb-4a45-9c2b-a2830445c928',
+                                              ),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  7.0, 0.0, 0.0, 0.0),
+                                          child: AuthUserStreamWidget(
+                                            builder: (context) => Text(
+                                              currentUserDisplayName,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    font: GoogleFonts.inter(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    fontSize: 13.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                             ],
                           ),
                         ),
@@ -277,7 +399,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                               image: DecorationImage(
                                 fit: BoxFit.contain,
                                 image: Image.network(
-                                  'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/logoooooooo2.png?alt=media&token=569797ff-53e3-4cac-ba5a-0210ddc61237',
+                                  'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/logo%20PC.jpg?alt=media&token=e8ba2377-16d0-4711-b1fb-dbbe7af71b83',
                                 ).image,
                               ),
                             ),
@@ -326,6 +448,47 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                             controller: _model.textController,
                                             focusNode:
                                                 _model.textFieldFocusNode,
+                                            onFieldSubmitted: (_) async {
+                                              FFAppState()
+                                                      .palavraChavePesquisa =
+                                                  functions
+                                                      .listaBuscaHistorico(
+                                                          _model.textController
+                                                              .text,
+                                                          (currentUserDocument
+                                                                      ?.historicoPesquisa
+                                                                      .toList() ??
+                                                                  [])
+                                                              .toList())
+                                                      .toList()
+                                                      .cast<String>();
+                                              safeSetState(() {});
+                                              FFAppState().filtroRelevencia =
+                                                  true;
+                                              FFAppState().FiltroDestaque =
+                                                  false;
+                                              FFAppState().filtroRecente =
+                                                  false;
+                                              FFAppState().filtroPreco = '';
+                                              FFAppState().feedDocumentoAntes =
+                                                  '4';
+                                              FFAppState().liberarMais = 30;
+                                              safeSetState(() {});
+
+                                              context.pushNamed(
+                                                  PcCategoriaWidget.routeName);
+
+                                              await currentUserReference!
+                                                  .update({
+                                                ...mapToFirestore(
+                                                  {
+                                                    'historicoPesquisa':
+                                                        FFAppState()
+                                                            .palavraChavePesquisa,
+                                                  },
+                                                ),
+                                              });
+                                            },
                                             autofocus: false,
                                             obscureText: false,
                                             decoration: InputDecoration(
@@ -446,11 +609,83 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                         borderRadius:
                                             BorderRadius.circular(5.0),
                                       ),
-                                      child: Icon(
-                                        Icons.search_rounded,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        size: 20.0,
+                                      child: GestureDetector(
+                                        onTap: () async {
+                                          FFAppState().palavraChavePesquisa =
+                                              functions
+                                                  .listaBuscaHistorico(
+                                                      _model
+                                                          .textController.text,
+                                                      (currentUserDocument
+                                                                  ?.historicoPesquisa
+                                                                  .toList() ??
+                                                              [])
+                                                          .toList())
+                                                  .toList()
+                                                  .cast<String>();
+                                          safeSetState(() {});
+                                          FFAppState().filtroRelevencia = true;
+                                          FFAppState().FiltroDestaque = false;
+                                          FFAppState().filtroRecente = false;
+                                          FFAppState().filtroPreco = '';
+                                          FFAppState().feedDocumentoAntes = '4';
+                                          FFAppState().liberarMais = 30;
+                                          safeSetState(() {});
+
+                                          context.pushNamed(
+                                              PcCategoriaWidget.routeName);
+
+                                          await currentUserReference!.update({
+                                            ...mapToFirestore(
+                                              {
+                                                'historicoPesquisa':
+                                                    FFAppState()
+                                                        .palavraChavePesquisa,
+                                              },
+                                            ),
+                                          });
+                                        },
+                                        onForcePressEnd: (details) async {
+                                          FFAppState().palavraChavePesquisa =
+                                              functions
+                                                  .listaBuscaHistorico(
+                                                      _model
+                                                          .textController.text,
+                                                      (currentUserDocument
+                                                                  ?.historicoPesquisa
+                                                                  .toList() ??
+                                                              [])
+                                                          .toList())
+                                                  .toList()
+                                                  .cast<String>();
+                                          safeSetState(() {});
+                                          FFAppState().filtroRelevencia = true;
+                                          FFAppState().FiltroDestaque = false;
+                                          FFAppState().filtroRecente = false;
+                                          FFAppState().filtroPreco = '';
+                                          FFAppState().feedDocumentoAntes = '4';
+                                          FFAppState().liberarMais = 30;
+                                          safeSetState(() {});
+
+                                          context.pushNamed(
+                                              PcCategoriaWidget.routeName);
+
+                                          await currentUserReference!.update({
+                                            ...mapToFirestore(
+                                              {
+                                                'historicoPesquisa':
+                                                    FFAppState()
+                                                        .palavraChavePesquisa,
+                                              },
+                                            ),
+                                          });
+                                        },
+                                        child: Icon(
+                                          Icons.search_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          size: 20.0,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -458,84 +693,264 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                               ),
                             ),
                           ),
-                          Align(
-                            alignment: AlignmentDirectional(1.0, -1.0),
-                            child: Container(
-                              width: 88.38,
-                              height: 55.6,
-                              decoration: BoxDecoration(),
-                              child: Align(
-                                alignment: AlignmentDirectional(0.0, -1.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Flexible(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 20.0, 0.0),
-                                        child: badges.Badge(
-                                          badgeContent: Text(
-                                            '1',
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleSmall
-                                                .override(
-                                                  font: GoogleFonts.interTight(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmall
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmall
-                                                            .fontStyle,
-                                                  ),
-                                                  color: Colors.white,
-                                                  fontSize: 15.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .fontStyle,
-                                                ),
+                          Container(
+                            decoration: BoxDecoration(),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                if (currentUserReference == null)
+                                  Align(
+                                    alignment: AlignmentDirectional(1.0, -1.0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          20.0, 0.0, 0.0, 10.0),
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed(
+                                              CarrinhoPCNaoLogadoWidget
+                                                  .routeName);
+                                        },
+                                        child: Container(
+                                          width: 31.0,
+                                          height: 31.0,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
                                           ),
-                                          showBadge: false,
-                                          shape: badges.BadgeShape.circle,
-                                          badgeColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primary,
-                                          elevation: 1.0,
-                                          padding: EdgeInsets.all(6.0),
-                                          position:
-                                              badges.BadgePosition.topEnd(),
-                                          animationType:
-                                              badges.BadgeAnimationType.scale,
-                                          toAnimate: true,
                                           child: Align(
                                             alignment:
-                                                AlignmentDirectional(1.0, -1.0),
-                                            child: Icon(
-                                              Icons.shopping_cart_outlined,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              size: 30.0,
+                                                AlignmentDirectional(-1.0, 1.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 6.0, 4.0, 0.0),
+                                              child: badges.Badge(
+                                                badgeContent: Text(
+                                                  functions
+                                                      .somarQuantidadesCarrinhoSemLogin(
+                                                          FFAppState()
+                                                              .CarrinhoTemporarioNacional
+                                                              .toList(),
+                                                          FFAppState()
+                                                              .CarrinhoTemporarioInternacional
+                                                              .toList())
+                                                      .toString(),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .titleSmall
+                                                      .override(
+                                                        font: GoogleFonts
+                                                            .interTight(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .fontStyle,
+                                                        ),
+                                                        color: Colors.white,
+                                                        fontSize: 10.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontStyle,
+                                                      ),
+                                                ),
+                                                showBadge: ((FFAppState()
+                                                            .CarrinhoTemporarioNacional
+                                                            .isNotEmpty) ==
+                                                        true) ||
+                                                    ((FFAppState()
+                                                            .CarrinhoTemporarioInternacional
+                                                            .isNotEmpty) ==
+                                                        true),
+                                                shape: badges.BadgeShape.circle,
+                                                badgeColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                elevation: 11.0,
+                                                padding: EdgeInsets.all(6.0),
+                                                position: badges.BadgePosition
+                                                    .topEnd(),
+                                                animationType: badges
+                                                    .BadgeAnimationType.scale,
+                                                toAnimate: true,
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          1.0, -1.0),
+                                                  child: Icon(
+                                                    Icons
+                                                        .shopping_cart_outlined,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    size: 30.0,
+                                                  ),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
+                                  ),
+                                if (currentUserReference != null)
+                                  Align(
+                                    alignment: AlignmentDirectional(1.0, -1.0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          20.0, 0.0, 0.0, 10.0),
+                                      child:
+                                          StreamBuilder<List<CarrinhoRecord>>(
+                                        stream: queryCarrinhoRecord(
+                                          parent: currentUserReference,
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 26.0,
+                                                height: 26.0,
+                                                child: SpinKitCircle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 26.0,
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          List<CarrinhoRecord>
+                                              containerCarrinhoRecordList =
+                                              snapshot.data!;
+
+                                          return InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              context.pushNamed(
+                                                  CarrinhoPCWidget.routeName);
+                                            },
+                                            child: Container(
+                                              width: 31.0,
+                                              height: 31.0,
+                                              decoration: BoxDecoration(
+                                                color: Color(0x8F000000),
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Align(
+                                                alignment: AlignmentDirectional(
+                                                    -1.0, 1.0),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 6.0, 4.0, 0.0),
+                                                  child: badges.Badge(
+                                                    badgeContent: Text(
+                                                      valueOrDefault<String>(
+                                                        currentUserReference !=
+                                                                null
+                                                            ? functions
+                                                                .somarQuantidadesTotal(
+                                                                    containerCarrinhoRecordList
+                                                                        .toList())
+                                                            : FFAppState()
+                                                                .quantidadeCarrinho
+                                                                .toString(),
+                                                        '0',
+                                                      ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .titleSmall
+                                                          .override(
+                                                            font: GoogleFonts
+                                                                .interTight(
+                                                              fontWeight:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .fontWeight,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .fontStyle,
+                                                            ),
+                                                            color: Colors.white,
+                                                            fontSize: 10.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleSmall
+                                                                    .fontStyle,
+                                                          ),
+                                                    ),
+                                                    showBadge: functions
+                                                            .somarQuantidadesTotal(
+                                                                containerCarrinhoRecordList
+                                                                    .toList()) !=
+                                                        '0',
+                                                    shape: badges
+                                                        .BadgeShape.circle,
+                                                    badgeColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary,
+                                                    elevation: 11.0,
+                                                    padding:
+                                                        EdgeInsets.all(6.0),
+                                                    position: badges
+                                                        .BadgePosition.topEnd(),
+                                                    animationType: badges
+                                                        .BadgeAnimationType
+                                                        .scale,
+                                                    toAnimate: true,
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              1.0, -1.0),
+                                                      child: Icon(
+                                                        Icons
+                                                            .shopping_cart_outlined,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        size: 30.0,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                              ],
                             ),
                           ),
                         ],
@@ -547,12 +962,11 @@ class _HomePCWidgetState extends State<HomePCWidget> {
             ),
             Container(
               width: double.infinity,
-              height: 299.2,
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
               ),
               child: Column(
-                mainAxisSize: MainAxisSize.max,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Align(
                     alignment: AlignmentDirectional(0.0, -1.0),
@@ -573,39 +987,121 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 4.0),
-                                  child: Container(
-                                    width: 342.1,
-                                    height: 130.0,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: Image.asset(
-                                          'assets/images/R39,_(4).png',
-                                        ).image,
+                                  child: StreamBuilder<List<BannerRecord>>(
+                                    stream: queryBannerRecord(
+                                      queryBuilder: (bannerRecord) =>
+                                          bannerRecord.where(
+                                        'local',
+                                        isEqualTo: 'pc1',
                                       ),
-                                      borderRadius: BorderRadius.circular(7.0),
+                                      singleRecord: true,
                                     ),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 26.0,
+                                            height: 26.0,
+                                            child: SpinKitCircle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              size: 26.0,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      List<BannerRecord>
+                                          containerBannerRecordList =
+                                          snapshot.data!;
+                                      // Return an empty Container when the item does not exist.
+                                      if (snapshot.data!.isEmpty) {
+                                        return Container();
+                                      }
+                                      final containerBannerRecord =
+                                          containerBannerRecordList.isNotEmpty
+                                              ? containerBannerRecordList.first
+                                              : null;
+
+                                      return Container(
+                                        width: 342.1,
+                                        height: 160.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: Image.network(
+                                              containerBannerRecord!
+                                                  .listaBanner.firstOrNull!,
+                                            ).image,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(7.0),
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 4.0, 0.0, 0.0),
-                                  child: Container(
-                                    width: 342.1,
-                                    height: 130.0,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: Image.asset(
-                                          'assets/images/R39,_(4).png',
-                                        ).image,
+                                      0.0, 5.0, 0.0, 4.0),
+                                  child: StreamBuilder<List<BannerRecord>>(
+                                    stream: queryBannerRecord(
+                                      queryBuilder: (bannerRecord) =>
+                                          bannerRecord.where(
+                                        'local',
+                                        isEqualTo: 'pc2',
                                       ),
-                                      borderRadius: BorderRadius.circular(7.0),
+                                      singleRecord: true,
                                     ),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 26.0,
+                                            height: 26.0,
+                                            child: SpinKitCircle(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              size: 26.0,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      List<BannerRecord>
+                                          containerBannerRecordList =
+                                          snapshot.data!;
+                                      // Return an empty Container when the item does not exist.
+                                      if (snapshot.data!.isEmpty) {
+                                        return Container();
+                                      }
+                                      final containerBannerRecord =
+                                          containerBannerRecordList.isNotEmpty
+                                              ? containerBannerRecordList.first
+                                              : null;
+
+                                      return Container(
+                                        width: 342.1,
+                                        height: 160.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: Image.network(
+                                              containerBannerRecord!
+                                                  .listaBanner.firstOrNull!,
+                                            ).image,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(7.0),
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ),
                               ],
@@ -614,19 +1110,500 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   8.0, 0.0, 0.0, 0.0),
                               child: Container(
-                                width: 949.0,
-                                height: 268.1,
+                                width: 637.0,
+                                height: 330.1,
                                 decoration: BoxDecoration(
                                   color: FlutterFlowTheme.of(context)
                                       .secondaryBackground,
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    image: Image.asset(
-                                      'assets/images/R39,_(4).png',
-                                    ).image,
-                                  ),
                                   borderRadius: BorderRadius.circular(7.0),
+                                ),
+                                child: Stack(
+                                  children: [
+                                    StreamBuilder<List<BannerRecord>>(
+                                      stream: queryBannerRecord(
+                                        queryBuilder: (bannerRecord) =>
+                                            bannerRecord.where(
+                                          'local',
+                                          isEqualTo: 'homePC',
+                                        ),
+                                        singleRecord: true,
+                                      ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Carregando26Widget();
+                                        }
+                                        List<BannerRecord>
+                                            containerBannerRecordList =
+                                            snapshot.data!;
+                                        // Return an empty Container when the item does not exist.
+                                        if (snapshot.data!.isEmpty) {
+                                          return Container();
+                                        }
+                                        final containerBannerRecord =
+                                            containerBannerRecordList.isNotEmpty
+                                                ? containerBannerRecordList
+                                                    .first
+                                                : null;
+
+                                        return Container(
+                                          width: double.infinity,
+                                          height: double.infinity,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(7.0),
+                                          ),
+                                          child: Builder(
+                                            builder: (context) {
+                                              final banner =
+                                                  containerBannerRecord
+                                                          ?.listaBanner
+                                                          .toList() ??
+                                                      [];
+
+                                              return Container(
+                                                width: double.infinity,
+                                                height: 132.0,
+                                                child: CarouselSlider.builder(
+                                                  itemCount: banner.length,
+                                                  itemBuilder: (context,
+                                                      bannerIndex, _) {
+                                                    final bannerItem =
+                                                        banner[bannerIndex];
+                                                    return ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              7.0),
+                                                      child: Image.network(
+                                                        bannerItem,
+                                                        width: double.infinity,
+                                                        height: double.infinity,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    );
+                                                  },
+                                                  carouselController: _model
+                                                          .carouselController ??=
+                                                      CarouselSliderController(),
+                                                  options: CarouselOptions(
+                                                    initialPage: max(
+                                                        0,
+                                                        min(2,
+                                                            banner.length - 1)),
+                                                    viewportFraction: 1.0,
+                                                    disableCenter: true,
+                                                    enlargeCenterPage: true,
+                                                    enlargeFactor: 0.2,
+                                                    enableInfiniteScroll: true,
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    autoPlay: false,
+                                                    onPageChanged: (index, _) =>
+                                                        _model.carouselCurrentIndex =
+                                                            index,
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                    Align(
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            20.0, 0.0, 20.0, 0.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                await _model.carouselController
+                                                    ?.previousPage(
+                                                  duration: Duration(
+                                                      milliseconds: 300),
+                                                  curve: Curves.ease,
+                                                );
+                                              },
+                                              child: Container(
+                                                width: 40.0,
+                                                height: 40.0,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xA4FFFFFF),
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Icon(
+                                                  Icons.chevron_left_rounded,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  size: 24.0,
+                                                ),
+                                              ),
+                                            ),
+                                            InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                await _model.carouselController
+                                                    ?.nextPage(
+                                                  duration: Duration(
+                                                      milliseconds: 300),
+                                                  curve: Curves.ease,
+                                                );
+                                              },
+                                              child: Container(
+                                                width: 40.0,
+                                                height: 40.0,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xA4FFFFFF),
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                child: Icon(
+                                                  Icons.navigate_next_rounded,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  size: 24.0,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  8.0, 0.0, 0.0, 0.0),
+                              child: Container(
+                                width: 302.0,
+                                height: 330.0,
+                                decoration: BoxDecoration(
+                                  color: Color(0x1085C832),
+                                  borderRadius: BorderRadius.circular(7.0),
+                                  border: Border.all(
+                                    color: Color(0xFF85C832),
+                                    width: 0.5,
+                                  ),
+                                ),
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      width: double.infinity,
+                                      height: 136.0,
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            Color(0xFF85C832),
+                                            FlutterFlowTheme.of(context)
+                                                .secondaryBackground
+                                          ],
+                                          stops: [0.0, 1.0],
+                                          begin:
+                                              AlignmentDirectional(0.0, -1.0),
+                                          end: AlignmentDirectional(0, 1.0),
+                                        ),
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(0.0),
+                                          bottomRight: Radius.circular(0.0),
+                                          topLeft: Radius.circular(7.0),
+                                          topRight: Radius.circular(7.0),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          12.0, 40.0, 12.0, 0.0),
+                                      child: StreamBuilder<List<ProdutoRecord>>(
+                                        stream: queryProdutoRecord(
+                                          queryBuilder: (produtoRecord) =>
+                                              produtoRecord.orderBy('vendas',
+                                                  descending: true),
+                                          limit: 4,
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 26.0,
+                                                height: 26.0,
+                                                child: SpinKitCircle(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 26.0,
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          List<ProdutoRecord>
+                                              gridViewProdutoRecordList =
+                                              snapshot.data!;
+
+                                          return GridView.builder(
+                                            padding: EdgeInsets.zero,
+                                            gridDelegate:
+                                                SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 2,
+                                              crossAxisSpacing: 9.0,
+                                              mainAxisSpacing: 11.0,
+                                              childAspectRatio: 1.01,
+                                            ),
+                                            scrollDirection: Axis.vertical,
+                                            itemCount: gridViewProdutoRecordList
+                                                .length,
+                                            itemBuilder:
+                                                (context, gridViewIndex) {
+                                              final gridViewProdutoRecord =
+                                                  gridViewProdutoRecordList[
+                                                      gridViewIndex];
+                                              return Align(
+                                                alignment: AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    context.pushNamed(
+                                                      PaginaProdutoPCWidget
+                                                          .routeName,
+                                                      queryParameters: {
+                                                        'produtoRef':
+                                                            serializeParam(
+                                                          gridViewProdutoRecord
+                                                              .reference,
+                                                          ParamType
+                                                              .DocumentReference,
+                                                        ),
+                                                      }.withoutNulls,
+                                                    );
+
+                                                    FFAppState()
+                                                        .quantidadeProduto = 1;
+                                                    FFAppState()
+                                                        .selecionarVariante1 = '';
+                                                    FFAppState()
+                                                        .selecionarVariante2 = '';
+                                                    FFAppState()
+                                                        .selecionarVariante1foto = '';
+                                                    FFAppState().verTudo =
+                                                        false;
+                                                    FFAppState()
+                                                            .adicionarCarrinho =
+                                                        false;
+                                                    safeSetState(() {});
+                                                    if ((currentUserDocument
+                                                                    ?.vistoRecente
+                                                                    .toList() ??
+                                                                [])
+                                                            .length ==
+                                                        6) {
+                                                      await currentUserReference!
+                                                          .update({
+                                                        ...mapToFirestore(
+                                                          {
+                                                            'vistoRecente':
+                                                                FieldValue
+                                                                    .arrayRemove([
+                                                              (currentUserDocument
+                                                                          ?.vistoRecente
+                                                                          .toList() ??
+                                                                      [])
+                                                                  .firstOrNull
+                                                            ]),
+                                                          },
+                                                        ),
+                                                      });
+
+                                                      await currentUserReference!
+                                                          .update({
+                                                        ...mapToFirestore(
+                                                          {
+                                                            'vistoRecente':
+                                                                FieldValue
+                                                                    .arrayUnion([
+                                                              gridViewProdutoRecord
+                                                                  .reference.id
+                                                            ]),
+                                                          },
+                                                        ),
+                                                      });
+                                                    } else {
+                                                      await currentUserReference!
+                                                          .update({
+                                                        ...mapToFirestore(
+                                                          {
+                                                            'vistoRecente':
+                                                                FieldValue
+                                                                    .arrayUnion([
+                                                              gridViewProdutoRecord
+                                                                  .reference.id
+                                                            ]),
+                                                          },
+                                                        ),
+                                                      });
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                    width: double.infinity,
+                                                    height: double.infinity,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              0.0),
+                                                    ),
+                                                    child: Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      10.0,
+                                                                      0.0,
+                                                                      10.0,
+                                                                      0.0),
+                                                          child: Container(
+                                                            width:
+                                                                double.infinity,
+                                                            height: 112.0,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                              image:
+                                                                  DecorationImage(
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                                image: Image
+                                                                    .network(
+                                                                  gridViewProdutoRecord
+                                                                      .imagens
+                                                                      .firstOrNull!,
+                                                                ).image,
+                                                              ),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          4.0),
+                                                              border:
+                                                                  Border.all(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                                width: 0.4,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'R\$ ${gridViewProdutoRecord.titulo1 != '' ? functions.valorDoubleEmString(gridViewProdutoRecord.menorPrecoRevenda) : functions.valorDoubleEmString(gridViewProdutoRecord.preco)}',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  font:
+                                                                      GoogleFonts
+                                                                          .inter(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  fontSize:
+                                                                      17.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional(-1.0, -1.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            25.0, 8.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Top Tendências',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                font: GoogleFonts.inter(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
+                                                color: Color(0xFF1C6224),
+                                                fontSize: 19.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
@@ -640,7 +1617,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                         EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
                     child: Container(
                       width: double.infinity,
-                      height: 5.0,
+                      height: 2.0,
                       decoration: BoxDecoration(
                         color: Color(0xFFE5E4E4),
                       ),
@@ -677,9 +1654,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                       snapshot.data!;
 
                   return Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xFFF5F5F5),
-                    ),
+                    decoration: BoxDecoration(),
                     child: Visibility(
                       visible: (relampago1ProdutoRecordList.isNotEmpty) == true,
                       child: Padding(
@@ -696,80 +1671,33 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed(
-                                      HomePromoRelampagoWidget.routeName);
-
-                                  FFAppState().horaPromo =
-                                      functions.promoRelampagoHora(
-                                          relampago1ProdutoRecordList.toList());
-                                  FFAppState().promoRelampago9hVisto =
-                                      functions.promoRelampago9hTrue();
-                                  FFAppState().promoRelampago0hVisto =
-                                      functions.promoRelampago0hTrue();
-                                  FFAppState().promoRelampago12hVisto =
-                                      functions.promoRelampago12hTrue();
-                                  FFAppState().promoRelampago18hVisto =
-                                      functions.promoRelampago18hTrue();
-                                  FFAppState().promoRelampago21hVisto =
-                                      functions.promoRelampago21hTrue();
-                                  FFAppState().promoRelampagoVistoAmanha =
-                                      functions.promoRelampagoAmanhaTrue();
-                                  safeSetState(() {});
-                                  FFAppState().promoCor =
-                                      functions.promoRelampagoCor(
-                                          FFAppState().horaPromo);
-                                  safeSetState(() {});
-                                  await actions.promoRelampagoUpdate(
-                                    relampago1ProdutoRecordList.toList(),
-                                  );
-                                },
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Align(
-                                      alignment:
-                                          AlignmentDirectional(-1.0, -1.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 0.0, 0.0),
-                                        child: Container(
-                                          decoration: BoxDecoration(),
-                                          child: Stack(
-                                            children: [
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          9.0, 2.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    'OFERTAS',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .titleSmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .interTight(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 19.0,
-                                                          letterSpacing: 0.0,
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Align(
+                                    alignment: AlignmentDirectional(-1.0, -1.0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 10.0, 0.0, 0.0),
+                                      child: Container(
+                                        decoration: BoxDecoration(),
+                                        child: Stack(
+                                          children: [
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        9.0, 2.0, 0.0, 0.0),
+                                                child: Text(
+                                                  'OFERTAS',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .titleSmall
+                                                      .override(
+                                                        font: GoogleFonts
+                                                            .interTight(
                                                           fontWeight:
                                                               FontWeight.w500,
                                                           fontStyle:
@@ -778,53 +1706,54 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                                   .titleSmall
                                                                   .fontStyle,
                                                         ),
-                                                  ),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        fontSize: 19.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontStyle,
+                                                      ),
                                                 ),
                                               ),
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    -1.0, 0.0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          118.0, 0.0, 0.0, 0.0),
-                                                  child: Icon(
-                                                    Icons.flash_on,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    size: 25.0,
-                                                  ),
+                                            ),
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  -1.0, 0.0),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        118.0, 0.0, 0.0, 0.0),
+                                                child: Icon(
+                                                  Icons.flash_on,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  size: 25.0,
                                                 ),
                                               ),
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    0.0, 0.0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          97.0, 1.0, 0.0, 0.0),
-                                                  child: Text(
-                                                    'RE    LÂMPAGO',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .titleSmall
-                                                        .override(
-                                                          font: GoogleFonts
-                                                              .interTight(
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .fontStyle,
-                                                          ),
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          fontSize: 20.0,
-                                                          letterSpacing: 0.0,
+                                            ),
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        97.0, 1.0, 0.0, 0.0),
+                                                child: Text(
+                                                  'RE    LÂMPAGO',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .titleSmall
+                                                      .override(
+                                                        font: GoogleFonts
+                                                            .interTight(
                                                           fontWeight:
                                                               FontWeight.w600,
                                                           fontStyle:
@@ -833,120 +1762,113 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                                   .titleSmall
                                                                   .fontStyle,
                                                         ),
-                                                  ),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        fontSize: 20.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontStyle,
+                                                      ),
                                                 ),
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
-                                    Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          10.0, 0.0, 0.0, 0.0),
+                                      child: Container(
+                                        width: 61.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                        child: Stack(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 11.0, 0.0, 0.0),
+                                              child: Container(
+                                                width: 56.0,
+                                                height: 17.0,
+                                                decoration: BoxDecoration(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          4.0),
+                                                ),
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  -1.0, -1.0),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        4.0, 13.0, 0.0, 0.0),
+                                                child: wrapWithModel(
+                                                  model:
+                                                      _model.timePromoHomeModel,
+                                                  updateCallback: () =>
+                                                      safeSetState(() {}),
+                                                  child: TimePromoHomeWidget(),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 12.0, 0.0, 0.0),
+                                      child: Icon(
+                                        Icons.timer_sharp,
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryText,
+                                        size: 16.0,
+                                      ),
+                                    ),
+                                  ),
+                                  Flexible(
+                                    child: Align(
+                                      alignment: AlignmentDirectional(1.0, 0.0),
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 0.0, 0.0, 0.0),
+                                            0.0, 11.0, 10.0, 0.0),
                                         child: Container(
-                                          width: 61.0,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
                                           ),
-                                          child: Stack(
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
                                             children: [
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 11.0, 0.0, 0.0),
-                                                child: Container(
-                                                  width: 56.0,
-                                                  height: 17.0,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            4.0),
-                                                  ),
-                                                ),
-                                              ),
-                                              Align(
-                                                alignment: AlignmentDirectional(
-                                                    -1.0, -1.0),
-                                                child: Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          4.0, 13.0, 0.0, 0.0),
-                                                  child: wrapWithModel(
-                                                    model: _model
-                                                        .timePromoHomeModel,
-                                                    updateCallback: () =>
-                                                        safeSetState(() {}),
-                                                    child:
-                                                        TimePromoHomeWidget(),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 12.0, 0.0, 0.0),
-                                        child: Icon(
-                                          Icons.timer_sharp,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primaryText,
-                                          size: 16.0,
-                                        ),
-                                      ),
-                                    ),
-                                    Flexible(
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional(1.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 11.0, 10.0, 0.0),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Text(
-                                                  'Ver Mais',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font: GoogleFonts.inter(
-                                                          fontWeight:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontWeight,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        fontSize: 14.0,
-                                                        letterSpacing: 0.0,
+                                              Text(
+                                                'Ver Mais',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      font: GoogleFonts.inter(
                                                         fontWeight:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -958,22 +1880,38 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                                 .bodyMedium
                                                                 .fontStyle,
                                                       ),
-                                                ),
-                                                Icon(
-                                                  Icons.navigate_next,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 24.0,
-                                                ),
-                                              ],
-                                            ),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryText,
+                                                      fontSize: 14.0,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                              ),
+                                              Icon(
+                                                Icons.navigate_next,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryText,
+                                                size: 24.0,
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
@@ -1043,13 +1981,13 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                             Colors.transparent,
                                                         onTap: () async {
                                                           context.pushNamed(
-                                                            PaginaProdutoWidget
+                                                            PaginaProdutoPCWidget
                                                                 .routeName,
                                                             queryParameters: {
                                                               'produtoRef':
                                                                   serializeParam(
                                                                 produtoListItem
-                                                                    .reference,
+                                                                    .produtoRef,
                                                                 ParamType
                                                                     .DocumentReference,
                                                               ),
@@ -1070,21 +2008,57 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                                   .adicionarCarrinho =
                                                               false;
                                                           safeSetState(() {});
+                                                          if ((currentUserDocument
+                                                                          ?.vistoRecente
+                                                                          .toList() ??
+                                                                      [])
+                                                                  .length ==
+                                                              6) {
+                                                            await currentUserReference!
+                                                                .update({
+                                                              ...mapToFirestore(
+                                                                {
+                                                                  'vistoRecente':
+                                                                      FieldValue
+                                                                          .arrayRemove([
+                                                                    (currentUserDocument?.vistoRecente.toList() ??
+                                                                            [])
+                                                                        .firstOrNull
+                                                                  ]),
+                                                                },
+                                                              ),
+                                                            });
 
-                                                          await currentUserReference!
-                                                              .update({
-                                                            ...mapToFirestore(
-                                                              {
-                                                                'vistoRecente':
-                                                                    FieldValue
-                                                                        .arrayUnion([
-                                                                  produtoListItem
-                                                                      .reference
-                                                                      .id
-                                                                ]),
-                                                              },
-                                                            ),
-                                                          });
+                                                            await currentUserReference!
+                                                                .update({
+                                                              ...mapToFirestore(
+                                                                {
+                                                                  'vistoRecente':
+                                                                      FieldValue
+                                                                          .arrayUnion([
+                                                                    produtoListItem
+                                                                        .produtoRef
+                                                                        ?.id
+                                                                  ]),
+                                                                },
+                                                              ),
+                                                            });
+                                                          } else {
+                                                            await currentUserReference!
+                                                                .update({
+                                                              ...mapToFirestore(
+                                                                {
+                                                                  'vistoRecente':
+                                                                      FieldValue
+                                                                          .arrayUnion([
+                                                                    produtoListItem
+                                                                        .reference
+                                                                        .id
+                                                                  ]),
+                                                                },
+                                                              ),
+                                                            });
+                                                          }
                                                         },
                                                         child: Container(
                                                           decoration:
@@ -1354,150 +2328,6 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                             },
                                           ),
                                         ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 50.0),
-                                          child: InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              context.pushNamed(
-                                                  HomePromoRelampagoWidget
-                                                      .routeName);
-
-                                              FFAppState().horaPromo =
-                                                  functions.promoRelampagoHora(
-                                                      relampago1ProdutoRecordList
-                                                          .toList());
-                                              FFAppState()
-                                                      .promoRelampago9hVisto =
-                                                  functions
-                                                      .promoRelampago9hTrue();
-                                              FFAppState()
-                                                      .promoRelampago0hVisto =
-                                                  functions
-                                                      .promoRelampago0hTrue();
-                                              FFAppState()
-                                                      .promoRelampago12hVisto =
-                                                  functions
-                                                      .promoRelampago12hTrue();
-                                              FFAppState()
-                                                      .promoRelampago18hVisto =
-                                                  functions
-                                                      .promoRelampago18hTrue();
-                                              FFAppState()
-                                                      .promoRelampago21hVisto =
-                                                  functions
-                                                      .promoRelampago21hTrue();
-                                              FFAppState()
-                                                      .promoRelampagoVistoAmanha =
-                                                  functions
-                                                      .promoRelampagoAmanhaTrue();
-                                              safeSetState(() {});
-                                              FFAppState().promoCor =
-                                                  functions.promoRelampagoCor(
-                                                      FFAppState().horaPromo);
-                                              safeSetState(() {});
-                                              await actions
-                                                  .promoRelampagoUpdate(
-                                                relampago1ProdutoRecordList
-                                                    .toList(),
-                                              );
-                                            },
-                                            child: Container(
-                                              width: 100.0,
-                                              height: 100.0,
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                              ),
-                                              child: Stack(
-                                                children: [
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: Icon(
-                                                      Icons.navigate_next,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      size: 25.0,
-                                                    ),
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: Icon(
-                                                      Icons.circle_outlined,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      size: 35.0,
-                                                    ),
-                                                  ),
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  55.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        'Ver tudo',
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font:
-                                                                      GoogleFonts
-                                                                          .inter(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  fontSize:
-                                                                      11.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
                                       ],
                                     ),
                                   ),
@@ -1603,7 +2433,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                   safeSetState(() {});
 
                                                   context.pushNamed(
-                                                      PesquisaGaleriaWidget
+                                                      PcCategoriaWidget
                                                           .routeName);
                                                 },
                                                 child: Column(
@@ -1722,7 +2552,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                   safeSetState(() {});
 
                                                   context.pushNamed(
-                                                      PesquisaGaleriaWidget
+                                                      PcCategoriaWidget
                                                           .routeName);
                                                 },
                                                 child: Column(
@@ -1850,7 +2680,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                   safeSetState(() {});
 
                                                   context.pushNamed(
-                                                      PesquisaGaleriaWidget
+                                                      PcCategoriaWidget
                                                           .routeName);
                                                 },
                                                 child: Column(
@@ -1972,7 +2802,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                   safeSetState(() {});
 
                                                   context.pushNamed(
-                                                      PesquisaGaleriaWidget
+                                                      PcCategoriaWidget
                                                           .routeName);
                                                 },
                                                 child: Column(
@@ -2100,7 +2930,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                   safeSetState(() {});
 
                                                   context.pushNamed(
-                                                      PesquisaGaleriaWidget
+                                                      PcCategoriaWidget
                                                           .routeName);
                                                 },
                                                 child: Column(
@@ -2212,7 +3042,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                   safeSetState(() {});
 
                                                   context.pushNamed(
-                                                      PesquisaGaleriaWidget
+                                                      PcCategoriaWidget
                                                           .routeName);
                                                 },
                                                 child: Column(
@@ -2340,7 +3170,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                   safeSetState(() {});
 
                                                   context.pushNamed(
-                                                      PesquisaGaleriaWidget
+                                                      PcCategoriaWidget
                                                           .routeName);
                                                 },
                                                 child: Column(
@@ -2452,7 +3282,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                   safeSetState(() {});
 
                                                   context.pushNamed(
-                                                      PesquisaGaleriaWidget
+                                                      PcCategoriaWidget
                                                           .routeName);
                                                 },
                                                 child: Column(
@@ -2590,7 +3420,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                   safeSetState(() {});
 
                                                   context.pushNamed(
-                                                      PesquisaGaleriaWidget
+                                                      PcCategoriaWidget
                                                           .routeName);
                                                 },
                                                 child: Column(
@@ -2712,7 +3542,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                   safeSetState(() {});
 
                                                   context.pushNamed(
-                                                      PesquisaGaleriaWidget
+                                                      PcCategoriaWidget
                                                           .routeName);
                                                 },
                                                 child: Column(
@@ -2840,7 +3670,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                   safeSetState(() {});
 
                                                   context.pushNamed(
-                                                      PesquisaGaleriaWidget
+                                                      PcCategoriaWidget
                                                           .routeName);
                                                 },
                                                 child: Column(
@@ -2964,7 +3794,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                   safeSetState(() {});
 
                                                   context.pushNamed(
-                                                      PesquisaGaleriaWidget
+                                                      PcCategoriaWidget
                                                           .routeName);
                                                 },
                                                 child: Column(
@@ -3102,7 +3932,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                   safeSetState(() {});
 
                                                   context.pushNamed(
-                                                      PesquisaGaleriaWidget
+                                                      PcCategoriaWidget
                                                           .routeName);
                                                 },
                                                 child: Column(
@@ -3224,7 +4054,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                   safeSetState(() {});
 
                                                   context.pushNamed(
-                                                      PesquisaGaleriaWidget
+                                                      PcCategoriaWidget
                                                           .routeName);
                                                 },
                                                 child: Column(
@@ -3352,7 +4182,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                   safeSetState(() {});
 
                                                   context.pushNamed(
-                                                      PesquisaGaleriaWidget
+                                                      PcCategoriaWidget
                                                           .routeName);
                                                 },
                                                 child: Column(
@@ -3477,7 +4307,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                   safeSetState(() {});
 
                                                   context.pushNamed(
-                                                      PesquisaGaleriaWidget
+                                                      PcCategoriaWidget
                                                           .routeName);
                                                 },
                                                 child: Column(
@@ -3615,7 +4445,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                   safeSetState(() {});
 
                                                   context.pushNamed(
-                                                      PesquisaGaleriaWidget
+                                                      PcCategoriaWidget
                                                           .routeName);
                                                 },
                                                 child: Column(
@@ -3736,7 +4566,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                 safeSetState(() {});
 
                                                 context.pushNamed(
-                                                    PesquisaGaleriaWidget
+                                                    PcCategoriaWidget
                                                         .routeName);
                                               },
                                               child: Column(
@@ -3865,7 +4695,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                   safeSetState(() {});
 
                                                   context.pushNamed(
-                                                      PesquisaGaleriaWidget
+                                                      PcCategoriaWidget
                                                           .routeName);
                                                 },
                                                 child: Column(
@@ -3891,7 +4721,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                                     0.0, 0.0),
                                                             image:
                                                                 Image.network(
-                                                              'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/Categorias%2Fbr-11134207-7r98o-ln6mlhiuvcjn09.webp?alt=media&token=bfe32ea6-d35f-4c02-9be1-4a5f19d516d4',
+                                                              'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/Capturarasdasdasdasdasd.PNG?alt=media&token=90aa4b44-5db7-41e6-98a3-514ff101e718',
                                                             ).image,
                                                           ),
                                                           borderRadius:
@@ -3976,7 +4806,7 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                                 safeSetState(() {});
 
                                                 context.pushNamed(
-                                                    PesquisaGaleriaWidget
+                                                    PcCategoriaWidget
                                                         .routeName);
                                               },
                                               child: Column(
@@ -4060,6 +4890,246 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                                         ),
                                       ),
                                     ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 10.0, 0.0),
+                                      child: Container(
+                                        width: 102.0,
+                                        height: 158.0,
+                                        decoration: BoxDecoration(),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 5.0, 0.0, 0.0),
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  FFAppState()
+                                                          .palavraChavePesquisa =
+                                                      functions
+                                                          .listaBuscaHistorico(
+                                                              'Bolsas Masculinas',
+                                                              (currentUserDocument
+                                                                          ?.historicoPesquisa
+                                                                          .toList() ??
+                                                                      [])
+                                                                  .toList())
+                                                          .toList()
+                                                          .cast<String>();
+                                                  safeSetState(() {});
+                                                  FFAppState()
+                                                      .filtroRelevencia = true;
+                                                  FFAppState().FiltroDestaque =
+                                                      false;
+                                                  FFAppState().filtroRecente =
+                                                      false;
+                                                  FFAppState().filtroPreco = '';
+                                                  safeSetState(() {});
+
+                                                  context.pushNamed(
+                                                      PcCategoriaWidget
+                                                          .routeName);
+                                                },
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Container(
+                                                        width: 75.0,
+                                                        height: 75.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          image:
+                                                              DecorationImage(
+                                                            fit: BoxFit.cover,
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    0.0, 0.0),
+                                                            image:
+                                                                Image.network(
+                                                              'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/Categorias%2Fbr-11134207-7r98o-lpb7ri5jxp6aad%20(1).webp?alt=media&token=90ef09e0-59e3-424f-90fa-2ef83ad5c054',
+                                                            ).image,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius.only(
+                                                            bottomLeft:
+                                                                Radius.circular(
+                                                                    22.0),
+                                                            bottomRight:
+                                                                Radius.circular(
+                                                                    21.0),
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    22.0),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    21.0),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      'Papelaria',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            font: GoogleFonts
+                                                                .inter(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                            ),
+                                                            fontSize: 13.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                FFAppState()
+                                                        .palavraChavePesquisa =
+                                                    functions
+                                                        .listaBuscaHistorico(
+                                                            'Animais Domésticos',
+                                                            (currentUserDocument
+                                                                        ?.historicoPesquisa
+                                                                        .toList() ??
+                                                                    [])
+                                                                .toList())
+                                                        .toList()
+                                                        .cast<String>();
+                                                safeSetState(() {});
+                                                FFAppState().filtroRelevencia =
+                                                    true;
+                                                FFAppState().FiltroDestaque =
+                                                    false;
+                                                FFAppState().filtroRecente =
+                                                    false;
+                                                FFAppState().filtroPreco = '';
+                                                safeSetState(() {});
+
+                                                context.pushNamed(
+                                                    PcCategoriaWidget
+                                                        .routeName);
+                                              },
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Container(
+                                                      width: 75.0,
+                                                      height: 75.0,
+                                                      decoration: BoxDecoration(
+                                                        image: DecorationImage(
+                                                          fit: BoxFit.cover,
+                                                          alignment:
+                                                              AlignmentDirectional(
+                                                                  0.0, 0.0),
+                                                          image: Image.network(
+                                                            'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/Categorias%2Fbr-11134207-7r98o-m1zl4lvd9dqp74.webp?alt=media&token=79b81e5e-21e6-4d12-b21f-b416b73c22c2',
+                                                          ).image,
+                                                        ),
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  22.0),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  21.0),
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  22.0),
+                                                          topRight:
+                                                              Radius.circular(
+                                                                  21.0),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 5.0,
+                                                                0.0, 5.0),
+                                                    child: Text(
+                                                      'Computadors e Acessórios',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            font: GoogleFonts
+                                                                .inter(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                            ),
+                                                            fontSize: 13.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
@@ -4069,6 +5139,346 @@ class _HomePCWidgetState extends State<HomePCWidget> {
                       ),
                     ),
                   ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+              child: Container(
+                width: 1300.0,
+                height: 120.05,
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          20.0, 10.0, 20.0, 10.0),
+                      child: Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).primary,
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(1.0, 0.0),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            0.0, 0.0, 150.0, 0.0),
+                        child: Container(
+                          width: 240.55,
+                          height: 55.5,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(30.0),
+                              bottomRight: Radius.circular(0.0),
+                              topLeft: Radius.circular(30.0),
+                              topRight: Radius.circular(0.0),
+                            ),
+                          ),
+                          child: Align(
+                            alignment: AlignmentDirectional(-1.0, 0.0),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 0.0, 0.0, 3.0),
+                              child: Text(
+                                'Confira',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      font: GoogleFonts.notoSansJp(
+                                        fontWeight: FontWeight.w600,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      fontSize: 30.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(1.0, 1.0),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 70.0, 0.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.network(
+                            'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/Design%20sem%20nome%20(89).png?alt=media&token=7a2c70fd-fc54-4a50-a27a-7983c0f4afbc',
+                            width: 200.0,
+                            height: 200.0,
+                            fit: BoxFit.contain,
+                            alignment: Alignment(0.0, 1.0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(-1.0, 0.0),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            156.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'FAÇA VENDAS DIÁRIAS COMO AFILIADO',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    fontSize: 30.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(-0.97, 0.0),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.network(
+                            'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/Ainda%20n%C3%A3o%20Existem%20Pedidos%20(16)JHAJLAS.png?alt=media&token=079c5530-bcf0-49dd-b013-832753734b72',
+                            width: 97.5,
+                            height: 171.35,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(1.0, 1.0),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            0.0, 0.0, 437.0, 0.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.network(
+                            'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/Ainda%20n%C3%A3o%20Existem%20Pedidos%20(17).png?alt=media&token=41082394-34b3-4d0b-9c26-eb3c0c2917d4',
+                            width: 98.75,
+                            height: 161.3,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(1.0, -1.0),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            0.0, 39.0, 100.0, 0.0),
+                        child: Text(
+                          'há 1h',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                font: GoogleFonts.inter(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
+                                ),
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                fontSize: 6.0,
+                                letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(1.0, -1.0),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            0.0, 76.0, 152.0, 0.0),
+                        child: Text(
+                          'VENDA APROVADA!',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    fontSize: 6.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(1.0, -1.0),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            0.0, 48.0, 169.0, 0.0),
+                        child: Text(
+                          'Valor: R\$ 27,00',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    fontSize: 5.5,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(1.0, -1.0),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            0.0, 88.0, 169.0, 0.0),
+                        child: Text(
+                          'Valor: R\$ 54,00',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    fontSize: 5.5,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(1.0, -1.0),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            0.0, 36.0, 152.0, 0.0),
+                        child: Text(
+                          'VENDA APROVADA!',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    font: GoogleFonts.inter(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    fontSize: 6.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(1.0, -1.0),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            0.0, 80.0, 100.0, 0.0),
+                        child: Text(
+                          'há 1h',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                font: GoogleFonts.inter(
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
+                                ),
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                fontSize: 6.0,
+                                letterSpacing: 0.0,
+                                fontWeight: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontWeight,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -5187,8 +6597,13 @@ class _HomePCWidgetState extends State<HomePCWidget> {
             ),
             Container(
               width: 100.0,
-              height: 500.0,
+              height: 89.3,
               decoration: BoxDecoration(),
+            ),
+            wrapWithModel(
+              model: _model.rodapeModel,
+              updateCallback: () => safeSetState(() {}),
+              child: RodapeWidget(),
             ),
           ],
         ),

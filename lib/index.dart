@@ -14,8 +14,7 @@ export '/loja_marktiplace/home_loja_vendedor_1/home_loja_vendedor1_widget.dart'
 export '/loja_marktiplace/produtos/produtos_widget.dart' show ProdutosWidget;
 export '/loja_marktiplace/home_loja_vendedor_2/home_loja_vendedor2_widget.dart'
     show HomeLojaVendedor2Widget;
-export '/loja/pos_venda/status_pedido/status_pedido_widget.dart'
-    show StatusPedidoWidget;
+export '/pc/status_pedido/status_pedido_widget.dart' show StatusPedidoWidget;
 export '/loja_marktiplace/venda_lojista/venda_lojista_widget.dart'
     show VendaLojistaWidget;
 export '/loja_marktiplace/cadastrar_loja/cadastrar_loja_widget.dart'
@@ -28,9 +27,9 @@ export '/loja/endereco/endereco_list/endereco_list_widget.dart'
     show EnderecoListWidget;
 export '/loja/endereco/editar_endereco/editar_endereco_widget.dart'
     show EditarEnderecoWidget;
-export '/loja_marktiplace/cadastrar_produto/adicionar_variante_2/adicionar_variante2_widget.dart'
+export '/loja_marktiplace/adicionar_variante_2/adicionar_variante2_widget.dart'
     show AdicionarVariante2Widget;
-export '/loja_marktiplace/cadastrar_produto/adicionar_variante_11/adicionar_variante11_widget.dart'
+export '/loja_marktiplace/adicionar_variante_11/adicionar_variante11_widget.dart'
     show AdicionarVariante11Widget;
 export '/loja/seguranca/seguranca_widget.dart' show SegurancaWidget;
 export '/loja/avaliacao/minhas_avaliacao/minhas_avaliacao_widget.dart'
@@ -45,7 +44,7 @@ export '/loja_marktiplace/criarcupom/criarcupom_widget.dart'
     show CriarcupomWidget;
 export '/loja_marktiplace/cadastrar_produto/cadastrar_categoria/cadastrar_categoria_widget.dart'
     show CadastrarCategoriaWidget;
-export '/loja/pos_venda/detalhes_do_pedido/detalhes_do_pedido_widget.dart'
+export '/pc/detalhes_do_pedido/detalhes_do_pedido_widget.dart'
     show DetalhesDoPedidoWidget;
 export '/loja/video_produto/video_produto_widget.dart' show VideoProdutoWidget;
 export '/mais_vendido/mais_vendido_widget.dart' show MaisVendidoWidget;
@@ -180,3 +179,16 @@ export '/politica_privacidade/politica_privacidade_widget.dart'
     show PoliticaPrivacidadeWidget;
 export '/pc/carrinho_p_c_nao_logado/carrinho_p_c_nao_logado_widget.dart'
     show CarrinhoPCNaoLogadoWidget;
+export '/pc/comprar_p_c/comprar_p_c_widget.dart' show ComprarPCWidget;
+export '/pc/pix_p_c/pix_p_c_widget.dart' show PixPCWidget;
+export '/pc/perfil_p_c/perfil_p_c_widget.dart' show PerfilPCWidget;
+export '/pc/pix_pagamento_pendente_p_c/pix_pagamento_pendente_p_c_widget.dart'
+    show PixPagamentoPendentePCWidget;
+export '/pc/rastreador_pedido_p_c/rastreador_pedido_p_c_widget.dart'
+    show RastreadorPedidoPCWidget;
+export '/pc/pc_categoria/pc_categoria_widget.dart' show PcCategoriaWidget;
+export '/pc/carrinho_p_c/carrinho_p_c_widget.dart' show CarrinhoPCWidget;
+export '/pc/logista_p_c/home_logista_p_c/home_logista_p_c_widget.dart'
+    show HomeLogistaPCWidget;
+export '/pc/logista_p_c/cadastrar_produto_p_c/cadastrar_produto_p_c_widget.dart'
+    show CadastrarProdutoPCWidget;
