@@ -5,14 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import 'package:ff_commons/flutter_flow/lat_lng.dart';
-import 'package:ff_commons/flutter_flow/place.dart';
-import 'package:ff_commons/flutter_flow/uploaded_file.dart';
+import 'lat_lng.dart';
+import 'place.dart';
+import 'uploaded_file.dart';
 import '/backend/backend.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '/auth/firebase_auth/auth_util.dart';
-import 'package:branchio_dynamic_linking_akp5u6/flutter_flow/custom_functions.dart'
-    as branchio_dynamic_linking_akp5u6_functions;
 
 double contaMultiplicacao(
   double valorX,
@@ -7031,7 +7029,7 @@ List<ProdutoRecord> recomendarProdutosSimilares(
   produtosPontuados.sort((a, b) => b['pontuacao'].compareTo(a['pontuacao']));
 
   final int extra = int.tryParse(quantidadeItem ?? '0') ?? 0;
-  final int quantidadeTotal = 10 + extra;
+  final int quantidadeTotal = 8 + extra;
 
   final resultado = produtosPontuados
       .map((item) => item['produto'] as ProdutoRecord)
@@ -7266,4 +7264,20 @@ double menorValirAfiliado(List<String> listaTexto) {
 
   // Retornar 0.0 se nenhum preço válido foi encontrado
   return menorPreco == double.infinity ? 0.0 : menorPreco;
+}
+
+String buildWebpUrl(String publicId) {
+  const cloudName = "dul9tr5i1";
+
+  // Monta a URL final no formato WebP otimizado
+  return "https://res.cloudinary.com/$cloudName/image/upload/f_webp,q_auto/$publicId";
+}
+
+DocumentReference stringEmDocRefAfiliadoProduto(String id) {
+  if (id.isEmpty) {
+    throw ArgumentError('O ID não pode ser vazio');
+  }
+
+  // Ajuste: coloque o nome exato da sua coleção no Firestore
+  return FirebaseFirestore.instance.collection('produtoAfiliado').doc(id);
 }

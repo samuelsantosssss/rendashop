@@ -4,10 +4,9 @@ import '../cloud_functions/cloud_functions.dart';
 import 'package:flutter/foundation.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
-import 'package:ff_commons/api_requests/api_manager.dart';
+import 'api_manager.dart';
 
-
-export 'package:ff_commons/api_requests/api_manager.dart' show ApiCallResponse;
+export 'api_manager.dart' show ApiCallResponse;
 
 const _kPrivateApiFunctionName = 'pagamentoRendaShop';
 
@@ -323,6 +322,56 @@ class GerarQrCodeCall {
         response,
         r'''$''',
       );
+}
+
+class UploadToCloudinaryCall {
+  static Future<ApiCallResponse> call({
+    FFUploadedFile? file,
+    String? uploadPreset = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'UploadToCloudinary',
+      apiUrl: 'https://api.cloudinary.com/v1_1/dul9tr5i1/image/upload',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'file': file,
+        'upload_preset': uploadPreset,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static String? url(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.secure_url''',
+      ));
+  static String? publicId(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.public_id''',
+      ));
+}
+
+class ApiPagingParams {
+  int nextPageNumber = 0;
+  int numItems = 0;
+  dynamic lastResponse;
+
+  ApiPagingParams({
+    required this.nextPageNumber,
+    required this.numItems,
+    required this.lastResponse,
+  });
+
+  @override
+  String toString() =>
+      'PagingParams(nextPageNumber: $nextPageNumber, numItems: $numItems, lastResponse: $lastResponse,)';
 }
 
 String _toEncodable(dynamic item) {

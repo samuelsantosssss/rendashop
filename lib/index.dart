@@ -1,6 +1,7 @@
 // Export pages
-export '/loja/home_loja/home_loja_widget.dart' show HomeLojaWidget;
-export '/pc/pagina_produto/pagina_produto_widget.dart' show PaginaProdutoWidget;
+export '/loja/home/home_loja/home_loja_widget.dart' show HomeLojaWidget;
+export '/pagina_produto/pagina_produto/pagina_produto_widget.dart'
+    show PaginaProdutoWidget;
 export '/venda/compartilhar_lucrar/compartilhar_lucrar_widget.dart'
     show CompartilharLucrarWidget;
 export '/venda/carrinho/carrinho_widget.dart' show CarrinhoWidget;
@@ -85,7 +86,7 @@ export '/loja/pagamento/pagamento_reprovado2/pagamento_reprovado2_widget.dart'
 export '/loja/pagamento/update_metodo_pagamento/update_metodo_pagamento_widget.dart'
     show UpdateMetodoPagamentoWidget;
 export '/loja/pix3/pix3_widget.dart' show Pix3Widget;
-export '/perfil/perfil2/perfil2_widget.dart' show Perfil2Widget;
+export '/pesquisa/perfil2/perfil2_widget.dart' show Perfil2Widget;
 export '/perfil/configuracao_conta/configuracao_conta_widget.dart'
     show ConfiguracaoContaWidget;
 export '/perfil/conta_seguranca/conta_seguranca_widget.dart'
@@ -125,7 +126,7 @@ export '/loja/promocao_relampago/editar_promo/editar_promo_widget.dart'
     show EditarPromoWidget;
 export '/venda/material_divulgacao/material_divulgacao_widget.dart'
     show MaterialDivulgacaoWidget;
-export '/venda/pagina_produto_afiliado/pagina_produto_afiliado_widget.dart'
+export '/pagina_produto/pagina_produto_afiliado/pagina_produto_afiliado_widget.dart'
     show PaginaProdutoAfiliadoWidget;
 export '/venda/carrinho_nao_logado_venda/carrinho_nao_logado_venda_widget.dart'
     show CarrinhoNaoLogadoVendaWidget;
@@ -166,7 +167,7 @@ export '/perfil/visto_recente/visto_recente_widget.dart'
     show VistoRecenteWidget;
 export '/perfil/favoritos/favoritos_widget.dart' show FavoritosWidget;
 export '/pc/home_p_c/home_p_c_widget.dart' show HomePCWidget;
-export '/notificao/notificacao/notificacao_widget.dart' show NotificacaoWidget;
+export '/pesquisa/notificacao/notificacao_widget.dart' show NotificacaoWidget;
 export '/notificao/pedidos_envio/pedidos_envio_widget.dart'
     show PedidosEnvioWidget;
 export '/notificao/promocoes/promocoes_widget.dart' show PromocoesWidget;
@@ -192,3 +193,7 @@ export '/pc/logista_p_c/home_logista_p_c/home_logista_p_c_widget.dart'
     show HomeLogistaPCWidget;
 export '/pc/logista_p_c/cadastrar_produto_p_c/cadastrar_produto_p_c_widget.dart'
     show CadastrarProdutoPCWidget;
+export '/loja/home_loja_copy/home_loja_copy_widget.dart'
+    show HomeLojaCopyWidget;
+export '/pc/pagina_produto_copy/pagina_produto_copy_widget.dart'
+    show PaginaProdutoCopyWidget;

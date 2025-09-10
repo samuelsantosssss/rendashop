@@ -20,16 +20,12 @@ class FFDevEnvironmentValues {
       final String response =
           await rootBundle.loadString(environmentValuesPath);
       final data = await json.decode(response);
-      _branchHostURL = data['branchHostURL'];
-      _branchKey = data['branchKey'];
+      _deepLinkProdutoRef = data['deepLinkProdutoRef'];
     } catch (e) {
       print('Error loading environment values: $e');
     }
   }
 
-  String _branchHostURL = '';
-  String get branchHostURL => _branchHostURL;
-
-  String _branchKey = '';
-  String get branchKey => _branchKey;
+  String _deepLinkProdutoRef = '';
+  String get deepLinkProdutoRef => _deepLinkProdutoRef;
 }

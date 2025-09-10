@@ -3,6 +3,7 @@ import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -11,7 +12,6 @@ import '/loja/avaliacao/avaliacao_notificacao/avaliacao_notificacao_widget.dart'
 import '/loja/avaliacao/moeda_info/moeda_info_widget.dart';
 import 'dart:async';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -1937,139 +1937,173 @@ class _CriarAvaliacaoWidgetState extends State<CriarAvaliacaoWidget> {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 15.0, 10.0, 15.0, 0.0),
-                            child: FFButtonWidget(
-                              onPressed: () async {
-                                await AvaliacaoRecord.createDoc(
-                                        columnPedidosTotalRecord.produtoRef!)
-                                    .set({
-                                  ...createAvaliacaoRecordData(
-                                    userRef: currentUserReference,
-                                    comentario:
-                                        _model.descricaoTextController.text,
-                                    nota: _model.ratingBarValue1?.round(),
-                                    data: getCurrentTimestamp,
-                                    video: _model
-                                        .uploadedFileUrl_uploadData33f4455555,
-                                    lojaRef: columnPedidosTotalRecord.lojaRef,
-                                    nomeUser: currentUserDisplayName,
-                                    fotoUser: currentUserPhoto,
-                                    variacao: columnPedidosTotalRecord.variacao,
-                                    servicoEntregador:
-                                        _model.ratingBarValue3?.round(),
-                                    videoSet: () {
-                                      if (_model.uploadedFileUrl_uploadData33f4455555 !=
-                                              '') {
-                                        return 2;
-                                      } else if ((_model.uploadedFileUrl_uploadData33f4455555 ==
-                                                  '') &&
-                                          ((_model.uploadedFileUrls_uploadData33f4555
-                                                  .isNotEmpty) ==
-                                              true)) {
-                                        return 1;
-                                      } else {
-                                        return 0;
-                                      }
-                                    }(),
-                                  ),
-                                  ...mapToFirestore(
-                                    {
-                                      'imageList': functions.imgAvaliacao(
-                                          _model
-                                              .uploadedFileUrls_uploadData33f4555
-                                              .toList(),
-                                          _model
-                                              .uploadedFileUrl_uploadData33f4455555),
-                                    },
-                                  ),
-                                });
-
-                                await currentUserReference!.update({
-                                  ...mapToFirestore(
-                                    {
-                                      'moedas': FieldValue.increment(() {
-                                        if (((_model.uploadedFileUrls_uploadData33f4555
-                                                    .isNotEmpty) !=
-                                                null) &&
-                                            (_model.uploadedFileUrl_uploadData33f4455555 !=
-                                                    '')) {
-                                          return 0.10;
-                                        } else if (((_model
-                                                    .uploadedFileUrls_uploadData33f4555
-                                                    .isNotEmpty) !=
-                                                null) &&
-                                            (_model.uploadedFileUrl_uploadData33f4455555 ==
-                                                    '')) {
-                                          return 0.5;
-                                        } else if (((_model
-                                                    .uploadedFileUrls_uploadData33f4555
-                                                    .isNotEmpty) ==
-                                                null) &&
-                                            (_model.uploadedFileUrl_uploadData33f4455555 !=
-                                                    '')) {
-                                          return 0.5;
-                                        } else {
-                                          return 0.0;
-                                        }
-                                      }()),
-                                    },
-                                  ),
-                                });
-
-                                await widget.pedidoRef2!
-                                    .update(createPedidosTotalRecordData(
-                                  avaliado: true,
-                                ));
-                                context.safePop();
-                                await showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  backgroundColor: Color(0x00080808),
-                                  barrierColor: Color(0x00080808),
-                                  enableDrag: false,
-                                  context: context,
-                                  builder: (context) {
-                                    return GestureDetector(
-                                      onTap: () {
-                                        FocusScope.of(context).unfocus();
-                                        FocusManager.instance.primaryFocus
-                                            ?.unfocus();
-                                      },
-                                      child: Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: AvaliacaoNotificacaoWidget(),
+                            child: StreamBuilder<ProdutoRecord>(
+                              stream: ProdutoRecord.getDocument(
+                                  columnPedidosTotalRecord.produtoRef!),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 26.0,
+                                      height: 26.0,
+                                      child: SpinKitCircle(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        size: 26.0,
                                       ),
-                                    );
-                                  },
-                                ).then((value) => safeSetState(() {}));
-                              },
-                              text: 'Enviar',
-                              options: FFButtonOptions(
-                                width: double.infinity,
-                                height: 40.0,
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16.0, 0.0, 16.0, 0.0),
-                                iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).primary,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleSmall
-                                    .override(
-                                      font: GoogleFonts.interTight(
-                                        fontWeight: FontWeight.normal,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .fontStyle,
-                                      ),
-                                      color: Colors.white,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.normal,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .fontStyle,
                                     ),
-                                elevation: 0.0,
-                                borderRadius: BorderRadius.circular(5.0),
-                              ),
+                                  );
+                                }
+
+                                final buttonProdutoRecord = snapshot.data!;
+
+                                return FFButtonWidget(
+                                  onPressed: () async {
+                                    await AvaliacaoRecord.createDoc(
+                                            columnPedidosTotalRecord
+                                                .produtoRef!)
+                                        .set({
+                                      ...createAvaliacaoRecordData(
+                                        userRef: currentUserReference,
+                                        comentario:
+                                            _model.descricaoTextController.text,
+                                        nota: _model.ratingBarValue1?.round(),
+                                        data: getCurrentTimestamp,
+                                        video: _model
+                                            .uploadedFileUrl_uploadData33f4455555,
+                                        lojaRef:
+                                            columnPedidosTotalRecord.lojaRef,
+                                        nomeUser: currentUserDisplayName,
+                                        fotoUser: currentUserPhoto,
+                                        variacao:
+                                            columnPedidosTotalRecord.variacao,
+                                        servicoEntregador:
+                                            _model.ratingBarValue3?.round(),
+                                        videoSet: () {
+                                          if (_model.uploadedFileUrl_uploadData33f4455555 !=
+                                                  '') {
+                                            return 2;
+                                          } else if ((_model.uploadedFileUrl_uploadData33f4455555 ==
+                                                      '') &&
+                                              ((_model.uploadedFileUrls_uploadData33f4555
+                                                      .isNotEmpty) ==
+                                                  true)) {
+                                            return 1;
+                                          } else {
+                                            return 0;
+                                          }
+                                        }(),
+                                      ),
+                                      ...mapToFirestore(
+                                        {
+                                          'imageList': functions.imgAvaliacao(
+                                              _model
+                                                  .uploadedFileUrls_uploadData33f4555
+                                                  .toList(),
+                                              _model
+                                                  .uploadedFileUrl_uploadData33f4455555),
+                                        },
+                                      ),
+                                    });
+
+                                    await currentUserReference!.update({
+                                      ...mapToFirestore(
+                                        {
+                                          'moedas': FieldValue.increment(() {
+                                            if (((_model.uploadedFileUrls_uploadData33f4555
+                                                        .isNotEmpty) !=
+                                                    null) &&
+                                                (_model.uploadedFileUrl_uploadData33f4455555 !=
+                                                        '')) {
+                                              return 0.10;
+                                            } else if (((_model
+                                                        .uploadedFileUrls_uploadData33f4555
+                                                        .isNotEmpty) !=
+                                                    null) &&
+                                                (_model.uploadedFileUrl_uploadData33f4455555 ==
+                                                        '')) {
+                                              return 0.5;
+                                            } else if (((_model
+                                                        .uploadedFileUrls_uploadData33f4555
+                                                        .isNotEmpty) ==
+                                                    null) &&
+                                                (_model.uploadedFileUrl_uploadData33f4455555 !=
+                                                        '')) {
+                                              return 0.5;
+                                            } else {
+                                              return 0.0;
+                                            }
+                                          }()),
+                                        },
+                                      ),
+                                    });
+
+                                    await widget.pedidoRef2!
+                                        .update(createPedidosTotalRecordData(
+                                      avaliado: true,
+                                    ));
+                                    if (!buttonProdutoRecord.comentarioAtivo) {
+                                      await buttonProdutoRecord.reference
+                                          .update(createProdutoRecordData(
+                                        comentarioAtivo: true,
+                                      ));
+                                    }
+                                    context.safePop();
+                                    await showModalBottomSheet(
+                                      isScrollControlled: true,
+                                      backgroundColor: Color(0x00080808),
+                                      barrierColor: Color(0x00080808),
+                                      enableDrag: false,
+                                      context: context,
+                                      builder: (context) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            FocusScope.of(context).unfocus();
+                                            FocusManager.instance.primaryFocus
+                                                ?.unfocus();
+                                          },
+                                          child: Padding(
+                                            padding: MediaQuery.viewInsetsOf(
+                                                context),
+                                            child: AvaliacaoNotificacaoWidget(),
+                                          ),
+                                        );
+                                      },
+                                    ).then((value) => safeSetState(() {}));
+                                  },
+                                  text: 'Enviar',
+                                  options: FFButtonOptions(
+                                    width: double.infinity,
+                                    height: 40.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 16.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          font: GoogleFonts.interTight(
+                                            fontWeight: FontWeight.normal,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .fontStyle,
+                                          ),
+                                          color: Colors.white,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.normal,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .fontStyle,
+                                        ),
+                                    elevation: 0.0,
+                                    borderRadius: BorderRadius.circular(5.0),
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         ],

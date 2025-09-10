@@ -3064,6 +3064,77 @@ class FFAppState extends ChangeNotifier {
   set addTitulo2(bool value) {
     _addTitulo2 = value;
   }
+
+  List<String> _imgListTeste = [];
+  List<String> get imgListTeste => _imgListTeste;
+  set imgListTeste(List<String> value) {
+    _imgListTeste = value;
+  }
+
+  void addToImgListTeste(String value) {
+    imgListTeste.add(value);
+  }
+
+  void removeFromImgListTeste(String value) {
+    imgListTeste.remove(value);
+  }
+
+  void removeAtIndexFromImgListTeste(int index) {
+    imgListTeste.removeAt(index);
+  }
+
+  void updateImgListTesteAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    imgListTeste[index] = updateFn(_imgListTeste[index]);
+  }
+
+  void insertAtIndexInImgListTeste(int index, String value) {
+    imgListTeste.insert(index, value);
+  }
+
+  String _diagnostico = '';
+  String get diagnostico => _diagnostico;
+  set diagnostico(String value) {
+    _diagnostico = value;
+  }
+
+  bool _imageCacheInit = false;
+  bool get imageCacheInit => _imageCacheInit;
+  set imageCacheInit(bool value) {
+    _imageCacheInit = value;
+  }
+
+  int _limpaCache2 = 0;
+  int get limpaCache2 => _limpaCache2;
+  set limpaCache2(int value) {
+    _limpaCache2 = value;
+  }
+
+  int _limite = 0;
+  int get limite => _limite;
+  set limite(int value) {
+    _limite = value;
+  }
+
+  int _limiteInicial = 0;
+  int get limiteInicial => _limiteInicial;
+  set limiteInicial(int value) {
+    _limiteInicial = value;
+  }
+
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+  set isLoading(bool value) {
+    _isLoading = value;
+  }
+
+  bool _hasMore = false;
+  bool get hasMore => _hasMore;
+  set hasMore(bool value) {
+    _hasMore = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

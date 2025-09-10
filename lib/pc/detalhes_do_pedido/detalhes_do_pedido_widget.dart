@@ -7,6 +7,7 @@ import '/carregando/carregando19/carregando19_widget.dart';
 import '/carregando/carregando7/carregando7_widget.dart';
 import '/carregando/carregando8/carregando8_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/loja/imposto_i_c_m_s/imposto_i_c_m_s_widget.dart';
@@ -17,9 +18,9 @@ import '/loja/pos_venda/pedido_faturado/pedido_faturado_widget.dart';
 import '/loja/pos_venda/time_pix4/time_pix4_widget.dart';
 import '/loja/taxa_processamento2/taxa_processamento2_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -4981,14 +4982,12 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                           if (!snapshot.hasData) {
                             return Carregando18Widget();
                           }
-                          List<ProdutoRecord> feed2ProdutoRecordList =
+                          List<ProdutoRecord> feed3ProdutoRecordList =
                               snapshot.data!;
 
                           return Container(
                             width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFF5F5F5),
-                            ),
+                            decoration: BoxDecoration(),
                             child: SingleChildScrollView(
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
@@ -5001,7 +5000,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                         builder: (context) {
                                           final produtoRef = functions
                                               .recomendarProdutosPersonalizados(
-                                                  feed2ProdutoRecordList
+                                                  feed3ProdutoRecordList
                                                       .toList(),
                                                   (currentUserDocument?.favorito
                                                               .toList() ??
@@ -5024,7 +5023,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                       .toList(),
                                                   FFAppState()
                                                       .limiteVistualizacaoProdutoHomePage,
-                                                  80)
+                                                  10)
                                               .toList();
 
                                           return MasonryGridView.builder(
@@ -5037,7 +5036,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                 MediaQuery.sizeOf(context)
                                                             .width >=
                                                         500.0
-                                                    ? 5
+                                                    ? 4
                                                     : 2,
                                                 2,
                                               ),
@@ -5117,6 +5116,11 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                             FFAppState()
                                                                     .adicionarCarrinho =
                                                                 false;
+                                                            FFAppState()
+                                                                    .limpaCache2 =
+                                                                FFAppState()
+                                                                        .limpaCache2 +
+                                                                    1;
                                                             safeSetState(() {});
                                                             if ((currentUserDocument
                                                                             ?.vistoRecente
@@ -5221,25 +5225,21 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                             BoxDecoration(
                                                                           color:
                                                                               FlutterFlowTheme.of(context).secondaryBackground,
+                                                                          borderRadius:
+                                                                              BorderRadius.only(
+                                                                            bottomLeft:
+                                                                                Radius.circular(0.0),
+                                                                            bottomRight:
+                                                                                Radius.circular(0.0),
+                                                                            topLeft:
+                                                                                Radius.circular(30.0),
+                                                                            topRight:
+                                                                                Radius.circular(30.0),
+                                                                          ),
                                                                         ),
                                                                         child:
                                                                             Stack(
                                                                           children: [
-                                                                            ClipRRect(
-                                                                              borderRadius: BorderRadius.only(
-                                                                                bottomLeft: Radius.circular(0.0),
-                                                                                bottomRight: Radius.circular(0.0),
-                                                                                topLeft: Radius.circular(5.0),
-                                                                                topRight: Radius.circular(5.0),
-                                                                              ),
-                                                                              child: Image.network(
-                                                                                containerProdutoRecord.imagens.firstOrNull!,
-                                                                                width: double.infinity,
-                                                                                height: double.infinity,
-                                                                                fit: BoxFit.cover,
-                                                                                alignment: Alignment(0.0, -1.0),
-                                                                              ),
-                                                                            ),
                                                                             if (containerProdutoRecord.video != '')
                                                                               Align(
                                                                                 alignment: AlignmentDirectional(-1.0, 1.0),
@@ -5282,8 +5282,8 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                                           Padding(
                                                                                             padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.5, 0.0, 0.0),
                                                                                             child: Container(
-                                                                                              width: 9.5,
-                                                                                              height: 9.5,
+                                                                                              width: 11.0,
+                                                                                              height: 11.0,
                                                                                               decoration: BoxDecoration(
                                                                                                 color: Color(0xE2FFFFFF),
                                                                                                 shape: BoxShape.circle,
@@ -5291,8 +5291,8 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                                               child: Align(
                                                                                                 alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                 child: Container(
-                                                                                                  width: 9.0,
-                                                                                                  height: 9.0,
+                                                                                                  width: 10.2,
+                                                                                                  height: 10.2,
                                                                                                   clipBehavior: Clip.antiAlias,
                                                                                                   decoration: BoxDecoration(
                                                                                                     shape: BoxShape.circle,
@@ -5307,10 +5307,10 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                                           ),
                                                                                           if (containerProdutoRecord.capsula2 != '')
                                                                                             Padding(
-                                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
+                                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
                                                                                               child: Container(
-                                                                                                width: 9.5,
-                                                                                                height: 9.5,
+                                                                                                width: 11.0,
+                                                                                                height: 11.0,
                                                                                                 decoration: BoxDecoration(
                                                                                                   color: Color(0xE2FFFFFF),
                                                                                                   shape: BoxShape.circle,
@@ -5318,8 +5318,8 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                                                 child: Align(
                                                                                                   alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Container(
-                                                                                                    width: 9.0,
-                                                                                                    height: 9.0,
+                                                                                                    width: 10.2,
+                                                                                                    height: 10.2,
                                                                                                     clipBehavior: Clip.antiAlias,
                                                                                                     decoration: BoxDecoration(
                                                                                                       shape: BoxShape.circle,
@@ -5334,10 +5334,10 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                                             ),
                                                                                           if (containerProdutoRecord.capsula3 != '')
                                                                                             Padding(
-                                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 0.0),
+                                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 2.0, 0.0, 0.0),
                                                                                               child: Container(
-                                                                                                width: 9.5,
-                                                                                                height: 9.5,
+                                                                                                width: 11.0,
+                                                                                                height: 11.0,
                                                                                                 decoration: BoxDecoration(
                                                                                                   color: Color(0xE2FFFFFF),
                                                                                                   shape: BoxShape.circle,
@@ -5345,8 +5345,8 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                                                 child: Align(
                                                                                                   alignment: AlignmentDirectional(0.0, 0.0),
                                                                                                   child: Container(
-                                                                                                    width: 9.0,
-                                                                                                    height: 9.0,
+                                                                                                    width: 10.2,
+                                                                                                    height: 10.2,
                                                                                                     clipBehavior: Clip.antiAlias,
                                                                                                     decoration: BoxDecoration(
                                                                                                       shape: BoxShape.circle,
@@ -5361,7 +5361,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                                             ),
                                                                                           if (containerProdutoRecord.capsulaExtra != '')
                                                                                             Padding(
-                                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
+                                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 1.0, 0.0, 1.0),
                                                                                               child: Text(
                                                                                                 containerProdutoRecord.capsulaExtra,
                                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -5388,6 +5388,30 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                                                                   ),
                                                                                 ),
                                                                               ),
+                                                                            Container(
+                                                                              width: double.infinity,
+                                                                              height: double.infinity,
+                                                                              decoration: BoxDecoration(
+                                                                                borderRadius: BorderRadius.only(
+                                                                                  bottomLeft: Radius.circular(0.0),
+                                                                                  bottomRight: Radius.circular(0.0),
+                                                                                  topLeft: Radius.circular(15.0),
+                                                                                  topRight: Radius.circular(8.0),
+                                                                                ),
+                                                                              ),
+                                                                              child: Container(
+                                                                                width: double.infinity,
+                                                                                height: double.infinity,
+                                                                                child: custom_widgets.SmartImage(
+                                                                                  width: double.infinity,
+                                                                                  height: double.infinity,
+                                                                                  url: containerProdutoRecord.imagens.firstOrNull!,
+                                                                                  imgWidth: 170.0,
+                                                                                  imgHeight: 190.0,
+                                                                                  margem: containerProdutoRecord.margem == 'story',
+                                                                                ),
+                                                                              ),
+                                                                            ),
                                                                           ],
                                                                         ),
                                                                       ),
@@ -5920,7 +5944,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                         onTap: () async {
                                           FFAppState().FeedAntes = functions
                                               .recomendarProdutosPersonalizados(
-                                                  feed2ProdutoRecordList
+                                                  feed3ProdutoRecordList
                                                       .toList(),
                                                   (currentUserDocument?.favorito
                                                               .toList() ??
@@ -5955,7 +5979,7 @@ class _DetalhesDoPedidoWidgetState extends State<DetalhesDoPedidoWidget> {
                                           safeSetState(() {});
                                           FFAppState().FeedDepois = functions
                                               .recomendarProdutosPersonalizados(
-                                                  feed2ProdutoRecordList
+                                                  feed3ProdutoRecordList
                                                       .toList(),
                                                   (currentUserDocument?.favorito
                                                               .toList() ??

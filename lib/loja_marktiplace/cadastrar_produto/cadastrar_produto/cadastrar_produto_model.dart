@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
@@ -56,6 +57,10 @@ class CadastrarProdutoModel extends FlutterFlowModel<CadastrarProdutoWidget> {
   bool? switchValue1;
   // State field(s) for Switch widget.
   bool? switchValue2;
+  // Stores action output result for [Custom Action - imsgLisEmUpload] action in Button widget.
+  List<FFUploadedFile>? saidaImg;
+  // Stores action output result for [Backend Call - API (UploadToCloudinary)] action in Button widget.
+  ApiCallResponse? apiResult4cb;
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
   ProdutoRecord? produtoCriado;
   // Stores action output result for [Firestore Query - Query a collection] action in Button widget.

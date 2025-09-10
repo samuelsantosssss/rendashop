@@ -1,9 +1,10 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
-import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/upload_data.dart';
-import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -179,7 +180,10 @@ class _AtualizarFotoVarienteWidgetState
                                 ),
                                 showLoadingIndicator: true,
                                 onPressed: () async {
+                                  var _shouldSetState = false;
                                   final selectedMedia = await selectMedia(
+                                    maxWidth: 1080.00,
+                                    imageQuality: 80,
                                     mediaSource: MediaSource.photoGallery,
                                     multiImage: false,
                                   );
@@ -192,7 +196,6 @@ class _AtualizarFotoVarienteWidgetState
                                     var selectedUploadedFiles =
                                         <FFUploadedFile>[];
 
-                                    var downloadUrls = <String>[];
                                     try {
                                       selectedUploadedFiles = selectedMedia
                                           .map((m) => FFUploadedFile(
@@ -205,29 +208,15 @@ class _AtualizarFotoVarienteWidgetState
                                                 blurHash: m.blurHash,
                                               ))
                                           .toList();
-
-                                      downloadUrls = (await Future.wait(
-                                        selectedMedia.map(
-                                          (m) async => await uploadData(
-                                              m.storagePath, m.bytes),
-                                        ),
-                                      ))
-                                          .where((u) => u != null)
-                                          .map((u) => u!)
-                                          .toList();
                                     } finally {
                                       _model.isDataUploading_uploadDataV2uk =
                                           false;
                                     }
                                     if (selectedUploadedFiles.length ==
-                                            selectedMedia.length &&
-                                        downloadUrls.length ==
-                                            selectedMedia.length) {
+                                        selectedMedia.length) {
                                       safeSetState(() {
                                         _model.uploadedLocalFile_uploadDataV2uk =
                                             selectedUploadedFiles.first;
-                                        _model.uploadedFileUrl_uploadDataV2uk =
-                                            downloadUrls.first;
                                       });
                                     } else {
                                       safeSetState(() {});
@@ -235,15 +224,30 @@ class _AtualizarFotoVarienteWidgetState
                                     }
                                   }
 
-                                  if (_model.uploadedFileUrl_uploadDataV2uk !=
-                                          '') {
+                                  if ((_model.uploadedLocalFile_uploadDataV2uk
+                                              .bytes?.isNotEmpty ??
+                                          false)) {
+                                    _model.apiResult4cb =
+                                        await UploadToCloudinaryCall.call(
+                                      file: _model
+                                          .uploadedLocalFile_uploadDataV2uk,
+                                      uploadPreset: 'rendashop_images',
+                                    );
+
+                                    _shouldSetState = true;
                                     FFAppState().imgUpdateVariante =
-                                        _model.uploadedFileUrl_uploadDataV2uk;
+                                        functions.buildWebpUrl(
+                                            UploadToCloudinaryCall.publicId(
+                                      (_model.apiResult4cb?.jsonBody ?? ''),
+                                    )!);
                                     safeSetState(() {});
                                     Navigator.pop(context);
                                   } else {
+                                    if (_shouldSetState) safeSetState(() {});
                                     return;
                                   }
+
+                                  if (_shouldSetState) safeSetState(() {});
                                 },
                               ),
                             ],

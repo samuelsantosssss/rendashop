@@ -80,16 +80,18 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
 
   @override
   Widget build(BuildContext context) => _loading
-      ? Container(
-          color: Colors.black,
-          child: Center(
-            child: Image.asset(
-              'assets/images/Ainda_no_Existem_Pedidos_(31).png',
-              width: MediaQuery.sizeOf(context).width * 0.8,
-              fit: BoxFit.contain,
-            ),
-          ),
-        )
+      ? isWeb
+          ? Container()
+          : Container(
+              color: Colors.black,
+              child: Center(
+                child: Image.asset(
+                  'assets/images/Ainda_no_Existem_Pedidos_(31).png',
+                  width: MediaQuery.sizeOf(context).width * 0.8,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            )
       : widget.child;
 }
 
@@ -413,6 +415,12 @@ final parametersBuilderMap =
   'cadastrarProdutoPC': (data) async => ParameterData(
         allParams: {
           'lojaRef': getParameter<DocumentReference>(data, 'lojaRef'),
+        },
+      ),
+  'Home-lojaCopy': ParameterData.none(),
+  'Pagina_produtoCopy': (data) async => ParameterData(
+        allParams: {
+          'produtoRef': getParameter<DocumentReference>(data, 'produtoRef'),
         },
       ),
 };

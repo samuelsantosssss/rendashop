@@ -1,5 +1,6 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/loja/limpar_cache_img/limpar_cache_img_widget.dart';
 import '/index.dart';
 import 'login_principal_widget.dart' show LoginPrincipalWidget;
 import 'package:flutter/material.dart';
@@ -7,6 +8,8 @@ import 'package:flutter/material.dart';
 class LoginPrincipalModel extends FlutterFlowModel<LoginPrincipalWidget> {
   ///  State fields for stateful widgets in this page.
 
+  // Model for limparCacheImg component.
+  late LimparCacheImgModel limparCacheImgModel;
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressTextController;
@@ -23,11 +26,13 @@ class LoginPrincipalModel extends FlutterFlowModel<LoginPrincipalWidget> {
 
   @override
   void initState(BuildContext context) {
+    limparCacheImgModel = createModel(context, () => LimparCacheImgModel());
     senhaVisibility = false;
   }
 
   @override
   void dispose() {
+    limparCacheImgModel.dispose();
     emailAddressFocusNode?.dispose();
     emailAddressTextController?.dispose();
 

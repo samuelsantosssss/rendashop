@@ -1,13 +1,14 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/loja/limpar_cache_img/limpar_cache_img_widget.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:collection/collection.dart';
-import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -294,6 +295,11 @@ class _LoginAfiliadoCardWidgetState extends State<LoginAfiliadoCardWidget>
                       ),
                     ],
                   ),
+                ),
+                wrapWithModel(
+                  model: _model.limparCacheImgModel,
+                  updateCallback: () => safeSetState(() {}),
+                  child: LimparCacheImgWidget(),
                 ),
               ],
             ),
@@ -1244,6 +1250,267 @@ class _LoginAfiliadoCardWidgetState extends State<LoginAfiliadoCardWidget>
                         ],
                       ),
                     ),
+                    if (isiOS)
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                          child: Stack(
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(0.0, -1.0),
+                                child: Container(
+                                  width: 221.9,
+                                  height: 38.8,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    border: Border.all(
+                                      color: Color(0xFFE0E3E7),
+                                    ),
+                                  ),
+                                  child: Align(
+                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.apple_sharp,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 28.0,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  4.0, 0.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Continuar com o Google',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.inter(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Color(0xFF4B4B4B),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              isAndroid
+                                  ? Container()
+                                  : Align(
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          GoRouter.of(context)
+                                              .prepareAuthEvent();
+                                          final user = await authManager
+                                              .signInWithApple(context);
+                                          if (user == null) {
+                                            return;
+                                          }
+                                          await actions.criarCarrinhoPosLogin(
+                                            functions
+                                                .juntarListaCarrinhoAfiliado(
+                                                    FFAppState()
+                                                        .CarrinhoTemporarioNacional
+                                                        .toList(),
+                                                    FFAppState()
+                                                        .CarrinhoTemporarioInternacional
+                                                        .toList())
+                                                .toList(),
+                                            currentUserReference!,
+                                          );
+                                          _model.queryList78 =
+                                              await queryCarrinhoRecordOnce(
+                                            parent: currentUserReference,
+                                          );
+                                          await actions.calcularFrete2(
+                                            _model.queryList78!.toList(),
+                                            valueOrDefault(
+                                                currentUserDocument
+                                                    ?.enderecoCompleto,
+                                                ''),
+                                          );
+                                          if (valueOrDefault<bool>(
+                                                  currentUserDocument
+                                                      ?.ganhouCupomPosLogin,
+                                                  false) ==
+                                              true) {
+                                            await currentUserReference!
+                                                .update(createUserRecordData(
+                                              contaGoogle: true,
+                                            ));
+                                          } else {
+                                            await actions.crearCupomNovoUser(
+                                              currentUserReference!,
+                                            );
+
+                                            await currentUserReference!
+                                                .update(createUserRecordData(
+                                              contaGoogle: true,
+                                              ganhouCupomPosLogin: true,
+                                            ));
+                                          }
+
+                                          FFAppState().cupomSelecionadoRef =
+                                              null;
+                                          FFAppState().gerarICSM = true;
+                                          FFAppState().freteantes = 0.0;
+                                          FFAppState().FezLoginPeloAfiliado =
+                                              true;
+                                          safeSetState(() {});
+                                          if (valueOrDefault(
+                                                      currentUserDocument
+                                                          ?.enderecoCompleto,
+                                                      '') !=
+                                                  '') {
+                                            FFAppState().metodoPagamento = '';
+                                            FFAppState().parceladoApagagar = '';
+                                            FFAppState().cartaoRef = null;
+                                            FFAppState().taxaProcessamento = '';
+                                            FFAppState().moeda = 0.0;
+                                            FFAppState().taxaCartaoDouble = 0.0;
+                                            safeSetState(() {});
+                                            await actions.checkoutFinalSemFrete(
+                                              _model.queryList78?.toList(),
+                                              currentUserReference!,
+                                            );
+                                            _model.listCardFinal28 =
+                                                await queryCarrinhoFinalRecordOnce(
+                                              parent: currentUserReference,
+                                            );
+                                            await actions
+                                                .calcularFreteCarrinhoFinal(
+                                              _model.listCardFinal28!.toList(),
+                                              valueOrDefault(
+                                                  currentUserDocument
+                                                      ?.enderecoCompleto,
+                                                  ''),
+                                            );
+                                            if (Navigator.of(context)
+                                                .canPop()) {
+                                              context.pop();
+                                            }
+                                            context.pushNamedAuth(
+                                                Comprar3Widget.routeName,
+                                                context.mounted);
+                                          } else {
+                                            FFAppState().metodoPagamento = '';
+                                            FFAppState().parceladoApagagar = '';
+                                            FFAppState().cartaoRef = null;
+                                            FFAppState().taxaProcessamento = '';
+                                            FFAppState().moeda = 0.0;
+                                            FFAppState().taxaCartaoDouble = 0.0;
+                                            safeSetState(() {});
+                                            await actions.checkoutFinalSemFrete(
+                                              _model.queryList78?.toList(),
+                                              currentUserReference!,
+                                            );
+                                            _model.listCardFinal3 =
+                                                await queryCarrinhoFinalRecordOnce(
+                                              parent: currentUserReference,
+                                            );
+                                            await actions
+                                                .calcularFreteCarrinhoFinal(
+                                              _model.listCardFinal3!.toList(),
+                                              valueOrDefault(
+                                                  currentUserDocument
+                                                      ?.enderecoCompleto,
+                                                  ''),
+                                            );
+                                            if (Navigator.of(context)
+                                                .canPop()) {
+                                              context.pop();
+                                            }
+                                            context.pushNamedAuth(
+                                              CadastrarEnderecoRecenLoginWidget
+                                                  .routeName,
+                                              context.mounted,
+                                              queryParameters: {
+                                                'queryCarrinhoList':
+                                                    serializeParam(
+                                                  _model.queryList78,
+                                                  ParamType.Document,
+                                                  isList: true,
+                                                ),
+                                              }.withoutNulls,
+                                              extra: <String, dynamic>{
+                                                'queryCarrinhoList':
+                                                    _model.queryList78,
+                                              },
+                                            );
+                                          }
+
+                                          safeSetState(() {});
+                                        },
+                                        text: '',
+                                        options: FFButtonOptions(
+                                          width: 210.0,
+                                          height: 38.8,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          iconAlignment: IconAlignment.start,
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: Color(0x00F5F9F5),
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .titleSmall
+                                              .override(
+                                                font: GoogleFonts.interTight(
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .titleSmall
+                                                          .fontStyle,
+                                                ),
+                                                color: Colors.black,
+                                                fontSize: 15.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .titleSmall
+                                                        .fontStyle,
+                                              ),
+                                          elevation: 0.0,
+                                          borderRadius:
+                                              BorderRadius.circular(20.0),
+                                        ),
+                                      ),
+                                    ),
+                            ],
+                          ),
+                        ),
+                      ),
                   ],
                 ).animateOnPageLoad(
                     animationsMap['columnOnPageLoadAnimation']!),

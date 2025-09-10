@@ -1,11 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/nav_bar/nav_bar_categoria/nav_bar_categoria_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:badges/badges.dart' as badges;
-import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -26279,6 +26279,9 @@ class _CategoriaWidgetState extends State<CategoriaWidget> {
                                                   FFAppState()
                                                           .adicionarCarrinho =
                                                       false;
+                                                  FFAppState().limpaCache2 =
+                                                      FFAppState().limpaCache2 +
+                                                          1;
                                                   safeSetState(() {});
 
                                                   await currentUserReference!

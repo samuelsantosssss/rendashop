@@ -1,10 +1,10 @@
 import '/backend/backend.dart';
 import '/carregando/carregando8/carregando8_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/perfil/excluir_cartao/excluir_cartao_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'cartao_de_credito_delete_model.dart';

@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'atualizar_produto_widget.dart' show AtualizarProdutoWidget;
@@ -6,10 +7,11 @@ import 'package:flutter/material.dart';
 class AtualizarProdutoModel extends FlutterFlowModel<AtualizarProdutoWidget> {
   ///  State fields for stateful widgets in this page.
 
-  bool isDataUploading_uploadData33f45533 = false;
-  List<FFUploadedFile> uploadedLocalFiles_uploadData33f45533 = [];
-  List<String> uploadedFileUrls_uploadData33f45533 = [];
+  bool isDataUploading_uploadData6yv = false;
+  List<FFUploadedFile> uploadedLocalFiles_uploadData6yv = [];
 
+  // Stores action output result for [Backend Call - API (UploadToCloudinary)] action in Button widget.
+  ApiCallResponse? apiResult4cb;
   // State field(s) for Checkbox1 widget.
   bool? checkbox1Value;
   // State field(s) for Checkbox2 widget.

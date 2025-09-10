@@ -1,8 +1,8 @@
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/upload_data.dart';
-import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -137,6 +137,8 @@ class _AddFotoVarianteWidgetState extends State<AddFotoVarianteWidget> {
                         showLoadingIndicator: true,
                         onPressed: () async {
                           final selectedMedia = await selectMedia(
+                            maxWidth: 1080.00,
+                            imageQuality: 80,
                             mediaSource: MediaSource.photoGallery,
                             multiImage: false,
                           );

@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'atualizar_foto_variente_widget.dart' show AtualizarFotoVarienteWidget;
 import 'package:flutter/material.dart';
@@ -9,7 +10,9 @@ class AtualizarFotoVarienteModel
   bool isDataUploading_uploadDataV2uk = false;
   FFUploadedFile uploadedLocalFile_uploadDataV2uk =
       FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl_uploadDataV2uk = '';
+
+  // Stores action output result for [Backend Call - API (UploadToCloudinary)] action in IconButton widget.
+  ApiCallResponse? apiResult4cb;
 
   @override
   void initState(BuildContext context) {}

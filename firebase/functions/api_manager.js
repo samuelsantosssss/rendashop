@@ -22,7 +22,7 @@ async function _asaasTokenClienteCall(context, ffVariables) {
   var headers = {
     "Content-Type": `application/json`,
     accept: `application/json`,
-    access_token: `\$aact_MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OjYzYTc1M2JhLWM0YjUtNDJiMC04ZDdhLTc3ZWU2ZTc3ZDQ1Yzo6JGFhY2hfZTNhOWQyZDYtYzAyMC00YTRjLWIyMGEtYTU3ZDEyMmVkMjZj`,
+    access_token: `\$aact_prod_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OmJiMmZlNDc5LTNmMDctNDY5My04MzRkLTE5MTFjNjMyNDQ0ZDo6JGFhY2hfMzliMWZmMGMtYzczMC00ZjMwLWI3YjYtZGJiMjQ2Y2EzYjJj`,
   };
   var params = {};
   var ffApiRequestBody = `
@@ -91,7 +91,7 @@ async function _asaasPagamentoCall(context, ffVariables) {
   var url = `https://api-sandbox.asaas.com/v3/payments`;
   var headers = {
     accept: `application/json`,
-    access_token: `\$aact_MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OjYzYTc1M2JhLWM0YjUtNDJiMC04ZDdhLTc3ZWU2ZTc3ZDQ1Yzo6JGFhY2hfZTNhOWQyZDYtYzAyMC00YTRjLWIyMGEtYTU3ZDEyMmVkMjZj`,
+    access_token: `\$aact_prod_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OmJiMmZlNDc5LTNmMDctNDY5My04MzRkLTE5MTFjNjMyNDQ0ZDo6JGFhY2hfMzliMWZmMGMtYzczMC00ZjMwLWI3YjYtZGJiMjQ2Y2EzYjJj`,
     "content-type": `application/json`,
   };
   var params = {};

@@ -1,7 +1,9 @@
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -10,7 +12,6 @@ import '/loja_marktiplace/atualizar_produto/capsula_variacao_atualizar/capsula_v
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
-import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -232,8 +233,11 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                           ),
                                           FFButtonWidget(
                                             onPressed: () async {
+                                              var _shouldSetState = false;
                                               final selectedMedia =
                                                   await selectMedia(
+                                                maxWidth: 1080.00,
+                                                imageQuality: 80,
                                                 mediaSource:
                                                     MediaSource.photoGallery,
                                                 multiImage: true,
@@ -244,12 +248,11 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                                           m.storagePath,
                                                           context))) {
                                                 safeSetState(() => _model
-                                                        .isDataUploading_uploadData33f45533 =
+                                                        .isDataUploading_uploadData6yv =
                                                     true);
                                                 var selectedUploadedFiles =
                                                     <FFUploadedFile>[];
 
-                                                var downloadUrls = <String>[];
                                                 try {
                                                   selectedUploadedFiles =
                                                       selectedMedia
@@ -270,34 +273,16 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                                                     m.blurHash,
                                                               ))
                                                           .toList();
-
-                                                  downloadUrls =
-                                                      (await Future.wait(
-                                                    selectedMedia.map(
-                                                      (m) async =>
-                                                          await uploadData(
-                                                              m.storagePath,
-                                                              m.bytes),
-                                                    ),
-                                                  ))
-                                                          .where(
-                                                              (u) => u != null)
-                                                          .map((u) => u!)
-                                                          .toList();
                                                 } finally {
-                                                  _model.isDataUploading_uploadData33f45533 =
+                                                  _model.isDataUploading_uploadData6yv =
                                                       false;
                                                 }
                                                 if (selectedUploadedFiles
-                                                            .length ==
-                                                        selectedMedia.length &&
-                                                    downloadUrls.length ==
-                                                        selectedMedia.length) {
+                                                        .length ==
+                                                    selectedMedia.length) {
                                                   safeSetState(() {
-                                                    _model.uploadedLocalFiles_uploadData33f45533 =
+                                                    _model.uploadedLocalFiles_uploadData6yv =
                                                         selectedUploadedFiles;
-                                                    _model.uploadedFileUrls_uploadData33f45533 =
-                                                        downloadUrls;
                                                   });
                                                 } else {
                                                   safeSetState(() {});
@@ -305,20 +290,70 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                                 }
                                               }
 
-                                              await widget.produtoRef!.update({
-                                                ...mapToFirestore(
-                                                  {
-                                                    'imagens': functions
-                                                        .atualizarImagem(
-                                                            atualizarProdutoProdutoRecord
-                                                                .imagens
-                                                                .toList(),
-                                                            _model
-                                                                .uploadedFileUrls_uploadData33f45533
-                                                                .toList()),
-                                                  },
-                                                ),
-                                              });
+                                              if ((_model
+                                                      .uploadedLocalFiles_uploadData6yv
+                                                      .isNotEmpty) ==
+                                                  true) {
+                                                for (int loop1Index = 0;
+                                                    loop1Index <
+                                                        _model
+                                                            .uploadedLocalFiles_uploadData6yv
+                                                            .length;
+                                                    loop1Index++) {
+                                                  final currentLoop1Item = _model
+                                                          .uploadedLocalFiles_uploadData6yv[
+                                                      loop1Index];
+                                                  _model.apiResult4cb =
+                                                      await UploadToCloudinaryCall
+                                                          .call(
+                                                    file: currentLoop1Item,
+                                                    uploadPreset:
+                                                        'rendashop_images',
+                                                  );
+
+                                                  _shouldSetState = true;
+                                                  FFAppState().addToImgListTeste(
+                                                      functions.buildWebpUrl(
+                                                          UploadToCloudinaryCall
+                                                              .publicId(
+                                                    (_model.apiResult4cb
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                  )!));
+                                                  safeSetState(() {});
+                                                }
+
+                                                await widget.produtoRef!
+                                                    .update({
+                                                  ...mapToFirestore(
+                                                    {
+                                                      'imagens': functions
+                                                          .atualizarImagem(
+                                                              atualizarProdutoProdutoRecord
+                                                                  .imagens
+                                                                  .toList(),
+                                                              FFAppState()
+                                                                  .imgListTeste
+                                                                  .toList()),
+                                                    },
+                                                  ),
+                                                });
+                                                FFAppState().imgListTeste = [];
+                                                safeSetState(() {});
+                                                safeSetState(() {
+                                                  _model.isDataUploading_uploadData6yv =
+                                                      false;
+                                                  _model.uploadedLocalFiles_uploadData6yv =
+                                                      [];
+                                                });
+                                              } else {
+                                                if (_shouldSetState)
+                                                  safeSetState(() {});
+                                                return;
+                                              }
+
+                                              if (_shouldSetState)
+                                                safeSetState(() {});
                                             },
                                             text: '',
                                             options: FFButtonOptions(
@@ -520,19 +555,41 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                                                   Colors
                                                                       .transparent,
                                                               onTap: () async {
-                                                                await atualizarProdutoProdutoRecord
-                                                                    .reference
-                                                                    .update({
-                                                                  ...mapToFirestore(
-                                                                    {
-                                                                      'imagens':
-                                                                          FieldValue
-                                                                              .arrayRemove([
-                                                                        fotoListItem
-                                                                      ]),
+                                                                if (fotoListItem ==
+                                                                    '3') {
+                                                                  await showDialog(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (alertDialogContext) {
+                                                                      return AlertDialog(
+                                                                        content:
+                                                                            Text('Os produtos precisam ter pelomenos 3 imagens'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                            child:
+                                                                                Text('Ok'),
+                                                                          ),
+                                                                        ],
+                                                                      );
                                                                     },
-                                                                  ),
-                                                                });
+                                                                  );
+                                                                } else {
+                                                                  await atualizarProdutoProdutoRecord
+                                                                      .reference
+                                                                      .update({
+                                                                    ...mapToFirestore(
+                                                                      {
+                                                                        'imagens':
+                                                                            FieldValue.arrayRemove([
+                                                                          fotoListItem
+                                                                        ]),
+                                                                      },
+                                                                    ),
+                                                                  });
+                                                                }
                                                               },
                                                               child: Container(
                                                                 width: 17.0,
@@ -1169,7 +1226,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                           ),
                                         ),
                                         Text(
-                                          'Margem Feed',
+                                          'Margem 1:1',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -1487,7 +1544,7 @@ class _AtualizarProdutoWidgetState extends State<AtualizarProdutoWidget> {
                                           ),
                                         ),
                                         Text(
-                                          'Margem Story',
+                                          'Margem 3:4',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(

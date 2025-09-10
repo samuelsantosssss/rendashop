@@ -1,7 +1,7 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
-import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'nav_bar_categoria_model.dart';
@@ -43,7 +43,7 @@ class _NavBarCategoriaWidgetState extends State<NavBarCategoriaWidget> {
     return Align(
       alignment: AlignmentDirectional(0.0, 1.0),
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 10.0),
+        padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 20.0),
         child: Container(
           width: double.infinity,
           height: 90.0,
@@ -371,7 +371,7 @@ class _NavBarCategoriaWidgetState extends State<NavBarCategoriaWidget> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.network(
-                        'https://firebasestorage.googleapis.com/v0/b/renda-shop-sat8qr.firebasestorage.app/o/Ainda%20n%C3%A3o%20Existem%20Pedidos%20(1)asdasdasd.png?alt=media&token=690c35aa-540c-443c-bd6f-079007f5250f',
+                        'https://res.cloudinary.com/dul9tr5i1/image/upload/f_webp,q_auto/dmsh5wafqv8wrjez5x1l',
                         width: 70.0,
                         height: 81.0,
                         fit: BoxFit.contain,

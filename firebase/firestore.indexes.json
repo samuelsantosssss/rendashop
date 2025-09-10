@@ -1,20 +1,6 @@
 {
   "indexes": [
     {
-      "collectionGroup": "produto",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "categoria",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "vendas",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
       "collectionGroup": "carrinho",
       "queryScope": "COLLECTION",
       "fields": [
@@ -24,6 +10,20 @@
         },
         {
           "fieldPath": "lojaRef",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "produto",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "categoria",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "vendas",
           "order": "DESCENDING"
         }
       ]

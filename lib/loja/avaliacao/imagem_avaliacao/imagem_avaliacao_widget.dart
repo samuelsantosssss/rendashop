@@ -1,11 +1,11 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_media_display.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -122,31 +122,6 @@ class _ImagemAvaliacaoWidgetState extends State<ImagemAvaliacaoWidget> {
                                 avaliacaoList[avaliacaoListIndex];
                             return Stack(
                               children: [
-                                if (responsiveVisibility(
-                                  context: context,
-                                  phone: false,
-                                ))
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 70.0, 0.0, 0.0),
-                                    child: Container(
-                                      width: double.infinity,
-                                      height: double.infinity,
-                                      decoration: BoxDecoration(),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 10.0, 0.0, 0.0),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(0.0),
-                                          child: Image.network(
-                                            avaliacaoListItem,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 80.0, 0.0, 0.0),
@@ -675,9 +650,12 @@ class _ImagemAvaliacaoWidgetState extends State<ImagemAvaliacaoWidget> {
                                                                     ),
                                                                   ),
                                                                   Text(
-                                                                    functions.valorDoubleEmString(
-                                                                        containerProdutoRecord
-                                                                            .precoRevenda),
+                                                                    containerProdutoRecord.titulo1 !=
+                                                                                ''
+                                                                        ? functions.valorDoubleEmString(containerProdutoRecord
+                                                                            .menorPrecoRevenda)
+                                                                        : functions
+                                                                            .valorDoubleEmString(containerProdutoRecord.preco),
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium

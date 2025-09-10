@@ -1,12 +1,12 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
-import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/upload_data.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
-import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'editar_perfil_model.dart';
@@ -127,7 +127,6 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                             () => _model.isDataUploading_uploadData1fh7 = true);
                         var selectedUploadedFiles = <FFUploadedFile>[];
 
-                        var downloadUrls = <String>[];
                         try {
                           selectedUploadedFiles = selectedMedia
                               .map((m) => FFUploadedFile(
@@ -138,27 +137,14 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                                     blurHash: m.blurHash,
                                   ))
                               .toList();
-
-                          downloadUrls = (await Future.wait(
-                            selectedMedia.map(
-                              (m) async =>
-                                  await uploadData(m.storagePath, m.bytes),
-                            ),
-                          ))
-                              .where((u) => u != null)
-                              .map((u) => u!)
-                              .toList();
                         } finally {
                           _model.isDataUploading_uploadData1fh7 = false;
                         }
                         if (selectedUploadedFiles.length ==
-                                selectedMedia.length &&
-                            downloadUrls.length == selectedMedia.length) {
+                            selectedMedia.length) {
                           safeSetState(() {
                             _model.uploadedLocalFile_uploadData1fh7 =
                                 selectedUploadedFiles.first;
-                            _model.uploadedFileUrl_uploadData1fh7 =
-                                downloadUrls.first;
                           });
                         } else {
                           safeSetState(() {});
@@ -166,11 +152,23 @@ class _EditarPerfilWidgetState extends State<EditarPerfilWidget> {
                         }
                       }
 
-                      if (_model.uploadedFileUrl_uploadData1fh7 != '') {
+                      if ((_model.uploadedLocalFile_uploadData1fh7.bytes
+                                  ?.isNotEmpty ??
+                              false)) {
+                        _model.apiResult4cb = await UploadToCloudinaryCall.call(
+                          file: _model.uploadedLocalFile_uploadData1fh7,
+                          uploadPreset: 'rendashop_images',
+                        );
+
                         await currentUserReference!.update(createUserRecordData(
-                          photoUrl: _model.uploadedFileUrl_uploadData1fh7,
+                          photoUrl: functions
+                              .buildWebpUrl(UploadToCloudinaryCall.publicId(
+                            (_model.apiResult4cb?.jsonBody ?? ''),
+                          )!),
                         ));
                       }
+
+                      safeSetState(() {});
                     },
                     child: Container(
                       width: 80.0,

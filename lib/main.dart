@@ -1,4 +1,3 @@
-import '/custom_code/actions/index.dart' as actions;
 import 'package:provider/provider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +12,6 @@ import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
 
-import 'package:branchio_dynamic_linking_akp5u6/library_values.dart'
-    as branchio_dynamic_linking_akp5u6_library_values;
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   GoRouter.optionURLReflectsImperativeAPIs = true;
@@ -24,29 +20,13 @@ void main() async {
   final environmentValues = FFDevEnvironmentValues();
   await environmentValues.initialize();
 
-  branchio_dynamic_linking_akp5u6_library_values.FFLibraryValues()
-      .branchApiKey = FFDevEnvironmentValues().branchKey;
-  branchio_dynamic_linking_akp5u6_library_values.FFLibraryValues()
-      .branchLinkDomain = 'rendashop.app.link';
-  branchio_dynamic_linking_akp5u6_library_values.FFLibraryValues().isTestMode =
-      false;
-  branchio_dynamic_linking_akp5u6_library_values.FFLibraryValues()
-      .branchAlternateLinkDomain = 'rendashop-alternate.app.link';
   await initFirebase();
 
   final appState = FFAppState(); // Initialize FFAppState
   await appState.initializePersistedState();
 
-  // Start final custom actions code
-  await actions.initBranch();
-  // End final custom actions code
-
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(
-        create: (context) => appState,
-      ),
-    ],
+  runApp(ChangeNotifierProvider(
+    create: (context) => appState,
     child: MyApp(),
   ));
 }
@@ -105,7 +85,7 @@ class _MyAppState extends State<MyApp> {
       });
     jwtTokenStream.listen((_) {});
     Future.delayed(
-      Duration(milliseconds: 1000),
+      Duration(milliseconds: isWeb ? 0 : 1000),
       () => _appStateNotifier.stopShowingSplashImage(),
     );
   }

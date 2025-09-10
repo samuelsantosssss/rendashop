@@ -1,5 +1,6 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/loja/limpar_cache_img/limpar_cache_img_widget.dart';
 import '/index.dart';
 import 'login_afiliado_card_widget.dart' show LoginAfiliadoCardWidget;
 import 'package:flutter/material.dart';
@@ -7,6 +8,8 @@ import 'package:flutter/material.dart';
 class LoginAfiliadoCardModel extends FlutterFlowModel<LoginAfiliadoCardWidget> {
   ///  State fields for stateful widgets in this page.
 
+  // Model for limparCacheImg component.
+  late LimparCacheImgModel limparCacheImgModel;
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressTextController;
@@ -38,14 +41,22 @@ class LoginAfiliadoCardModel extends FlutterFlowModel<LoginAfiliadoCardWidget> {
   List<CarrinhoFinalRecord>? listCardFinal2;
   // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
   List<CarrinhoFinalRecord>? listCardFinal;
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  List<CarrinhoRecord>? queryList78;
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  List<CarrinhoFinalRecord>? listCardFinal28;
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  List<CarrinhoFinalRecord>? listCardFinal3;
 
   @override
   void initState(BuildContext context) {
+    limparCacheImgModel = createModel(context, () => LimparCacheImgModel());
     senhaVisibility = false;
   }
 
   @override
   void dispose() {
+    limparCacheImgModel.dispose();
     emailAddressFocusNode?.dispose();
     emailAddressTextController?.dispose();
 

@@ -1,10 +1,10 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
-import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -939,154 +939,74 @@ class _PesquisaWidgetState extends State<PesquisaWidget> {
                   child: Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
-                    child: AuthUserStreamWidget(
-                      builder: (context) => Builder(
-                        builder: (context) {
-                          final listRecomendado = functions
-                              .recomendarProdutosPersonalizados(
-                                  widget.documentList!.toList(),
-                                  (currentUserDocument?.favorito.toList() ??
-                                          [])
-                                      .toList(),
-                                  (currentUserDocument?.historicoPesquisa
-                                              .toList() ??
-                                          [])
-                                      .toList(),
-                                  (currentUserDocument?.vistoRecente
-                                              .toList() ??
-                                          [])
-                                      .toList(),
-                                  (currentUserDocument?.comprasHistoricoProdutos
-                                              .toList() ??
-                                          [])
-                                      .toList(),
-                                  30,
-                                  12)
-                              .toList();
-
-                          return GridView.builder(
-                            padding: EdgeInsets.zero,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 10.0,
-                              mainAxisSpacing: 10.0,
-                              childAspectRatio: 0.9,
+                    child: StreamBuilder<List<ProdutoRecord>>(
+                      stream: queryProdutoRecord(
+                        limit: 12,
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 26.0,
+                              height: 26.0,
+                              child: SpinKitCircle(
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 26.0,
+                              ),
                             ),
-                            primary: false,
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: listRecomendado.length,
-                            itemBuilder: (context, listRecomendadoIndex) {
-                              final listRecomendadoItem =
-                                  listRecomendado[listRecomendadoIndex];
-                              return StreamBuilder<ProdutoRecord>(
-                                stream: ProdutoRecord.getDocument(
-                                    listRecomendadoItem.reference),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 26.0,
-                                        height: 26.0,
-                                        child: SpinKitCircle(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          size: 26.0,
-                                        ),
-                                      ),
-                                    );
-                                  }
+                          );
+                        }
+                        List<ProdutoRecord> gridViewProdutoRecordList =
+                            snapshot.data!;
 
-                                  final containerProdutoRecord = snapshot.data!;
-
-                                  return InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      FFAppState().palavraChavePesquisa =
-                                          functions
-                                              .listaBuscaHistorico(
-                                                  functions.gerarPesquisa(
-                                                      containerProdutoRecord
-                                                          .palavrasChaveList
-                                                          .toList(),
-                                                      containerProdutoRecord
-                                                          .nome,
-                                                      containerProdutoRecord
-                                                          .categoria),
-                                                  (currentUserDocument
-                                                              ?.historicoPesquisa
-                                                              .toList() ??
-                                                          [])
-                                                      .toList())
-                                              .toList()
-                                              .cast<String>();
-                                      safeSetState(() {});
-                                      FFAppState().filtroRelevencia = true;
-                                      FFAppState().FiltroDestaque = false;
-                                      FFAppState().filtroRecente = false;
-                                      FFAppState().filtroPreco = '';
-                                      safeSetState(() {});
-
-                                      context.pushNamed(
-                                          PesquisaGaleriaWidget.routeName);
-
-                                      await currentUserReference!.update({
-                                        ...mapToFirestore(
-                                          {
-                                            'historicoPesquisa': FFAppState()
-                                                .palavraChavePesquisa,
-                                          },
-                                        ),
-                                      });
-                                    },
-                                    child: Container(
-                                      width: 100.0,
-                                      height: 100.0,
-                                      decoration: BoxDecoration(
+                        return GridView.builder(
+                          padding: EdgeInsets.zero,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10.0,
+                            mainAxisSpacing: 10.0,
+                            childAspectRatio: 0.9,
+                          ),
+                          primary: false,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: gridViewProdutoRecordList.length,
+                          itemBuilder: (context, gridViewIndex) {
+                            final gridViewProdutoRecord =
+                                gridViewProdutoRecordList[gridViewIndex];
+                            return StreamBuilder<ProdutoRecord>(
+                              stream: ProdutoRecord.getDocument(
+                                  gridViewProdutoRecord.reference),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 26.0,
+                                      height: 26.0,
+                                      child: SpinKitCircle(
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        border: Border.all(
-                                          color: Color(0x8875787A),
-                                          width: 0.5,
-                                        ),
+                                            .secondaryText,
+                                        size: 26.0,
                                       ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 0.0, 10.0, 0.0),
-                                            child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: Image.network(
-                                                containerProdutoRecord
-                                                    .imagens.firstOrNull!,
-                                                width: double.infinity,
-                                                height:
-                                                    MediaQuery.sizeOf(context)
-                                                            .height *
-                                                        0.175,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                          Flexible(
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      10.0, 0.0, 10.0, 0.0),
-                                              child: Text(
+                                    ),
+                                  );
+                                }
+
+                                final containerProdutoRecord = snapshot.data!;
+
+                                return InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    FFAppState().palavraChavePesquisa =
+                                        functions
+                                            .listaBuscaHistorico(
                                                 functions.gerarPesquisa(
                                                     containerProdutoRecord
                                                         .palavrasChaveList
@@ -1094,26 +1014,86 @@ class _PesquisaWidgetState extends State<PesquisaWidget> {
                                                     containerProdutoRecord.nome,
                                                     containerProdutoRecord
                                                         .categoria),
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          font:
-                                                              GoogleFonts.inter(
-                                                            fontWeight:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontWeight,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                          ),
-                                                          fontSize: 13.0,
-                                                          letterSpacing: 0.0,
+                                                (currentUserDocument
+                                                            ?.historicoPesquisa
+                                                            .toList() ??
+                                                        [])
+                                                    .toList())
+                                            .toList()
+                                            .cast<String>();
+                                    safeSetState(() {});
+                                    FFAppState().filtroRelevencia = true;
+                                    FFAppState().FiltroDestaque = false;
+                                    FFAppState().filtroRecente = false;
+                                    FFAppState().filtroPreco = '';
+                                    safeSetState(() {});
+
+                                    context.pushNamed(
+                                        PesquisaGaleriaWidget.routeName);
+
+                                    await currentUserReference!.update({
+                                      ...mapToFirestore(
+                                        {
+                                          'historicoPesquisa':
+                                              FFAppState().palavraChavePesquisa,
+                                        },
+                                      ),
+                                    });
+                                  },
+                                  child: Container(
+                                    width: 100.0,
+                                    height: 100.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      border: Border.all(
+                                        color: Color(0x8875787A),
+                                        width: 0.5,
+                                      ),
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 0.0, 10.0, 0.0),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                            child: Image.network(
+                                              containerProdutoRecord
+                                                  .imagens.firstOrNull!,
+                                              width: double.infinity,
+                                              height: MediaQuery.sizeOf(context)
+                                                      .height *
+                                                  0.175,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                        Flexible(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 0.0, 10.0, 0.0),
+                                            child: Text(
+                                              functions.gerarPesquisa(
+                                                  containerProdutoRecord
+                                                      .palavrasChaveList
+                                                      .toList(),
+                                                  containerProdutoRecord.nome,
+                                                  containerProdutoRecord
+                                                      .categoria),
+                                              textAlign: TextAlign.center,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        font: GoogleFonts.inter(
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -1125,19 +1105,31 @@ class _PesquisaWidgetState extends State<PesquisaWidget> {
                                                                   .bodyMedium
                                                                   .fontStyle,
                                                         ),
-                                              ),
+                                                        fontSize: 13.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
                                             ),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
-                                  );
-                                },
-                              );
-                            },
-                          );
-                        },
-                      ),
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                        );
+                      },
                     ),
                   ),
                 ),

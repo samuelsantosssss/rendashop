@@ -1,8 +1,10 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -13,7 +15,6 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
-import 'package:ff_theme/flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -216,6 +217,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                         onPressed: () async {
                                           final selectedMedia =
                                               await selectMedia(
+                                            maxWidth: 1080.00,
+                                            imageQuality: 80,
                                             mediaSource:
                                                 MediaSource.photoGallery,
                                             multiImage: true,
@@ -282,11 +285,22 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                             }
                                           }
 
-                                          FFAppState().fotoProduto = _model
-                                              .uploadedFileUrls_uploadData33f4556
-                                              .toList()
-                                              .cast<String>();
-                                          safeSetState(() {});
+                                          if ((_model
+                                                  .uploadedFileUrls_uploadData33f4556
+                                                  .isNotEmpty) ==
+                                              true) {
+                                            FFAppState().fotoProduto = functions
+                                                .atualizarImagem(
+                                                    FFAppState()
+                                                        .fotoProduto
+                                                        .toList(),
+                                                    _model
+                                                        .uploadedFileUrls_uploadData33f4556
+                                                        .toList())
+                                                .toList()
+                                                .cast<String>();
+                                            safeSetState(() {});
+                                          }
                                         },
                                         text: '',
                                         options: FFButtonOptions(
@@ -1081,7 +1095,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                         ),
                                       ),
                                       Text(
-                                        'Margem Feed',
+                                        'Margem 1:1',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -1388,7 +1402,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                         ),
                                       ),
                                       Text(
-                                        'Margem Story',
+                                        'Margem 3:4',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -4876,6 +4890,28 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                         FFButtonWidget(
                           onPressed: () async {
                             var _shouldSetState = false;
+                            _model.saidaImg = await actions.imsgLisEmUpload(
+                              FFAppState().fotoProduto.toList(),
+                            );
+                            _shouldSetState = true;
+                            for (int loop1Index = 0;
+                                loop1Index < _model.saidaImg!.length;
+                                loop1Index++) {
+                              final currentLoop1Item =
+                                  _model.saidaImg![loop1Index];
+                              _model.apiResult4cb =
+                                  await UploadToCloudinaryCall.call(
+                                file: currentLoop1Item,
+                                uploadPreset: 'rendashop_images',
+                              );
+
+                              _shouldSetState = true;
+                              FFAppState().addToImgListTeste(functions
+                                  .buildWebpUrl(UploadToCloudinaryCall.publicId(
+                                (_model.apiResult4cb?.jsonBody ?? ''),
+                              )!));
+                              safeSetState(() {});
+                            }
 
                             var produtoRecordReference =
                                 ProdutoRecord.collection.doc();
@@ -4918,18 +4954,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                               ),
                               ...mapToFirestore(
                                 {
-                                  'imagens': functions.addimgList(
-                                      FFAppState().foto1titulo1,
-                                      FFAppState().foto2titulo1,
-                                      FFAppState().foto3titulo1,
-                                      FFAppState().foto4titulo1,
-                                      FFAppState().foto5titulo1,
-                                      FFAppState().foto6titulo1,
-                                      FFAppState().foto7titulo1,
-                                      FFAppState().foto8titulo1,
-                                      FFAppState().foto9titulo1,
-                                      FFAppState().foto10titulo1,
-                                      FFAppState().fotoProduto.toList()),
+                                  'imagens': FFAppState().imgListTeste,
                                   'variante_imgList': functions.imageList(
                                       FFAppState().foto1titulo1,
                                       FFAppState().foto2titulo1,
@@ -5015,18 +5040,7 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                               ),
                               ...mapToFirestore(
                                 {
-                                  'imagens': functions.addimgList(
-                                      FFAppState().foto1titulo1,
-                                      FFAppState().foto2titulo1,
-                                      FFAppState().foto3titulo1,
-                                      FFAppState().foto4titulo1,
-                                      FFAppState().foto5titulo1,
-                                      FFAppState().foto6titulo1,
-                                      FFAppState().foto7titulo1,
-                                      FFAppState().foto8titulo1,
-                                      FFAppState().foto9titulo1,
-                                      FFAppState().foto10titulo1,
-                                      FFAppState().fotoProduto.toList()),
+                                  'imagens': FFAppState().imgListTeste,
                                   'variante_imgList': functions.imageList(
                                       FFAppState().foto1titulo1,
                                       FFAppState().foto2titulo1,
@@ -5107,6 +5121,8 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                             FFAppState().lider3 = '';
                             FFAppState().lider4 = '';
                             FFAppState().palavraChaveProduto = '';
+                            FFAppState().imgListTeste = [];
+                            FFAppState().categoriasGeral = '';
                             safeSetState(() {});
 
                             await _model.produtoCriado!.reference
@@ -6395,214 +6411,6 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                     opcaoTitulo2: FFAppState().opcao10titulo2,
                                   ));
                                 }
-                                if (FFAppState().opcao91preco != '') {
-                                  await VarianteRecord.createDoc(
-                                          _model.produtoCriado!.reference)
-                                      .set(createVarianteRecordData(
-                                    preco: functions.dinheiroStringemDouble(
-                                        FFAppState().opcao91preco),
-                                    estoque: functions.stringEmInterger(
-                                        FFAppState().opcao91estoque),
-                                    foto: FFAppState().foto9titulo1,
-                                    titulo1: FFAppState().titulo1,
-                                    titulo2: FFAppState().titulo2,
-                                    produtoRef: _model.produtoCriado?.reference,
-                                    opcaoTitulo1: FFAppState().opcao9titulo1,
-                                    opcaoTitulo2: FFAppState().opcao1titulo2,
-                                  ));
-                                }
-                                if (FFAppState().opcao92preco != '') {
-                                  await VarianteRecord.createDoc(
-                                          _model.produtoCriado!.reference)
-                                      .set(createVarianteRecordData(
-                                    preco: functions.dinheiroStringemDouble(
-                                        FFAppState().opcao92preco),
-                                    estoque: functions.stringEmInterger(
-                                        FFAppState().opcao92estoque),
-                                    foto: FFAppState().foto9titulo1,
-                                    titulo1: FFAppState().titulo1,
-                                    titulo2: FFAppState().titulo2,
-                                    produtoRef: _model.produtoCriado?.reference,
-                                    opcaoTitulo1: FFAppState().opcao9titulo1,
-                                    opcaoTitulo2: FFAppState().opcao2titulo2,
-                                  ));
-                                }
-                                if (FFAppState().opcao93preco != '') {
-                                  await VarianteRecord.createDoc(
-                                          _model.produtoCriado!.reference)
-                                      .set(createVarianteRecordData(
-                                    preco: functions.dinheiroStringemDouble(
-                                        FFAppState().opcao93preco),
-                                    estoque: functions.stringEmInterger(
-                                        FFAppState().opcao93estoque),
-                                    foto: FFAppState().foto9titulo1,
-                                    titulo1: FFAppState().titulo1,
-                                    titulo2: FFAppState().titulo2,
-                                    produtoRef: _model.produtoCriado?.reference,
-                                    opcaoTitulo1: FFAppState().opcao9titulo1,
-                                    opcaoTitulo2: FFAppState().opcao3titulo2,
-                                  ));
-                                }
-                                if (FFAppState().opcao94preco != '') {
-                                  await VarianteRecord.createDoc(
-                                          _model.produtoCriado!.reference)
-                                      .set(createVarianteRecordData(
-                                    preco: functions.dinheiroStringemDouble(
-                                        FFAppState().opcao94preco),
-                                    estoque: functions.stringEmInterger(
-                                        FFAppState().opcao94estoque),
-                                    foto: FFAppState().foto9titulo1,
-                                    titulo1: FFAppState().titulo1,
-                                    titulo2: FFAppState().titulo2,
-                                    produtoRef: _model.produtoCriado?.reference,
-                                    opcaoTitulo1: FFAppState().opcao9titulo1,
-                                    opcaoTitulo2: FFAppState().opcao4titulo2,
-                                  ));
-                                }
-                                if (FFAppState().opcao95preco != '') {
-                                  await VarianteRecord.createDoc(
-                                          _model.produtoCriado!.reference)
-                                      .set(createVarianteRecordData(
-                                    preco: functions.dinheiroStringemDouble(
-                                        FFAppState().opcao95preco),
-                                    estoque: functions.stringEmInterger(
-                                        FFAppState().opcao95estoque),
-                                    foto: FFAppState().foto9titulo1,
-                                    titulo1: FFAppState().titulo1,
-                                    titulo2: FFAppState().titulo2,
-                                    produtoRef: _model.produtoCriado?.reference,
-                                    opcaoTitulo1: FFAppState().opcao9titulo1,
-                                    opcaoTitulo2: FFAppState().opcao5titulo2,
-                                  ));
-                                }
-                                if (FFAppState().opcao96preco != '') {
-                                  await VarianteRecord.createDoc(
-                                          _model.produtoCriado!.reference)
-                                      .set(createVarianteRecordData(
-                                    preco: functions.dinheiroStringemDouble(
-                                        FFAppState().opcao96preco),
-                                    estoque: functions.stringEmInterger(
-                                        FFAppState().opcao96estoque),
-                                    foto: FFAppState().foto9titulo1,
-                                    titulo1: FFAppState().titulo1,
-                                    titulo2: FFAppState().titulo2,
-                                    produtoRef: _model.produtoCriado?.reference,
-                                    opcaoTitulo1: FFAppState().opcao9titulo1,
-                                    opcaoTitulo2: FFAppState().opcao6titulo2,
-                                  ));
-                                }
-                                if (FFAppState().opcao97preco != '') {
-                                  await VarianteRecord.createDoc(
-                                          _model.produtoCriado!.reference)
-                                      .set(createVarianteRecordData(
-                                    preco: functions.dinheiroStringemDouble(
-                                        FFAppState().opcao97preco),
-                                    estoque: functions.stringEmInterger(
-                                        FFAppState().opcao97estoque),
-                                    foto: FFAppState().foto9titulo1,
-                                    titulo1: FFAppState().titulo1,
-                                    titulo2: FFAppState().titulo2,
-                                    produtoRef: _model.produtoCriado?.reference,
-                                    opcaoTitulo1: FFAppState().opcao9titulo1,
-                                    opcaoTitulo2: FFAppState().opcao7titulo2,
-                                  ));
-                                }
-                                if (FFAppState().opcao98preco != '') {
-                                  await VarianteRecord.createDoc(
-                                          _model.produtoCriado!.reference)
-                                      .set(createVarianteRecordData(
-                                    preco: functions.dinheiroStringemDouble(
-                                        FFAppState().opcao98preco),
-                                    estoque: functions.stringEmInterger(
-                                        FFAppState().opcao98estoque),
-                                    foto: FFAppState().foto9titulo1,
-                                    titulo1: FFAppState().titulo1,
-                                    titulo2: FFAppState().titulo2,
-                                    produtoRef: _model.produtoCriado?.reference,
-                                    opcaoTitulo1: FFAppState().opcao9titulo1,
-                                    opcaoTitulo2: FFAppState().opcao8titulo2,
-                                  ));
-                                }
-                                if (FFAppState().opcao99preco != '') {
-                                  await VarianteRecord.createDoc(
-                                          _model.produtoCriado!.reference)
-                                      .set(createVarianteRecordData(
-                                    preco: functions.dinheiroStringemDouble(
-                                        FFAppState().opcao99preco),
-                                    estoque: functions.stringEmInterger(
-                                        FFAppState().opcao99estoque),
-                                    foto: FFAppState().foto9titulo1,
-                                    titulo1: FFAppState().titulo1,
-                                    titulo2: FFAppState().titulo2,
-                                    produtoRef: _model.produtoCriado?.reference,
-                                    opcaoTitulo1: FFAppState().opcao9titulo1,
-                                    opcaoTitulo2: FFAppState().opcao9titulo2,
-                                  ));
-                                }
-                                if (FFAppState().opcao910preco != '') {
-                                  await VarianteRecord.createDoc(
-                                          _model.produtoCriado!.reference)
-                                      .set(createVarianteRecordData(
-                                    preco: functions.dinheiroStringemDouble(
-                                        FFAppState().opcao910preco),
-                                    estoque: functions.stringEmInterger(
-                                        FFAppState().opcao910estoque),
-                                    foto: FFAppState().foto9titulo1,
-                                    titulo1: FFAppState().titulo1,
-                                    titulo2: FFAppState().titulo2,
-                                    produtoRef: _model.produtoCriado?.reference,
-                                    opcaoTitulo1: FFAppState().opcao9titulo1,
-                                    opcaoTitulo2: FFAppState().opcao10titulo2,
-                                  ));
-                                }
-                                if (FFAppState().opcao101preco != '') {
-                                  await VarianteRecord.createDoc(
-                                          _model.produtoCriado!.reference)
-                                      .set(createVarianteRecordData(
-                                    preco: functions.dinheiroStringemDouble(
-                                        FFAppState().opcao101preco),
-                                    estoque: functions.stringEmInterger(
-                                        FFAppState().opcao101estoque),
-                                    foto: FFAppState().foto10titulo1,
-                                    titulo1: FFAppState().titulo1,
-                                    titulo2: FFAppState().titulo2,
-                                    produtoRef: _model.produtoCriado?.reference,
-                                    opcaoTitulo1: FFAppState().opcao10titulo1,
-                                    opcaoTitulo2: FFAppState().opcao1titulo2,
-                                  ));
-                                }
-                                if (FFAppState().opcao102preco != '') {
-                                  await VarianteRecord.createDoc(
-                                          _model.produtoCriado!.reference)
-                                      .set(createVarianteRecordData(
-                                    preco: functions.dinheiroStringemDouble(
-                                        FFAppState().opcao102preco),
-                                    estoque: functions.stringEmInterger(
-                                        FFAppState().opcao102estoque),
-                                    foto: FFAppState().foto10titulo1,
-                                    titulo1: FFAppState().titulo1,
-                                    titulo2: FFAppState().titulo2,
-                                    produtoRef: _model.produtoCriado?.reference,
-                                    opcaoTitulo1: FFAppState().opcao10titulo1,
-                                    opcaoTitulo2: FFAppState().opcao2titulo2,
-                                  ));
-                                }
-                                if (FFAppState().opcao103preco != '') {
-                                  await VarianteRecord.createDoc(
-                                          _model.produtoCriado!.reference)
-                                      .set(createVarianteRecordData(
-                                    preco: functions.dinheiroStringemDouble(
-                                        FFAppState().opcao103preco),
-                                    estoque: functions.stringEmInterger(
-                                        FFAppState().opcao103estoque),
-                                    foto: FFAppState().foto10titulo1,
-                                    titulo1: FFAppState().titulo1,
-                                    titulo2: FFAppState().titulo2,
-                                    produtoRef: _model.produtoCriado?.reference,
-                                    opcaoTitulo1: FFAppState().opcao10titulo1,
-                                    opcaoTitulo2: FFAppState().opcao3titulo2,
-                                  ));
-                                }
                               } else {
                                 if (FFAppState().opcao1preco != '') {
                                   await VarianteRecord.createDoc(
@@ -6845,410 +6653,214 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                                 return;
                               }
 
-                              if (FFAppState().opcao104preco != '') {
+                              if (FFAppState().opcao91preco != '') {
                                 await VarianteRecord.createDoc(
                                         _model.produtoCriado!.reference)
                                     .set(createVarianteRecordData(
                                   preco: functions.dinheiroStringemDouble(
-                                      FFAppState().opcao104preco),
+                                      FFAppState().opcao91preco),
                                   estoque: functions.stringEmInterger(
-                                      FFAppState().opcao104estoque),
-                                  foto: FFAppState().foto10titulo1,
+                                      FFAppState().opcao91estoque),
+                                  foto: FFAppState().foto9titulo1,
                                   titulo1: FFAppState().titulo1,
                                   titulo2: FFAppState().titulo2,
                                   produtoRef: _model.produtoCriado?.reference,
-                                  opcaoTitulo1: FFAppState().opcao10titulo1,
+                                  opcaoTitulo1: FFAppState().opcao9titulo1,
+                                  opcaoTitulo2: FFAppState().opcao1titulo2,
+                                ));
+                              }
+                              if (FFAppState().opcao92preco != '') {
+                                await VarianteRecord.createDoc(
+                                        _model.produtoCriado!.reference)
+                                    .set(createVarianteRecordData(
+                                  preco: functions.dinheiroStringemDouble(
+                                      FFAppState().opcao92preco),
+                                  estoque: functions.stringEmInterger(
+                                      FFAppState().opcao92estoque),
+                                  foto: FFAppState().foto9titulo1,
+                                  titulo1: FFAppState().titulo1,
+                                  titulo2: FFAppState().titulo2,
+                                  produtoRef: _model.produtoCriado?.reference,
+                                  opcaoTitulo1: FFAppState().opcao9titulo1,
+                                  opcaoTitulo2: FFAppState().opcao2titulo2,
+                                ));
+                              }
+                              if (FFAppState().opcao93preco != '') {
+                                await VarianteRecord.createDoc(
+                                        _model.produtoCriado!.reference)
+                                    .set(createVarianteRecordData(
+                                  preco: functions.dinheiroStringemDouble(
+                                      FFAppState().opcao93preco),
+                                  estoque: functions.stringEmInterger(
+                                      FFAppState().opcao93estoque),
+                                  foto: FFAppState().foto9titulo1,
+                                  titulo1: FFAppState().titulo1,
+                                  titulo2: FFAppState().titulo2,
+                                  produtoRef: _model.produtoCriado?.reference,
+                                  opcaoTitulo1: FFAppState().opcao9titulo1,
+                                  opcaoTitulo2: FFAppState().opcao3titulo2,
+                                ));
+                              }
+                              if (FFAppState().opcao94preco != '') {
+                                await VarianteRecord.createDoc(
+                                        _model.produtoCriado!.reference)
+                                    .set(createVarianteRecordData(
+                                  preco: functions.dinheiroStringemDouble(
+                                      FFAppState().opcao94preco),
+                                  estoque: functions.stringEmInterger(
+                                      FFAppState().opcao94estoque),
+                                  foto: FFAppState().foto9titulo1,
+                                  titulo1: FFAppState().titulo1,
+                                  titulo2: FFAppState().titulo2,
+                                  produtoRef: _model.produtoCriado?.reference,
+                                  opcaoTitulo1: FFAppState().opcao9titulo1,
                                   opcaoTitulo2: FFAppState().opcao4titulo2,
                                 ));
                               }
-                              if (FFAppState().opcao105preco != '') {
+                              if (FFAppState().opcao95preco != '') {
                                 await VarianteRecord.createDoc(
                                         _model.produtoCriado!.reference)
                                     .set(createVarianteRecordData(
                                   preco: functions.dinheiroStringemDouble(
-                                      FFAppState().opcao105preco),
+                                      FFAppState().opcao95preco),
                                   estoque: functions.stringEmInterger(
-                                      FFAppState().opcao105estoque),
-                                  foto: FFAppState().foto10titulo1,
+                                      FFAppState().opcao95estoque),
+                                  foto: FFAppState().foto9titulo1,
                                   titulo1: FFAppState().titulo1,
                                   titulo2: FFAppState().titulo2,
                                   produtoRef: _model.produtoCriado?.reference,
-                                  opcaoTitulo1: FFAppState().opcao10titulo1,
+                                  opcaoTitulo1: FFAppState().opcao9titulo1,
                                   opcaoTitulo2: FFAppState().opcao5titulo2,
                                 ));
                               }
-                              if (FFAppState().opcao106preco != '') {
+                              if (FFAppState().opcao96preco != '') {
                                 await VarianteRecord.createDoc(
                                         _model.produtoCriado!.reference)
                                     .set(createVarianteRecordData(
                                   preco: functions.dinheiroStringemDouble(
-                                      FFAppState().opcao106preco),
+                                      FFAppState().opcao96preco),
                                   estoque: functions.stringEmInterger(
-                                      FFAppState().opcao106estoque),
-                                  foto: FFAppState().foto10titulo1,
+                                      FFAppState().opcao96estoque),
+                                  foto: FFAppState().foto9titulo1,
                                   titulo1: FFAppState().titulo1,
                                   titulo2: FFAppState().titulo2,
                                   produtoRef: _model.produtoCriado?.reference,
-                                  opcaoTitulo1: FFAppState().opcao10titulo1,
+                                  opcaoTitulo1: FFAppState().opcao9titulo1,
                                   opcaoTitulo2: FFAppState().opcao6titulo2,
                                 ));
                               }
-                              if (FFAppState().opcao107preco != '') {
+                              if (FFAppState().opcao97preco != '') {
                                 await VarianteRecord.createDoc(
                                         _model.produtoCriado!.reference)
                                     .set(createVarianteRecordData(
                                   preco: functions.dinheiroStringemDouble(
-                                      FFAppState().opcao107preco),
+                                      FFAppState().opcao97preco),
                                   estoque: functions.stringEmInterger(
-                                      FFAppState().opcao107estoque),
-                                  foto: FFAppState().foto10titulo1,
+                                      FFAppState().opcao97estoque),
+                                  foto: FFAppState().foto9titulo1,
                                   titulo1: FFAppState().titulo1,
                                   titulo2: FFAppState().titulo2,
                                   produtoRef: _model.produtoCriado?.reference,
-                                  opcaoTitulo1: FFAppState().opcao10titulo1,
+                                  opcaoTitulo1: FFAppState().opcao9titulo1,
                                   opcaoTitulo2: FFAppState().opcao7titulo2,
                                 ));
                               }
-                              if (FFAppState().opcao108preco != '') {
+                              if (FFAppState().opcao98preco != '') {
                                 await VarianteRecord.createDoc(
                                         _model.produtoCriado!.reference)
                                     .set(createVarianteRecordData(
                                   preco: functions.dinheiroStringemDouble(
-                                      FFAppState().opcao108preco),
+                                      FFAppState().opcao98preco),
                                   estoque: functions.stringEmInterger(
-                                      FFAppState().opcao108estoque),
-                                  foto: FFAppState().foto10titulo1,
+                                      FFAppState().opcao98estoque),
+                                  foto: FFAppState().foto9titulo1,
                                   titulo1: FFAppState().titulo1,
                                   titulo2: FFAppState().titulo2,
                                   produtoRef: _model.produtoCriado?.reference,
-                                  opcaoTitulo1: FFAppState().opcao10titulo1,
+                                  opcaoTitulo1: FFAppState().opcao9titulo1,
                                   opcaoTitulo2: FFAppState().opcao8titulo2,
                                 ));
                               }
-                              if (FFAppState().opcao109preco != '') {
+                              if (FFAppState().opcao99preco != '') {
                                 await VarianteRecord.createDoc(
                                         _model.produtoCriado!.reference)
                                     .set(createVarianteRecordData(
                                   preco: functions.dinheiroStringemDouble(
-                                      FFAppState().opcao109preco),
+                                      FFAppState().opcao99preco),
                                   estoque: functions.stringEmInterger(
-                                      FFAppState().opcao109estoque),
-                                  foto: FFAppState().foto10titulo1,
+                                      FFAppState().opcao99estoque),
+                                  foto: FFAppState().foto9titulo1,
                                   titulo1: FFAppState().titulo1,
                                   titulo2: FFAppState().titulo2,
                                   produtoRef: _model.produtoCriado?.reference,
-                                  opcaoTitulo1: FFAppState().opcao10titulo1,
+                                  opcaoTitulo1: FFAppState().opcao9titulo1,
                                   opcaoTitulo2: FFAppState().opcao9titulo2,
                                 ));
                               }
-                              if (FFAppState().opcao1010preco != '') {
+                              if (FFAppState().opcao910preco != '') {
                                 await VarianteRecord.createDoc(
                                         _model.produtoCriado!.reference)
                                     .set(createVarianteRecordData(
                                   preco: functions.dinheiroStringemDouble(
-                                      FFAppState().opcao1010preco),
+                                      FFAppState().opcao910preco),
                                   estoque: functions.stringEmInterger(
-                                      FFAppState().opcao1010estoque),
+                                      FFAppState().opcao910estoque),
+                                  foto: FFAppState().foto9titulo1,
+                                  titulo1: FFAppState().titulo1,
+                                  titulo2: FFAppState().titulo2,
+                                  produtoRef: _model.produtoCriado?.reference,
+                                  opcaoTitulo1: FFAppState().opcao9titulo1,
+                                  opcaoTitulo2: FFAppState().opcao10titulo2,
+                                ));
+                              }
+                              if (FFAppState().opcao101preco != '') {
+                                await VarianteRecord.createDoc(
+                                        _model.produtoCriado!.reference)
+                                    .set(createVarianteRecordData(
+                                  preco: functions.dinheiroStringemDouble(
+                                      FFAppState().opcao101preco),
+                                  estoque: functions.stringEmInterger(
+                                      FFAppState().opcao101estoque),
                                   foto: FFAppState().foto10titulo1,
                                   titulo1: FFAppState().titulo1,
                                   titulo2: FFAppState().titulo2,
                                   produtoRef: _model.produtoCriado?.reference,
                                   opcaoTitulo1: FFAppState().opcao10titulo1,
-                                  opcaoTitulo2: FFAppState().opcao10titulo2,
+                                  opcaoTitulo2: FFAppState().opcao1titulo2,
                                 ));
                               }
-                              FFAppState().titulo1 = '';
-                              FFAppState().titulo2 = '';
-                              FFAppState().opcao1titulo1 = '';
-                              FFAppState().foto1titulo1 = '';
-                              FFAppState().opcao2titulo1 = '';
-                              FFAppState().foto2titulo1 = '';
-                              FFAppState().fotoAtivoTitulo1 = false;
-                              FFAppState().fotoAtivoTitulo2 = false;
-                              FFAppState().opcao3titulo1 = '';
-                              FFAppState().foto3titulo1 = '';
-                              FFAppState().opcao4titulo1 = '';
-                              FFAppState().foto4titulo1 = '';
-                              FFAppState().opcao5titulo1 = '';
-                              FFAppState().foto5titulo1 = '';
-                              FFAppState().opcao6titulo1 = '';
-                              FFAppState().foto6titulo1 = '';
-                              FFAppState().opcao7titulo1 = '';
-                              FFAppState().foto7titulo1 = '';
-                              FFAppState().opcao8titulo1 = '';
-                              FFAppState().foto8titulo1 = '';
-                              FFAppState().opcao9titulo1 = '';
-                              FFAppState().foto9titulo1 = '';
-                              FFAppState().opcao10titulo1 = '';
-                              FFAppState().foto10titulo1 = '';
-                              FFAppState().opcao1titulo2 = '';
-                              FFAppState().opcao2titulo2 = '';
-                              FFAppState().opcao3titulo2 = '';
-                              FFAppState().opcao4titulo2 = '';
-                              FFAppState().opcao5titulo2 = '';
-                              FFAppState().opcao6titulo2 = '';
-                              FFAppState().opcao7titulo2 = '';
-                              FFAppState().opcao8titulo2 = '';
-                              FFAppState().opcao9titulo2 = '';
-                              FFAppState().opcao10titulo2 = '';
-                              FFAppState().opcao1selecionado = false;
-                              FFAppState().opcao2selecionado = false;
-                              FFAppState().opcao1preco = '';
-                              FFAppState().opcao1estoque = '';
-                              FFAppState().opcao12preco = '';
-                              FFAppState().opcao12estoque = '';
-                              FFAppState().opcao13preco = '';
-                              FFAppState().opcao13estoque = '';
-                              FFAppState().opcao14preco = '';
-                              FFAppState().opcao14estoque = '';
-                              FFAppState().opcao15preco = '';
-                              FFAppState().opcao15estoque = '';
-                              FFAppState().opcao16preco = '';
-                              FFAppState().opcao16estoque = '';
-                              FFAppState().opcao17preco = '';
-                              FFAppState().opcao17estoque = '';
-                              FFAppState().opcao18preco = '';
-                              FFAppState().opcao18estoque = '';
-                              FFAppState().opcao19preco = '';
-                              FFAppState().opcao19estoque = '';
-                              FFAppState().opcao110preco = '';
-                              FFAppState().opcao110estoque = '';
-                              FFAppState().naoliberar = false;
-                              FFAppState().opcao3selecionado = false;
-                              FFAppState().opcao4selecionado = false;
-                              FFAppState().opcao5selecionado = false;
-                              FFAppState().opcao6selecionado = false;
-                              FFAppState().opcao7selecionado = false;
-                              FFAppState().opcao8selecionado = false;
-                              FFAppState().opcao9selecionado = false;
-                              FFAppState().opcao10selecionado = false;
-                              FFAppState().opcao21preco = '';
-                              FFAppState().opcao21estoque = '';
-                              FFAppState().opcao22preco = '';
-                              FFAppState().opcao22estoque = '';
-                              FFAppState().opcao23preco = '';
-                              FFAppState().opcao23estoque = '';
-                              FFAppState().opcao24preco = '';
-                              FFAppState().opcao24estoque = '';
-                              FFAppState().opcao25preco = '';
-                              FFAppState().opcao34preco = '';
-                              FFAppState().opcao25estoque = '';
-                              FFAppState().opcao26preco = '';
-                              FFAppState().opcao72preco = '';
-                              FFAppState().opcao1010preco = '';
-                              FFAppState().opcao109estoque = '';
-                              FFAppState().opcao109preco = '';
-                              FFAppState().opcao108estoque = '';
-                              FFAppState().opcao108preco = '';
-                              FFAppState().opcao107estoque = '';
-                              FFAppState().opcao26estoque = '';
-                              FFAppState().opcao27preco = '';
-                              FFAppState().opcao27estoque = '';
-                              FFAppState().opcao28preco = '';
-                              FFAppState().opcao28estoque = '';
-                              FFAppState().opcao29preco = '';
-                              FFAppState().opcao29estoque = '';
-                              FFAppState().opcao210preco = '';
-                              FFAppState().opcao210estoque = '';
-                              FFAppState().opcao107preco = '';
-                              FFAppState().opcao106estoque = '';
-                              FFAppState().opcao31preco = '';
-                              FFAppState().opcao31estoque = '';
-                              FFAppState().opcao32preco = '';
-                              FFAppState().opcao32estoque = '';
-                              FFAppState().opcao33preco = '';
-                              FFAppState().opcao33estoque = '';
-                              FFAppState().opcao34estoque = '';
-                              FFAppState().opcao35preco = '';
-                              FFAppState().opcao35estoque = '';
-                              FFAppState().opcao36preco = '';
-                              FFAppState().opcao37estoque = '';
-                              FFAppState().opcao38preco = '';
-                              FFAppState().opcao38estoque = '';
-                              FFAppState().opcao39preco = '';
-                              FFAppState().opcao39estoque = '';
-                              FFAppState().opcao310preco = '';
-                              FFAppState().opcao310estoque = '';
-                              FFAppState().opcao36estoque = '';
-                              FFAppState().opcao37preco = '';
-                              FFAppState().opcao41preco = '';
-                              FFAppState().opcao41estoque = '';
-                              FFAppState().opcao42preco = '';
-                              FFAppState().opcao42estoque = '';
-                              FFAppState().opcao43preco = '';
-                              FFAppState().opcao43estoque = '';
-                              FFAppState().opcao44preco = '';
-                              FFAppState().opcao44estoque = '';
-                              FFAppState().opcao45preco = '';
-                              FFAppState().opcao45estoque = '';
-                              FFAppState().opcao46preco = '';
-                              FFAppState().opcao46estoque = '';
-                              FFAppState().opcao47preco = '';
-                              FFAppState().opcao47estoque = '';
-                              FFAppState().opcao48preco = '';
-                              FFAppState().opcao48estoque = '';
-                              FFAppState().opcao49preco = '';
-                              FFAppState().opcao49estoque = '';
-                              FFAppState().opcao410preco = '';
-                              FFAppState().opcao410estoque = '';
-                              FFAppState().opcao51preco = '';
-                              FFAppState().opcao51estoque = '';
-                              FFAppState().opcao52preco = '';
-                              FFAppState().opcao52estoque = '';
-                              FFAppState().opcao53preco = '';
-                              FFAppState().opcao53estoque = '';
-                              FFAppState().opcao54preco = '';
-                              FFAppState().opcao54estoque = '';
-                              FFAppState().opcao55preco = '';
-                              FFAppState().opcao55estoque = '';
-                              FFAppState().opcao56preco = '';
-                              FFAppState().opcao56estoque = '';
-                              FFAppState().opcao57preco = '';
-                              FFAppState().opcao57estoque = '';
-                              FFAppState().opcao58preco = '';
-                              FFAppState().opcao58estoque = '';
-                              FFAppState().opcao59preco = '';
-                              FFAppState().opcao59estoque = '';
-                              FFAppState().opcao510preco = '';
-                              FFAppState().opcao510estoque = '';
-                              FFAppState().opcao61preco = '';
-                              FFAppState().opcao61estoque = '';
-                              FFAppState().opcao62preco = '';
-                              FFAppState().opcao62estoque = '';
-                              FFAppState().opcao63preco = '';
-                              FFAppState().opcao63estoque = '';
-                              FFAppState().opcao64preco = '';
-                              FFAppState().opcao65estoque = '';
-                              FFAppState().opcao65preco = '';
-                              FFAppState().opcao66preco = '';
-                              FFAppState().opcao67estoque = '';
-                              FFAppState().opcao68preco = '';
-                              FFAppState().opcao68estoque = '';
-                              FFAppState().opcao69preco = '';
-                              FFAppState().opcao69estoque = '';
-                              FFAppState().opcao610preco = '';
-                              FFAppState().opcao610estoque = '';
-                              FFAppState().opcao64estoque = '';
-                              FFAppState().opcao66estoque = '';
-                              FFAppState().opcao67preco = '';
-                              FFAppState().opcao71preco = '';
-                              FFAppState().opcao71estoque = '';
-                              FFAppState().opcao1010estoque = '';
-                              FFAppState().opcao72estoque = '';
-                              FFAppState().opcao76estoque = '';
-                              FFAppState().opcao73preco = '';
-                              FFAppState().opcao73estoque = '';
-                              FFAppState().opcao74preco = '';
-                              FFAppState().opcao74estoque = '';
-                              FFAppState().opcao75preco = '';
-                              FFAppState().opcao75estoque = '';
-                              FFAppState().opcao76preco = '';
-                              FFAppState().opcao77preco = '';
-                              FFAppState().opcao77estoque = '';
-                              FFAppState().opcao78preco = '';
-                              FFAppState().opcao78estoque = '';
-                              FFAppState().opcao79preco = '';
-                              FFAppState().opcao79estoque = '';
-                              FFAppState().opcao710preco = '';
-                              FFAppState().opcao710estoque = '';
-                              FFAppState().opcao81preco = '';
-                              FFAppState().opcao81estoque = '';
-                              FFAppState().opcao83preco = '';
-                              FFAppState().opcao82preco = '';
-                              FFAppState().opcao82estoque = '';
-                              FFAppState().opcao83estoque = '';
-                              FFAppState().opcao84preco = '';
-                              FFAppState().opcao84estoque = '';
-                              FFAppState().opcao85preco = '';
-                              FFAppState().opcao85estoque = '';
-                              FFAppState().opcao86preco = '';
-                              FFAppState().opcao86estoque = '';
-                              FFAppState().opcao87preco = '';
-                              FFAppState().opcao87estoque = '';
-                              FFAppState().opcao88preco = '';
-                              FFAppState().opcao88estoque = '';
-                              FFAppState().opcao89preco = '';
-                              FFAppState().opcao89estoque = '';
-                              FFAppState().opcao810preco = '';
-                              FFAppState().opcao810estoque = '';
-                              FFAppState().opcao91preco = '';
-                              FFAppState().opcao91estoque = '';
-                              FFAppState().opcao92preco = '';
-                              FFAppState().opcao92estoque = '';
-                              FFAppState().opcao93preco = '';
-                              FFAppState().opcao93estoque = '';
-                              FFAppState().opcao94preco = '';
-                              FFAppState().opcao94estoque = '';
-                              FFAppState().opcao95preco = '';
-                              FFAppState().opcao95estoque = '';
-                              FFAppState().opcao96preco = '';
-                              FFAppState().opcao96estoque = '';
-                              FFAppState().opcao97preco = '';
-                              FFAppState().opcao97estoque = '';
-                              FFAppState().opcao98preco = '';
-                              FFAppState().opcao98estoque = '';
-                              FFAppState().opcao99preco = '';
-                              FFAppState().opcao99estoque = '';
-                              FFAppState().opcao910preco = '';
-                              FFAppState().opcao910estoque = '';
-                              FFAppState().opcao101preco = '';
-                              FFAppState().opcao101estoque = '';
-                              FFAppState().opcao102preco = '';
-                              FFAppState().opcao102estoque = '';
-                              FFAppState().opcao103preco = '';
-                              FFAppState().opcao103estoque = '';
-                              FFAppState().opcao104preco = '';
-                              FFAppState().opcao104estoque = '';
-                              FFAppState().opcao106preco = '';
-                              FFAppState().opcao105estoque = '';
-                              FFAppState().opcao105preco = '';
-                              FFAppState().menorValor = 0.0;
-                              FFAppState().selecionarVariante1foto = '';
-                              FFAppState().selecionarVariante2 = '';
-                              FFAppState().selecionarVariante1 = '';
-                              FFAppState().fretesp = '';
-                              FFAppState().freterj = '';
-                              safeSetState(() {});
-                              _model.listVariante2 =
-                                  await queryVarianteRecordOnce(
-                                parent: _model.produtoCriado?.reference,
-                              );
-                              _shouldSetState = true;
-
-                              await _model.produtoCriado!.reference
-                                  .update(createProdutoRecordData(
-                                menorPrecoRevenda: functions.menorValorVatiente(
-                                    _model.listVariante2!.toList()),
-                              ));
-                              await showDialog(
-                                context: context,
-                                builder: (alertDialogContext) {
-                                  return AlertDialog(
-                                    title: Text('Tudo certo'),
-                                    content: Text('Produto criado!'),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(alertDialogContext),
-                                        child: Text('Ok'),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              );
-
-                              context.goNamed(
-                                ProdutosWidget.routeName,
-                                queryParameters: {
-                                  'lojaref': serializeParam(
-                                    widget.lojaRef,
-                                    ParamType.DocumentReference,
-                                  ),
-                                }.withoutNulls,
-                              );
-
-                              if (_shouldSetState) safeSetState(() {});
-                              return;
+                              if (FFAppState().opcao102preco != '') {
+                                await VarianteRecord.createDoc(
+                                        _model.produtoCriado!.reference)
+                                    .set(createVarianteRecordData(
+                                  preco: functions.dinheiroStringemDouble(
+                                      FFAppState().opcao102preco),
+                                  estoque: functions.stringEmInterger(
+                                      FFAppState().opcao102estoque),
+                                  foto: FFAppState().foto10titulo1,
+                                  titulo1: FFAppState().titulo1,
+                                  titulo2: FFAppState().titulo2,
+                                  produtoRef: _model.produtoCriado?.reference,
+                                  opcaoTitulo1: FFAppState().opcao10titulo1,
+                                  opcaoTitulo2: FFAppState().opcao2titulo2,
+                                ));
+                              }
+                              if (FFAppState().opcao103preco != '') {
+                                await VarianteRecord.createDoc(
+                                        _model.produtoCriado!.reference)
+                                    .set(createVarianteRecordData(
+                                  preco: functions.dinheiroStringemDouble(
+                                      FFAppState().opcao103preco),
+                                  estoque: functions.stringEmInterger(
+                                      FFAppState().opcao103estoque),
+                                  foto: FFAppState().foto10titulo1,
+                                  titulo1: FFAppState().titulo1,
+                                  titulo2: FFAppState().titulo2,
+                                  produtoRef: _model.produtoCriado?.reference,
+                                  opcaoTitulo1: FFAppState().opcao10titulo1,
+                                  opcaoTitulo2: FFAppState().opcao3titulo2,
+                                ));
+                              }
                             } else {
                               context.goNamed(
                                 ProdutosWidget.routeName,
@@ -7263,6 +6875,408 @@ class _CadastrarProdutoWidgetState extends State<CadastrarProdutoWidget> {
                               if (_shouldSetState) safeSetState(() {});
                               return;
                             }
+
+                            if (FFAppState().opcao104preco != '') {
+                              await VarianteRecord.createDoc(
+                                      _model.produtoCriado!.reference)
+                                  .set(createVarianteRecordData(
+                                preco: functions.dinheiroStringemDouble(
+                                    FFAppState().opcao104preco),
+                                estoque: functions.stringEmInterger(
+                                    FFAppState().opcao104estoque),
+                                foto: FFAppState().foto10titulo1,
+                                titulo1: FFAppState().titulo1,
+                                titulo2: FFAppState().titulo2,
+                                produtoRef: _model.produtoCriado?.reference,
+                                opcaoTitulo1: FFAppState().opcao10titulo1,
+                                opcaoTitulo2: FFAppState().opcao4titulo2,
+                              ));
+                            }
+                            if (FFAppState().opcao105preco != '') {
+                              await VarianteRecord.createDoc(
+                                      _model.produtoCriado!.reference)
+                                  .set(createVarianteRecordData(
+                                preco: functions.dinheiroStringemDouble(
+                                    FFAppState().opcao105preco),
+                                estoque: functions.stringEmInterger(
+                                    FFAppState().opcao105estoque),
+                                foto: FFAppState().foto10titulo1,
+                                titulo1: FFAppState().titulo1,
+                                titulo2: FFAppState().titulo2,
+                                produtoRef: _model.produtoCriado?.reference,
+                                opcaoTitulo1: FFAppState().opcao10titulo1,
+                                opcaoTitulo2: FFAppState().opcao5titulo2,
+                              ));
+                            }
+                            if (FFAppState().opcao106preco != '') {
+                              await VarianteRecord.createDoc(
+                                      _model.produtoCriado!.reference)
+                                  .set(createVarianteRecordData(
+                                preco: functions.dinheiroStringemDouble(
+                                    FFAppState().opcao106preco),
+                                estoque: functions.stringEmInterger(
+                                    FFAppState().opcao106estoque),
+                                foto: FFAppState().foto10titulo1,
+                                titulo1: FFAppState().titulo1,
+                                titulo2: FFAppState().titulo2,
+                                produtoRef: _model.produtoCriado?.reference,
+                                opcaoTitulo1: FFAppState().opcao10titulo1,
+                                opcaoTitulo2: FFAppState().opcao6titulo2,
+                              ));
+                            }
+                            if (FFAppState().opcao107preco != '') {
+                              await VarianteRecord.createDoc(
+                                      _model.produtoCriado!.reference)
+                                  .set(createVarianteRecordData(
+                                preco: functions.dinheiroStringemDouble(
+                                    FFAppState().opcao107preco),
+                                estoque: functions.stringEmInterger(
+                                    FFAppState().opcao107estoque),
+                                foto: FFAppState().foto10titulo1,
+                                titulo1: FFAppState().titulo1,
+                                titulo2: FFAppState().titulo2,
+                                produtoRef: _model.produtoCriado?.reference,
+                                opcaoTitulo1: FFAppState().opcao10titulo1,
+                                opcaoTitulo2: FFAppState().opcao7titulo2,
+                              ));
+                            }
+                            if (FFAppState().opcao108preco != '') {
+                              await VarianteRecord.createDoc(
+                                      _model.produtoCriado!.reference)
+                                  .set(createVarianteRecordData(
+                                preco: functions.dinheiroStringemDouble(
+                                    FFAppState().opcao108preco),
+                                estoque: functions.stringEmInterger(
+                                    FFAppState().opcao108estoque),
+                                foto: FFAppState().foto10titulo1,
+                                titulo1: FFAppState().titulo1,
+                                titulo2: FFAppState().titulo2,
+                                produtoRef: _model.produtoCriado?.reference,
+                                opcaoTitulo1: FFAppState().opcao10titulo1,
+                                opcaoTitulo2: FFAppState().opcao8titulo2,
+                              ));
+                            }
+                            if (FFAppState().opcao109preco != '') {
+                              await VarianteRecord.createDoc(
+                                      _model.produtoCriado!.reference)
+                                  .set(createVarianteRecordData(
+                                preco: functions.dinheiroStringemDouble(
+                                    FFAppState().opcao109preco),
+                                estoque: functions.stringEmInterger(
+                                    FFAppState().opcao109estoque),
+                                foto: FFAppState().foto10titulo1,
+                                titulo1: FFAppState().titulo1,
+                                titulo2: FFAppState().titulo2,
+                                produtoRef: _model.produtoCriado?.reference,
+                                opcaoTitulo1: FFAppState().opcao10titulo1,
+                                opcaoTitulo2: FFAppState().opcao9titulo2,
+                              ));
+                            }
+                            if (FFAppState().opcao1010preco != '') {
+                              await VarianteRecord.createDoc(
+                                      _model.produtoCriado!.reference)
+                                  .set(createVarianteRecordData(
+                                preco: functions.dinheiroStringemDouble(
+                                    FFAppState().opcao1010preco),
+                                estoque: functions.stringEmInterger(
+                                    FFAppState().opcao1010estoque),
+                                foto: FFAppState().foto10titulo1,
+                                titulo1: FFAppState().titulo1,
+                                titulo2: FFAppState().titulo2,
+                                produtoRef: _model.produtoCriado?.reference,
+                                opcaoTitulo1: FFAppState().opcao10titulo1,
+                                opcaoTitulo2: FFAppState().opcao10titulo2,
+                              ));
+                            }
+                            FFAppState().titulo1 = '';
+                            FFAppState().titulo2 = '';
+                            FFAppState().opcao1titulo1 = '';
+                            FFAppState().foto1titulo1 = '';
+                            FFAppState().opcao2titulo1 = '';
+                            FFAppState().foto2titulo1 = '';
+                            FFAppState().fotoAtivoTitulo1 = false;
+                            FFAppState().fotoAtivoTitulo2 = false;
+                            FFAppState().opcao3titulo1 = '';
+                            FFAppState().foto3titulo1 = '';
+                            FFAppState().opcao4titulo1 = '';
+                            FFAppState().foto4titulo1 = '';
+                            FFAppState().opcao5titulo1 = '';
+                            FFAppState().foto5titulo1 = '';
+                            FFAppState().opcao6titulo1 = '';
+                            FFAppState().foto6titulo1 = '';
+                            FFAppState().opcao7titulo1 = '';
+                            FFAppState().foto7titulo1 = '';
+                            FFAppState().opcao8titulo1 = '';
+                            FFAppState().foto8titulo1 = '';
+                            FFAppState().opcao9titulo1 = '';
+                            FFAppState().foto9titulo1 = '';
+                            FFAppState().opcao10titulo1 = '';
+                            FFAppState().foto10titulo1 = '';
+                            FFAppState().opcao1titulo2 = '';
+                            FFAppState().opcao2titulo2 = '';
+                            FFAppState().opcao3titulo2 = '';
+                            FFAppState().opcao4titulo2 = '';
+                            FFAppState().opcao5titulo2 = '';
+                            FFAppState().opcao6titulo2 = '';
+                            FFAppState().opcao7titulo2 = '';
+                            FFAppState().opcao8titulo2 = '';
+                            FFAppState().opcao9titulo2 = '';
+                            FFAppState().opcao10titulo2 = '';
+                            FFAppState().opcao1selecionado = false;
+                            FFAppState().opcao2selecionado = false;
+                            FFAppState().opcao1preco = '';
+                            FFAppState().opcao1estoque = '';
+                            FFAppState().opcao12preco = '';
+                            FFAppState().opcao12estoque = '';
+                            FFAppState().opcao13preco = '';
+                            FFAppState().opcao13estoque = '';
+                            FFAppState().opcao14preco = '';
+                            FFAppState().opcao14estoque = '';
+                            FFAppState().opcao15preco = '';
+                            FFAppState().opcao15estoque = '';
+                            FFAppState().opcao16preco = '';
+                            FFAppState().opcao16estoque = '';
+                            FFAppState().opcao17preco = '';
+                            FFAppState().opcao17estoque = '';
+                            FFAppState().opcao18preco = '';
+                            FFAppState().opcao18estoque = '';
+                            FFAppState().opcao19preco = '';
+                            FFAppState().opcao19estoque = '';
+                            FFAppState().opcao110preco = '';
+                            FFAppState().opcao110estoque = '';
+                            FFAppState().naoliberar = false;
+                            FFAppState().opcao3selecionado = false;
+                            FFAppState().opcao4selecionado = false;
+                            FFAppState().opcao5selecionado = false;
+                            FFAppState().opcao6selecionado = false;
+                            FFAppState().opcao7selecionado = false;
+                            FFAppState().opcao8selecionado = false;
+                            FFAppState().opcao9selecionado = false;
+                            FFAppState().opcao10selecionado = false;
+                            FFAppState().opcao21preco = '';
+                            FFAppState().opcao21estoque = '';
+                            FFAppState().opcao22preco = '';
+                            FFAppState().opcao22estoque = '';
+                            FFAppState().opcao23preco = '';
+                            FFAppState().opcao23estoque = '';
+                            FFAppState().opcao24preco = '';
+                            FFAppState().opcao24estoque = '';
+                            FFAppState().opcao25preco = '';
+                            FFAppState().opcao34preco = '';
+                            FFAppState().opcao25estoque = '';
+                            FFAppState().opcao26preco = '';
+                            FFAppState().opcao72preco = '';
+                            FFAppState().opcao1010preco = '';
+                            FFAppState().opcao109estoque = '';
+                            FFAppState().opcao109preco = '';
+                            FFAppState().opcao108estoque = '';
+                            FFAppState().opcao108preco = '';
+                            FFAppState().opcao107estoque = '';
+                            FFAppState().opcao26estoque = '';
+                            FFAppState().opcao27preco = '';
+                            FFAppState().opcao27estoque = '';
+                            FFAppState().opcao28preco = '';
+                            FFAppState().opcao28estoque = '';
+                            FFAppState().opcao29preco = '';
+                            FFAppState().opcao29estoque = '';
+                            FFAppState().opcao210preco = '';
+                            FFAppState().opcao210estoque = '';
+                            FFAppState().opcao107preco = '';
+                            FFAppState().opcao106estoque = '';
+                            FFAppState().opcao31preco = '';
+                            FFAppState().opcao31estoque = '';
+                            FFAppState().opcao32preco = '';
+                            FFAppState().opcao32estoque = '';
+                            FFAppState().opcao33preco = '';
+                            FFAppState().opcao33estoque = '';
+                            FFAppState().opcao34estoque = '';
+                            FFAppState().opcao35preco = '';
+                            FFAppState().opcao35estoque = '';
+                            FFAppState().opcao36preco = '';
+                            FFAppState().opcao37estoque = '';
+                            FFAppState().opcao38preco = '';
+                            FFAppState().opcao38estoque = '';
+                            FFAppState().opcao39preco = '';
+                            FFAppState().opcao39estoque = '';
+                            FFAppState().opcao310preco = '';
+                            FFAppState().opcao310estoque = '';
+                            FFAppState().opcao36estoque = '';
+                            FFAppState().opcao37preco = '';
+                            FFAppState().opcao41preco = '';
+                            FFAppState().opcao41estoque = '';
+                            FFAppState().opcao42preco = '';
+                            FFAppState().opcao42estoque = '';
+                            FFAppState().opcao43preco = '';
+                            FFAppState().opcao43estoque = '';
+                            FFAppState().opcao44preco = '';
+                            FFAppState().opcao44estoque = '';
+                            FFAppState().opcao45preco = '';
+                            FFAppState().opcao45estoque = '';
+                            FFAppState().opcao46preco = '';
+                            FFAppState().opcao46estoque = '';
+                            FFAppState().opcao47preco = '';
+                            FFAppState().opcao47estoque = '';
+                            FFAppState().opcao48preco = '';
+                            FFAppState().opcao48estoque = '';
+                            FFAppState().opcao49preco = '';
+                            FFAppState().opcao49estoque = '';
+                            FFAppState().opcao410preco = '';
+                            FFAppState().opcao410estoque = '';
+                            FFAppState().opcao51preco = '';
+                            FFAppState().opcao51estoque = '';
+                            FFAppState().opcao52preco = '';
+                            FFAppState().opcao52estoque = '';
+                            FFAppState().opcao53preco = '';
+                            FFAppState().opcao53estoque = '';
+                            FFAppState().opcao54preco = '';
+                            FFAppState().opcao54estoque = '';
+                            FFAppState().opcao55preco = '';
+                            FFAppState().opcao55estoque = '';
+                            FFAppState().opcao56preco = '';
+                            FFAppState().opcao56estoque = '';
+                            FFAppState().opcao57preco = '';
+                            FFAppState().opcao57estoque = '';
+                            FFAppState().opcao58preco = '';
+                            FFAppState().opcao58estoque = '';
+                            FFAppState().opcao59preco = '';
+                            FFAppState().opcao59estoque = '';
+                            FFAppState().opcao510preco = '';
+                            FFAppState().opcao510estoque = '';
+                            FFAppState().opcao61preco = '';
+                            FFAppState().opcao61estoque = '';
+                            FFAppState().opcao62preco = '';
+                            FFAppState().opcao62estoque = '';
+                            FFAppState().opcao63preco = '';
+                            FFAppState().opcao63estoque = '';
+                            FFAppState().opcao64preco = '';
+                            FFAppState().opcao65estoque = '';
+                            FFAppState().opcao65preco = '';
+                            FFAppState().opcao66preco = '';
+                            FFAppState().opcao67estoque = '';
+                            FFAppState().opcao68preco = '';
+                            FFAppState().opcao68estoque = '';
+                            FFAppState().opcao69preco = '';
+                            FFAppState().opcao69estoque = '';
+                            FFAppState().opcao610preco = '';
+                            FFAppState().opcao610estoque = '';
+                            FFAppState().opcao64estoque = '';
+                            FFAppState().opcao66estoque = '';
+                            FFAppState().opcao67preco = '';
+                            FFAppState().opcao71preco = '';
+                            FFAppState().opcao71estoque = '';
+                            FFAppState().opcao1010estoque = '';
+                            FFAppState().opcao72estoque = '';
+                            FFAppState().opcao76estoque = '';
+                            FFAppState().opcao73preco = '';
+                            FFAppState().opcao73estoque = '';
+                            FFAppState().opcao74preco = '';
+                            FFAppState().opcao74estoque = '';
+                            FFAppState().opcao75preco = '';
+                            FFAppState().opcao75estoque = '';
+                            FFAppState().opcao76preco = '';
+                            FFAppState().opcao77preco = '';
+                            FFAppState().opcao77estoque = '';
+                            FFAppState().opcao78preco = '';
+                            FFAppState().opcao78estoque = '';
+                            FFAppState().opcao79preco = '';
+                            FFAppState().opcao79estoque = '';
+                            FFAppState().opcao710preco = '';
+                            FFAppState().opcao710estoque = '';
+                            FFAppState().opcao81preco = '';
+                            FFAppState().opcao81estoque = '';
+                            FFAppState().opcao83preco = '';
+                            FFAppState().opcao82preco = '';
+                            FFAppState().opcao82estoque = '';
+                            FFAppState().opcao83estoque = '';
+                            FFAppState().opcao84preco = '';
+                            FFAppState().opcao84estoque = '';
+                            FFAppState().opcao85preco = '';
+                            FFAppState().opcao85estoque = '';
+                            FFAppState().opcao86preco = '';
+                            FFAppState().opcao86estoque = '';
+                            FFAppState().opcao87preco = '';
+                            FFAppState().opcao87estoque = '';
+                            FFAppState().opcao88preco = '';
+                            FFAppState().opcao88estoque = '';
+                            FFAppState().opcao89preco = '';
+                            FFAppState().opcao89estoque = '';
+                            FFAppState().opcao810preco = '';
+                            FFAppState().opcao810estoque = '';
+                            FFAppState().opcao91preco = '';
+                            FFAppState().opcao91estoque = '';
+                            FFAppState().opcao92preco = '';
+                            FFAppState().opcao92estoque = '';
+                            FFAppState().opcao93preco = '';
+                            FFAppState().opcao93estoque = '';
+                            FFAppState().opcao94preco = '';
+                            FFAppState().opcao94estoque = '';
+                            FFAppState().opcao95preco = '';
+                            FFAppState().opcao95estoque = '';
+                            FFAppState().opcao96preco = '';
+                            FFAppState().opcao96estoque = '';
+                            FFAppState().opcao97preco = '';
+                            FFAppState().opcao97estoque = '';
+                            FFAppState().opcao98preco = '';
+                            FFAppState().opcao98estoque = '';
+                            FFAppState().opcao99preco = '';
+                            FFAppState().opcao99estoque = '';
+                            FFAppState().opcao910preco = '';
+                            FFAppState().opcao910estoque = '';
+                            FFAppState().opcao101preco = '';
+                            FFAppState().opcao101estoque = '';
+                            FFAppState().opcao102preco = '';
+                            FFAppState().opcao102estoque = '';
+                            FFAppState().opcao103preco = '';
+                            FFAppState().opcao103estoque = '';
+                            FFAppState().opcao104preco = '';
+                            FFAppState().opcao104estoque = '';
+                            FFAppState().opcao106preco = '';
+                            FFAppState().opcao105estoque = '';
+                            FFAppState().opcao105preco = '';
+                            FFAppState().menorValor = 0.0;
+                            FFAppState().selecionarVariante1foto = '';
+                            FFAppState().selecionarVariante2 = '';
+                            FFAppState().selecionarVariante1 = '';
+                            FFAppState().fretesp = '';
+                            FFAppState().freterj = '';
+                            safeSetState(() {});
+                            _model.listVariante2 =
+                                await queryVarianteRecordOnce(
+                              parent: _model.produtoCriado?.reference,
+                            );
+                            _shouldSetState = true;
+
+                            await _model.produtoCriado!.reference
+                                .update(createProdutoRecordData(
+                              menorPrecoRevenda: functions.menorValorVatiente(
+                                  _model.listVariante2!.toList()),
+                            ));
+                            await showDialog(
+                              context: context,
+                              builder: (alertDialogContext) {
+                                return AlertDialog(
+                                  title: Text('Tudo certo'),
+                                  content: Text('Produto criado!'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: Text('Ok'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+
+                            context.goNamed(
+                              ProdutosWidget.routeName,
+                              queryParameters: {
+                                'lojaref': serializeParam(
+                                  widget.lojaRef,
+                                  ParamType.DocumentReference,
+                                ),
+                              }.withoutNulls,
+                            );
 
                             if (_shouldSetState) safeSetState(() {});
                           },
