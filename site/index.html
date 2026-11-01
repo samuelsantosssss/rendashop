@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dra. Vitória Cervigni | Odontologia Especializada</title>
+<meta name="description" content="Odontologia estética com naturalidade, precisão e sofisticação.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=Jost:wght@300;400;500&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Todo o layout é medido sobre uma "prancheta" de 1672 x 941 px (tamanho da referência)
+     e escala proporcionalmente com a largura da tela. */
+  :root{
+    --u: calc(100vw / 1672);
+    --ink:#2b2420;
+    --gold:#a8732f;
+    --gold-light:#c9944e;
+    --gold-dark:#8a5a22;
+    --cream:#f3e3d6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#efdccf;overflow-x:hidden}
+  body{font-family:'Jost',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+
+  .hero{
+    position:relative;width:100vw;height:calc(941 * var(--u));
+    background:url('assets/hero-dra-vitoria.jpg') center/100% 100% no-repeat;
+    overflow:hidden;
+  }
+  .abs{position:absolute}
+
+  /* ---------- Cabeçalho ---------- */
+  .brand{left:calc(88*var(--u));top:calc(26*var(--u));display:flex;align-items:center}
+  .brand img{width:calc(105*var(--u));height:auto;display:block;margin-right:calc(10*var(--u))}
+  .brand-text{display:flex;flex-direction:column;margin-top:calc(12*var(--u))}
+  .brand-name{font-family:'Libre Caslon Text',serif;font-size:calc(19.3*var(--u));letter-spacing:calc(.1*var(--u));color:#2a2320;line-height:1;white-space:nowrap}
+  .brand-sub{font-family:'Montserrat',sans-serif;font-size:calc(10.4*var(--u));letter-spacing:calc(3.2*var(--u));font-weight:500;color:#3a2f28;margin-top:calc(12*var(--u));white-space:nowrap}
+
+  .nav{left:calc(547*var(--u));top:calc(50*var(--u));display:flex;gap:calc(57*var(--u))}
+  .nav a{position:relative;font-size:calc(19*var(--u));font-weight:400;color:#2d2622;padding-bottom:calc(13*var(--u))}
+  .nav a.active::after{content:"";position:absolute;left:calc(-9*var(--u));right:calc(-9*var(--u));bottom:0;height:calc(2.5*var(--u));background:var(--gold);border-radius:2px}
+  .nav a:hover{color:var(--gold)}
+
+  .btn-outline{
+    left:calc(1353*var(--u));top:calc(39*var(--u));width:calc(241*var(--u));height:calc(52*var(--u));
+    border:calc(1.4*var(--u)) solid var(--gold);border-radius:calc(30*var(--u));
+    display:flex;align-items:center;justify-content:center;gap:calc(14*var(--u));
+    font-size:calc(16.5*var(--u));color:#2d2622;transition:background .25s;
+  }
+  .btn-outline:hover{background:rgba(168,115,47,.08)}
+  .btn-outline svg{width:calc(24*var(--u));height:calc(24*var(--u))}
+
+  /* ---------- Texto principal ---------- */
+  .eyebrow{left:calc(139*var(--u));top:calc(227*var(--u));display:flex;align-items:center;
+    font-family:'Montserrat',sans-serif;font-weight:500;font-size:calc(16*var(--u));letter-spacing:calc(6.6*var(--u));color:var(--gold)}
+  .eyebrow::after{content:"";display:block;width:calc(92*var(--u));height:calc(1.5*var(--u));background:var(--gold);margin-left:calc(22*var(--u));opacity:.8}
+
+  h1{left:calc(138*var(--u));top:calc(276*var(--u));
+    font-family:'Libre Caslon Text',serif;font-weight:400;font-size:calc(53.3*var(--u));line-height:calc(61*var(--u));
+    letter-spacing:calc(-.6*var(--u));color:#221c19;white-space:nowrap}
+  h1 em,.tagline em{font-style:italic;color:var(--gold);font-weight:400}
+
+  .btn-gold{
+    left:calc(139*var(--u));top:calc(513*var(--u));width:calc(363*var(--u));height:calc(65*var(--u));
+    border-radius:calc(40*var(--u));
+    background:linear-gradient(100deg,#c48d4c 0%,#a8732f 45%,#8f5d25 100%);
+    box-shadow:0 calc(14*var(--u)) calc(28*var(--u)) rgba(122,78,30,.28), inset 0 1px 0 rgba(255,235,205,.35);
+    display:flex;align-items:center;padding:0 calc(33*var(--u)) 0 calc(37*var(--u));
+    color:#fff6ec;font-size:calc(19.5*var(--u));font-weight:400;transition:transform .25s, box-shadow .25s;
+  }
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 calc(18*var(--u)) calc(32*var(--u)) rgba(122,78,30,.34)}
+  .btn-gold .cal{width:calc(30*var(--u));height:calc(30*var(--u));margin-right:calc(22*var(--u))}
+  .btn-gold .arrow{margin-left:auto;width:calc(42*var(--u));height:calc(42*var(--u));border-radius:50%;
+    border:calc(1.3*var(--u)) solid rgba(255,240,222,.75);display:flex;align-items:center;justify-content:center}
+  .btn-gold .arrow svg{width:calc(18*var(--u));height:calc(18*var(--u))}
+
+  /* ---------- Rodapé do hero ---------- */
+  .tagline{left:0;right:0;top:calc(742*var(--u));text-align:center;padding-left:calc(18*var(--u));
+    font-family:'Libre Caslon Text',serif;font-size:calc(55*var(--u));line-height:1.1;letter-spacing:calc(-.8*var(--u));color:#1f1916}
+  .subline{left:0;right:0;top:calc(826*var(--u));display:flex;justify-content:center;align-items:center;padding-left:calc(16*var(--u));
+    font-family:'Montserrat',sans-serif;font-weight:500;font-size:calc(14.5*var(--u));letter-spacing:calc(7.1*var(--u));color:#2a221e}
+  .subline::before,.subline::after{content:"";width:calc(84*var(--u));height:calc(1.5*var(--u));background:var(--gold);opacity:.85}
+  .subline::before{margin-right:calc(24*var(--u))}
+  .subline::after{margin-left:calc(17*var(--u))}
+
+  .scroll{left:calc(813*var(--u));top:calc(867*var(--u));width:calc(46*var(--u));height:calc(46*var(--u));
+    border:calc(1.5*var(--u)) solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#2d2622}
+  .scroll svg{width:calc(18*var(--u));height:calc(18*var(--u))}
+  .scroll:hover{background:rgba(168,115,47,.08)}
+
+  /* Entrada suave */
+  @media (prefers-reduced-motion:no-preference){
+    .fade{opacity:0;animation:fade .9s ease forwards}
+    .d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.4s}.d4{animation-delay:.55s}.d5{animation-delay:.7s}
+    @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  }
+</style>
+</head>
+<body>
+<main class="hero" id="inicio">
+  <!-- Cabeçalho -->
+  <a href="#inicio" class="abs brand" aria-label="Dra. Vitória Cervigni — início">
+    <img src="assets/monograma-vc.png" alt="">
+    <span class="brand-text">
+      <span class="brand-name">DRA. VITÓRIA CERVIGNI</span>
+      <span class="brand-sub">ODONTOLOGIA ESPECIALIZADA</span>
+    </span>
+  </a>
+
+  <nav class="abs nav" aria-label="Principal">
+    <a href="#inicio" class="active">Início</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#tratamentos">Tratamentos</a>
+    <a href="#resultados">Resultados</a>
+    <a href="#contato">Contato</a>
+  </nav>
+
+  <a href="#contato" class="abs btn-outline">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#2d2622" stroke-width="1.4" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/><circle cx="8" cy="13" r=".6" fill="#2d2622"/><circle cx="12" cy="13" r=".6" fill="#2d2622"/><circle cx="16" cy="13" r=".6" fill="#2d2622"/><circle cx="8" cy="16.5" r=".6" fill="#2d2622"/><circle cx="12" cy="16.5" r=".6" fill="#2d2622"/><circle cx="16" cy="16.5" r=".6" fill="#2d2622"/></svg>
+    Agendar avaliação
+  </a>
+
+  <!-- Texto principal -->
+  <p class="abs eyebrow fade d1">DRA. VITÓRIA CERVIGNI</p>
+  <h1 class="abs fade d2">Odontologia estética<br>com naturalidade,<br>precisão e <em>sofisticação.</em></h1>
+
+  <a href="#contato" class="abs btn-gold fade d3">
+    <svg class="cal" viewBox="0 0 24 24" fill="none" stroke="#fff6ec" stroke-width="1.3" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/><circle cx="8" cy="13" r=".6" fill="#fff6ec"/><circle cx="12" cy="13" r=".6" fill="#fff6ec"/><circle cx="16" cy="13" r=".6" fill="#fff6ec"/><circle cx="8" cy="16.5" r=".6" fill="#fff6ec"/><circle cx="12" cy="16.5" r=".6" fill="#fff6ec"/><circle cx="16" cy="16.5" r=".6" fill="#fff6ec"/></svg>
+    Agendar avaliação
+    <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="#fff6ec" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+  </a>
+
+  <!-- Faixa inferior -->
+  <h2 class="abs tagline fade d4" style="font-weight:400">Transformando sua <em>autoestima</em></h2>
+  <p class="abs subline fade d5">COM ODONTOLOGIA DE EXCELÊNCIA</p>
+  <a href="#sobre" class="abs scroll fade d5" aria-label="Rolar para baixo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+  </a>
+</main>
+</body>
+</html>
