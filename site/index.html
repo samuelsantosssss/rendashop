@@ -96,10 +96,240 @@
     .d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.4s}.d4{animation-delay:.55s}.d5{animation-delay:.7s}
     @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   }
+
+  /* =========================================================
+     Seções internas — mesma paleta e tipografia do hero
+     ========================================================= */
+  :root{
+    --bg:#f3e4d8;          /* creme rosado do consultório */
+    --bg-soft:#f7ece3;
+    --bg-deep:#ead5c5;
+    --paper:#fbf4ee;
+    --muted:#6e5c50;
+    --line:rgba(168,115,47,.32);
+    --serif:'Libre Caslon Text',Georgia,'Times New Roman',serif;
+    --sans:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --caps:'Montserrat',system-ui,sans-serif;
+  }
+  html{scroll-behavior:smooth;background:var(--bg)}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans)}
+  section[id]{scroll-margin-top:84px}
+
+  .wrap{max-width:1240px;margin:0 auto;padding-left:max(32px, env(safe-area-inset-left, 0px));padding-right:max(32px, env(safe-area-inset-right, 0px))}
+  .sec{position:relative;padding-block:120px;overflow:hidden}
+
+  .kicker{display:inline-flex;align-items:center;gap:20px;font-family:var(--caps);font-weight:500;font-size:13px;letter-spacing:.42em;color:var(--gold);text-transform:uppercase}
+  .kicker::after{content:"";width:72px;height:1px;background:var(--gold);opacity:.8}
+  .kicker.center{justify-content:center}
+  .kicker.center::before{content:"";width:72px;height:1px;background:var(--gold);opacity:.8}
+
+  .h2{font-family:var(--serif);font-weight:400;font-size:clamp(34px,3.4vw,50px);line-height:1.14;letter-spacing:-.01em;color:#221c19;text-wrap:balance;margin-top:22px}
+  .h2 em{font-style:italic;color:var(--gold)}
+  .lead{font-size:18px;line-height:1.75;color:var(--muted);font-weight:300;max-width:60ch}
+  .center-head{text-align:center;display:flex;flex-direction:column;align-items:center}
+  .center-head .lead{margin-top:20px}
+
+  /* Botões reutilizáveis (fora do hero) */
+  .cta{display:inline-flex;align-items:center;gap:16px;height:58px;padding:0 10px 0 30px;border-radius:40px;
+    background:linear-gradient(100deg,#c48d4c 0%,#a8732f 45%,#8f5d25 100%);color:#fff6ec;font-size:17px;
+    box-shadow:0 14px 28px rgba(122,78,30,.25), inset 0 1px 0 rgba(255,235,205,.35);transition:transform .25s, box-shadow .25s}
+  .cta:hover{transform:translateY(-2px);box-shadow:0 18px 32px rgba(122,78,30,.32)}
+  .cta .ring{width:40px;height:40px;border-radius:50%;border:1.3px solid rgba(255,240,222,.75);display:grid;place-items:center}
+  .cta .ring svg{width:17px;height:17px}
+  .ghost{display:inline-flex;align-items:center;gap:10px;height:58px;padding:0 28px;border-radius:40px;border:1.4px solid var(--gold);color:#2d2622;font-size:17px;transition:background .25s}
+  .ghost:hover{background:rgba(168,115,47,.08)}
+  a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+  /* Linhas de luz (eco do arco iluminado do hero) */
+  .halo{position:absolute;border-radius:50%;border:1.5px solid rgba(255,226,186,.9);box-shadow:0 0 18px rgba(232,170,96,.55), inset 0 0 18px rgba(232,170,96,.35);pointer-events:none}
+
+  /* ---------- Cabeçalho fixo (aparece após o hero) ---------- */
+  .topbar{position:fixed;inset:0 0 auto;z-index:50;transform:translateY(-110%);transition:transform .4s ease;
+    background:rgba(247,236,227,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
+    padding-top:env(safe-area-inset-top, 0px)}
+  .topbar.show{transform:none}
+  .topbar .wrap{display:flex;align-items:center;height:76px;gap:32px}
+  .tb-brand{display:flex;align-items:center;gap:10px}
+  .tb-brand img{width:52px}
+  .tb-brand b{font-family:var(--serif);font-weight:400;font-size:17px;letter-spacing:.02em;white-space:nowrap}
+  .tb-nav{display:flex;gap:36px;margin-left:auto}
+  .tb-nav a{font-size:16px;position:relative;padding-block:6px}
+  .tb-nav a.active::after{content:"";position:absolute;left:-6px;right:-6px;bottom:-2px;height:2px;background:var(--gold);border-radius:2px}
+  .tb-nav a:hover{color:var(--gold)}
+  .tb-cta{height:44px;padding:0 22px;border:1.4px solid var(--gold);border-radius:30px;display:flex;align-items:center;gap:10px;font-size:15px;white-space:nowrap}
+  .tb-cta:hover{background:rgba(168,115,47,.08)}
+
+  /* ---------- Sobre ---------- */
+  .sobre{background:linear-gradient(180deg,#f2e2d6 0%,var(--bg-soft) 100%)}
+  .sobre .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:96px;align-items:center}
+  .portrait{position:relative;margin:0;justify-self:center;width:100%;max-width:470px}
+  .portrait .frame{position:relative;aspect-ratio:47/58;border-radius:240px 240px 24px 24px;overflow:hidden;
+    box-shadow:0 40px 80px rgba(120,80,40,.18)}
+  .portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
+  .portrait::before{content:"";position:absolute;inset:-18px -18px 40px -18px;border-radius:260px 260px 0 0;
+    border:1.5px solid rgba(255,224,182,.95);border-bottom:0;box-shadow:0 -4px 22px rgba(232,170,96,.45);pointer-events:none}
+  .portrait figcaption{position:absolute;left:-36px;bottom:42px;background:var(--paper);border:1px solid var(--line);border-radius:18px;
+    padding:18px 24px;display:flex;align-items:center;gap:14px;box-shadow:0 18px 40px rgba(120,80,40,.14)}
+  .portrait figcaption img{width:54px;height:auto}
+  .portrait figcaption span{white-space:nowrap;display:flex;flex-direction:column;font-family:var(--caps);font-size:11px;letter-spacing:.24em;color:var(--muted)}
+  .portrait figcaption strong{font-family:var(--serif);font-weight:400;font-size:18px;letter-spacing:0;color:#221c19;margin-bottom:4px}
+  .sobre-text .lead + .lead{margin-top:18px}
+  .sobre-text .h2 + .lead{margin-top:28px}
+  .pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:44px}
+  .pillar{border-top:1px solid var(--line);padding-top:22px}
+  .pillar svg{width:30px;height:30px;color:var(--gold)}
+  .pillar h3{font-family:var(--serif);font-weight:400;font-size:21px;margin-top:14px}
+  .pillar p{font-size:15px;line-height:1.6;color:var(--muted);margin-top:8px;font-weight:300}
+  .sobre-actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:48px}
+
+  /* ---------- Tratamentos ---------- */
+  .tratamentos{background:var(--bg-soft)}
+  .grid-trat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:64px}
+  .card{position:relative;background:var(--paper);border:1px solid rgba(168,115,47,.18);border-radius:22px;padding:38px 34px 34px;
+    display:flex;flex-direction:column;transition:transform .35s ease, box-shadow .35s ease, border-color .35s}
+  .card:hover{transform:translateY(-6px);box-shadow:0 28px 50px rgba(120,80,40,.12);border-color:rgba(168,115,47,.45)}
+  .card .ico{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;
+    background:radial-gradient(circle at 30% 25%,#fff6ec,#f1dfcf);border:1px solid var(--line);color:var(--gold)}
+  .card .ico svg{width:30px;height:30px}
+  .card h3{font-family:var(--serif);font-weight:400;font-size:23px;line-height:1.25;margin-top:26px}
+  .card p{font-size:15.5px;line-height:1.65;color:var(--muted);margin-top:12px;font-weight:300;flex:1}
+  .card .more{margin-top:24px;display:inline-flex;align-items:center;gap:8px;font-size:15px;color:var(--gold);font-weight:500}
+  .card .more svg{width:16px;height:16px;transition:transform .25s}
+  .card:hover .more svg{transform:translateX(4px)}
+  .card .tag{position:absolute;top:24px;right:24px;font-family:var(--caps);font-size:10px;letter-spacing:.2em;color:var(--gold);
+    border:1px solid var(--line);border-radius:20px;padding:6px 10px}
+
+  /* ---------- Jornada ---------- */
+  .jornada{background:linear-gradient(180deg,var(--bg-soft),#f0dccd)}
+  .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;margin-top:72px;position:relative}
+  .steps::before{content:"";position:absolute;top:34px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold),transparent);opacity:.5}
+  .step{text-align:center;position:relative}
+  .step .num{width:68px;height:68px;margin:0 auto;border-radius:50%;display:grid;place-items:center;background:var(--paper);
+    border:1.4px solid var(--gold);font-family:var(--serif);font-style:italic;font-size:26px;color:var(--gold);box-shadow:0 0 0 8px #f3e3d6}
+  .step h3{font-family:var(--serif);font-weight:400;font-size:22px;margin-top:28px}
+  .step p{font-size:15.5px;line-height:1.65;color:var(--muted);margin:12px auto 0;max-width:30ch;font-weight:300}
+
+  /* ---------- Resultados ---------- */
+  .resultados{background:#f0dccd}
+  .cases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:64px}
+  .case{margin:0}
+  .ba{position:relative;aspect-ratio:4/3;border-radius:22px;overflow:hidden;background:var(--paper);user-select:none;touch-action:pan-y;
+    box-shadow:0 24px 50px rgba(120,80,40,.14);cursor:ew-resize}
+  .ba .layer{position:absolute;inset:0}
+  .ba .layer img{width:100%;height:100%;object-fit:cover;display:block}
+  .ba .after{clip-path:inset(0 0 0 50%)}
+  .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;
+    font-family:var(--caps);font-size:11px;letter-spacing:.26em;color:var(--muted)}
+  .ph svg{width:34px;height:34px;color:var(--gold);opacity:.8}
+  .before .ph{background:linear-gradient(135deg,#efe0d3,#e6cfbe);padding-right:50%}
+  .after .ph{background:linear-gradient(135deg,#fbf3ec,#f3e3d6);padding-left:50%}
+  .ba .lbl{position:absolute;top:16px;font-family:var(--caps);font-size:10.5px;letter-spacing:.24em;padding:7px 12px;border-radius:20px;background:rgba(251,244,238,.92);color:#2d2622;z-index:2}
+  .ba .lbl.l{left:16px}.ba .lbl.r{right:16px}
+  .ba .handle{position:absolute;top:0;bottom:0;left:50%;width:2px;margin-left:-1px;background:#fff7ef;box-shadow:0 0 12px rgba(232,170,96,.8);z-index:3}
+  .ba .handle span{position:absolute;top:50%;left:50%;width:46px;height:46px;transform:translate(-50%,-50%);border-radius:50%;
+    background:linear-gradient(100deg,#c48d4c,#8f5d25);display:grid;place-items:center;box-shadow:0 6px 16px rgba(120,80,40,.35)}
+  .ba .handle svg{width:20px;height:20px;color:#fff6ec}
+  .ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:4;margin:0}
+  .case figcaption{margin-top:20px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .case figcaption strong{font-family:var(--serif);font-weight:400;font-size:21px}
+  .case figcaption span{font-family:var(--caps);font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}
+  .disclaimer{margin-top:40px;text-align:center;font-size:13px;color:var(--muted);font-weight:300}
+
+  /* ---------- Frase ---------- */
+  .quote{background:linear-gradient(180deg,#f0dccd,var(--bg-soft));text-align:center;padding-block:110px}
+  .quote blockquote{font-family:var(--serif);font-size:clamp(30px,3vw,44px);line-height:1.3;max-width:24ch;margin:0 auto;text-wrap:balance}
+  .quote blockquote em{color:var(--gold)}
+  .quote img{width:84px;margin:0 auto 26px;display:block}
+  .quote cite{display:block;margin-top:28px;font-style:normal;font-family:var(--caps);font-size:12px;letter-spacing:.4em;color:var(--gold)}
+
+  /* ---------- Dúvidas ---------- */
+  .duvidas{background:var(--bg-soft)}
+  .duvidas .wrap{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:90px;align-items:start}
+  .duvidas .lead{margin-top:22px}
+  .faq{border-top:1px solid var(--line)}
+  .faq details{border-bottom:1px solid var(--line)}
+  .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:28px 4px;
+    font-family:var(--serif);font-size:21px;line-height:1.35}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary .pm{flex:none;width:36px;height:36px;border-radius:50%;border:1.3px solid var(--gold);display:grid;place-items:center;color:var(--gold);transition:transform .3s, background .3s}
+  .faq summary .pm svg{width:14px;height:14px}
+  .faq details[open] summary .pm{transform:rotate(45deg);background:rgba(168,115,47,.1)}
+  .faq details p{padding:0 60px 28px 4px;font-size:16.5px;line-height:1.75;color:var(--muted);font-weight:300}
+
+  /* ---------- Contato ---------- */
+  .contato{background:linear-gradient(180deg,var(--bg-soft),#efdacb)}
+  .contact-card{position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:0;border-radius:32px;overflow:hidden;
+    background:var(--paper);border:1px solid rgba(168,115,47,.2);box-shadow:0 40px 90px rgba(120,80,40,.14)}
+  .contact-info{position:relative;padding:64px 56px;background:linear-gradient(160deg,#c69155 0%,#a8732f 50%,#7e5020 100%);color:#fff6ec;overflow:hidden}
+  .contact-info .kicker{color:#ffe9cf}.contact-info .kicker::after{background:#ffe9cf}
+  .contact-info .h2{color:#fff8f0}
+  .contact-info .h2 em{color:#ffe2bd}
+  .contact-info > p{margin-top:18px;font-size:17px;line-height:1.7;font-weight:300;color:rgba(255,246,236,.9)}
+  .clist{list-style:none;margin-top:40px;display:flex;flex-direction:column;gap:22px;position:relative;z-index:1}
+  .clist li{display:flex;gap:16px;align-items:flex-start}
+  .clist .ci{flex:none;width:44px;height:44px;border-radius:50%;border:1.2px solid rgba(255,236,214,.7);display:grid;place-items:center}
+  .clist .ci svg{width:20px;height:20px}
+  .clist small{display:block;font-family:var(--caps);font-size:10.5px;letter-spacing:.24em;color:#ffe2bd;margin-bottom:4px}
+  .clist span{font-size:16.5px;line-height:1.5}
+  .contact-info .halo{width:520px;height:520px;right:-300px;bottom:-300px;opacity:.6}
+  .contact-info .watermark{position:absolute;right:28px;bottom:22px;width:120px;opacity:.25;filter:brightness(4)}
+  .form{padding:64px 56px;display:grid;grid-template-columns:1fr 1fr;gap:20px 22px;align-content:start}
+  .form h3{grid-column:1/-1;font-family:var(--serif);font-weight:400;font-size:28px}
+  .form .sub{grid-column:1/-1;margin-top:-10px;font-size:15.5px;color:var(--muted);font-weight:300}
+  .field{display:flex;flex-direction:column;gap:8px}
+  .field.full{grid-column:1/-1}
+  .field label{font-family:var(--caps);font-size:10.5px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
+  .field input,.field select,.field textarea{font:inherit;font-size:16px;color:var(--ink);background:#fffaf5;border:1px solid rgba(168,115,47,.28);
+    border-radius:14px;padding:15px 16px;outline:none;transition:border-color .2s, box-shadow .2s;width:100%}
+  .field textarea{resize:vertical;min-height:110px}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(168,115,47,.12)}
+  .form .cta{grid-column:1/-1;justify-self:start;margin-top:8px;border:0;cursor:pointer;font-family:inherit}
+  .form .note{grid-column:1/-1;font-size:13px;color:var(--muted);font-weight:300}
+
+  /* ---------- Rodapé ---------- */
+  .footer{background:#e8d2c2;padding-block:72px 32px;border-top:1px solid var(--line)}
+  .foot-grid{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:48px}
+  .foot-brand{display:flex;align-items:center;gap:12px}
+  .foot-brand img{width:78px}
+  .foot-brand b{display:block;font-family:var(--serif);font-weight:400;font-size:17px;white-space:nowrap}
+  .foot-brand small{display:block;font-family:var(--caps);font-size:9.5px;letter-spacing:.3em;color:var(--muted);margin-top:6px}
+  .foot-grid p{margin-top:20px;font-size:15px;line-height:1.7;color:var(--muted);font-weight:300;max-width:34ch}
+  .foot-grid h4{font-family:var(--caps);font-weight:500;font-size:11px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase}
+  .foot-grid ul{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:12px;font-size:15.5px}
+  .foot-grid ul a:hover{color:var(--gold)}
+  .foot-bottom{margin-top:56px;padding-top:26px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13.5px;color:var(--muted)}
+
+  /* ---------- WhatsApp flutuante ---------- */
+  .wa-float{position:fixed;right:calc(28px + env(safe-area-inset-right, 0px));bottom:calc(28px + env(safe-area-inset-bottom, 0px));z-index:60;width:62px;height:62px;border-radius:50%;
+    background:linear-gradient(135deg,#c48d4c,#8f5d25);display:grid;place-items:center;box-shadow:0 14px 30px rgba(120,80,40,.35);transition:transform .25s}
+  .wa-float:hover{transform:scale(1.06)}
+  .wa-float svg{width:30px;height:30px;color:#fff6ec}
+
+  /* ---------- Telas menores ---------- */
+  @media (max-width:980px){
+    .sec{padding-block:80px}
+    .sobre .wrap,.duvidas .wrap,.contact-card{grid-template-columns:1fr;gap:56px}
+    .contact-card{gap:0}
+    .grid-trat,.cases{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .steps{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:48px}
+    .steps::before{display:none}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .tb-nav{display:none}
+    .tb-cta{margin-left:auto}
+  }
+  @media (max-width:620px){
+    .wrap{padding-left:max(18px, env(safe-area-inset-left, 0px));padding-right:max(18px, env(safe-area-inset-right, 0px))}
+    .grid-trat,.cases,.steps,.pillars,.foot-grid{grid-template-columns:1fr}
+    .form{grid-template-columns:1fr;padding:40px 24px}
+    .contact-info{padding:44px 24px}
+    .portrait figcaption{left:12px}
+    .tb-brand b{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.card,.cta,.topbar{transition:none}}
 </style>
 </head>
 <body>
-<main class="hero" id="inicio">
+<header class="hero" id="inicio">
   <!-- Cabeçalho -->
   <a href="#inicio" class="abs brand" aria-label="Dra. Vitória Cervigni — início">
     <img src="assets/monograma-vc.png" alt="">
@@ -138,6 +368,389 @@
   <a href="#sobre" class="abs scroll fade d5" aria-label="Rolar para baixo">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
   </a>
+</header>
+
+<!-- Cabeçalho fixo que aparece ao rolar -->
+<div class="topbar" id="topbar" aria-hidden="true">
+  <div class="wrap">
+    <a href="#inicio" class="tb-brand" tabindex="-1"><img src="assets/monograma-vc.png" alt=""><b>DRA. VITÓRIA CERVIGNI</b></a>
+    <nav class="tb-nav" aria-label="Seções">
+      <a href="#inicio" tabindex="-1">Início</a>
+      <a href="#sobre" tabindex="-1">Sobre</a>
+      <a href="#tratamentos" tabindex="-1">Tratamentos</a>
+      <a href="#resultados" tabindex="-1">Resultados</a>
+      <a href="#contato" tabindex="-1">Contato</a>
+    </nav>
+    <a href="#contato" class="tb-cta" tabindex="-1">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>
+      Agendar avaliação
+    </a>
+  </div>
+</div>
+
+<main>
+  <!-- ================= SOBRE ================= -->
+  <section class="sec sobre" id="sobre">
+    <span class="halo" style="width:900px;height:900px;left:-620px;top:-200px;opacity:.55"></span>
+    <div class="wrap">
+      <figure class="portrait">
+        <div class="frame"><img src="assets/dra-vitoria-retrato.jpg" alt="Dra. Vitória Cervigni em seu consultório" loading="lazy"></div>
+        <figcaption>
+          <img src="assets/monograma-vc.png" alt="">
+          <span><strong>Dra. Vitória Cervigni</strong>CIRURGIÃ-DENTISTA · <b data-cfg="cro" style="font-weight:400">CRO-UF 00000</b></span>
+        </figcaption>
+      </figure>
+
+      <div class="sobre-text">
+        <p class="kicker">Sobre a doutora</p>
+        <h2 class="h2">Um sorriso bonito começa com <em>cuidado de verdade.</em></h2>
+        <p class="lead">A Dra. Vitória Cervigni une técnica, sensibilidade estética e uma escuta atenta para cuidar de cada paciente de forma única. Da prevenção à transformação completa do sorriso, cada tratamento é planejado para respeitar seus traços e entregar resultados naturais e duradouros.</p>
+        <p class="lead">No consultório, você encontra um ambiente acolhedor, tecnologia atual e um atendimento sem pressa, com tempo para tirar dúvidas e entender cada etapa.</p>
+
+        <div class="pillars">
+          <div class="pillar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 6 6.5 6 10a6 6 0 0 1-12 0c0-3.5 3-6 6-10z"/><path d="M9.5 14.5a2.5 2.5 0 0 0 2.5 2.5"/></svg>
+            <h3>Naturalidade</h3>
+            <p>Resultados que valorizam quem você é, sem exageros.</p>
+          </div>
+          <div class="pillar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".8" fill="currentColor"/></svg>
+            <h3>Precisão</h3>
+            <p>Planejamento digital e técnica em cada detalhe.</p>
+          </div>
+          <div class="pillar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.4-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.6-7.5 10-7.5 10z"/></svg>
+            <h3>Acolhimento</h3>
+            <p>Atendimento próximo, humano e sem pressa.</p>
+          </div>
+        </div>
+
+        <div class="sobre-actions">
+          <a href="#contato" class="cta">Agendar avaliação <span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          <a href="#tratamentos" class="ghost">Conhecer tratamentos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TRATAMENTOS ================= -->
+  <section class="sec tratamentos" id="tratamentos">
+    <div class="wrap">
+      <div class="center-head">
+        <p class="kicker center">Tratamentos</p>
+        <h2 class="h2">Do check-up à transformação <em>completa do sorriso.</em></h2>
+        <p class="lead">Odontologia estética, clínica e reabilitadora em um só lugar, com o mesmo cuidado em cada etapa.</p>
+      </div>
+
+      <div class="grid-trat">
+        <a href="#contato" class="card" data-trat="Lentes de contato dental">
+          <span class="tag">ESTÉTICA</span>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4c-2 0-3.5 1.6-3.5 3.8 0 2 .7 3 1.2 4.6.6 1.8.8 3.8 1.2 5.6.3 1.3.8 2 1.6 2 1 0 1.2-1.2 1.5-2.5.3-1.4.6-2.8 2.5-2.8s2.2 1.4 2.5 2.8c.3 1.3.5 2.5 1.5 2.5.8 0 1.3-.7 1.6-2 .4-1.8.6-3.8 1.2-5.6.5-1.6 1.2-2.6 1.2-4.6C20 5.6 18.5 4 16.5 4c-1.7 0-2.6.9-4.5.9S8.7 4 7 4z"/><path d="M20.5 1.8v3M19 3.3h3"/></svg></span>
+          <h3>Lentes de contato dental</h3>
+          <p>Lâminas ultrafinas de porcelana que corrigem cor, formato e pequenos desalinhamentos com o mínimo de desgaste.</p>
+          <span class="more">Agendar avaliação <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#contato" class="card" data-trat="Facetas em resina">
+          <span class="tag">ESTÉTICA</span>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l5 5L9 20H4v-5z"/><path d="M12.5 6.5l5 5"/></svg></span>
+          <h3>Facetas em resina</h3>
+          <p>Transformação estética em poucas sessões, com resinas de alta performance e acabamento natural.</p>
+          <span class="more">Agendar avaliação <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#contato" class="card" data-trat="Clareamento dental">
+          <span class="tag">ESTÉTICA</span>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg></span>
+          <h3>Clareamento dental</h3>
+          <p>Dentes mais claros com segurança, no consultório ou em casa, com acompanhamento profissional.</p>
+          <span class="more">Agendar avaliação <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#contato" class="card" data-trat="Harmonização orofacial">
+          <span class="tag">ESTÉTICA</span>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-4 0-6.5 3-6.5 7.2 0 4.8 3 10.3 6.5 10.3s6.5-5.5 6.5-10.3C18.5 6 16 3 12 3z"/><path d="M9.3 15.2c1.6 1.2 3.8 1.2 5.4 0M9.5 10h.01M14.5 10h.01"/></svg></span>
+          <h3>Harmonização orofacial</h3>
+          <p>Toxina botulínica, preenchimentos e bioestimuladores para equilibrar sorriso e rosto com sutileza.</p>
+          <span class="more">Agendar avaliação <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#contato" class="card" data-trat="Implantes dentários">
+          <span class="tag">REABILITAÇÃO</span>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 3.5h9c1 0 1.7.9 1.5 1.9L17.4 9H6.6L6 5.4c-.2-1 .5-1.9 1.5-1.9z"/><path d="M8.5 9v2h7V9M9.5 11l1 9.5h3l1-9.5M9.8 13.5h4.4M10.1 16h3.8M10.4 18.5h3.2"/></svg></span>
+          <h3>Implantes dentários</h3>
+          <p>Reposição de dentes perdidos com estabilidade, conforto e aparência de dente natural.</p>
+          <span class="more">Agendar avaliação <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#contato" class="card" data-trat="Alinhadores invisíveis">
+          <span class="tag">ORTODONTIA</span>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 9.5C3.5 15 7.3 19.5 12 19.5S20.5 15 20.5 9.5"/><path d="M6.5 9.5c0 3.9 2.5 7 5.5 7s5.5-3.1 5.5-7"/><path d="M3.5 9.5h3M17.5 9.5h3"/></svg></span>
+          <h3>Alinhadores invisíveis</h3>
+          <p>Ortodontia discreta e confortável, com planejamento digital do início ao fim do tratamento.</p>
+          <span class="more">Agendar avaliação <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#contato" class="card" data-trat="Clínica geral e prevenção">
+          <span class="tag">CLÍNICA</span>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.5-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5-7.5-9.5V6z"/><path d="M8.8 12.2l2.2 2.2 4.3-4.6"/></svg></span>
+          <h3>Clínica geral e prevenção</h3>
+          <p>Limpeza, restaurações, check-ups e orientação para manter sua saúde bucal sempre em dia.</p>
+          <span class="more">Agendar avaliação <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#contato" class="card" data-trat="Tratamento de canal">
+          <span class="tag">CLÍNICA</span>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4c-2 0-3.5 1.6-3.5 3.8 0 2 .7 3 1.2 4.6.6 1.8.8 3.8 1.2 5.6.3 1.3.8 2 1.6 2 1 0 1.2-1.2 1.5-2.5.3-1.4.6-2.8 2.5-2.8s2.2 1.4 2.5 2.8c.3 1.3.5 2.5 1.5 2.5.8 0 1.3-.7 1.6-2 .4-1.8.6-3.8 1.2-5.6.5-1.6 1.2-2.6 1.2-4.6C20 5.6 18.5 4 16.5 4c-1.7 0-2.6.9-4.5.9S8.7 4 7 4z"/><path d="M9.5 8.5l.8 6.5M14.5 8.5l-.8 6.5"/></svg></span>
+          <h3>Tratamento de canal</h3>
+          <p>Endodontia moderna para aliviar a dor e preservar o dente natural, com conforto em cada sessão.</p>
+          <span class="more">Agendar avaliação <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#contato" class="card" data-trat="Próteses e reabilitação oral">
+          <span class="tag">REABILITAÇÃO</span>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8l3.5 3L12 5l4.5 6L20 8l-1.5 10h-13z"/><path d="M5.5 18h13"/></svg></span>
+          <h3>Próteses e reabilitação oral</h3>
+          <p>Coroas, pontes e próteses que devolvem a mastigação, o conforto e a confiança para sorrir.</p>
+          <span class="more">Agendar avaliação <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= JORNADA ================= -->
+  <section class="sec jornada" id="jornada">
+    <div class="wrap">
+      <div class="center-head">
+        <p class="kicker center">Como funciona</p>
+        <h2 class="h2">Sua jornada até o <em>novo sorriso.</em></h2>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="num">1</div><h3>Avaliação e escuta</h3><p>Conversamos sobre seus desejos, sua rotina e avaliamos sua saúde bucal com calma.</p></div>
+        <div class="step"><div class="num">2</div><h3>Planejamento digital</h3><p>Fotos, exames e simulação do sorriso para você enxergar o resultado antes de começar.</p></div>
+        <div class="step"><div class="num">3</div><h3>Tratamento</h3><p>Etapas claras, com conforto e técnica, sempre explicadas antes de cada sessão.</p></div>
+        <div class="step"><div class="num">4</div><h3>Acompanhamento</h3><p>Retornos e orientações para o seu resultado durar por muitos anos.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= RESULTADOS ================= -->
+  <section class="sec resultados" id="resultados">
+    <span class="halo" style="width:1100px;height:1100px;right:-760px;top:-300px;opacity:.5"></span>
+    <div class="wrap">
+      <div class="center-head">
+        <p class="kicker center">Resultados</p>
+        <h2 class="h2">Sorrisos que <em>contam histórias.</em></h2>
+        <p class="lead">Arraste para comparar o antes e o depois de casos atendidos no consultório.</p>
+      </div>
+      <div class="cases" id="cases"></div>
+      <p class="disclaimer">Imagens de pacientes reais, publicadas com autorização. Os resultados variam de pessoa para pessoa.</p>
+    </div>
+  </section>
+
+  <!-- ================= FRASE ================= -->
+  <section class="quote" aria-label="Filosofia">
+    <div class="wrap">
+      <img src="assets/monograma-vc.png" alt="">
+      <blockquote>“Cada sorriso é único. Meu trabalho é revelar a <em>melhor versão</em> do seu.”</blockquote>
+      <cite>DRA. VITÓRIA CERVIGNI</cite>
+    </div>
+  </section>
+
+  <!-- ================= DÚVIDAS ================= -->
+  <section class="sec duvidas" id="duvidas">
+    <div class="wrap">
+      <div>
+        <p class="kicker">Dúvidas frequentes</p>
+        <h2 class="h2">Tudo o que você precisa saber <em>antes de começar.</em></h2>
+        <p class="lead">Não encontrou sua pergunta? Fale com a gente pelo WhatsApp.</p>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>As lentes de contato dental desgastam os dentes?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <p>Na maioria dos casos o desgaste é mínimo ou até desnecessário. A indicação depende do formato, da posição e da cor dos seus dentes, e é definida na avaliação.</p>
+        </details>
+        <details>
+          <summary>O clareamento deixa os dentes sensíveis?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <p>Pode haver uma sensibilidade passageira. Usamos protocolos e produtos que reduzem esse desconforto, e todo o processo é acompanhado de perto.</p>
+        </details>
+        <details>
+          <summary>A harmonização orofacial fica artificial?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <p>O objetivo é realçar seus traços com naturalidade. As doses e técnicas são escolhidas para o seu rosto, sem exageros.</p>
+        </details>
+        <details>
+          <summary>Quanto tempo dura cada tratamento?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <p>Depende do caso. Na avaliação você recebe um planejamento com as etapas, o número de sessões e os prazos previstos.</p>
+        </details>
+        <details>
+          <summary>Como faço para agendar minha avaliação?<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+          <p>Pelo WhatsApp ou pelo formulário abaixo. É só escolher o tratamento de interesse e enviar sua mensagem.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTATO ================= -->
+  <section class="sec contato" id="contato">
+    <div class="wrap">
+      <div class="contact-card">
+        <div class="contact-info">
+          <span class="halo"></span>
+          <p class="kicker">Contato</p>
+          <h2 class="h2">Agende sua <em>avaliação.</em></h2>
+          <p>Dê o primeiro passo para o sorriso que você sempre quis. Respondemos pelo WhatsApp.</p>
+          <ul class="clist">
+            <li><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 19.5l1.1-4A8 8 0 1 1 20 11.5z"/><path d="M9 8.8c0 3.3 2.9 6.2 6.2 6.2l.9-1.6-1.9-.9-.8.9a4.5 4.5 0 0 1-2.8-2.8l.9-.8-.9-1.9z"/></svg></span><div><small>WHATSAPP</small><span data-cfg="phone">(00) 00000-0000</span></div></li>
+            <li><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r=".7" fill="currentColor"/></svg></span><div><small>INSTAGRAM</small><span data-cfg="instagram">@instagram</span></div></li>
+            <li><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg></span><div><small>ENDEREÇO</small><span data-cfg="address">Rua do consultório, 000 · Bairro, Cidade/UF</span></div></li>
+            <li><span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span><div><small>HORÁRIO</small><span data-cfg="hours">Segunda a sexta, 8h às 19h · Sábado, 8h às 12h</span></div></li>
+          </ul>
+          <img class="watermark" src="assets/monograma-vc.png" alt="">
+        </div>
+
+        <form class="form" id="form" novalidate>
+          <h3>Envie sua mensagem</h3>
+          <p class="sub">Preencha e envie direto para o WhatsApp do consultório.</p>
+          <div class="field"><label for="f-nome">Nome</label><input id="f-nome" name="nome" type="text" placeholder="Seu nome" autocomplete="name"></div>
+          <div class="field"><label for="f-tel">Telefone</label><input id="f-tel" name="tel" type="tel" placeholder="(00) 00000-0000" autocomplete="tel"></div>
+          <div class="field full"><label for="f-trat">Tratamento de interesse</label>
+            <select id="f-trat" name="trat">
+              <option>Avaliação geral</option>
+              <option>Lentes de contato dental</option>
+              <option>Facetas em resina</option>
+              <option>Clareamento dental</option>
+              <option>Harmonização orofacial</option>
+              <option>Implantes dentários</option>
+              <option>Alinhadores invisíveis</option>
+              <option>Clínica geral e prevenção</option>
+              <option>Tratamento de canal</option>
+              <option>Próteses e reabilitação oral</option>
+            </select>
+          </div>
+          <div class="field full"><label for="f-msg">Mensagem</label><textarea id="f-msg" name="msg" placeholder="Conte um pouco sobre o que você deseja"></textarea></div>
+          <a class="cta" id="f-send" href="#" target="_blank" rel="noopener">Enviar pelo WhatsApp <span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+          <p class="note">Ao enviar, o WhatsApp abre com a sua mensagem pronta.</p>
+        </form>
+      </div>
+    </div>
+  </section>
 </main>
+
+<!-- ================= RODAPÉ ================= -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><img src="assets/monograma-vc.png" alt=""><div><b>DRA. VITÓRIA CERVIGNI</b><small>ODONTOLOGIA ESPECIALIZADA</small></div></div>
+        <p>Odontologia estética com naturalidade, precisão e sofisticação.</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <ul><li><a href="#inicio">Início</a></li><li><a href="#sobre">Sobre</a></li><li><a href="#tratamentos">Tratamentos</a></li><li><a href="#resultados">Resultados</a></li><li><a href="#contato">Contato</a></li></ul>
+      </div>
+      <div>
+        <h4>Tratamentos</h4>
+        <ul><li><a href="#tratamentos">Lentes de contato</a></li><li><a href="#tratamentos">Clareamento</a></li><li><a href="#tratamentos">Harmonização</a></li><li><a href="#tratamentos">Implantes</a></li><li><a href="#tratamentos">Clínica geral</a></li></ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul><li data-cfg="phone">(00) 00000-0000</li><li data-cfg="instagram">@instagram</li><li data-cfg="city">Cidade/UF</li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Dra. Vitória Cervigni. Todos os direitos reservados.</span>
+      <span>Responsável técnica: Dra. Vitória Cervigni · <span data-cfg="cro">CRO-UF 00000</span></span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" id="wa-float" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 19.5l1.1-4A8 8 0 1 1 20 11.5z"/><path d="M9 8.8c0 3.3 2.9 6.2 6.2 6.2l.9-1.6-1.9-.9-.8.9a4.5 4.5 0 0 1-2.8-2.8l.9-.8-.9-1.9z"/></svg>
+</a>
+
+<script>
+/* =========================================================
+   DADOS DO CONSULTÓRIO — edite aqui
+   ========================================================= */
+const CONFIG = {
+  whatsapp:  '5500000000000',                 // DDI + DDD + número, só dígitos
+  phone:     '(00) 00000-0000',
+  instagram: '@instagram',
+  address:   'Rua do consultório, 000 · Bairro, Cidade/UF',
+  city:      'Cidade/UF',
+  hours:     'Segunda a sexta, 8h às 19h · Sábado, 8h às 12h',
+  cro:       'CRO-UF 00000',
+  // Casos de antes e depois: troque null pelo caminho da foto (ex.: 'assets/caso1-antes.jpg')
+  casos: [
+    { titulo: 'Lentes de contato', tipo: 'Estética', antes: null, depois: null },
+    { titulo: 'Clareamento dental', tipo: 'Estética', antes: null, depois: null },
+    { titulo: 'Facetas em resina',  tipo: 'Estética', antes: null, depois: null }
+  ]
+};
+
+document.querySelectorAll('[data-cfg]').forEach(el => { const v = CONFIG[el.dataset.cfg]; if (v) el.textContent = v; });
+
+const waLink = txt => 'https://wa.me/' + CONFIG.whatsapp + (txt ? '?text=' + encodeURIComponent(txt) : '');
+document.getElementById('wa-float').href = waLink('Olá, Dra. Vitória! Gostaria de agendar uma avaliação.');
+
+/* Antes e depois */
+const camIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>';
+const layer = (src, label) => src
+  ? '<img src="' + src + '" alt="' + label + '" loading="lazy">'
+  : '<div class="ph">' + camIcon + 'FOTO ' + label.toUpperCase() + '</div>';
+const casesEl = document.getElementById('cases');
+CONFIG.casos.forEach((c, i) => {
+  const fig = document.createElement('figure');
+  fig.className = 'case';
+  fig.innerHTML =
+    '<div class="ba">' +
+      '<div class="layer before">' + layer(c.antes, 'Antes') + '</div>' +
+      '<div class="layer after">' + layer(c.depois, 'Depois') + '</div>' +
+      '<span class="lbl l">ANTES</span><span class="lbl r">DEPOIS</span>' +
+      '<div class="handle"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span></div>' +
+      '<input type="range" min="0" max="100" value="50" id="ba-' + i + '" aria-label="Comparar antes e depois: ' + c.titulo + '">' +
+    '</div>' +
+    '<figcaption><strong>' + c.titulo + '</strong><span>' + c.tipo + '</span></figcaption>';
+  const after = fig.querySelector('.after'), handle = fig.querySelector('.handle');
+  fig.querySelector('input').addEventListener('input', e => {
+    const v = e.target.value;
+    after.style.clipPath = 'inset(0 0 0 ' + v + '%)';
+    handle.style.left = v + '%';
+  });
+  casesEl.appendChild(fig);
+});
+
+/* Formulário → WhatsApp */
+const form = document.getElementById('form'), send = document.getElementById('f-send');
+const buildMsg = () => {
+  const f = form.elements;
+  let t = 'Olá, Dra. Vitória! ';
+  t += f.nome.value ? 'Meu nome é ' + f.nome.value.trim() + '. ' : '';
+  t += 'Tenho interesse em: ' + f.trat.value + '.';
+  if (f.tel.value) t += ' Meu telefone: ' + f.tel.value.trim() + '.';
+  if (f.msg.value) t += '\n\n' + f.msg.value.trim();
+  send.href = waLink(t);
+};
+form.addEventListener('input', buildMsg);
+form.addEventListener('submit', e => e.preventDefault());
+buildMsg();
+
+/* Cards de tratamento preenchem o formulário */
+document.querySelectorAll('.card[data-trat]').forEach(card => card.addEventListener('click', () => {
+  form.elements.trat.value = card.dataset.trat; buildMsg();
+}));
+
+/* Cabeçalho fixo + link ativo */
+const topbar = document.getElementById('topbar'), hero = document.getElementById('inicio');
+const tbLinks = [...topbar.querySelectorAll('a')];
+new IntersectionObserver(([e]) => {
+  const show = !e.isIntersecting;
+  topbar.classList.toggle('show', show);
+  topbar.setAttribute('aria-hidden', String(!show));
+  tbLinks.forEach(a => a.tabIndex = show ? 0 : -1);
+}, { threshold: 0.12 }).observe(hero);
+
+const navMap = { inicio:'#inicio', sobre:'#sobre', tratamentos:'#tratamentos', jornada:'#tratamentos', resultados:'#resultados', duvidas:'#contato', contato:'#contato' };
+const sectionObs = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    const target = navMap[en.target.id];
+    topbar.querySelectorAll('.tb-nav a').forEach(a => a.classList.toggle('active', a.getAttribute('href') === target));
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+['inicio','sobre','tratamentos','jornada','resultados','duvidas','contato'].forEach(id => { const el = document.getElementById(id); if (el) sectionObs.observe(el); });
+</script>
 </body>
 </html>
