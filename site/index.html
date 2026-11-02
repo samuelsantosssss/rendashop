@@ -198,6 +198,14 @@
   .tab[aria-selected="true"] .t-ico{background:rgba(255,247,238,.18);border-color:rgba(255,247,238,.55);color:#fff8f0}
   .tab[aria-selected="true"] .t-meta{color:#ffe6c7}
   .tab:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  /* Troca automática */
+  .tabs .thumb-ind .prog{position:absolute;left:calc(16*var(--u));right:calc(16*var(--u));bottom:calc(6*var(--u));height:calc(2*var(--u));min-height:2px;
+    border-radius:2px;background:rgba(255,247,238,.28);overflow:hidden;opacity:0;transition:opacity .3s}
+  .tabs .thumb-ind .prog i{display:block;height:100%;width:100%;background:#fff7ee;transform-origin:left center;transform:scaleX(0)}
+  .tabs.auto .thumb-ind .prog{opacity:1}
+  .tabs.auto .thumb-ind .prog i{animation:tabProg var(--auto-ms,6000ms) linear forwards}
+  .tabs.auto.paused .thumb-ind .prog i{animation-play-state:paused}
+  @keyframes tabProg{to{transform:scaleX(1)}}
   .panel.enter{animation:panelIn .45s ease both}
   @keyframes panelIn{from{opacity:0;transform:translateY(calc(10*var(--u)))}to{opacity:1;transform:none}}
   @media (prefers-reduced-motion:reduce){.tabs .thumb-ind{transition:none}.panel.enter{animation:none}}
@@ -309,7 +317,7 @@
     <div class="art">
       <div class="mid">
         <p class="picker-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10m0-1.5a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1-6 6h-.6a6 6 0 0 1-4.6-2.2L4.6 15a1.5 1.5 0 0 1 2.3-1.9L9 15"/></svg>Escolha um tratamento e veja os casos</p>
-        <div class="tabs" role="tablist" aria-label="Tratamentos" id="tabs"><span class="thumb-ind" aria-hidden="true"></span></div>
+        <div class="tabs" role="tablist" aria-label="Tratamentos" id="tabs"><span class="thumb-ind" aria-hidden="true"><span class="prog"><i></i></span></span></div>
         <div id="panels"></div>
       </div>
     </div>
@@ -475,8 +483,7 @@ const moveInd = () => {
   ind.style.width = sel.offsetWidth + 'px';
   ind.style.transform = 'translateX(' + sel.offsetLeft + 'px)';
 };
-tabsEl.addEventListener('click', e => {
-  const tab = e.target.closest('.tab'); if (!tab || tab.getAttribute('aria-selected') === 'true') return;
+const activate = tab => {
   tabsEl.querySelectorAll('.tab').forEach(b => { b.setAttribute('aria-selected', b === tab ? 'true' : 'false'); b.tabIndex = b === tab ? 0 : -1; });
   panelsEl.querySelectorAll('.panel').forEach(p => {
     const on = p.id === tab.getAttribute('aria-controls');
@@ -484,7 +491,42 @@ tabsEl.addEventListener('click', e => {
     if (on) { void p.offsetWidth; p.classList.add('enter'); }
   });
   moveInd();
+  restartProg();
+};
+tabsEl.addEventListener('click', e => {
+  const tab = e.target.closest('.tab'); if (!tab || tab.getAttribute('aria-selected') === 'true') return;
+  activate(tab);
 });
+
+/* Troca automática: avança sozinha até a primeira interação com a seção */
+const AUTO_MS = 6000;
+const prog = tabsEl.querySelector('.prog i');
+const midEl = document.querySelector('.band-mid .mid');
+let autoOn = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+let hovering = false, visible = false;
+tabsEl.style.setProperty('--auto-ms', AUTO_MS + 'ms');
+const syncPause = () => tabsEl.classList.toggle('paused', hovering || !visible || document.hidden);
+function restartProg() {
+  if (!autoOn) return;
+  prog.style.animation = 'none'; void prog.offsetWidth; prog.style.animation = '';
+}
+const stopAuto = () => { if (!autoOn) return; autoOn = false; tabsEl.classList.remove('auto', 'paused'); };
+prog.addEventListener('animationend', () => {
+  if (!autoOn) return;
+  const tabs = [...tabsEl.querySelectorAll('.tab')];
+  const i = tabs.findIndex(b => b.getAttribute('aria-selected') === 'true');
+  activate(tabs[(i + 1) % tabs.length]);
+});
+if (autoOn) {
+  tabsEl.classList.add('auto');
+  midEl.addEventListener('pointerdown', stopAuto, { capture: true });
+  midEl.addEventListener('keydown', stopAuto, { capture: true });
+  midEl.addEventListener('mouseenter', () => { hovering = true; syncPause(); });
+  midEl.addEventListener('mouseleave', () => { hovering = false; syncPause(); });
+  document.addEventListener('visibilitychange', syncPause);
+  new IntersectionObserver(([en]) => { visible = en.isIntersecting; syncPause(); }, { threshold: .35 }).observe(midEl);
+  syncPause();
+}
 tabsEl.querySelectorAll('.tab').forEach((b, k) => b.tabIndex = k === 0 ? 0 : -1);
 moveInd();
 window.addEventListener('resize', moveInd);
