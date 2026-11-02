@@ -1026,12 +1026,24 @@ const midEl = document.querySelector('.band-mid .mid');
 let autoOn = !matchMedia('(prefers-reduced-motion: reduce)').matches;
 let hovering = false, visible = false;
 tabsEl.style.setProperty('--auto-ms', AUTO_MS + 'ms');
-const syncPause = () => tabsEl.classList.toggle('paused', hovering || !visible || document.hidden);
+const isPhone = matchMedia('(max-width: 760px)');
+let interacting = false, idleTimer = 0;
+const IDLE_MS = 5000;   // no celular: depois de 5 s sem mexer, volta a trocar sozinho
+const syncPause = () => tabsEl.classList.toggle('paused', hovering || interacting || !visible || document.hidden);
 function restartProg() {
   if (!autoOn) return;
   prog.style.animation = 'none'; void prog.offsetWidth; prog.style.animation = '';
 }
-const stopAuto = () => { if (!autoOn) return; autoOn = false; tabsEl.classList.remove('auto', 'paused'); };
+const stopAuto = () => {
+  if (!autoOn) return;
+  if (isPhone.matches) {
+    interacting = true; syncPause();
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(() => { interacting = false; restartProg(); syncPause(); }, IDLE_MS);
+    return;
+  }
+  autoOn = false; tabsEl.classList.remove('auto', 'paused');
+};
 prog.addEventListener('animationend', () => {
   if (!autoOn) return;
   const tabs = [...tabsEl.querySelectorAll('.tab')];
@@ -1042,10 +1054,11 @@ if (autoOn) {
   tabsEl.classList.add('auto');
   midEl.addEventListener('pointerdown', stopAuto, { capture: true });
   midEl.addEventListener('keydown', stopAuto, { capture: true });
-  midEl.addEventListener('mouseenter', () => { hovering = true; syncPause(); });
-  midEl.addEventListener('mouseleave', () => { hovering = false; syncPause(); });
+  midEl.addEventListener('input', () => { if (isPhone.matches) stopAuto(); }, { capture: true });
+  midEl.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { hovering = true; syncPause(); } });
+  midEl.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { hovering = false; syncPause(); } });
   document.addEventListener('visibilitychange', syncPause);
-  new IntersectionObserver(([en]) => { visible = en.isIntersecting; syncPause(); }, { threshold: .35 }).observe(midEl);
+  new IntersectionObserver(([en]) => { visible = en.isIntersecting; syncPause(); }, { rootMargin: '-25% 0px -25% 0px' }).observe(midEl);
   syncPause();
 }
 tabsEl.querySelectorAll('.tab').forEach((b, k) => b.tabIndex = k === 0 ? 0 : -1);
