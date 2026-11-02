@@ -342,7 +342,7 @@
   .reel .busy .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#e7c08a,#c9914f)}
 
   /* Polaroid + cartão */
-  .polaroid{position:absolute;left:calc(1150*var(--u));top:calc(120*var(--u));width:calc(200*var(--u));padding:calc(8*var(--u)) calc(8*var(--u)) calc(12*var(--u));margin:0;
+  .polaroid{position:absolute;z-index:8;left:calc(1078*var(--u));top:calc(64*var(--u));width:calc(210*var(--u));padding:calc(8*var(--u)) calc(8*var(--u)) calc(12*var(--u));margin:0;
     background:#fffdfb;border-radius:calc(6*var(--u));box-shadow:0 calc(16*var(--u)) calc(32*var(--u)) rgba(80,50,25,.22);transform:rotate(4deg)}
   .polaroid img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:calc(3*var(--u))}
   .polaroid .heart{position:absolute;right:calc(-10*var(--u));top:calc(-12*var(--u));width:calc(32*var(--u));height:calc(30*var(--u));border-radius:calc(8*var(--u));
@@ -362,6 +362,16 @@
   .mini .go{position:absolute;right:calc(10*var(--u));bottom:calc(10*var(--u));width:calc(20*var(--u));height:calc(20*var(--u));border-radius:50%;
     background:linear-gradient(135deg,#c9914f,#8c5a22);display:grid;place-items:center;color:#fff}
   .mini .go svg{width:calc(10*var(--u));height:calc(10*var(--u))}
+  .so-card{position:absolute;z-index:7;left:calc(1130*var(--u));top:calc(440*var(--u));width:calc(250*var(--u));padding:calc(16*var(--u)) calc(16*var(--u)) calc(18*var(--u));
+    border-radius:calc(16*var(--u));background:rgba(255,251,248,.92);border:1px solid rgba(168,115,47,.16);box-shadow:0 calc(14*var(--u)) calc(30*var(--u)) rgba(120,80,40,.12);
+    display:flex;gap:calc(12*var(--u));align-items:flex-start;transition:transform .25s}
+  .so-card:hover{transform:translateY(-2px)}
+  .so-card .ic{flex:none;width:calc(38*var(--u));height:calc(38*var(--u));border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 25%,#fff8f1,#f1dfcf);border:1px solid rgba(168,115,47,.3);color:var(--gold)}
+  .so-card .ic svg{width:calc(19*var(--u));height:calc(19*var(--u))}
+  .so-card b{display:block;font-weight:700;font-size:calc(14*var(--u));line-height:1.2;color:var(--ink)}
+  .so-card span.t2{display:block;font-size:calc(11*var(--u));line-height:1.4;color:var(--ink-2);margin-top:calc(5*var(--u));padding-right:calc(18*var(--u))}
+  .so-card .go{position:absolute;right:calc(12*var(--u));bottom:calc(12*var(--u));width:calc(26*var(--u));height:calc(26*var(--u));border-radius:50%;background:linear-gradient(135deg,#c9914f,#8c5a22);display:grid;place-items:center;color:#fff}
+  .so-card .go svg{width:calc(12*var(--u));height:calc(12*var(--u))}
   .so-script{position:absolute;left:calc(500*var(--u));top:calc(592*var(--u));display:flex;align-items:center;gap:calc(6*var(--u));
     font-family:'Caveat',cursive;font-size:calc(22*var(--u));color:var(--gold)}
   .so-script svg{width:calc(18*var(--u));height:calc(18*var(--u))}
@@ -457,7 +467,7 @@
         <svg class="deco" viewBox="0 0 1400 640" preserveAspectRatio="none" aria-hidden="true">
           <path d="M30 30 C 150 8, 290 6, 420 18"/>
           <path d="M820 16 C 960 0, 1100 20, 1180 90"/>
-          <path d="M1140 520 C 1220 570, 1300 570, 1380 520"/>
+          <path d="M1290 40 C 1340 70, 1370 130, 1380 200"/>
           <path d="M80 610 C 180 630, 300 615, 400 590"/>
         </svg>
 
@@ -503,6 +513,12 @@
           <span class="heart"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z"/></svg></span>
           <figcaption class="cap"><q>O coração alegre aformoseia o rosto.</q><cite>Provérbios 15:13</cite></figcaption>
         </figure>
+
+        <a class="so-card" href="#" data-wa>
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg></span>
+          <span><b>De Suzano para o seu sorriso</b><span class="t2">Atendimento humanizado e planejado para você.</span></span>
+          <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
 
         <p class="so-script">Mais sorrisos transformados <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.4-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.6-7.5 10-7.5 10z"/></svg></p>
       </div>
