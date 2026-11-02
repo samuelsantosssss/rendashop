@@ -357,7 +357,8 @@
   .info .note-cfo{margin-top:calc(14*var(--u));font-size:calc(8.6*var(--u));color:var(--muted,#6e5c50)}
 
   /* ---------- Sobre a Dra. + Instagram ---------- */
-  .band-sobre{position:relative;background:var(--mid);margin-top:-1px}
+  .band-sobre{position:relative;background:var(--mid);margin-top:-1px;padding-top:calc(min(100vw,1640px) * .07)}
+  .band-sobre::before{content:"";position:absolute;left:50%;top:calc(min(100vw,1640px) * .035);width:min(60vw,520px);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(168,115,47,.45),transparent)}
   .band-sobre .art{width:min(100%, 1640px)}
   .sobre{--u:calc(100cqw / 1400);position:relative;height:calc(640*var(--u))}
   .sobre .deco{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
