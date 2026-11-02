@@ -530,7 +530,7 @@
   @media (max-width:860px){.loc-wrap{grid-template-columns:1fr}}
 
   /* ---------- Tratamentos: celular ---------- */
-  @media (max-width:760px){
+  @media (max-width:1024px){
     .band-mid .mid{--u:1px;padding:8px 16px 48px}
     .tabs{grid-template-columns:1fr 1fr;width:100%;gap:6px;padding:6px;border-radius:20px}
     .tabs .thumb-ind{border-radius:15px}
@@ -567,7 +567,7 @@
   }
 
   .info .short{display:none}
-  @media (max-width:760px){
+  @media (max-width:1024px){
     .tab .t-meta{display:none}
     .tab{min-height:58px;padding:8px 10px}
     .tabs .thumb-ind .prog{bottom:5px}
@@ -588,7 +588,7 @@
 
 
   /* ---------- Tratamentos no celular: barra horizontal (aberta = nome, fechadas = ícone) ---------- */
-  @media (max-width:760px){
+  @media (max-width:1024px){
     .band-mid .mid{display:flex;flex-direction:column}
     .band-mid #panels,.band-mid .panel:not([hidden]),.band-mid .panel .info{display:contents}
     .band-mid .panel .compare{order:1;margin:0 0 14px}
@@ -608,10 +608,10 @@
     .band-mid .panel .info .short{order:6}
     .band-mid .panel .actions{order:7}
   }
-  @media (max-width:760px) and (prefers-reduced-motion:reduce){.band-mid .tab{transition:none}.band-mid .tab[aria-selected="true"] .t-txt{animation:none}}
+  @media (max-width:1024px) and (prefers-reduced-motion:reduce){.band-mid .tab{transition:none}.band-mid .tab[aria-selected="true"] .t-txt{animation:none}}
 
   .tab .nm-short{display:none}
-  @media (max-width:760px){
+  @media (max-width:1024px){
     .band-mid .tab .nm-full{display:none}
     .band-mid .tab .nm-short{display:inline}
     .band-mid .tabs{overflow:hidden}
@@ -621,7 +621,7 @@
     .band-mid .tab .t-name{font-size:14px;overflow:hidden;text-overflow:ellipsis}
   }
 
-  @media (max-width:760px){
+  @media (max-width:1024px){
     .band-mid .tabs{gap:4px;padding:5px;background:linear-gradient(180deg,#f6e6d8,#efdccb);border-color:rgba(168,115,47,.28)}
     .band-mid .tab{flex:0 0 44px;height:48px}
     .band-mid .tab .t-ico{width:38px;height:38px;border-radius:50%;
@@ -633,7 +633,7 @@
     .band-mid .tab .t-name{font-size:13.5px;text-overflow:clip;letter-spacing:-.01em}
   }
 
-  @media (max-width:760px){
+  @media (max-width:1024px){
     .band-mid .tabs{gap:3px;padding:4px}
     .band-mid .tab{flex:0 0 40px;height:46px}
     .band-mid .tab .t-ico{width:36px;height:36px}
@@ -646,7 +646,7 @@
 
   /* ---------- Hero no celular ---------- */
   .m-hero,.m-heading{display:none}
-  @media (max-width:760px){
+  @media (max-width:1024px){
     .band-top{display:none}
     .m-hero{display:block;position:relative;min-height:min(178vw,920px);background:linear-gradient(180deg,#e9ccbf 0,#e9ccbf 12%,rgba(233,204,191,0) 22%) top/100% 100% no-repeat,url('assets/hero-mobile.jpg') 50% 100%/112% auto no-repeat,#e9ccbf;overflow:visible;
       padding-top:env(safe-area-inset-top,0px)}
@@ -688,7 +688,7 @@
   @media (pointer:coarse){.compare input{pointer-events:none}}
 
   /* ---------- Sobre a doutora no celular ---------- */
-  @media (max-width:760px){
+  @media (max-width:1024px){
     .band-sobre{padding-top:48px}
     .band-sobre::before{top:22px}
     .band-sobre .art{width:100%}
@@ -730,6 +730,22 @@
     .reel .snd svg{width:14px;height:14px}
     .reel .ph b{font-size:15px}.reel .ph small{font-size:9px}
     .polaroid,.so-card,.so-script{display:none !important}
+  }
+
+  /* ---------- Tablet: mesmo layout do celular, centralizado ---------- */
+  @media (min-width:600px) and (max-width:1024px){
+    .m-hero{min-height:auto;aspect-ratio:940/1410;max-height:none;background-size:100% auto,100% auto}
+    .m-copy{padding-left:max(48px,8vw);padding-right:max(48px,8vw);padding-top:6vw}
+    .m-top{padding-left:max(28px,5vw);padding-right:max(32px,5vw);padding-top:28px}
+    .m-title{font-size:clamp(40px,6vw,58px)}
+    .m-eyebrow{font-size:14px}
+    .m-cta{bottom:4%;height:58px;font-size:18px;padding:0 30px}
+    .m-heading{padding-top:40px}
+    .m-heading h2{font-size:clamp(32px,4.6vw,44px)}
+    .band-mid .mid{max-width:680px;margin:0 auto;padding-left:24px;padding-right:24px}
+    .band-mid .panel .compare{max-height:none}
+    .sobre{max-width:680px;margin:0 auto}
+    .loc-wrap{max-width:680px}
   }
 </style>
 </head>
@@ -1156,10 +1172,10 @@ tabsEl.addEventListener('click', e => {
 const AUTO_MS = 6000;
 const prog = tabsEl.querySelector('.prog i');
 const midEl = document.querySelector('.band-mid .mid');
-let autoOn = !matchMedia('(prefers-reduced-motion: reduce)').matches && !matchMedia('(max-width: 760px)').matches;   // no celular, sem troca automática
+let autoOn = !matchMedia('(prefers-reduced-motion: reduce)').matches && !matchMedia('(max-width: 1024px)').matches;   // no celular, sem troca automática
 let hovering = false, visible = false;
 tabsEl.style.setProperty('--auto-ms', AUTO_MS + 'ms');
-const isPhone = matchMedia('(max-width: 760px)');
+const isPhone = matchMedia('(max-width: 1024px)');
 let interacting = false, idleTimer = 0;
 const IDLE_MS = 5000;   // no celular: depois de 5 s sem mexer, volta a trocar sozinho
 const syncPause = () => tabsEl.classList.toggle('paused', hovering || interacting || !visible || document.hidden);
