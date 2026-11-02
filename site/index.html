@@ -684,6 +684,8 @@
     .m-heading p span{width:26px;height:1.5px;background:var(--gold);opacity:.85}
     .band-mid .mid{padding-top:14px}
   }
+
+  @media (pointer:coarse){.compare input{pointer-events:none}}
 </style>
 </head>
 <body>
@@ -1057,6 +1059,27 @@ TRATAMENTOS.forEach((t, ti) => {
     thumbs.appendChild(b);
   }
   range.addEventListener('input', e => setPos(e.target.value));
+  /* Toque: só move ao arrastar na horizontal; toque simples ou rolagem não mexem */
+  const cmpEl = p.querySelector('.compare');
+  let tStart = null;
+  cmpEl.addEventListener('pointerdown', e => {
+    if (e.pointerType === 'mouse' || e.target.closest('.nav-btn')) return;
+    tStart = { x: e.clientX, y: e.clientY, v: +range.value, drag: false, id: e.pointerId };
+  });
+  cmpEl.addEventListener('pointermove', e => {
+    if (!tStart || e.pointerId !== tStart.id) return;
+    const dx = e.clientX - tStart.x, dy = e.clientY - tStart.y;
+    if (!tStart.drag) {
+      if (Math.abs(dy) > 10 && Math.abs(dy) > Math.abs(dx)) { tStart = null; return; }
+      if (Math.abs(dx) < 8) return;
+      tStart.drag = true;
+      try { cmpEl.setPointerCapture(e.pointerId); } catch (_) {}
+    }
+    const v = Math.max(0, Math.min(100, tStart.v + dx / cmpEl.clientWidth * 100));
+    range.value = v; setPos(v);
+    range.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+  ['pointerup', 'pointercancel'].forEach(t => cmpEl.addEventListener(t, () => { tStart = null; }));
   p.querySelector('.prev')?.addEventListener('click', () => show(atual - 1));
   p.querySelector('.next')?.addEventListener('click', () => show(atual + 1));
   show(0);
