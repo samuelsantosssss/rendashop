@@ -252,6 +252,9 @@
     background:none;opacity:.7;transition:opacity .2s,border-color .2s,transform .2s}
   .thumb img{width:100%;height:100%;object-fit:cover;object-position:50% 70%;display:block}
   .thumb:hover{opacity:1;transform:translateY(-2px)}
+  .thumb.soon-slot{display:grid;place-items:center;opacity:1;cursor:default;border:calc(1.3*var(--u)) dashed rgba(168,115,47,.45);background:rgba(255,250,246,.55)}
+  .thumb.soon-slot:hover{transform:none}
+  .thumb.soon-slot svg{width:calc(18*var(--u));height:calc(18*var(--u));color:var(--gold);opacity:.55}
   .thumb[aria-current="true"]{opacity:1;border-color:var(--gold)}
   .actions{display:flex;gap:calc(12*var(--u));margin-top:calc(24*var(--u))}
   .actions .btn{position:relative}
@@ -379,7 +382,7 @@ const TRATAMENTOS = [
     ]
   },
   {
-    id: 'lentes', icone: 'assets/icones/lentes.png', aba: 'Lentes de Porcelana',
+    id: 'lentes', icone: 'assets/icones/lentes.png', aba: 'Lentes de Porcelana', vagas: 4,  // vagas = espaços "em breve" até chegarem as fotos
     kicker: 'Estética', titulo: 'Lentes de <em>Porcelana</em>',
     texto: 'Lâminas ultrafinas de porcelana que corrigem cor, formato e pequenos desalinhamentos, com brilho e translucidez de dente natural.',
     itens: ['Cor estável ao longo dos anos', 'Desgaste mínimo do dente', 'Resultado natural e sofisticado'],
@@ -420,7 +423,7 @@ TRATAMENTOS.forEach((t, ti) => {
   tab.className = 'tab'; tab.type = 'button'; tab.role = 'tab';
   tab.id = 'tab-' + t.id; tab.setAttribute('aria-controls', 'panel-' + t.id);
   tab.setAttribute('aria-selected', ti === 0 ? 'true' : 'false');
-  const meta = t.casos.length ? (t.destaque ? t.destaque + ' · ' : '') + casosTxt(t.casos.length) : 'Casos em breve';
+  const meta = t.vagas ? 'Novos casos em breve' : t.casos.length ? (t.destaque ? t.destaque + ' · ' : '') + casosTxt(t.casos.length) : 'Casos em breve';
   tab.innerHTML = '<span class="t-ico"><img src="' + t.icone + '" alt="" width="96" height="96"></span>' +
     '<span class="t-txt"><span class="t-name">' + t.aba + '</span><span class="t-meta' + (t.casos.length ? '' : ' soon-m') + '">' + meta + '</span></span>';
   tabsEl.appendChild(tab);
@@ -448,7 +451,7 @@ TRATAMENTOS.forEach((t, ti) => {
       '<h3>' + t.titulo + '</h3>' +
       '<p>' + t.texto + '</p>' +
       '<ul>' + t.itens.map(i => '<li>' + ico.check + i + '</li>').join('') + '</ul>' +
-      (t.casos.length > 1 ? '<p class="thumbs-label">' + casosTxt(t.casos.length) + ' · escolha um paciente</p><div class="thumbs"></div>' : '') +
+      (t.casos.length + (t.vagas || 0) > 1 ? '<p class="thumbs-label">' + (t.vagas ? 'Mais casos chegando em breve' : casosTxt(t.casos.length) + ' · escolha um paciente') + '</p><div class="thumbs"></div>' : '') +
       '<div class="actions">' +
         '<a href="#" class="btn btn-gold act-main" data-trat="' + t.aba.toLowerCase() + '">Quero esse resultado ' + ico.arrow + '</a>' +
         '<a href="#resultados" class="btn btn-line act-alt">Ver resultados</a>' +
@@ -478,6 +481,12 @@ TRATAMENTOS.forEach((t, ti) => {
     b.addEventListener('click', () => show(k));
     thumbs.appendChild(b);
   });
+  if (thumbs) for (let v = 0; v < (t.vagas || 0); v++) {
+    const b = document.createElement('span');
+    b.className = 'thumb soon-slot'; b.title = 'Novo caso em breve'; b.setAttribute('aria-hidden', 'true');
+    b.innerHTML = ico.cam;
+    thumbs.appendChild(b);
+  }
   range.addEventListener('input', e => setPos(e.target.value));
   p.querySelector('.prev')?.addEventListener('click', () => show(atual - 1));
   p.querySelector('.next')?.addEventListener('click', () => show(atual + 1));
