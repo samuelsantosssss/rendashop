@@ -5,48 +5,136 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dra. Vitória Cervigni | Odontologia Especializada</title>
 <meta name="description" content="Odontologia estética com naturalidade, precisão e sofisticação.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=Mulish:wght@400;500;600;700&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
 <style>
-  /* A página inteira é a arte (1024 x 1536). Em telas largas, as laterais
-     recebem a própria arte esticada e desfocada, e as bordas da arte se dissolvem nela. */
+  /* A arte de fundo (1024 x 1536) traz só fotos e cenário. Todo texto e botão é HTML,
+     posicionado em unidades da arte: 1u = 1px da arte original, escalando com a largura. */
   :root{
     --cream:#f3e3d7;
+    --ink:#231d1a;
+    --ink-2:#3a302a;
     --gold:#a8732f;
-    --col:1180px;            /* largura máxima da arte */
+    --col:1180px;
+    --serif:'Libre Caslon Text',Georgia,'Times New Roman',serif;
+    --sans:'Mulish',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --caps:'Montserrat',system-ui,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth;background:var(--cream)}
-  body{background:var(--cream);overflow-x:hidden;font-family:system-ui,-apple-system,'Segoe UI',sans-serif}
+  body{background:var(--cream);color:var(--ink);overflow-x:hidden;font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
 
   .page{position:relative;width:100%;overflow:hidden;isolation:isolate}
-
-  /* Extensão desfocada: mesma arte, esticada na largura toda e com a mesma altura,
-     para que cada faixa de cor continue na lateral exatamente na mesma altura. */
   .ext{position:absolute;top:0;bottom:0;width:50%;z-index:-2;background-size:100% 100%;background-repeat:no-repeat}
   .ext.l{left:0;background-image:url('assets/edge-left.jpg')}
   .ext.r{right:0;background-image:url('assets/edge-right.jpg')}
   .ext-tint{position:absolute;inset:0;z-index:-1;
     background:linear-gradient(90deg, rgba(243,227,215,.45), rgba(243,227,215,0) 25%, rgba(243,227,215,0) 75%, rgba(243,227,215,.45))}
 
-  .art{position:relative;width:min(100%, var(--col));margin:0 auto}
-  .art img{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
-
-  /* Bordas laterais se dissolvem no fundo quando sobra espaço */
+  .art{position:relative;width:min(100%, var(--col));margin:0 auto;container-type:inline-size}
+  .art > img{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
   @media (min-width:1181px){
-    .art img{
+    .art > img{
       -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);
               mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);
     }
   }
 
-  /* Áreas clicáveis sobre a arte */
-  .hot{position:absolute;display:block;border-radius:40px;outline:none;transition:background .2s, box-shadow .2s}
-  .hot:hover{background:rgba(255,255,255,.10);box-shadow:0 0 0 1px rgba(168,115,47,.25)}
-  .hot:focus-visible{box-shadow:0 0 0 2px var(--gold)}
-  .hot.card{border-radius:14px}
-  .hot.card:hover{background:rgba(255,255,255,.08);box-shadow:0 18px 40px rgba(120,80,40,.16), 0 0 0 1px rgba(168,115,47,.25)}
+  /* ---------- Camada de conteúdo ---------- */
+  .ov{position:absolute;inset:0;--u:calc(100cqw / 1024)}
+  .t{position:absolute;white-space:nowrap}
   .anchor{position:absolute;left:0;width:1px;height:1px}
+  .serif{font-family:var(--serif);font-weight:400;color:var(--ink);letter-spacing:-.01em}
+  .serif em{font-style:italic;color:var(--gold)}
+  .caps{font-family:var(--caps);font-weight:600;text-transform:uppercase;color:var(--gold)}
+  .center{left:0;right:0;text-align:center;display:flex;justify-content:center;align-items:center}
+  .rule{display:inline-block;height:calc(1*var(--u));min-height:1px;background:var(--gold);opacity:.75}
+  a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
-  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  /* Cabeçalho */
+  .logo{left:calc(44*var(--u));top:calc(12*var(--u));display:flex;align-items:center}
+  .logo img{width:calc(64*var(--u));height:auto;margin-right:calc(-2*var(--u))}
+  .logo span{display:flex;flex-direction:column}
+  .logo b{font-family:var(--serif);font-weight:400;font-size:calc(12.1*var(--u));line-height:1;color:#2a2320;letter-spacing:calc(.1*var(--u))}
+  .logo small{font-family:var(--caps);font-weight:600;font-size:calc(5.5*var(--u));letter-spacing:calc(1.75*var(--u));color:#3a2f28;margin-top:calc(5*var(--u))}
+
+  .nav{left:calc(315*var(--u));top:calc(25*var(--u));display:flex;gap:calc(31*var(--u));font-size:calc(11.5*var(--u));color:#2a2320}
+  .nav a{position:relative;line-height:1}
+  .nav a.active::after{content:"";position:absolute;left:calc(-5*var(--u));right:calc(-5*var(--u));top:calc(20*var(--u));height:calc(2*var(--u));background:var(--gold);border-radius:2px}
+  .nav a:hover{color:var(--gold)}
+
+  .btn{position:absolute;white-space:nowrap;display:flex;align-items:center;border-radius:999px;transition:transform .25s, box-shadow .25s, background .25s;font-family:var(--sans)}
+  .btn svg{flex:none}
+  .btn-line{border:calc(1.1*var(--u)) solid rgba(168,115,47,.75);color:#2a2320;background:rgba(255,248,242,.25)}
+  .btn-line:hover{background:rgba(168,115,47,.08)}
+  .btn-gold{color:#fff7ee;background:linear-gradient(100deg,#c9914f 0%,#ab7330 50%,#8c5a22 100%);
+    box-shadow:0 calc(8*var(--u)) calc(16*var(--u)) rgba(122,78,30,.28), inset 0 1px 0 rgba(255,235,205,.35)}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 calc(11*var(--u)) calc(20*var(--u)) rgba(122,78,30,.34)}
+
+  .top-cta{left:calc(818*var(--u));top:calc(17*var(--u));width:calc(153*var(--u));height:calc(34*var(--u));padding-left:calc(18*var(--u));gap:calc(9*var(--u));font-size:calc(11.1*var(--u))}
+  .top-cta svg{width:calc(16*var(--u));height:calc(16*var(--u))}
+
+  /* Hero */
+  .eyebrow{display:flex;align-items:center;gap:calc(12*var(--u));font-size:calc(10.3*var(--u));letter-spacing:calc(3.3*var(--u))}
+  .hero-eyebrow{left:calc(84*var(--u));top:calc(128*var(--u))}
+  .hero-eyebrow .rule{width:calc(54*var(--u))}
+  h1.t{left:calc(83*var(--u));top:calc(156*var(--u));font-size:calc(32.6*var(--u));line-height:calc(36*var(--u))}
+  .hero-cta{left:calc(85*var(--u));top:calc(296*var(--u));width:calc(216*var(--u));height:calc(38*var(--u));padding:0 calc(20*var(--u)) 0 calc(21*var(--u));gap:calc(13*var(--u));font-size:calc(12.4*var(--u));font-weight:500}
+  .hero-cta .cal{width:calc(16*var(--u));height:calc(16*var(--u))}
+  .hero-cta .arr{width:calc(17*var(--u));height:calc(17*var(--u));margin-left:auto}
+
+  .tagline{top:calc(416*var(--u));font-size:calc(31.8*var(--u));line-height:1.2}
+  .subline{top:calc(463*var(--u));gap:calc(13*var(--u));font-size:calc(9.4*var(--u));letter-spacing:calc(3.6*var(--u));color:#1f1a17}
+  .subline .rule{width:calc(45*var(--u))}
+  .chev{left:calc(500*var(--u));top:calc(489*var(--u));width:calc(24*var(--u));height:calc(24*var(--u));border-radius:50%;border:calc(1.1*var(--u)) solid rgba(168,115,47,.8);display:grid;place-items:center;color:var(--gold)}
+  .chev svg{width:calc(11*var(--u));height:calc(11*var(--u))}
+
+  /* Tratamentos */
+  .sec-eyebrow{gap:calc(13*var(--u));font-size:calc(9.8*var(--u));letter-spacing:calc(2.6*var(--u))}
+  .sec-eyebrow .rule{width:calc(47*var(--u))}
+  .trat-eyebrow{top:calc(548*var(--u))}
+  .trat-title{top:calc(566*var(--u));font-size:calc(28.9*var(--u));line-height:1.2}
+  .trat-sub{top:calc(612*var(--u));font-size:calc(12.2*var(--u));font-weight:500;color:var(--ink-2)}
+
+  .card{position:absolute;top:calc(648*var(--u));width:calc(178*var(--u));height:calc(213*var(--u));border-radius:calc(12*var(--u));transition:box-shadow .3s, transform .3s}
+  .card:hover{box-shadow:0 calc(14*var(--u)) calc(28*var(--u)) rgba(120,80,40,.14);transform:translateY(-3px)}
+  .card h3{position:absolute;left:calc(18*var(--u));top:calc(108*var(--u));font-family:var(--sans);font-weight:600;font-size:calc(14.1*var(--u));line-height:calc(15*var(--u));color:var(--ink);white-space:nowrap}
+  .card h3.one{top:calc(112*var(--u))}
+  .card p{position:absolute;left:calc(17*var(--u));top:calc(149*var(--u));font-size:calc(9.9*var(--u));line-height:calc(12.8*var(--u));color:var(--ink-2);white-space:nowrap}
+  .card .go{position:absolute;left:calc(142*var(--u));top:calc(180*var(--u));width:calc(22*var(--u));height:calc(22*var(--u));border-radius:50%;
+    border:calc(1*var(--u)) solid rgba(168,115,47,.7);display:grid;place-items:center;color:var(--ink);background:rgba(255,250,245,.6);transition:background .25s,color .25s}
+  .card .go svg{width:calc(10*var(--u));height:calc(10*var(--u))}
+  .card:hover .go{background:var(--gold);color:#fff7ee}
+
+  .all-cta{left:calc(408*var(--u));top:calc(881*var(--u));width:calc(209*var(--u));height:calc(35*var(--u));padding:0 calc(22*var(--u));font-size:calc(11*var(--u));font-weight:600;justify-content:space-between}
+  .all-cta svg,.res-cta svg,.about-cta svg{width:calc(15*var(--u));height:calc(15*var(--u))}
+
+  /* Resultados */
+  .res-eyebrow{left:calc(93*var(--u));top:calc(958*var(--u));font-size:calc(9.6*var(--u));letter-spacing:calc(2.6*var(--u))}
+  .res-title{left:calc(92*var(--u));top:calc(981*var(--u));font-size:calc(26.2*var(--u));line-height:calc(30*var(--u))}
+  .res-sub{left:calc(93*var(--u));top:calc(1048*var(--u));font-size:calc(11.5*var(--u));line-height:calc(14.6*var(--u));color:var(--ink-2)}
+  .res-cta{left:calc(94*var(--u));top:calc(1088*var(--u));width:calc(170*var(--u));height:calc(32*var(--u));padding:0 calc(18*var(--u)) 0 calc(21*var(--u));font-size:calc(11*var(--u));font-weight:600;justify-content:space-between}
+  .pill{position:absolute;top:calc(1067*var(--u));height:calc(21*var(--u));border-radius:999px;display:grid;place-items:center;font-size:calc(10*var(--u));color:#fff7ee}
+  .pill.antes{left:calc(409*var(--u));width:calc(51*var(--u));background:rgba(92,62,44,.62);backdrop-filter:blur(3px)}
+  .pill.depois{left:calc(868*var(--u));width:calc(58*var(--u));background:linear-gradient(100deg,#c9914f,#9a6528)}
+  .slide-arrow{left:calc(653*var(--u));top:calc(1012*var(--u));width:calc(36*var(--u));height:calc(36*var(--u));border-radius:50%;background:#fffaf6;display:grid;place-items:center;color:var(--ink);box-shadow:0 calc(4*var(--u)) calc(10*var(--u)) rgba(120,80,40,.15)}
+  .slide-arrow svg{width:calc(15*var(--u));height:calc(15*var(--u))}
+  .dots{left:calc(640*var(--u));top:calc(1110*var(--u));display:flex;gap:calc(6.5*var(--u))}
+  .dots i{width:calc(10*var(--u));height:calc(10*var(--u));border-radius:50%;border:calc(1*var(--u)) solid rgba(168,115,47,.35)}
+  .dots i.on{background:var(--gold);border-color:var(--gold)}
+
+  /* Sobre */
+  .about-eyebrow{left:calc(549*var(--u));top:calc(1201*var(--u));font-size:calc(9.2*var(--u));letter-spacing:calc(2.9*var(--u))}
+  .about-eyebrow .rule{width:calc(43*var(--u))}
+  .about-name{left:calc(548*var(--u));top:calc(1221*var(--u));font-size:calc(30.6*var(--u));line-height:1.2;letter-spacing:calc(.2*var(--u))}
+  .about-text{left:calc(549*var(--u));top:calc(1267*var(--u));font-size:calc(13.8*var(--u));line-height:calc(17*var(--u));color:var(--ink-2)}
+  .about-text b{font-weight:600;color:var(--ink)}
+  .checks{left:calc(550*var(--u));top:calc(1336*var(--u));list-style:none;display:flex;flex-direction:column;gap:calc(5.5*var(--u))}
+  .checks li{display:flex;align-items:center;gap:calc(8*var(--u));font-weight:700;font-size:calc(13.4*var(--u));line-height:calc(18.5*var(--u));color:var(--ink)}
+  .checks svg{width:calc(16*var(--u));height:calc(16*var(--u));color:var(--gold)}
+  .about-cta{left:calc(550*var(--u));top:calc(1422*var(--u));width:calc(213*var(--u));height:calc(37*var(--u));padding:0 calc(18*var(--u)) 0 calc(23*var(--u));font-size:calc(11.8*var(--u));justify-content:space-between}
 
   /* WhatsApp flutuante */
   .wa{position:fixed;right:calc(26px + env(safe-area-inset-right, 0px));bottom:calc(26px + env(safe-area-inset-bottom, 0px));z-index:10;
@@ -54,7 +142,7 @@
     background:linear-gradient(135deg,#c48d4c,#8f5d25);box-shadow:0 14px 30px rgba(120,80,40,.35);transition:transform .25s}
   .wa:hover{transform:scale(1.06)}
   .wa svg{width:28px;height:28px;color:#fff6ec}
-  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.card{transition:none}}
 </style>
 </head>
 <body>
@@ -63,25 +151,110 @@
   <div class="ext r" aria-hidden="true"></div>
   <div class="ext-tint" aria-hidden="true"></div>
 
-  <main class="art" id="art">
-    <span class="anchor" id="inicio" style="top:0"></span>
-    <span class="anchor" id="tratamentos" style="top:34.6%"></span>
-    <span class="anchor" id="resultados" style="top:61.5%"></span>
-    <span class="anchor" id="sobre" style="top:76.6%"></span>
+  <div class="art">
+    <img src="assets/home-base.jpg" width="2048" height="3072" alt="">
 
-    <img src="assets/home-completa.jpg" width="2048" height="3072"
-         alt="Dra. Vitória Cervigni, Odontologia Especializada. Odontologia estética com naturalidade, precisão e sofisticação. Transformando sua autoestima com odontologia de excelência.">
+    <div class="ov">
+      <span class="anchor" id="inicio" style="top:0"></span>
+      <span class="anchor" id="tratamentos" style="top:34.6%"></span>
+      <span class="anchor" id="resultados" style="top:61.5%"></span>
+      <span class="anchor" id="sobre" style="top:76.6%"></span>
 
-    <div class="sr">
-      <h1>Dra. Vitória Cervigni: odontologia estética com naturalidade, precisão e sofisticação</h1>
-      <h2>Tratamentos</h2><p>Lentes de contato dental, facetas estéticas, alinhadores invisíveis, implantes dentários e harmonização do sorriso.</p>
-      <h2>Resultados</h2><p>Sorrisos reais, transformações reais.</p>
-      <h2>Sobre a Dra.</h2><p>Cirurgiã-dentista especializada em odontologia estética, com foco em tratamentos personalizados que unem saúde, função e beleza de forma natural e sofisticada.</p>
+      <!-- Cabeçalho -->
+      <header>
+        <a href="#inicio" class="t logo" aria-label="Dra. Vitória Cervigni, início">
+          <img src="assets/monograma-vc.png" alt="">
+          <span><b>DRA. VITÓRIA CERVIGNI</b><small>ODONTOLOGIA ESPECIALIZADA</small></span>
+        </a>
+        <nav class="t nav" aria-label="Principal">
+          <a href="#inicio" class="active">Início</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#tratamentos">Tratamentos</a>
+          <a href="#resultados">Resultados</a>
+          <a href="#contato" data-wa>Contato</a>
+        </nav>
+        <a href="#" data-wa class="btn btn-line top-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/><circle cx="8.5" cy="14" r=".7" fill="currentColor"/></svg>
+          Agendar avaliação
+        </a>
+      </header>
+
+      <main>
+        <!-- Hero -->
+        <p class="t caps eyebrow hero-eyebrow">Dra. Vitória Cervigni <span class="rule"></span></p>
+        <h1 class="t serif">Odontologia estética<br>com naturalidade,<br>precisão e <em>sofisticação.</em></h1>
+        <a href="#" data-wa class="btn btn-gold hero-cta">
+          <svg class="cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/><circle cx="8.5" cy="14" r=".7" fill="currentColor"/></svg>
+          Agendar avaliação
+          <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+        </a>
+
+        <h2 class="t serif center tagline">Transformando sua&nbsp;<em>autoestima</em></h2>
+        <p class="t caps center subline"><span class="rule"></span>Com odontologia de excelência<span class="rule"></span></p>
+        <a href="#tratamentos" class="t chev" aria-label="Ver tratamentos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+
+        <!-- Tratamentos -->
+        <p class="t caps center sec-eyebrow trat-eyebrow"><span class="rule"></span>Tratamentos<span class="rule"></span></p>
+        <h2 class="t serif center trat-title">Soluções completas para o seu sorriso</h2>
+        <p class="t center trat-sub">Tratamentos modernos e personalizados, com foco em estética, saúde e bem-estar.</p>
+
+        <a href="#" class="card" style="left:calc(47*var(--u))" data-trat="lentes de contato dental">
+          <h3>Lentes de Contato<br>Dental</h3>
+          <p>Sorriso harmônico, natural<br>e sofisticado.</p>
+          <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#" class="card" style="left:calc(236*var(--u))" data-trat="facetas estéticas">
+          <h3 class="one">Facetas Estéticas</h3>
+          <p>Correção da forma, cor e<br>alinhamento dos dentes.</p>
+          <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#" class="card" style="left:calc(425*var(--u))" data-trat="alinhadores invisíveis">
+          <h3>Alinhadores<br>Invisíveis</h3>
+          <p>Alinhamento discreto,<br>confortável e eficaz.</p>
+          <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#" class="card" style="left:calc(614*var(--u))" data-trat="implantes dentários">
+          <h3 class="one">Implantes Dentários</h3>
+          <p>Segurança, função e<br>estética para recuperar<br>o seu sorriso.</p>
+          <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#" class="card" style="left:calc(803*var(--u))" data-trat="harmonização do sorriso">
+          <h3>Harmonização<br>do Sorriso</h3>
+          <p>Equilíbrio, proporção e<br>naturalidade em cada detalhe.</p>
+          <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <a href="#" data-wa class="btn btn-gold all-cta">Ver todos os tratamentos
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+
+        <!-- Resultados -->
+        <p class="t caps res-eyebrow">Resultados</p>
+        <h2 class="t serif res-title">Sorrisos reais,<br>transformações <em>reais</em></h2>
+        <p class="t res-sub">Confira alguns resultados de pacientes<br>que confiaram no nosso trabalho.</p>
+        <a href="#" data-wa class="btn btn-line res-cta">Ver mais resultados
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+        <span class="pill antes">Antes</span>
+        <span class="pill depois">Depois</span>
+        <span class="t slide-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+        <span class="t dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span>
+
+        <!-- Sobre -->
+        <p class="t caps eyebrow about-eyebrow">Sobre a Dra. <span class="rule"></span></p>
+        <h2 class="t serif about-name">Dra. Vitória Cervigni</h2>
+        <p class="t about-text">Cirurgiã-dentista, especializada em <b>odontologia estética</b>,<br>com foco em tratamentos personalizados que unem saúde,<br>função e beleza de forma natural e sofisticada.</p>
+        <ul class="t checks">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Formação de excelência</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Atualização constante</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Atendimento humanizado</li>
+        </ul>
+        <a href="#" data-wa class="btn btn-line about-cta">Conheça minha trajetória
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+      </main>
     </div>
-  </main>
+  </div>
 </div>
 
-<a class="wa" id="wa" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+<a class="wa" data-wa href="#" aria-label="Falar no WhatsApp">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 19.5l1.1-4A8 8 0 1 1 20 11.5z"/><path d="M9 8.8c0 3.3 2.9 6.2 6.2 6.2l.9-1.6-1.9-.9-.8.9a4.5 4.5 0 0 1-2.8-2.8l.9-.8-.9-1.9z"/></svg>
 </a>
 
@@ -92,44 +265,11 @@ const CONFIG = {
 };
 
 const wa = txt => 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(txt);
-const AGENDAR = wa('Olá, Dra. Vitória! Gostaria de agendar uma avaliação.');
-const trat = t => wa('Olá, Dra. Vitória! Tenho interesse em ' + t + '. Podemos agendar uma avaliação?');
+const setWa = (el, txt) => { el.href = wa(txt); el.target = '_blank'; el.rel = 'noopener'; };
 
-/* Áreas clicáveis em pixels da arte original (1024 x 1536): x, y, largura, altura */
-const HOTSPOTS = [
-  [ 45,  14, 205, 46, '#inicio',      'Início'],
-  [306,  20,  48, 30, '#inicio',      'Início'],
-  [366,  20,  48, 30, '#sobre',       'Sobre'],
-  [428,  20,  80, 30, '#tratamentos', 'Tratamentos'],
-  [522,  20,  74, 30, '#resultados',  'Resultados'],
-  [608,  20,  58, 30, '#sobre',       'Contato'],
-  [818,  16, 154, 37, AGENDAR,        'Agendar avaliação'],
-  [ 84, 295, 219, 40, AGENDAR,        'Agendar avaliação'],
-  [497, 486,  30, 30, '#tratamentos', 'Ver tratamentos'],
-  [ 46, 648, 179, 213, trat('lentes de contato dental'), 'Lentes de contato dental', 'card'],
-  [235, 648, 179, 213, trat('facetas estéticas'),        'Facetas estéticas', 'card'],
-  [424, 648, 179, 213, trat('alinhadores invisíveis'),   'Alinhadores invisíveis', 'card'],
-  [612, 648, 179, 213, trat('implantes dentários'),      'Implantes dentários', 'card'],
-  [801, 648, 179, 213, trat('harmonização do sorriso'),  'Harmonização do sorriso', 'card'],
-  [407, 880, 211, 37, AGENDAR,        'Ver todos os tratamentos'],
-  [ 93,1086, 172, 37, AGENDAR,        'Ver mais resultados'],
-  [548,1421, 217, 39, AGENDAR,        'Conheça minha trajetória']
-];
-
-const art = document.getElementById('art');
-HOTSPOTS.forEach(([x, y, w, h, href, label, kind]) => {
-  const a = document.createElement('a');
-  a.className = 'hot' + (kind ? ' ' + kind : '');
-  a.href = href;
-  a.setAttribute('aria-label', label);
-  if (href.startsWith('http')) { a.target = '_blank'; a.rel = 'noopener'; }
-  Object.assign(a.style, {
-    left: (x / 1024 * 100) + '%', top: (y / 1536 * 100) + '%',
-    width: (w / 1024 * 100) + '%', height: (h / 1536 * 100) + '%'
-  });
-  art.appendChild(a);
-});
-document.getElementById('wa').href = AGENDAR;
+document.querySelectorAll('[data-wa]').forEach(el => setWa(el, 'Olá, Dra. Vitória! Gostaria de agendar uma avaliação.'));
+document.querySelectorAll('[data-trat]').forEach(el =>
+  setWa(el, 'Olá, Dra. Vitória! Tenho interesse em ' + el.dataset.trat + '. Podemos agendar uma avaliação?'));
 </script>
 </body>
 </html>
