@@ -585,30 +585,41 @@
     .panel .act-alt,.panel .info .note-cfo{display:none}
   }
 
-  /* ---------- Tratamentos no celular: foto em cima, abas à esquerda, casos e texto à direita ---------- */
+
+
+  /* ---------- Tratamentos no celular: barra horizontal (aberta = nome, fechadas = ícone) ---------- */
   @media (max-width:760px){
-    .band-mid .mid{display:grid;grid-template-columns:minmax(0,36%) minmax(0,1fr);column-gap:12px;align-items:start}
+    .band-mid .mid{display:flex;flex-direction:column}
     .band-mid #panels,.band-mid .panel:not([hidden]),.band-mid .panel .info{display:contents}
-    .band-mid .panel .compare{grid-column:1 / -1;grid-row:1;margin:0 0 16px;max-height:66vh}
-    .band-mid .tabs{grid-column:1;grid-row:2 / span 6;grid-template-columns:1fr;gap:4px;padding:5px;border-radius:18px;align-self:start}
-    .band-mid .tab{min-height:0;padding:9px 8px;gap:7px;border-radius:13px}
-    .band-mid .tabs .thumb-ind{border-radius:13px}
-    .band-mid .tab .t-ico{width:28px;height:28px}
-    .band-mid .tab .t-name{font-size:12.5px;line-height:1.2}
-    .band-mid .tabs .thumb-ind .prog{left:10px;right:10px;bottom:4px}
-    .band-mid .panel .info .thumbs-label{grid-column:2;grid-row:2;margin:2px 0 0;font-size:9px;letter-spacing:1.4px;line-height:1.4}
-    .band-mid .panel .thumbs{grid-column:2;grid-row:3;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:8px}
-    .band-mid .thumb{border-radius:10px}
-    .band-mid .panel .info h3{grid-column:2;grid-row:4;font-size:21px;line-height:1.15;margin-top:16px}
-    .band-mid .panel .info .short{grid-column:2;grid-row:5;font-size:14px;line-height:1.5;margin-top:6px}
-    .band-mid .panel .actions{grid-column:2;grid-row:6;margin-top:14px}
-    .band-mid .panel .actions .btn{height:46px;font-size:14px;padding:0 14px;gap:8px}
-    .band-mid .panel .actions .btn svg{width:15px;height:15px}
-    .band-mid .soon{font-size:10px}
+    .band-mid .panel .compare{order:1;margin:0 0 14px}
+    .band-mid .tabs{order:2;display:flex;gap:6px;padding:6px;border-radius:999px;width:100%}
+    .band-mid .tabs .thumb-ind{border-radius:999px}
+    .band-mid .tab{flex:0 0 52px;height:52px;min-height:0;padding:0;justify-content:center;border-radius:999px;gap:8px;transition:flex-basis .45s cubic-bezier(.65,0,.25,1),background .25s,color .35s}
+    .band-mid .tab[aria-selected="true"]{flex:1 1 auto;justify-content:flex-start;padding:0 16px 0 10px}
+    .band-mid .tab .t-ico{width:34px;height:34px}
+    .band-mid .tab .t-txt{display:none}
+    .band-mid .tab[aria-selected="true"] .t-txt{display:flex;animation:tabTxt .45s ease both}
+    @keyframes tabTxt{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
+    .band-mid .tab .t-name{white-space:nowrap;font-size:14.5px}
+    .band-mid .tabs .thumb-ind .prog{left:18px;right:18px;bottom:6px}
+    .band-mid .panel .info .thumbs-label{order:3;margin-top:18px;font-size:10px;letter-spacing:1.8px}
+    .band-mid .panel .thumbs{order:4;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:10px}
+    .band-mid .panel .info h3{order:5;font-size:26px;margin-top:22px}
+    .band-mid .panel .info .short{order:6}
+    .band-mid .panel .actions{order:7}
   }
+  @media (max-width:760px) and (prefers-reduced-motion:reduce){.band-mid .tab{transition:none}.band-mid .tab[aria-selected="true"] .t-txt{animation:none}}
 
   .tab .nm-short{display:none}
-  @media (max-width:760px){.tab .nm-short{display:inline}.tab .nm-short + *{}.tab .t-name .nm-full:not(:only-child){display:none}}
+  @media (max-width:760px){
+    .band-mid .tab .nm-full{display:none}
+    .band-mid .tab .nm-short{display:inline}
+    .band-mid .tabs{overflow:hidden}
+    .band-mid .tab{flex:0 0 48px;height:50px;min-width:0}
+    .band-mid .tab[aria-selected="true"]{flex:1 1 0;min-width:0;padding:0 12px 0 8px}
+    .band-mid .tab .t-txt{min-width:0}
+    .band-mid .tab .t-name{font-size:14px;overflow:hidden;text-overflow:ellipsis}
+  }
 </style>
 </head>
 <body>
@@ -835,7 +846,7 @@ const TRATAMENTOS = [
     ]
   },
   {
-    id: 'lentes', curto: 'Sorriso natural com lâminas finas de porcelana.', icone: 'assets/icones/lentes.png', aba: 'Lentes de Porcelana',
+    id: 'lentes', curto: 'Sorriso natural com lâminas finas de porcelana.', icone: 'assets/icones/lentes.png', aba: 'Lentes de Porcelana', abaCurta: 'Lentes',
     kicker: 'Estética', titulo: 'Lentes de <em>Porcelana</em>',
     texto: 'Lâminas ultrafinas de porcelana que corrigem cor, formato e pequenos desalinhamentos, com brilho e translucidez de dente natural.',
     itens: ['Cor estável ao longo dos anos', 'Desgaste mínimo do dente', 'Resultado natural e sofisticado'],
@@ -845,7 +856,7 @@ const TRATAMENTOS = [
     ]
   },
   {
-    id: 'facetas', curto: 'Sorriso renovado em poucas sessões.', icone: 'assets/icones/facetas.png', aba: 'Facetas de Resina',
+    id: 'facetas', curto: 'Sorriso renovado em poucas sessões.', icone: 'assets/icones/facetas.png', aba: 'Facetas de Resina', abaCurta: 'Facetas',
     kicker: 'Estética', titulo: 'Facetas de <em>Resina</em>',
     texto: 'Transformação estética em poucas sessões, com resinas de alta performance e acabamento natural.',
     itens: ['Resultado rápido', 'Ótimo custo-benefício', 'Ajustes simples quando preciso'],
@@ -863,7 +874,7 @@ const TRATAMENTOS = [
     ]
   },
   {
-    id: 'protese', curto: 'Função e estética para voltar a sorrir com confiança.', icone: 'assets/icones/protese.png', aba: 'Prótese Dentária',
+    id: 'protese', curto: 'Função e estética para voltar a sorrir com confiança.', icone: 'assets/icones/protese.png', aba: 'Prótese Dentária', abaCurta: 'Prótese',
     kicker: 'Reabilitação', titulo: 'Prótese <em>Dentária</em>',
     texto: 'Coroas, pontes e próteses que devolvem a mastigação, o conforto e a confiança para sorrir.',
     itens: ['Função e estética juntas', 'Conforto no dia a dia', 'Planejamento individual'],
@@ -977,7 +988,7 @@ const activate = tab => {
     p.hidden = !on; p.classList.remove('enter');
     if (on) { void p.offsetWidth; p.classList.add('enter'); }
   });
-  moveInd();
+  followInd();
   restartProg();
 };
 tabsEl.addEventListener('click', e => {
@@ -1017,6 +1028,8 @@ if (autoOn) {
 tabsEl.querySelectorAll('.tab').forEach((b, k) => b.tabIndex = k === 0 ? 0 : -1);
 moveInd();
 window.addEventListener('resize', moveInd);
+tabsEl.querySelectorAll('.tab').forEach(t => t.addEventListener('transitionend', e => { if (e.propertyName === 'flex-basis') moveInd(); }));
+let indRaf = 0; const followInd = () => { cancelAnimationFrame(indRaf); const t0 = performance.now(); const step = () => { moveInd(); if (performance.now() - t0 < 500) indRaf = requestAnimationFrame(step); }; step(); };
 document.fonts && document.fonts.ready.then(moveInd);
 tabsEl.addEventListener('keydown', e => {
   if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
