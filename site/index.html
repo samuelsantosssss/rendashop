@@ -247,17 +247,14 @@
   .band .ext{position:absolute;top:0;bottom:0;width:50%;z-index:-2;background-size:100% 100%;background-repeat:no-repeat}
   .band-top .ext.l{left:0;background-image:url('assets/edge-left-top.jpg')}
   .band-top .ext.r{right:0;background-image:url('assets/edge-right-top.jpg')}
-  .band-bot .ext.l{left:0;background-image:url('assets/edge-left-bottom.jpg')}
-  .band-bot .ext.r{right:0;background-image:url('assets/edge-right-bottom.jpg')}
   .band .ext-tint{position:absolute;inset:0;z-index:-1;
     background:linear-gradient(90deg, rgba(243,227,215,.45), rgba(243,227,215,0) 25%, rgba(243,227,215,0) 75%, rgba(243,227,215,.45))}
   .mid-bg{background:var(--mid)}
   /* emendas suaves entre as faixas */
-  .band-top::after,.band-bot::before{content:"";position:absolute;left:0;right:0;height:min(4vw,48px);z-index:3;pointer-events:none}
+  .band-top::after{content:"";position:absolute;left:0;right:0;height:min(4vw,48px);z-index:3;pointer-events:none}
   .band-top::after{bottom:0;background:var(--mid);-webkit-mask-image:linear-gradient(to bottom,transparent,#000);mask-image:linear-gradient(to bottom,transparent,#000)}
-  .band-bot::before{top:0;background:var(--mid);-webkit-mask-image:linear-gradient(to top,transparent,#000);mask-image:linear-gradient(to top,transparent,#000)}
   .band .art{position:relative;z-index:4}
-  .band-top::after,.band-bot::before{height:calc(min(100vw, 1180px) * .055);z-index:6}
+  .band-top::after{height:calc(min(100vw, 1180px) * .055);z-index:6}
   .shift{position:absolute;left:0;right:0;top:calc(-895*var(--u));height:calc(1536*var(--u))}
 
   /* ---------- Seção de tratamentos ---------- */
@@ -360,8 +357,6 @@
   .info .note-cfo{margin-top:calc(14*var(--u));font-size:calc(8.6*var(--u));color:var(--muted,#6e5c50)}
 
   /* ---------- Sobre a Dra. + Instagram ---------- */
-  .band-bot::after{content:"";position:absolute;left:0;right:0;bottom:0;height:calc(min(100vw, 1180px) * .06);z-index:6;pointer-events:none;
-    background:var(--mid);-webkit-mask-image:linear-gradient(to bottom,transparent,#000);mask-image:linear-gradient(to bottom,transparent,#000)}
   .band-sobre{position:relative;background:var(--mid);margin-top:-1px}
   .band-sobre .art{width:min(100%, 1640px)}
   .sobre{--u:calc(100cqw / 1400);position:relative;height:calc(640*var(--u))}
@@ -552,32 +547,8 @@
     <div class="art">
       <div class="mid">
         <div class="tabs" role="tablist" aria-label="Tratamentos" id="tabs"><span class="thumb-ind" aria-hidden="true"><span class="prog"><i></i></span></span></div>
-        <div id="panels"></div>
+        <span id="resultados" style="display:block;position:relative;top:-90px"></span><div id="panels"></div>
       </div>
-    </div>
-  </section>
-
-  <!-- ================= ARTE DE BAIXO ================= -->
-  <section class="band band-bot">
-    <div class="ext l" aria-hidden="true"></div>
-    <div class="ext r" aria-hidden="true"></div>
-    <div class="ext-tint" aria-hidden="true"></div>
-    <div class="art">
-      <img src="assets/home-bottom.jpg" width="2048" height="550" alt="">
-      <div class="ov"><div class="shift">
-        <span class="anchor" id="resultados" style="top:calc(945*var(--u))"></span>
-        <!-- Resultados -->
-        <p class="t caps res-eyebrow">Resultados</p>
-        <h2 class="t serif res-title">Sorrisos reais,<br>transformações <em>reais</em></h2>
-        <p class="t res-sub">Confira alguns resultados de pacientes<br>que confiaram no nosso trabalho.</p>
-        <a href="#" data-wa class="btn btn-line res-cta">Ver mais resultados
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
-        <span class="pill antes">Antes</span>
-        <span class="pill depois">Depois</span>
-        <span class="t slide-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-        <span class="t dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span>
-
-      </div></div>
     </div>
   </section>
 
@@ -787,7 +758,7 @@ TRATAMENTOS.forEach((t, ti) => {
       (t.casos.length + (t.vagas || 0) > 1 ? '<p class="thumbs-label">' + (t.vagas ? 'Mais casos chegando em breve' : casosTxt(t.casos.length) + ' · escolha um paciente') + '</p><div class="thumbs"></div>' : '') +
       '<div class="actions">' +
         '<a href="#" class="btn btn-gold act-main" data-trat="' + t.aba.toLowerCase() + '">Quero esse resultado ' + ico.arrow + '</a>' +
-        '<a href="#resultados" class="btn btn-line act-alt">Ver resultados</a>' +
+        '<a href="#sobre" class="btn btn-line act-alt">Conheça a doutora</a>' +
       '</div>' +
       (temCasos ? '<p class="note-cfo">Pacientes reais, imagens publicadas com autorização. Resultados variam de pessoa para pessoa.</p>' : '') +
     '</div>';
