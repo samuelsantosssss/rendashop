@@ -168,15 +168,39 @@
   .band-mid{position:relative;margin-block:-1px;z-index:1}
   .mid{--u:calc(100cqw / 1024);position:relative;padding:calc(6*var(--u)) calc(56*var(--u)) calc(30*var(--u))}
 
-  .tabs{display:flex;justify-content:center;gap:calc(8*var(--u));flex-wrap:wrap}
-  .tab{font:inherit;font-family:var(--sans);font-weight:600;font-size:calc(11.4*var(--u));color:var(--ink-2);cursor:pointer;
-    height:calc(34*var(--u));padding:0 calc(18*var(--u));border-radius:999px;border:calc(1*var(--u)) solid rgba(168,115,47,.35);
-    background:rgba(255,250,246,.65);display:inline-flex;align-items:center;gap:calc(8*var(--u));transition:background .25s,color .25s,border-color .25s}
-  .tab:hover{border-color:var(--gold);color:var(--ink)}
-  .tab[aria-selected="true"]{color:#fff7ee;border-color:transparent;background:linear-gradient(100deg,#c9914f 0%,#ab7330 50%,#8c5a22 100%);
-    box-shadow:0 calc(6*var(--u)) calc(14*var(--u)) rgba(122,78,30,.25)}
-  .tab .star{font-family:var(--caps);font-size:calc(6.6*var(--u));letter-spacing:calc(1*var(--u));padding:calc(3*var(--u)) calc(7*var(--u));border-radius:999px;background:rgba(255,247,238,.22);border:1px solid rgba(255,247,238,.45)}
-  .tab:not([aria-selected="true"]) .star{background:rgba(168,115,47,.1);border-color:rgba(168,115,47,.3);color:var(--gold)}
+  /* Seletor de tratamentos */
+  .picker-hint{display:flex;align-items:center;justify-content:center;gap:calc(8*var(--u));font-family:var(--caps);font-weight:600;
+    font-size:calc(8.4*var(--u));letter-spacing:calc(2.2*var(--u));text-transform:uppercase;color:var(--gold);margin-bottom:calc(10*var(--u))}
+  .picker-hint svg{width:calc(14*var(--u));height:calc(14*var(--u))}
+  .tabs{position:relative;display:grid;grid-template-columns:minmax(0,1.42fr) repeat(3,minmax(0,1fr));gap:calc(4*var(--u));
+    width:calc(880*var(--u));margin:0 auto;padding:calc(6*var(--u));border-radius:calc(22*var(--u));
+    background:rgba(255,250,246,.72);border:calc(1*var(--u)) solid rgba(168,115,47,.22);
+    box-shadow:0 calc(14*var(--u)) calc(34*var(--u)) rgba(120,80,40,.10), inset 0 1px 0 rgba(255,255,255,.8)}
+  .tabs .thumb-ind{position:absolute;top:calc(6*var(--u));bottom:calc(6*var(--u));left:0;width:0;border-radius:calc(16*var(--u));z-index:0;
+    background:linear-gradient(100deg,#c9914f 0%,#ab7330 50%,#8c5a22 100%);
+    box-shadow:0 calc(8*var(--u)) calc(18*var(--u)) rgba(122,78,30,.30), inset 0 1px 0 rgba(255,235,205,.35);
+    transition:transform .45s cubic-bezier(.65,0,.25,1), width .45s cubic-bezier(.65,0,.25,1)}
+  .tabs .thumb-ind::after{content:"";position:absolute;left:50%;bottom:calc(-12*var(--u));width:calc(12*var(--u));height:calc(12*var(--u));
+    transform:translateX(-50%) rotate(45deg);background:#a26c2b;border-radius:calc(2*var(--u));z-index:-1}
+  .tab{position:relative;z-index:1;font:inherit;font-family:var(--sans);cursor:pointer;text-align:left;
+    display:flex;align-items:center;gap:calc(10*var(--u));height:calc(56*var(--u));padding:0 calc(12*var(--u));
+    border:0;border-radius:calc(16*var(--u));background:transparent;color:var(--ink);transition:background .25s,color .35s}
+  .tab:hover:not([aria-selected="true"]){background:rgba(168,115,47,.08)}
+  .tab .t-ico{flex:none;width:calc(34*var(--u));height:calc(34*var(--u));border-radius:50%;display:grid;place-items:center;
+    background:radial-gradient(circle at 30% 25%,#fff8f1,#f1dfcf);border:calc(1*var(--u)) solid rgba(168,115,47,.3);color:var(--gold);transition:background .35s,border-color .35s,color .35s}
+  .tab .t-ico svg{width:calc(17*var(--u));height:calc(17*var(--u))}
+  .tab .t-txt{display:flex;flex-direction:column;min-width:0}
+  .tab .t-name{font-weight:700;font-size:calc(11.6*var(--u));line-height:1.2;white-space:nowrap}
+  .tab .t-meta{font-family:var(--caps);font-weight:600;font-size:calc(6.8*var(--u));letter-spacing:calc(1.1*var(--u));text-transform:uppercase;
+    color:var(--gold);margin-top:calc(4*var(--u));white-space:nowrap;transition:color .35s}
+  .tab .t-meta.soon-m{color:#9b8a7e}
+  .tab[aria-selected="true"]{color:#fff8f0}
+  .tab[aria-selected="true"] .t-ico{background:rgba(255,247,238,.18);border-color:rgba(255,247,238,.55);color:#fff8f0}
+  .tab[aria-selected="true"] .t-meta{color:#ffe6c7}
+  .tab:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+  .panel.enter{animation:panelIn .45s ease both}
+  @keyframes panelIn{from{opacity:0;transform:translateY(calc(10*var(--u)))}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.tabs .thumb-ind{transition:none}.panel.enter{animation:none}}
 
   .panel{display:grid;grid-template-columns:calc(372*var(--u)) 1fr;gap:calc(52*var(--u));align-items:center;margin-top:calc(30*var(--u))}
   .panel[hidden]{display:none}
@@ -284,7 +308,8 @@
   <section class="band band-mid mid-bg" id="tratamentos" aria-label="Tratamentos">
     <div class="art">
       <div class="mid">
-        <div class="tabs" role="tablist" aria-label="Tratamentos" id="tabs"></div>
+        <p class="picker-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10m0-1.5a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v4.5a6 6 0 0 1-6 6h-.6a6 6 0 0 1-4.6-2.2L4.6 15a1.5 1.5 0 0 1 2.3-1.9L9 15"/></svg>Escolha um tratamento e veja os casos</p>
+        <div class="tabs" role="tablist" aria-label="Tratamentos" id="tabs"><span class="thumb-ind" aria-hidden="true"></span></div>
         <div id="panels"></div>
       </div>
     </div>
@@ -336,28 +361,28 @@
 /* ===== Tratamentos: edite textos e casos aqui ===== */
 const TRATAMENTOS = [
   {
-    id: 'protocolo', aba: 'Protocolo com Carga Imediata', destaque: 'Mais procurado',
+    id: 'protocolo', icone: 'M7.5 3.5h9c1 0 1.7.9 1.5 1.9L17.4 9H6.6L6 5.4c-.2-1 .5-1.9 1.5-1.9zM8.5 9v2h7V9M9.5 11l1 9.5h3l1-9.5M9.8 13.5h4.4M10.1 16h3.8M10.4 18.5h3.2', aba: 'Protocolo com Carga Imediata', destaque: 'Mais procurado',
     kicker: 'Mais procurado', titulo: 'Protocolo com <em>Carga Imediata</em>',
     texto: 'Para quem perdeu vários ou todos os dentes. Os implantes recebem uma prótese fixa logo nos primeiros dias, para você voltar a sorrir e mastigar com segurança, sem passar meses sem dentes.',
     itens: ['Dentes fixos, sem dentadura móvel', 'Mais firmeza para mastigar e falar', 'Sorriso natural, planejado para o seu rosto'],
     casos: [1, 2, 3, 4, 5].map(n => ({ antes: 'assets/casos/caso' + n + '-antes.jpg', depois: 'assets/casos/caso' + n + '-depois.jpg' }))
   },
   {
-    id: 'lentes', aba: 'Lentes de Porcelana',
+    id: 'lentes', icone: 'M7 4c-2 0-3.5 1.6-3.5 3.8 0 2 .7 3 1.2 4.6.6 1.8.8 3.8 1.2 5.6.3 1.3.8 2 1.6 2 1 0 1.2-1.2 1.5-2.5.3-1.4.6-2.8 2.5-2.8s2.2 1.4 2.5 2.8c.3 1.3.5 2.5 1.5 2.5.8 0 1.3-.7 1.6-2 .4-1.8.6-3.8 1.2-5.6.5-1.6 1.2-2.6 1.2-4.6C20 5.6 18.5 4 16.5 4c-1.7 0-2.6.9-4.5.9S8.7 4 7 4zM20.5 1.8v3M19 3.3h3', aba: 'Lentes de Porcelana',
     kicker: 'Estética', titulo: 'Lentes de <em>Porcelana</em>',
     texto: 'Lâminas ultrafinas de porcelana que corrigem cor, formato e pequenos desalinhamentos, com brilho e translucidez de dente natural.',
     itens: ['Cor estável ao longo dos anos', 'Desgaste mínimo do dente', 'Resultado natural e sofisticado'],
     casos: []
   },
   {
-    id: 'facetas', aba: 'Facetas de Resina',
+    id: 'facetas', icone: 'M14.5 4.5l5 5L9 20H4v-5zM12.5 6.5l5 5', aba: 'Facetas de Resina',
     kicker: 'Estética', titulo: 'Facetas de <em>Resina</em>',
     texto: 'Transformação estética em poucas sessões, com resinas de alta performance e acabamento natural.',
     itens: ['Resultado rápido', 'Ótimo custo-benefício', 'Ajustes simples quando preciso'],
     casos: []
   },
   {
-    id: 'protese', aba: 'Prótese Dentária',
+    id: 'protese', icone: 'M4 8l3.5 3L12 5l4.5 6L20 8l-1.5 10h-13zM5.5 18h13', aba: 'Prótese Dentária',
     kicker: 'Reabilitação', titulo: 'Prótese <em>Dentária</em>',
     texto: 'Coroas, pontes e próteses que devolvem a mastigação, o conforto e a confiança para sorrir.',
     itens: ['Função e estética juntas', 'Conforto no dia a dia', 'Planejamento individual'],
@@ -381,7 +406,9 @@ TRATAMENTOS.forEach((t, ti) => {
   tab.className = 'tab'; tab.type = 'button'; tab.role = 'tab';
   tab.id = 'tab-' + t.id; tab.setAttribute('aria-controls', 'panel-' + t.id);
   tab.setAttribute('aria-selected', ti === 0 ? 'true' : 'false');
-  tab.innerHTML = t.aba + (t.destaque ? ' <span class="star">' + t.destaque + '</span>' : '');
+  const meta = t.casos.length ? (t.destaque ? t.destaque + ' · ' : '') + t.casos.length + ' casos reais' : 'Casos em breve';
+  tab.innerHTML = '<span class="t-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="' + t.icone + '"/></svg></span>' +
+    '<span class="t-txt"><span class="t-name">' + t.aba + '</span><span class="t-meta' + (t.casos.length ? '' : ' soon-m') + '">' + meta + '</span></span>';
   tabsEl.appendChild(tab);
 
   const p = document.createElement('div');
@@ -442,11 +469,26 @@ TRATAMENTOS.forEach((t, ti) => {
   show(0);
 });
 
+const ind = tabsEl.querySelector('.thumb-ind');
+const moveInd = () => {
+  const sel = tabsEl.querySelector('.tab[aria-selected="true"]'); if (!sel) return;
+  ind.style.width = sel.offsetWidth + 'px';
+  ind.style.transform = 'translateX(' + sel.offsetLeft + 'px)';
+};
 tabsEl.addEventListener('click', e => {
-  const tab = e.target.closest('.tab'); if (!tab) return;
-  tabsEl.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-selected', b === tab ? 'true' : 'false'));
-  panelsEl.querySelectorAll('.panel').forEach(p => p.hidden = p.id !== tab.getAttribute('aria-controls'));
+  const tab = e.target.closest('.tab'); if (!tab || tab.getAttribute('aria-selected') === 'true') return;
+  tabsEl.querySelectorAll('.tab').forEach(b => { b.setAttribute('aria-selected', b === tab ? 'true' : 'false'); b.tabIndex = b === tab ? 0 : -1; });
+  panelsEl.querySelectorAll('.panel').forEach(p => {
+    const on = p.id === tab.getAttribute('aria-controls');
+    p.hidden = !on; p.classList.remove('enter');
+    if (on) { void p.offsetWidth; p.classList.add('enter'); }
+  });
+  moveInd();
 });
+tabsEl.querySelectorAll('.tab').forEach((b, k) => b.tabIndex = k === 0 ? 0 : -1);
+moveInd();
+window.addEventListener('resize', moveInd);
+document.fonts && document.fonts.ready.then(moveInd);
 tabsEl.addEventListener('keydown', e => {
   if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
   const tabs = [...tabsEl.querySelectorAll('.tab')], i = tabs.indexOf(document.activeElement);
