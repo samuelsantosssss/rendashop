@@ -727,7 +727,7 @@ document.querySelectorAll('[data-trat]').forEach(el =>
   setWa(el, 'Olá, Dra. Vitória! Tenho interesse em ' + el.dataset.trat + '. Podemos agendar uma avaliação?'));
 
 /* ===== Vídeos do Instagram (segure o vídeo para enviar) ===== */
-const IG_VIDEOS = { v1: null, v2: null };   // URLs fixas dos vídeos, preenchidas depois do envio
+const IG_VIDEOS = { v1: 'assets/videos/reel1.mp4', v2: 'assets/videos/reel2.mp4' };   // URLs fixas dos vídeos, preenchidas depois do envio
 const MAX_UPLOAD = 19.5 * 1024 * 1024;      // limite do armazenamento por arquivo; acima disso o vídeo é otimizado no navegador
 
 const reelIco = {
@@ -759,6 +759,7 @@ const reels = [...document.querySelectorAll('.reel[data-slot]')].map(el => {
     snd.hidden = !url;
     if (!url) return;
     const v = document.createElement('video');
+    if (/\/reel\d\.mp4$/.test(url)) v.poster = url.replace(/\.mp4$/, '.jpg');
     v.src = url; v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true; v.preload = 'metadata';
     v.setAttribute('playsinline', ''); v.setAttribute('aria-label', 'Vídeo do Instagram da Dra. Vitória');
     el.insertBefore(v, el.querySelector('.top'));
