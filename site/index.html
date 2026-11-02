@@ -341,16 +341,17 @@
   .reel .busy .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#e7c08a,#c9914f)}
 
   /* Polaroid + cartão */
-  .polaroid{position:absolute;left:calc(852*var(--u));top:calc(112*var(--u));width:calc(146*var(--u));padding:calc(8*var(--u)) calc(8*var(--u)) calc(34*var(--u));
+  .polaroid{position:absolute;left:calc(852*var(--u));top:calc(86*var(--u));width:calc(160*var(--u));padding:calc(8*var(--u)) calc(8*var(--u)) calc(12*var(--u));margin:0;
     background:#fffdfb;border-radius:calc(6*var(--u));box-shadow:0 calc(16*var(--u)) calc(32*var(--u)) rgba(80,50,25,.22);transform:rotate(4deg)}
-  .polaroid img{display:block;width:100%;aspect-ratio:27/31;object-fit:cover;border-radius:calc(3*var(--u))}
+  .polaroid img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:calc(3*var(--u))}
   .polaroid .heart{position:absolute;right:calc(-10*var(--u));top:calc(-12*var(--u));width:calc(32*var(--u));height:calc(30*var(--u));border-radius:calc(8*var(--u));
     background:linear-gradient(135deg,#c9914f,#8c5a22);display:grid;place-items:center;box-shadow:0 6px 14px rgba(120,80,40,.35);transform:rotate(-4deg)}
   .polaroid .heart svg{width:calc(15*var(--u));height:calc(15*var(--u));color:#fff}
   .polaroid .heart::after{content:"";position:absolute;bottom:calc(-5*var(--u));left:50%;width:calc(9*var(--u));height:calc(9*var(--u));background:#9d6828;transform:translateX(-50%) rotate(45deg);z-index:-1}
-  .polaroid .cap{position:absolute;left:0;right:0;bottom:calc(6*var(--u));display:flex;align-items:center;justify-content:center;gap:calc(5*var(--u));
-    font-family:'Caveat',cursive;font-size:calc(13*var(--u));line-height:1;color:var(--gold);white-space:nowrap}
-  .polaroid .cap svg{width:calc(13*var(--u));height:calc(13*var(--u))}
+  .polaroid .cap{display:flex;flex-direction:column;align-items:center;gap:calc(4*var(--u));padding:calc(10*var(--u)) calc(4*var(--u)) 0;text-align:center}
+  .polaroid .cap q{font-family:'Caveat',cursive;font-size:calc(17*var(--u));line-height:1.05;color:var(--ink);quotes:"“" "”"}
+  .polaroid .cap q::before,.polaroid .cap q::after{color:var(--gold)}
+  .polaroid .cap cite{font-style:normal;font-family:var(--caps);font-weight:600;font-size:calc(6.8*var(--u));letter-spacing:calc(1.6*var(--u));text-transform:uppercase;color:var(--gold)}
   .mini{position:absolute;left:calc(852*var(--u));top:calc(330*var(--u));width:calc(150*var(--u));padding:calc(12*var(--u)) calc(12*var(--u)) calc(12*var(--u)) calc(12*var(--u));
     border-radius:calc(14*var(--u));background:rgba(255,251,248,.9);border:1px solid rgba(168,115,47,.16);box-shadow:0 calc(12*var(--u)) calc(26*var(--u)) rgba(120,80,40,.10);display:block}
   .mini .row{display:flex;gap:calc(8*var(--u));align-items:flex-start}
@@ -455,7 +456,7 @@
         <svg class="deco" viewBox="0 0 1024 560" preserveAspectRatio="none" aria-hidden="true">
           <path d="M10 22 C 110 4, 220 2, 330 12"/>
           <path d="M600 18 C 700 0, 800 10, 880 70"/>
-          <path d="M880 470 C 930 500, 980 500, 1020 470"/>
+          <path d="M860 440 C 920 480, 980 480, 1020 440"/>
           <path d="M60 520 C 140 540, 220 520, 280 500"/>
           <path class="spark" d="M968 52 l3 9 9 3 -9 3 -3 9 -3 -9 -9 -3 9 -3z"/>
           <path class="spark" d="M300 492 l2.2 6.5 6.5 2.2 -6.5 2.2 -2.2 6.5 -2.2 -6.5 -6.5 -2.2 6.5 -2.2z"/>
@@ -501,16 +502,8 @@
         <figure class="polaroid">
           <img src="assets/polaroid-dra.jpg" alt="Dra. Vitória Cervigni">
           <span class="heart"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z"/></svg></span>
-          <figcaption class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.4-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.6-7.5 10-7.5 10z"/></svg>Sorrisos que transformam</figcaption>
+          <figcaption class="cap"><q>O coração alegre aformoseia o rosto.</q><cite>Provérbios 15:13</cite></figcaption>
         </figure>
-
-        <a class="mini" href="https://www.instagram.com/dra.vitoriacervigni/" target="_blank" rel="noopener">
-          <span class="row">
-            <svg class="g" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4c-2 0-3.5 1.6-3.5 3.8 0 2 .7 3 1.2 4.6.6 1.8.8 3.8 1.2 5.6.3 1.3.8 2 1.6 2 1 0 1.2-1.2 1.5-2.5.3-1.4.6-2.8 2.5-2.8s2.2 1.4 2.5 2.8c.3 1.3.5 2.5 1.5 2.5.8 0 1.3-.7 1.6-2 .4-1.8.6-3.8 1.2-5.6.5-1.6 1.2-2.6 1.2-4.6C20 5.6 18.5 4 16.5 4c-1.7 0-2.6.9-4.5.9S8.7 4 7 4z"/></svg>
-            <span><b>Transformando vidas</b><span>através do sorriso. Veja mais casos no Instagram.</span></span>
-          </span>
-          <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </a>
 
         <p class="so-script">Mais sorrisos transformados <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.4-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.6-7.5 10-7.5 10z"/></svg></p>
       </div>
