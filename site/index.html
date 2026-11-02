@@ -7,7 +7,7 @@
 <meta name="description" content="Odontologia estética com naturalidade, precisão e sofisticação.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=Mulish:wght@400;500;600;700&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;1,400&family=Mulish:wght@400;500;600;700&family=Montserrat:wght@500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 <style>
   /* A arte de fundo (1024 x 1536) traz só fotos e cenário. Todo texto e botão é HTML,
      posicionado em unidades da arte: 1u = 1px da arte original, escalando com a largura. */
@@ -262,6 +262,107 @@
   .act-main svg,.act-alt svg{width:calc(15*var(--u));height:calc(15*var(--u))}
   .act-alt{height:calc(40*var(--u));padding:0 calc(20*var(--u));gap:calc(10*var(--u));font-size:calc(12*var(--u));font-weight:600}
   .info .note-cfo{margin-top:calc(14*var(--u));font-size:calc(8.6*var(--u));color:var(--muted,#6e5c50)}
+
+  /* ---------- Sobre a Dra. + Instagram ---------- */
+  .band-bot::after{content:"";position:absolute;left:0;right:0;bottom:0;height:calc(min(100vw, 1180px) * .06);z-index:6;pointer-events:none;
+    background:var(--mid);-webkit-mask-image:linear-gradient(to bottom,transparent,#000);mask-image:linear-gradient(to bottom,transparent,#000)}
+  .band-sobre{position:relative;background:var(--mid);margin-top:-1px}
+  .sobre{--u:calc(100cqw / 1024);position:relative;height:calc(540*var(--u))}
+  .sobre .deco{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+  .sobre .deco path{fill:none;stroke:rgba(168,115,47,.45);stroke-width:1.2;stroke-dasharray:4 5;stroke-linecap:round}
+  .sobre .deco .solid{stroke-dasharray:none;stroke:rgba(168,115,47,.55)}
+  .sobre .deco .spark{fill:var(--gold);stroke:none;opacity:.8}
+
+  .so-left{position:absolute;left:calc(64*var(--u));top:calc(36*var(--u));width:calc(318*var(--u))}
+  .so-kick{display:flex;align-items:center;gap:calc(12*var(--u));font-family:var(--caps);font-weight:600;font-size:calc(9.6*var(--u));letter-spacing:calc(3*var(--u));color:var(--gold);text-transform:uppercase}
+  .so-kick::after{content:"";width:calc(40*var(--u));height:1px;background:var(--gold);opacity:.75}
+  .so-title{font-family:var(--serif);font-weight:400;font-size:calc(36*var(--u));line-height:1.08;letter-spacing:-.015em;color:var(--ink);margin-top:calc(14*var(--u))}
+  .so-title em{font-style:italic;color:var(--gold)}
+  .so-sub{font-family:var(--sans);font-weight:600;font-size:calc(12.6*var(--u));color:var(--ink);margin-top:calc(10*var(--u))}
+  .so-text{font-size:calc(11.6*var(--u));line-height:1.6;color:var(--ink-2);margin-top:calc(8*var(--u))}
+
+  .ig-card{margin-top:calc(18*var(--u));padding:calc(16*var(--u)) calc(16*var(--u)) calc(16*var(--u));border-radius:calc(18*var(--u));
+    background:rgba(255,251,248,.82);border:1px solid rgba(168,115,47,.16);box-shadow:0 calc(16*var(--u)) calc(36*var(--u)) rgba(120,80,40,.10)}
+  .ig-head{display:flex;align-items:center;gap:calc(14*var(--u))}
+  .ig-av{flex:none;width:calc(70*var(--u));height:calc(70*var(--u));border-radius:50%;padding:calc(3*var(--u));
+    background:conic-gradient(from 200deg,#e7c08a,#a8732f,#f1d4a6,#8c5a22,#e7c08a)}
+  .ig-av img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:calc(2.5*var(--u)) solid #fffaf6}
+  .ig-name{font-family:var(--sans);font-weight:700;font-size:calc(13*var(--u));color:var(--ink)}
+  .ig-real{font-size:calc(9.4*var(--u));color:var(--ink-2);margin-top:calc(2*var(--u))}
+  .ig-stats{display:flex;gap:calc(14*var(--u));margin-top:calc(8*var(--u))}
+  .ig-stats div{display:flex;flex-direction:column}
+  .ig-stats div + div{padding-left:calc(14*var(--u));border-left:1px solid rgba(168,115,47,.2)}
+  .ig-stats b{font-weight:700;font-size:calc(12.4*var(--u));color:var(--ink);font-variant-numeric:tabular-nums}
+  .ig-stats span{font-size:calc(8.4*var(--u));color:var(--ink-2)}
+  .ig-bio{list-style:none;margin-top:calc(12*var(--u));display:flex;flex-direction:column;gap:calc(5*var(--u))}
+  .ig-bio li{display:flex;align-items:center;gap:calc(8*var(--u));font-size:calc(10.4*var(--u));color:var(--ink)}
+  .ig-bio svg{flex:none;width:calc(13*var(--u));height:calc(13*var(--u));color:var(--gold)}
+  .ig-follow{position:relative;margin-top:calc(14*var(--u));height:calc(38*var(--u));justify-content:center;gap:calc(10*var(--u));font-size:calc(12.4*var(--u));font-weight:700;width:100%}
+  .ig-follow svg{width:calc(16*var(--u));height:calc(16*var(--u))}
+
+  /* Reels */
+  .reel{position:absolute;top:calc(40*var(--u));width:calc(206*var(--u));height:calc(366*var(--u));border-radius:calc(18*var(--u));overflow:hidden;
+    background:#1b1512;box-shadow:0 calc(24*var(--u)) calc(48*var(--u)) rgba(60,35,15,.28);user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:manipulation}
+  .reel.r1{left:calc(408*var(--u))}
+  .reel.r2{left:calc(630*var(--u));top:calc(34*var(--u))}
+  .reel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .reel .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(10*var(--u));text-align:center;
+    background:radial-gradient(circle at 50% 35%,rgba(201,145,79,.35),rgba(27,21,18,0) 60%),linear-gradient(170deg,#3a2a20,#17110e);color:#f5e6d6}
+  .reel .ph .play{width:calc(46*var(--u));height:calc(46*var(--u));border-radius:50%;border:1.5px solid rgba(255,240,222,.7);display:grid;place-items:center}
+  .reel .ph .play svg{width:calc(18*var(--u));height:calc(18*var(--u));margin-left:calc(3*var(--u))}
+  .reel .ph b{font-family:var(--serif);font-weight:400;font-size:calc(15*var(--u))}
+  .reel .ph small{font-family:var(--caps);font-weight:600;font-size:calc(7*var(--u));letter-spacing:calc(1.6*var(--u));color:#d9b98f;text-transform:uppercase;max-width:80%}
+  .reel .top{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;gap:calc(8*var(--u));padding:calc(12*var(--u));z-index:2;
+    background:linear-gradient(to bottom,rgba(0,0,0,.45),rgba(0,0,0,0));color:#fff}
+  .reel .top img{width:calc(26*var(--u));height:calc(26*var(--u));border-radius:50%;object-fit:cover;border:1.5px solid rgba(255,255,255,.85)}
+  .reel .top b{font-weight:700;font-size:calc(10.6*var(--u))}
+  .reel .top i{margin-left:auto;font-style:normal;letter-spacing:2px;font-size:calc(12*var(--u))}
+  .reel .bot{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:calc(6*var(--u));padding:calc(12*var(--u)) calc(14*var(--u));z-index:2;
+    background:linear-gradient(to top,rgba(0,0,0,.5),rgba(0,0,0,0));color:#fff;font-weight:700;font-size:calc(10.6*var(--u))}
+  .reel .bot svg{width:calc(10*var(--u));height:calc(10*var(--u))}
+  .reel .bot .bm{margin-left:auto;width:calc(15*var(--u));height:calc(15*var(--u))}
+  .reel .snd{position:absolute;right:calc(12*var(--u));bottom:calc(42*var(--u));z-index:3;width:calc(26*var(--u));height:calc(26*var(--u));border-radius:50%;border:0;cursor:pointer;
+    background:rgba(0,0,0,.45);color:#fff;display:grid;place-items:center}
+  .reel .snd svg{width:calc(13*var(--u));height:calc(13*var(--u))}
+  .reel .snd[hidden]{display:none}
+  .reel .hold{position:absolute;inset:0;z-index:4;pointer-events:none;background:rgba(201,145,79,.0);transition:background .6s linear}
+  .reel.holding .hold{background:rgba(201,145,79,.28)}
+  .reel .menu{position:absolute;left:calc(14*var(--u));right:calc(14*var(--u));bottom:calc(50*var(--u));z-index:6;display:flex;flex-direction:column;gap:calc(6*var(--u));
+    padding:calc(10*var(--u));border-radius:calc(14*var(--u));background:rgba(255,250,246,.96);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .reel .menu[hidden]{display:none}
+  .reel .menu button{font:inherit;font-family:var(--sans);font-weight:700;font-size:calc(10.6*var(--u));cursor:pointer;border:0;border-radius:calc(10*var(--u));
+    height:calc(32*var(--u));background:linear-gradient(100deg,#c9914f,#8c5a22);color:#fff7ee}
+  .reel .menu button.alt{background:transparent;color:var(--ink);border:1px solid rgba(168,115,47,.4)}
+  .reel .menu p{font-size:calc(8.6*var(--u));color:var(--ink-2);text-align:center;line-height:1.35}
+  .reel .busy{position:absolute;inset:0;z-index:7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(10*var(--u));
+    background:rgba(23,17,14,.82);color:#f5e6d6;text-align:center;padding:0 calc(16*var(--u));font-size:calc(10.4*var(--u))}
+  .reel .busy[hidden]{display:none}
+  .reel .busy .bar{width:80%;height:calc(4*var(--u));border-radius:4px;background:rgba(255,255,255,.18);overflow:hidden}
+  .reel .busy .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#e7c08a,#c9914f)}
+
+  /* Polaroid + cartão */
+  .polaroid{position:absolute;left:calc(852*var(--u));top:calc(112*var(--u));width:calc(146*var(--u));padding:calc(8*var(--u)) calc(8*var(--u)) calc(34*var(--u));
+    background:#fffdfb;border-radius:calc(6*var(--u));box-shadow:0 calc(16*var(--u)) calc(32*var(--u)) rgba(80,50,25,.22);transform:rotate(4deg)}
+  .polaroid img{display:block;width:100%;aspect-ratio:27/31;object-fit:cover;border-radius:calc(3*var(--u))}
+  .polaroid .heart{position:absolute;right:calc(-10*var(--u));top:calc(-12*var(--u));width:calc(32*var(--u));height:calc(30*var(--u));border-radius:calc(8*var(--u));
+    background:linear-gradient(135deg,#c9914f,#8c5a22);display:grid;place-items:center;box-shadow:0 6px 14px rgba(120,80,40,.35);transform:rotate(-4deg)}
+  .polaroid .heart svg{width:calc(15*var(--u));height:calc(15*var(--u));color:#fff}
+  .polaroid .heart::after{content:"";position:absolute;bottom:calc(-5*var(--u));left:50%;width:calc(9*var(--u));height:calc(9*var(--u));background:#9d6828;transform:translateX(-50%) rotate(45deg);z-index:-1}
+  .polaroid .cap{position:absolute;left:0;right:0;bottom:calc(6*var(--u));display:flex;align-items:center;justify-content:center;gap:calc(5*var(--u));
+    font-family:'Caveat',cursive;font-size:calc(13*var(--u));line-height:1;color:var(--gold);white-space:nowrap}
+  .polaroid .cap svg{width:calc(13*var(--u));height:calc(13*var(--u))}
+  .mini{position:absolute;left:calc(852*var(--u));top:calc(330*var(--u));width:calc(150*var(--u));padding:calc(12*var(--u)) calc(12*var(--u)) calc(12*var(--u)) calc(12*var(--u));
+    border-radius:calc(14*var(--u));background:rgba(255,251,248,.9);border:1px solid rgba(168,115,47,.16);box-shadow:0 calc(12*var(--u)) calc(26*var(--u)) rgba(120,80,40,.10);display:block}
+  .mini .row{display:flex;gap:calc(8*var(--u));align-items:flex-start}
+  .mini svg.g{flex:none;width:calc(18*var(--u));height:calc(18*var(--u));color:var(--gold);margin-top:calc(2*var(--u))}
+  .mini b{display:block;font-weight:700;font-size:calc(11*var(--u));line-height:1.2;color:var(--ink)}
+  .mini span{display:block;font-size:calc(8.8*var(--u));line-height:1.35;color:var(--ink-2);margin-top:calc(4*var(--u))}
+  .mini .go{position:absolute;right:calc(10*var(--u));bottom:calc(10*var(--u));width:calc(20*var(--u));height:calc(20*var(--u));border-radius:50%;
+    background:linear-gradient(135deg,#c9914f,#8c5a22);display:grid;place-items:center;color:#fff}
+  .mini .go svg{width:calc(10*var(--u));height:calc(10*var(--u))}
+  .so-script{position:absolute;left:calc(420*var(--u));top:calc(452*var(--u));display:flex;align-items:center;gap:calc(6*var(--u));
+    font-family:'Caveat',cursive;font-size:calc(22*var(--u));color:var(--gold)}
+  .so-script svg{width:calc(18*var(--u));height:calc(18*var(--u))}
 </style>
 </head>
 <body>
@@ -329,10 +430,9 @@
     <div class="ext r" aria-hidden="true"></div>
     <div class="ext-tint" aria-hidden="true"></div>
     <div class="art">
-      <img src="assets/home-bottom.jpg" width="2048" height="1282" alt="">
+      <img src="assets/home-bottom.jpg" width="2048" height="550" alt="">
       <div class="ov"><div class="shift">
         <span class="anchor" id="resultados" style="top:calc(945*var(--u))"></span>
-        <span class="anchor" id="sobre" style="top:calc(1180*var(--u))"></span>
         <!-- Resultados -->
         <p class="t caps res-eyebrow">Resultados</p>
         <h2 class="t serif res-title">Sorrisos reais,<br>transformações <em>reais</em></h2>
@@ -344,18 +444,76 @@
         <span class="t slide-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
         <span class="t dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span>
 
-        <!-- Sobre -->
-        <p class="t caps eyebrow about-eyebrow">Sobre a Dra. <span class="rule"></span></p>
-        <h2 class="t serif about-name">Dra. Vitória Cervigni</h2>
-        <p class="t about-text">Cirurgiã-dentista, especializada em <b>odontologia estética</b>,<br>com foco em tratamentos personalizados que unem saúde,<br>função e beleza de forma natural e sofisticada.</p>
-        <ul class="t checks">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Formação de excelência</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Atualização constante</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>Atendimento humanizado</li>
-        </ul>
-        <a href="#" data-wa class="btn btn-line about-cta">Conheça minha trajetória
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
       </div></div>
+    </div>
+  </section>
+
+  <!-- ================= SOBRE A DRA. + INSTAGRAM ================= -->
+  <section class="band band-sobre" id="sobre" aria-label="Sobre a Dra. Vitória Cervigni">
+    <div class="art">
+      <div class="sobre">
+        <svg class="deco" viewBox="0 0 1024 560" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M10 22 C 110 4, 220 2, 330 12"/>
+          <path d="M600 18 C 700 0, 800 10, 880 70"/>
+          <path d="M880 470 C 930 500, 980 500, 1020 470"/>
+          <path d="M60 520 C 140 540, 220 520, 280 500"/>
+          <path class="spark" d="M968 52 l3 9 9 3 -9 3 -3 9 -3 -9 -9 -3 9 -3z"/>
+          <path class="spark" d="M300 492 l2.2 6.5 6.5 2.2 -6.5 2.2 -2.2 6.5 -2.2 -6.5 -6.5 -2.2 6.5 -2.2z"/>
+        </svg>
+
+        <div class="so-left">
+          <p class="so-kick">Sobre a doutora</p>
+          <h2 class="so-title">Dra. Vitória<br><em>Cervigni</em></h2>
+          <p class="so-sub">Cirurgiã-dentista especializada</p>
+          <p class="so-text">Implantes, protocolo com carga imediata e laminados em resina, com atendimento próximo e planejamento para cada sorriso. Atende em Suzano-SP.</p>
+
+          <div class="ig-card">
+            <div class="ig-head">
+              <div class="ig-av"><img src="assets/avatar-dra.jpg" alt="Dra. Vitória Cervigni"></div>
+              <div>
+                <div class="ig-name">dra.vitoriacervigni</div>
+                <div class="ig-real">Dra. Vitória Cervigni · Dentista · Suzano/SP</div>
+                <div class="ig-stats">
+                  <div><b>89</b><span>posts</span></div>
+                  <div><b>6.275</b><span>seguidores</span></div>
+                  <div><b>233</b><span>seguindo</span></div>
+                </div>
+              </div>
+            </div>
+            <ul class="ig-bio">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 3.5h9c1 0 1.7.9 1.5 1.9L17.4 9H6.6L6 5.4c-.2-1 .5-1.9 1.5-1.9zM8.5 9v2h7V9M9.5 11l1 9.5h3l1-9.5"/></svg>Implantes dentários</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3L5 13.5h6L10 21l8-10.5h-6z"/></svg>Protocolo dentário com carga imediata</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4.5l5 5L9 20H4v-5zM12.5 6.5l5 5"/></svg>Laminados em resina</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 15.5c.6-1.4 1.7-2 3-2s2.4.6 3 2M14 10h4M14 13h3"/></svg>CROSP 147202</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>Suzano-SP</li>
+            </ul>
+            <a class="btn btn-gold ig-follow" href="https://www.instagram.com/dra.vitoriacervigni/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r=".8" fill="currentColor"/></svg>
+              Seguir no Instagram
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:calc(12*var(--u));height:calc(12*var(--u))"><path d="M9 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="reel r1" data-slot="v1"></div>
+        <div class="reel r2" data-slot="v2"></div>
+
+        <figure class="polaroid">
+          <img src="assets/polaroid-dra.jpg" alt="Dra. Vitória Cervigni">
+          <span class="heart"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z"/></svg></span>
+          <figcaption class="cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.4-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.6-7.5 10-7.5 10z"/></svg>Sorrisos que transformam</figcaption>
+        </figure>
+
+        <a class="mini" href="https://www.instagram.com/dra.vitoriacervigni/" target="_blank" rel="noopener">
+          <span class="row">
+            <svg class="g" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4c-2 0-3.5 1.6-3.5 3.8 0 2 .7 3 1.2 4.6.6 1.8.8 3.8 1.2 5.6.3 1.3.8 2 1.6 2 1 0 1.2-1.2 1.5-2.5.3-1.4.6-2.8 2.5-2.8s2.2 1.4 2.5 2.8c.3 1.3.5 2.5 1.5 2.5.8 0 1.3-.7 1.6-2 .4-1.8.6-3.8 1.2-5.6.5-1.6 1.2-2.6 1.2-4.6C20 5.6 18.5 4 16.5 4c-1.7 0-2.6.9-4.5.9S8.7 4 7 4z"/></svg>
+            <span><b>Transformando vidas</b><span>através do sorriso. Veja mais casos no Instagram.</span></span>
+          </span>
+          <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+
+        <p class="so-script">Mais sorrisos transformados <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.4-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.6-7.5 10-7.5 10z"/></svg></p>
+      </div>
     </div>
   </section>
 </div>
@@ -576,6 +734,144 @@ const setWa = (el, txt) => { el.href = wa(txt); el.target = '_blank'; el.rel = '
 document.querySelectorAll('[data-wa]').forEach(el => setWa(el, 'Olá, Dra. Vitória! Gostaria de agendar uma avaliação.'));
 document.querySelectorAll('[data-trat]').forEach(el =>
   setWa(el, 'Olá, Dra. Vitória! Tenho interesse em ' + el.dataset.trat + '. Podemos agendar uma avaliação?'));
+
+/* ===== Vídeos do Instagram (segure o vídeo para enviar) ===== */
+const IG_VIDEOS = { v1: null, v2: null };   // URLs fixas dos vídeos, preenchidas depois do envio
+const MAX_UPLOAD = 19.5 * 1024 * 1024;      // limite do armazenamento por arquivo; acima disso o vídeo é otimizado no navegador
+
+const reelIco = {
+  play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>',
+  bm: '<svg class="bm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M6 3.5h12v17l-6-4.5-6 4.5z"/></svg>',
+  off: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>',
+  on: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M16 9a4.5 4.5 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>'
+};
+const avatarSrc = document.querySelector('.ig-av img').src;
+let assetsApi = null, dbApi = null;
+
+const reels = [...document.querySelectorAll('.reel[data-slot]')].map(el => {
+  el.innerHTML =
+    '<div class="ph">' +
+      '<span class="play">' + reelIco.play + '</span><b>Vídeo em breve</b>' +
+      '<small class="hint" hidden>Segure para enviar o vídeo</small>' +
+    '</div>' +
+    '<div class="top"><img src="' + avatarSrc + '" alt=""><b>dra.vitoriacervigni</b><i>•••</i></div>' +
+    '<div class="bot">' + reelIco.play + 'Reels' + reelIco.bm + '</div>' +
+    '<button class="snd" type="button" aria-label="Ativar som" hidden>' + reelIco.off + '</button>' +
+    '<div class="hold"></div>' +
+    '<div class="menu" hidden><button type="button" class="up">Enviar vídeo</button><button type="button" class="alt rm" hidden>Remover vídeo</button><button type="button" class="alt cancel">Cancelar</button><p>Vídeos acima de 20 MB são otimizados antes do envio.</p></div>' +
+    '<div class="busy" hidden><span class="msg">Enviando…</span><span class="bar"><i></i></span></div>' +
+    '<input type="file" accept="video/*" hidden>';
+  const r = { el, slot: el.dataset.slot, video: null };
+  const snd = el.querySelector('.snd');
+  r.setVideo = url => {
+    r.video?.remove(); r.video = null;
+    snd.hidden = !url;
+    if (!url) return;
+    const v = document.createElement('video');
+    v.src = url; v.muted = true; v.loop = true; v.playsInline = true; v.autoplay = true; v.preload = 'metadata';
+    v.setAttribute('playsinline', ''); v.setAttribute('aria-label', 'Vídeo do Instagram da Dra. Vitória');
+    el.insertBefore(v, el.querySelector('.top'));
+    r.video = v; v.play().catch(() => {});
+    snd.innerHTML = reelIco.off; snd.setAttribute('aria-label', 'Ativar som');
+  };
+  snd.addEventListener('click', e => {
+    e.stopPropagation(); if (!r.video) return;
+    r.video.muted = !r.video.muted; if (!r.video.muted) r.video.play().catch(() => {});
+    snd.innerHTML = r.video.muted ? reelIco.off : reelIco.on;
+    snd.setAttribute('aria-label', r.video.muted ? 'Ativar som' : 'Desativar som');
+  });
+  return r;
+});
+const bySlot = Object.fromEntries(reels.map(r => [r.slot, r]));
+reels.forEach(r => r.setVideo(IG_VIDEOS[r.slot]));
+
+/* Compressão no navegador para vídeos maiores que o limite */
+async function compressVideo(file, onProgress) {
+  const url = URL.createObjectURL(file);
+  const v = document.createElement('video');
+  v.src = url; v.playsInline = true; v.preload = 'auto';
+  await new Promise((ok, fail) => { v.onloadedmetadata = ok; v.onerror = () => fail(new Error('Não foi possível ler este vídeo.')); });
+  const dur = v.duration || 60;
+  const scale = Math.min(1, 1280 / Math.max(v.videoWidth, v.videoHeight));
+  const c = document.createElement('canvas');
+  c.width = Math.round(v.videoWidth * scale / 2) * 2; c.height = Math.round(v.videoHeight * scale / 2) * 2;
+  const ctx = c.getContext('2d');
+  const stream = c.captureStream(30);
+  let ac = null;
+  try {
+    ac = new AudioContext(); const src = ac.createMediaElementSource(v); const dest = ac.createMediaStreamDestination();
+    src.connect(dest); dest.stream.getAudioTracks().forEach(t => stream.addTrack(t)); await ac.resume();
+  } catch (_) { v.muted = true; }
+  const mime = ['video/mp4;codecs=avc1.42E01E,mp4a.40.2', 'video/mp4', 'video/webm;codecs=vp9,opus', 'video/webm;codecs=vp8,opus', 'video/webm']
+    .find(m => window.MediaRecorder && MediaRecorder.isTypeSupported(m));
+  if (!mime) throw new Error('Este navegador não consegue otimizar o vídeo. Tente pelo Chrome.');
+  const vbr = Math.max(500e3, Math.min(5e6, (17.5 * 8 * 1024 * 1024) / dur - 130e3));
+  const rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: vbr, audioBitsPerSecond: 128e3 });
+  const chunks = []; rec.ondataavailable = e => e.data.size && chunks.push(e.data);
+  const done = new Promise(ok => rec.onstop = ok);
+  let raf = 0;
+  const draw = () => { ctx.drawImage(v, 0, 0, c.width, c.height); onProgress(Math.min(1, v.currentTime / dur)); raf = requestAnimationFrame(draw); };
+  rec.start(1000); draw(); await v.play();
+  await new Promise(ok => v.onended = ok);
+  cancelAnimationFrame(raf); rec.stop(); await done;
+  ac?.close(); URL.revokeObjectURL(url);
+  return new Blob(chunks, { type: mime.split(';')[0] });
+}
+
+async function handleUpload(r, file) {
+  const busy = r.el.querySelector('.busy'), msg = busy.querySelector('.msg'), bar = busy.querySelector('.bar i');
+  busy.hidden = false; bar.style.width = '0';
+  try {
+    let blob = file;
+    if (file.size > MAX_UPLOAD) {
+      msg.textContent = 'Otimizando o vídeo… (leva o tempo do vídeo)';
+      blob = await compressVideo(file, p => bar.style.width = Math.round(p * 100) + '%');
+      if (blob.size > 20 * 1024 * 1024) throw new Error('O vídeo continuou acima de 20 MB. Envie um vídeo mais curto.');
+    }
+    msg.textContent = 'Enviando…'; bar.style.width = '100%';
+    const res = await assetsApi.upload(blob);
+    r.setVideo(res.url);
+    if (dbApi) await dbApi.doc('site/instagram').set({ ...(r.saved || {}), [r.slot]: { id: res.id, url: res.url } });
+  } catch (err) {
+    const code = err && err.code;
+    msg.textContent = code === 'too_large' ? 'O arquivo é grande demais (máx. 20 MB).' : (err && err.message) || 'Não foi possível enviar.';
+    await new Promise(ok => setTimeout(ok, 3500));
+  } finally { busy.hidden = true; }
+}
+
+/* Segurar para abrir o menu de envio (só para quem pode editar) */
+function enableUploads() {
+  reels.forEach(r => {
+    const el = r.el, menu = el.querySelector('.menu'), input = el.querySelector('input[type=file]');
+    el.querySelector('.hint').hidden = false;
+    let timer = 0;
+    const open = () => { el.classList.remove('holding'); menu.querySelector('.rm').hidden = !r.video; menu.hidden = false; };
+    const cancel = () => { clearTimeout(timer); el.classList.remove('holding'); };
+    el.addEventListener('pointerdown', e => {
+      if (e.target.closest('.menu,.snd') || e.button > 0) return;
+      el.classList.add('holding'); timer = setTimeout(open, 650);
+    });
+    ['pointerup', 'pointerleave', 'pointercancel'].forEach(t => el.addEventListener(t, cancel));
+    el.addEventListener('contextmenu', e => { e.preventDefault(); cancel(); open(); });
+    menu.querySelector('.cancel').addEventListener('click', () => menu.hidden = true);
+    menu.querySelector('.up').addEventListener('click', () => { menu.hidden = true; input.click(); });
+    menu.querySelector('.rm').addEventListener('click', async () => {
+      menu.hidden = true; r.setVideo(null);
+      if (dbApi) await dbApi.doc('site/instagram').set({ ...(r.saved || {}), [r.slot]: null }).catch(() => {});
+    });
+    input.addEventListener('change', () => { const f = input.files[0]; input.value = ''; if (f) handleUpload(r, f); });
+  });
+}
+
+(async () => {
+  if (!window.claude?.use) return;
+  [assetsApi, dbApi] = await Promise.all([claude.use('assets').catch(() => null), claude.use('db').catch(() => null)]);
+  if (assetsApi) enableUploads();
+  if (dbApi) dbApi.doc('site/instagram').onSnapshot(s => {
+    const d = (s && s.exists && s.data()) || {};
+    reels.forEach(r => { r.saved = d; const u = d[r.slot]?.url || IG_VIDEOS[r.slot]; if ((r.video?.src || null) !== (u ? new URL(u, location.href).href : null)) r.setVideo(u); });
+  }, () => {});
+})();
 </script>
 </body>
 </html>
