@@ -375,6 +375,31 @@
   .so-script{position:absolute;left:calc(500*var(--u));top:calc(592*var(--u));display:flex;align-items:center;gap:calc(6*var(--u));
     font-family:'Caveat',cursive;font-size:calc(22*var(--u));color:var(--gold)}
   .so-script svg{width:calc(18*var(--u));height:calc(18*var(--u))}
+
+  /* ---------- Rodapé ---------- */
+  .footer{position:relative;background:linear-gradient(180deg,var(--mid) 0%,#efdccd 100%);border-top:1px solid rgba(168,115,47,.22)}
+  .f-wrap{max-width:1180px;margin:0 auto;padding-left:max(32px, env(safe-area-inset-left, 0px));padding-right:max(32px, env(safe-area-inset-right, 0px))}
+  .f-cta{display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;padding-block:44px;border-bottom:1px solid rgba(168,115,47,.2)}
+  .f-cta h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,2.4vw,34px);line-height:1.15;color:var(--ink);text-wrap:balance}
+  .f-cta h2 em{font-style:italic;color:var(--gold)}
+  .f-cta p{margin-top:8px;font-size:15px;color:var(--ink-2)}
+  .f-cta .btn{position:relative;height:52px;padding:0 14px 0 26px;gap:16px;font-size:16px;font-weight:600}
+  .f-cta .btn svg{width:18px;height:18px}
+  .f-grid{display:grid;grid-template-columns:minmax(0,1.5fr) repeat(3,minmax(0,1fr));gap:40px;padding-block:48px 40px}
+  .f-brand{display:flex;align-items:center;gap:4px}
+  .f-brand img{width:70px;height:auto}
+  .f-brand b{display:block;font-family:var(--serif);font-weight:400;font-size:18px;letter-spacing:.02em;color:#2a2320}
+  .f-brand small{display:block;font-family:var(--caps);font-weight:600;font-size:9px;letter-spacing:.28em;color:#3a2f28;margin-top:6px}
+  .f-about{margin-top:18px;font-size:14.5px;line-height:1.7;color:var(--ink-2);max-width:34ch}
+  .f-verse{margin-top:14px;font-family:'Caveat',cursive;font-size:20px;color:var(--gold)}
+  .f-col h4{font-family:var(--caps);font-weight:600;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+  .f-col ul{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:12px;font-size:15px;color:var(--ink)}
+  .f-col a:hover{color:var(--gold)}
+  .f-col li{display:flex;align-items:center;gap:10px}
+  .f-col li svg{flex:none;width:16px;height:16px;color:var(--gold)}
+  .f-bottom{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:22px 28px;border-top:1px solid rgba(168,115,47,.2);font-size:13px;color:var(--ink-2)}
+  @media (max-width:860px){.f-grid{grid-template-columns:1fr 1fr}.f-grid > :first-child{grid-column:1/-1}}
+  @media (max-width:520px){.f-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -517,6 +542,48 @@
       </div>
     </div>
   </section>
+
+  <!-- ================= RODAPÉ ================= -->
+  <footer class="footer">
+    <div class="f-wrap">
+      <div class="f-cta">
+        <div>
+          <h2>Pronta para transformar o <em>seu sorriso?</em></h2>
+          <p>Agende sua avaliação e receba um planejamento feito para você.</p>
+        </div>
+        <a href="#" data-wa class="btn btn-gold">Agendar avaliação <span class="ring" style="width:36px;height:36px;border-radius:50%;border:1.3px solid rgba(255,240,222,.75);display:grid;place-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg></span></a>
+      </div>
+
+      <div class="f-grid">
+        <div>
+          <div class="f-brand"><img src="assets/monograma-vc.png" alt=""><div><b>DRA. VITÓRIA CERVIGNI</b><small>ODONTOLOGIA ESPECIALIZADA</small></div></div>
+          <p class="f-about">Odontologia estética e reabilitadora com naturalidade, precisão e sofisticação, em Suzano-SP.</p>
+        </div>
+        <nav class="f-col" aria-label="Rodapé">
+          <h4>Navegação</h4>
+          <ul><li><a href="#inicio">Início</a></li><li><a href="#tratamentos">Tratamentos</a></li><li><a href="#resultados">Resultados</a></li><li><a href="#sobre">Sobre a doutora</a></li></ul>
+        </nav>
+        <div class="f-col">
+          <h4>Tratamentos</h4>
+          <ul><li>Protocolo com carga imediata</li><li>Lentes de porcelana</li><li>Facetas de resina</li><li>Prótese dentária</li></ul>
+        </div>
+        <div class="f-col">
+          <h4>Contato</h4>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 19.5l1.1-4A8 8 0 1 1 20 11.5z"/><path d="M9 8.8c0 3.3 2.9 6.2 6.2 6.2l.9-1.6-1.9-.9-.8.9a4.5 4.5 0 0 1-2.8-2.8l.9-.8-.9-1.9z"/></svg><a href="#" data-wa>(11) 98923-1460</a></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r=".8" fill="currentColor"/></svg><a href="https://www.instagram.com/dra.vitoriacervigni/" target="_blank" rel="noopener">@dra.vitoriacervigni</a></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>Suzano-SP</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 15.5c.6-1.4 1.7-2 3-2s2.4.6 3 2M14 10h4M14 13h3"/></svg>CROSP 147202</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="f-bottom">
+        <span>© 2026 Dra. Vitória Cervigni. Todos os direitos reservados.</span>
+        <span>Responsável técnica: Dra. Vitória Cervigni · CROSP 147202</span>
+      </div>
+    </div>
+  </footer>
 </div>
 
 <a class="wa" data-wa href="#" aria-label="Falar no WhatsApp">
