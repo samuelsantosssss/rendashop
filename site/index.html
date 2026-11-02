@@ -620,6 +620,29 @@
     .band-mid .tab .t-txt{min-width:0}
     .band-mid .tab .t-name{font-size:14px;overflow:hidden;text-overflow:ellipsis}
   }
+
+  @media (max-width:760px){
+    .band-mid .tabs{gap:4px;padding:5px;background:linear-gradient(180deg,#f6e6d8,#efdccb);border-color:rgba(168,115,47,.28)}
+    .band-mid .tab{flex:0 0 44px;height:48px}
+    .band-mid .tab .t-ico{width:38px;height:38px;border-radius:50%;
+      background:radial-gradient(circle at 35% 30%,#d9b37f 0%,#b98a4c 55%,#946327 100%);box-shadow:inset 0 1px 0 rgba(255,236,210,.5),0 3px 8px rgba(120,80,40,.25)}
+    .band-mid .tab .t-ico::before{display:none}
+    .band-mid .tab .t-ico img{width:30px;height:30px;filter:drop-shadow(0 2px 3px rgba(60,35,10,.45))}
+    .band-mid .tab[aria-selected="true"] .t-ico{background:rgba(255,247,238,.16);box-shadow:inset 0 0 0 1px rgba(255,240,222,.35)}
+    .band-mid .tab[aria-selected="true"]{padding:0 10px 0 5px;gap:7px}
+    .band-mid .tab .t-name{font-size:13.5px;text-overflow:clip;letter-spacing:-.01em}
+  }
+
+  @media (max-width:760px){
+    .band-mid .tabs{gap:3px;padding:4px}
+    .band-mid .tab{flex:0 0 40px;height:46px}
+    .band-mid .tab .t-ico{width:36px;height:36px}
+    .band-mid .tab .t-ico img{width:28px;height:28px}
+    .band-mid .tab[aria-selected="true"]{padding:0 8px 0 4px;gap:6px}
+    .band-mid .tab .t-name{font-size:clamp(12.5px,3.6vw,14.5px)}
+  }
+
+  @media (max-width:350px){.band-mid .tab .t-name{font-size:11.5px}.band-mid .tab{flex-basis:36px}.band-mid .tab .t-ico{width:32px;height:32px}.band-mid .tab .t-ico img{width:25px;height:25px}}
 </style>
 </head>
 <body>
@@ -846,7 +869,7 @@ const TRATAMENTOS = [
     ]
   },
   {
-    id: 'lentes', curto: 'Sorriso natural com lâminas finas de porcelana.', icone: 'assets/icones/lentes.png', aba: 'Lentes de Porcelana', abaCurta: 'Lentes',
+    id: 'lentes', curto: 'Sorriso natural com lâminas finas de porcelana.', icone: 'assets/icones/lentes.png', aba: 'Lentes de Porcelana', abaCurta: 'Lentes de Porcelana',
     kicker: 'Estética', titulo: 'Lentes de <em>Porcelana</em>',
     texto: 'Lâminas ultrafinas de porcelana que corrigem cor, formato e pequenos desalinhamentos, com brilho e translucidez de dente natural.',
     itens: ['Cor estável ao longo dos anos', 'Desgaste mínimo do dente', 'Resultado natural e sofisticado'],
@@ -856,7 +879,7 @@ const TRATAMENTOS = [
     ]
   },
   {
-    id: 'facetas', curto: 'Sorriso renovado em poucas sessões.', icone: 'assets/icones/facetas.png', aba: 'Facetas de Resina', abaCurta: 'Facetas',
+    id: 'facetas', curto: 'Sorriso renovado em poucas sessões.', icone: 'assets/icones/facetas.png', aba: 'Facetas de Resina', abaCurta: 'Facetas de Resina',
     kicker: 'Estética', titulo: 'Facetas de <em>Resina</em>',
     texto: 'Transformação estética em poucas sessões, com resinas de alta performance e acabamento natural.',
     itens: ['Resultado rápido', 'Ótimo custo-benefício', 'Ajustes simples quando preciso'],
@@ -874,7 +897,7 @@ const TRATAMENTOS = [
     ]
   },
   {
-    id: 'protese', curto: 'Função e estética para voltar a sorrir com confiança.', icone: 'assets/icones/protese.png', aba: 'Prótese Dentária', abaCurta: 'Prótese',
+    id: 'protese', curto: 'Função e estética para voltar a sorrir com confiança.', icone: 'assets/icones/protese.png', aba: 'Prótese Dentária', abaCurta: 'Prótese Dentária',
     kicker: 'Reabilitação', titulo: 'Prótese <em>Dentária</em>',
     texto: 'Coroas, pontes e próteses que devolvem a mastigação, o conforto e a confiança para sorrir.',
     itens: ['Função e estética juntas', 'Conforto no dia a dia', 'Planejamento individual'],
