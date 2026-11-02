@@ -492,6 +492,48 @@
   .f-bottom{display:flex;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-block:22px 28px;border-top:1px solid rgba(168,115,47,.2);font-size:13px;color:var(--ink-2)}
   @media (max-width:860px){.f-grid{grid-template-columns:1fr 1fr}.f-grid > :first-child{grid-column:1/-1}}
   @media (max-width:520px){.f-grid{grid-template-columns:1fr}}
+
+  /* ---------- Localização ---------- */
+  .loc{position:relative;background:var(--mid);padding-block:clamp(56px,7vw,110px) clamp(56px,6vw,96px)}
+  .loc::before{content:"";position:absolute;left:50%;top:0;width:min(60vw,520px);height:1px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,rgba(168,115,47,.45),transparent)}
+  .loc-wrap{max-width:1180px;margin:0 auto;padding-left:max(32px, env(safe-area-inset-left, 0px));padding-right:max(32px, env(safe-area-inset-right, 0px));
+    display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,72px);align-items:center}
+  .loc-kick{display:flex;align-items:center;gap:14px;font-family:var(--caps);font-weight:600;font-size:12px;letter-spacing:.32em;color:var(--gold);text-transform:uppercase}
+  .loc-kick::after{content:"";width:48px;height:1px;background:var(--gold);opacity:.75}
+  .loc h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,3.2vw,46px);line-height:1.1;letter-spacing:-.015em;color:var(--ink);margin-top:16px;text-wrap:balance}
+  .loc h2 em{font-style:italic;color:var(--gold)}
+  .loc-lead{margin-top:14px;font-size:16px;line-height:1.65;color:var(--ink-2);max-width:42ch}
+  .loc-list{list-style:none;margin-top:26px;display:flex;flex-direction:column;gap:16px}
+  .loc-list li{display:flex;gap:14px;align-items:flex-start}
+  .loc-list .ic{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 25%,#fff8f1,#f1dfcf);border:1px solid rgba(168,115,47,.3);color:var(--gold)}
+  .loc-list .ic svg{width:19px;height:19px}
+  .loc-list small{display:block;font-family:var(--caps);font-weight:600;font-size:10.5px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase}
+  .loc-list span{display:block;font-size:15.5px;line-height:1.5;color:var(--ink);margin-top:3px}
+  .loc-list a:hover{color:var(--gold)}
+  .loc-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .loc-actions .btn{position:relative;height:50px;padding:0 24px;gap:12px;font-size:15.5px;font-weight:600}
+  .loc-actions .btn svg{width:18px;height:18px}
+  .loc-actions .btn-line{border:1.4px solid rgba(168,115,47,.75)}
+  .loc-map{position:relative;border-radius:26px;overflow:hidden;aspect-ratio:7/5;background:#efe1d4;box-shadow:0 30px 60px rgba(120,80,40,.16);border:1px solid rgba(168,115,47,.18)}
+  .loc-map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:sepia(.18) saturate(.85)}
+  .loc-art{position:absolute;inset:0;display:block}
+  .loc-art svg{position:absolute;inset:0;width:100%;height:100%}
+  .loc-pin{position:absolute;left:50%;top:46%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;pointer-events:none}
+  .loc-pin .dot{width:54px;height:54px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:linear-gradient(135deg,#c9914f,#8c5a22);box-shadow:0 10px 22px rgba(120,80,40,.4);display:grid;place-items:center}
+  .loc-pin .dot img{width:30px;transform:rotate(45deg);filter:brightness(0) invert(1)}
+  .loc-pin .pulse{position:absolute;bottom:-10px;width:70px;height:22px;border-radius:50%;background:rgba(168,115,47,.25);animation:locPulse 2.4s ease-out infinite}
+  @keyframes locPulse{0%{transform:scale(.5);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+  @media (prefers-reduced-motion:reduce){.loc-pin .pulse{animation:none}}
+  .loc-tag{position:absolute;left:20px;bottom:20px;right:20px;max-width:360px;display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:18px;
+    background:rgba(255,251,248,.95);box-shadow:0 14px 30px rgba(120,80,40,.18);border:1px solid rgba(168,115,47,.16)}
+  .loc-tag img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #fff}
+  .loc-tag b{display:block;font-weight:700;font-size:14px;line-height:1.25;color:var(--ink)}
+  .loc-tag span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:3px}
+  .loc-tag .stars{color:#c9914f;letter-spacing:1px}
+  .loc-open{position:absolute;right:16px;top:16px;height:38px;padding:0 16px;border-radius:999px;display:flex;align-items:center;gap:8px;font-weight:600;font-size:13.5px;
+    background:rgba(255,251,248,.95);color:var(--ink);box-shadow:0 8px 18px rgba(120,80,40,.15)}
+  .loc-open svg{width:15px;height:15px;color:var(--gold)}
+  @media (max-width:860px){.loc-wrap{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -611,6 +653,45 @@
     </div>
   </section>
 
+  <!-- ================= LOCALIZAÇÃO ================= -->
+  <section class="loc" id="localizacao" aria-label="Localização">
+    <div class="loc-wrap">
+      <div>
+        <p class="loc-kick">Onde estamos</p>
+        <h2>No Centro de <em>Suzano</em></h2>
+        <p class="loc-lead">Atendimento em um espaço acolhedor e de fácil acesso, também para quem vem de Mogi das Cruzes, Poá, Ferraz de Vasconcelos e Itaquaquecetuba.</p>
+        <ul class="loc-list">
+          <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg></span><div><small>Endereço</small><span><a href="https://maps.app.goo.gl/km67h7AH1Y8Qc1Pu7" target="_blank" rel="noopener">R. Benjamin Constant, 1079 · Sala 12<br>Centro, Suzano-SP · 08674-011</a></span></div></li>
+          <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 19.5l1.1-4A8 8 0 1 1 20 11.5z"/><path d="M9 8.8c0 3.3 2.9 6.2 6.2 6.2l.9-1.6-1.9-.9-.8.9a4.5 4.5 0 0 1-2.8-2.8l.9-.8-.9-1.9z"/></svg></span><div><small>WhatsApp</small><span><a href="#" data-wa>(11) 98923-1460</a></span></div></li>
+          <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span><div><small>Atendimento</small><span>Com hora marcada · agende pelo WhatsApp</span></div></li>
+        </ul>
+        <div class="loc-actions">
+          <a class="btn btn-gold" href="https://www.google.com/maps/dir/?api=1&amp;destination=R.+Benjamin+Constant,+1079+-+Centro,+Suzano+-+SP,+08674-011" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11l17-7.5-7.5 17-2-7.5z"/></svg>Como chegar</a>
+          <a class="btn btn-line" href="#" data-wa><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 19.5l1.1-4A8 8 0 1 1 20 11.5z"/><path d="M9 8.8c0 3.3 2.9 6.2 6.2 6.2l.9-1.6-1.9-.9-.8.9a4.5 4.5 0 0 1-2.8-2.8l.9-.8-.9-1.9z"/></svg>Agendar avaliação</a>
+        </div>
+      </div>
+      <div class="loc-map">
+        <a class="loc-art" href="https://maps.app.goo.gl/km67h7AH1Y8Qc1Pu7" target="_blank" rel="noopener" aria-label="Abrir a localização no Google Maps">
+          <svg viewBox="0 0 700 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="700" height="500" fill="#f3e6da"/>
+            <g fill="#ead8c8"><rect x="40" y="40" width="150" height="110" rx="10"/><rect x="230" y="30" width="190" height="120" rx="10"/><rect x="470" y="50" width="190" height="100" rx="10"/>
+            <rect x="30" y="200" width="160" height="120" rx="10"/><rect x="470" y="200" width="200" height="130" rx="10"/><rect x="40" y="370" width="200" height="110" rx="10"/><rect x="290" y="380" width="140" height="100" rx="10"/><rect x="480" y="380" width="180" height="100" rx="10"/></g>
+            <rect x="230" y="200" width="190" height="130" rx="10" fill="#e3ecd9"/>
+            <g stroke="#fffaf5" stroke-linecap="round" fill="none"><path d="M0 175 H700" stroke-width="26"/><path d="M0 352 H700" stroke-width="20"/><path d="M210 0 V500" stroke-width="22"/><path d="M445 0 V500" stroke-width="26"/><path d="M-20 520 L330 -20" stroke-width="12" opacity=".7"/></g>
+            <g fill="#a08a78" font-family="Mulish, sans-serif" font-size="13" font-weight="600" letter-spacing=".5"><text x="470" y="170" opacity=".8">R. Benjamin Constant</text><text x="16" y="347" opacity=".6">Centro · Suzano</text></g>
+          </svg>
+          <span class="loc-pin"><span class="pulse"></span><span class="dot"><img src="assets/monograma-vc.png" alt=""></span></span>
+        </a>
+        <!--MAP-EMBED--><iframe title="Mapa: Clínica Odontológica Dra. Vitória Cervigni" src="https://www.google.com/maps?q=R.+Benjamin+Constant,+1079+-+Centro,+Suzano+-+SP,+08674-011&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe><!--/MAP-EMBED-->
+        <a class="loc-open" href="https://maps.app.goo.gl/km67h7AH1Y8Qc1Pu7" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>Abrir no Google Maps</a>
+        <div class="loc-tag">
+          <img src="assets/avatar-dra.jpg" alt="">
+          <div><b>Clínica Odontológica Dra. Vitória Cervigni</b><span><span class="stars">★★★★★</span> 5,0 no Google</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= RODAPÉ ================= -->
   <footer class="footer">
     <div class="f-wrap">
@@ -629,7 +710,7 @@
         </div>
         <nav class="f-col" aria-label="Rodapé">
           <h4>Navegação</h4>
-          <ul><li><a href="#inicio">Início</a></li><li><a href="#tratamentos">Tratamentos</a></li><li><a href="#resultados">Resultados</a></li><li><a href="#sobre">Sobre a doutora</a></li></ul>
+          <ul><li><a href="#inicio">Início</a></li><li><a href="#tratamentos">Tratamentos</a></li><li><a href="#resultados">Resultados</a></li><li><a href="#sobre">Sobre a doutora</a></li><li><a href="#localizacao">Localização</a></li></ul>
         </nav>
         <div class="f-col">
           <h4>Tratamentos</h4>
