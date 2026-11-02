@@ -370,14 +370,22 @@ const TRATAMENTOS = [
     kicker: 'Mais procurado', titulo: 'Protocolo com <em>Carga Imediata</em>',
     texto: 'Para quem perdeu vários ou todos os dentes. Os implantes recebem uma prótese fixa logo nos primeiros dias, para você voltar a sorrir e mastigar com segurança, sem passar meses sem dentes.',
     itens: ['Dentes fixos, sem dentadura móvel', 'Mais firmeza para mastigar e falar', 'Sorriso natural, planejado para o seu rosto'],
-    casos: [1, 2, 3, 4, 5].map(n => ({ antes: 'assets/casos/caso' + n + '-antes.jpg', depois: 'assets/casos/caso' + n + '-depois.jpg' }))
+    casos: [
+      { antes: 'assets/casos/caso1-antes.jpg', depois: 'assets/casos/caso1-depois.jpg' },
+      { antes: 'assets/casos/caso2-antes.jpg', depois: 'assets/casos/caso2-depois.jpg' },
+      { antes: 'assets/casos/caso3-antes.jpg', depois: 'assets/casos/caso3-depois.jpg' },
+      { antes: 'assets/casos/caso4-antes.jpg', depois: 'assets/casos/caso4-depois.jpg' },
+      { antes: 'assets/casos/caso5-antes.jpg', depois: 'assets/casos/caso5-depois.jpg' }
+    ]
   },
   {
     id: 'lentes', icone: 'assets/icones/lentes.png', aba: 'Lentes de Porcelana',
     kicker: 'Estética', titulo: 'Lentes de <em>Porcelana</em>',
     texto: 'Lâminas ultrafinas de porcelana que corrigem cor, formato e pequenos desalinhamentos, com brilho e translucidez de dente natural.',
     itens: ['Cor estável ao longo dos anos', 'Desgaste mínimo do dente', 'Resultado natural e sofisticado'],
-    casos: []
+    casos: [
+      { antes: 'assets/casos/lentes1-antes.jpg', depois: 'assets/casos/lentes1-depois.jpg' }
+    ]
   },
   {
     id: 'facetas', icone: 'assets/icones/facetas.png', aba: 'Facetas de Resina',
@@ -404,6 +412,7 @@ const ico = {
   cam: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>'
 };
 
+const casosTxt = n => n === 1 ? '1 caso real' : n + ' casos reais';
 const tabsEl = document.getElementById('tabs'), panelsEl = document.getElementById('panels');
 
 TRATAMENTOS.forEach((t, ti) => {
@@ -411,7 +420,7 @@ TRATAMENTOS.forEach((t, ti) => {
   tab.className = 'tab'; tab.type = 'button'; tab.role = 'tab';
   tab.id = 'tab-' + t.id; tab.setAttribute('aria-controls', 'panel-' + t.id);
   tab.setAttribute('aria-selected', ti === 0 ? 'true' : 'false');
-  const meta = t.casos.length ? (t.destaque ? t.destaque + ' · ' : '') + t.casos.length + ' casos reais' : 'Casos em breve';
+  const meta = t.casos.length ? (t.destaque ? t.destaque + ' · ' : '') + casosTxt(t.casos.length) : 'Casos em breve';
   tab.innerHTML = '<span class="t-ico"><img src="' + t.icone + '" alt="" width="96" height="96"></span>' +
     '<span class="t-txt"><span class="t-name">' + t.aba + '</span><span class="t-meta' + (t.casos.length ? '' : ' soon-m') + '">' + meta + '</span></span>';
   tabsEl.appendChild(tab);
@@ -439,7 +448,7 @@ TRATAMENTOS.forEach((t, ti) => {
       '<h3>' + t.titulo + '</h3>' +
       '<p>' + t.texto + '</p>' +
       '<ul>' + t.itens.map(i => '<li>' + ico.check + i + '</li>').join('') + '</ul>' +
-      (temCasos ? '<p class="thumbs-label">' + t.casos.length + ' casos reais · escolha um paciente</p><div class="thumbs"></div>' : '') +
+      (t.casos.length > 1 ? '<p class="thumbs-label">' + casosTxt(t.casos.length) + ' · escolha um paciente</p><div class="thumbs"></div>' : '') +
       '<div class="actions">' +
         '<a href="#" class="btn btn-gold act-main" data-trat="' + t.aba.toLowerCase() + '">Quero esse resultado ' + ico.arrow + '</a>' +
         '<a href="#resultados" class="btn btn-line act-alt">Ver resultados</a>' +
@@ -458,10 +467,11 @@ TRATAMENTOS.forEach((t, ti) => {
     atual = (i + t.casos.length) % t.casos.length;
     before.src = t.casos[atual].antes; after.src = t.casos[atual].depois;
     count.textContent = 'Caso ' + (atual + 1) + ' de ' + t.casos.length;
-    thumbs.querySelectorAll('.thumb').forEach((b, k) => b.setAttribute('aria-current', k === atual ? 'true' : 'false'));
+    count.hidden = t.casos.length < 2;
+    thumbs?.querySelectorAll('.thumb').forEach((b, k) => b.setAttribute('aria-current', k === atual ? 'true' : 'false'));
     range.value = 50; setPos(50);
   };
-  t.casos.forEach((c, k) => {
+  if (thumbs) t.casos.forEach((c, k) => {
     const b = document.createElement('button');
     b.className = 'thumb'; b.type = 'button'; b.setAttribute('aria-label', 'Ver caso ' + (k + 1));
     b.innerHTML = '<img src="' + c.depois + '" alt="" loading="lazy">';
