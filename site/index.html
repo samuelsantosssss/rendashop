@@ -90,7 +90,10 @@
   .sec-eyebrow{gap:calc(13*var(--u));font-size:calc(9.8*var(--u));letter-spacing:calc(2.6*var(--u))}
   .sec-eyebrow .rule{width:calc(47*var(--u))}
   .trat-eyebrow{top:calc(548*var(--u))}
-  .trat-title{top:calc(566*var(--u));font-size:calc(28.9*var(--u));line-height:1.2}
+  .trat-title{top:calc(448*var(--u));font-size:calc(30*var(--u));line-height:1.2}
+  .subline.trat-subline{top:calc(498*var(--u))}
+  .band-mid .mid{padding-top:0}
+  .band-top .ov + *{}
   .trat-sub{top:calc(612*var(--u));font-size:calc(12.2*var(--u));font-weight:500;color:var(--ink-2)}
 
   .card{position:absolute;top:calc(648*var(--u));width:calc(178*var(--u));height:calc(213*var(--u));border-radius:calc(12*var(--u));transition:box-shadow .3s, transform .3s}
@@ -158,13 +161,7 @@
   .band-top::after{bottom:0;background:var(--mid);-webkit-mask-image:linear-gradient(to bottom,transparent,#000);mask-image:linear-gradient(to bottom,transparent,#000)}
   .band-bot::before{top:0;background:var(--mid);-webkit-mask-image:linear-gradient(to top,transparent,#000);mask-image:linear-gradient(to top,transparent,#000)}
   .band .art{position:relative;z-index:4}
-  .band-top .art::before,.band-bot .art::before{content:"";position:absolute;left:0;right:0;height:4%;pointer-events:none}
-  .band-top .art::before{bottom:-1px;background:linear-gradient(to bottom,rgba(251,235,226,0),var(--mid))}
-  .band-bot .art::before{top:-1px;background:linear-gradient(to top,rgba(251,235,226,0),var(--mid))}
-  @media (min-width:1181px){
-    .band .art::before{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%)}
-  }
-  .band-top::after,.band-bot::before{height:min(7vw,90px)}
+  .band-top::after,.band-bot::before{height:calc(min(100vw, 1180px) * .055);z-index:6}
   .shift{position:absolute;left:0;right:0;top:calc(-895*var(--u));height:calc(1536*var(--u))}
 
   /* ---------- Seção de tratamentos ---------- */
@@ -242,7 +239,7 @@
     <div class="ext r" aria-hidden="true"></div>
     <div class="ext-tint" aria-hidden="true"></div>
     <div class="art">
-      <img src="assets/home-top.jpg" width="2048" height="1276" alt="">
+      <img src="assets/home-top.jpg" width="2048" height="1200" alt="">
       <div class="ov">
         <span class="anchor" id="inicio" style="top:0"></span>
       <header>
@@ -273,14 +270,10 @@
           <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
         </a>
 
-        <h2 class="t serif center tagline">Transformando sua&nbsp;<em>autoestima</em></h2>
-        <p class="t caps center subline"><span class="rule"></span>Com odontologia de excelência<span class="rule"></span></p>
-        <a href="#tratamentos" class="t chev" aria-label="Ver tratamentos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
 
         <!-- Tratamentos -->
-        <p class="t caps center sec-eyebrow trat-eyebrow"><span class="rule"></span>Tratamentos<span class="rule"></span></p>
-        <h2 class="t serif center trat-title">Soluções completas para o seu sorriso</h2>
-        <p class="t center trat-sub">Tratamentos modernos e personalizados, com foco em estética, saúde e bem-estar.</p>
+        <h2 class="t serif center trat-title">Soluções completas para o&nbsp;<em>seu sorriso</em></h2>
+        <p class="t caps center subline trat-subline"><span class="rule"></span>Com odontologia de excelência<span class="rule"></span></p>
 
       </main>
       </div>
