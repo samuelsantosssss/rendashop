@@ -606,6 +606,9 @@
     .band-mid .panel .actions .btn svg{width:15px;height:15px}
     .band-mid .soon{font-size:10px}
   }
+
+  .tab .nm-short{display:none}
+  @media (max-width:760px){.tab .nm-short{display:inline}.tab .nm-short + *{}.tab .t-name .nm-full:not(:only-child){display:none}}
 </style>
 </head>
 <body>
@@ -813,7 +816,7 @@
 /* ===== Tratamentos: edite textos e casos aqui ===== */
 const TRATAMENTOS = [
   {
-    id: 'protocolo', curto: 'Dentes fixos em poucos dias, sem dentadura móvel.', icone: 'assets/icones/protocolo.png', aba: 'Protocolo com Carga Imediata', destaque: 'Mais procurado',
+    id: 'protocolo', curto: 'Dentes fixos em poucos dias, sem dentadura móvel.', icone: 'assets/icones/protocolo.png', aba: 'Protocolo com Carga Imediata', abaCurta: 'Carga Imediata', destaque: 'Mais procurado',
     kicker: 'Mais procurado', titulo: 'Protocolo com <em>Carga Imediata</em>',
     texto: 'Para quem perdeu vários ou todos os dentes. Os implantes recebem uma prótese fixa logo nos primeiros dias, para você voltar a sorrir e mastigar com segurança, sem passar meses sem dentes. Atendimento no Centro de Suzano-SP.',
     itens: ['Dentes fixos, sem dentadura móvel', 'Mais firmeza para mastigar e falar', 'Sorriso natural, planejado para o seu rosto'],
@@ -887,7 +890,7 @@ TRATAMENTOS.forEach((t, ti) => {
   tab.setAttribute('aria-selected', ti === 0 ? 'true' : 'false');
   const meta = t.vagas ? 'Novos casos em breve' : t.casos.length ? (t.destaque ? t.destaque + ' · ' : '') + casosTxt(t.casos.length) : 'Casos em breve';
   tab.innerHTML = '<span class="t-ico"><img src="' + t.icone + '" alt="" width="96" height="96"></span>' +
-    '<span class="t-txt"><span class="t-name">' + t.aba + '</span><span class="t-meta' + (t.casos.length ? '' : ' soon-m') + '">' + meta + '</span></span>';
+    '<span class="t-txt"><span class="t-name"><span class="nm-full">' + t.aba + '</span>' + (t.abaCurta ? '<span class="nm-short">' + t.abaCurta + '</span>' : '') + '</span><span class="t-meta' + (t.casos.length ? '' : ' soon-m') + '">' + meta + '</span></span>';
   tabsEl.appendChild(tab);
 
   const p = document.createElement('div');
