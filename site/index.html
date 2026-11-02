@@ -266,10 +266,10 @@
     width:calc(880*var(--u));margin:0 auto;padding:calc(6*var(--u));border-radius:calc(22*var(--u));
     background:rgba(255,250,246,.72);border:calc(1*var(--u)) solid rgba(168,115,47,.22);
     box-shadow:0 calc(14*var(--u)) calc(34*var(--u)) rgba(120,80,40,.10), inset 0 1px 0 rgba(255,255,255,.8)}
-  .tabs .thumb-ind{position:absolute;top:calc(6*var(--u));bottom:calc(6*var(--u));left:0;width:0;border-radius:calc(16*var(--u));z-index:0;
+  .tabs .thumb-ind{position:absolute;top:0;left:0;width:0;height:0;border-radius:calc(16*var(--u));z-index:0;
     background:linear-gradient(100deg,#c9914f 0%,#ab7330 50%,#8c5a22 100%);
     box-shadow:0 calc(8*var(--u)) calc(18*var(--u)) rgba(122,78,30,.30), inset 0 1px 0 rgba(255,235,205,.35);
-    transition:transform .45s cubic-bezier(.65,0,.25,1), width .45s cubic-bezier(.65,0,.25,1)}
+    transition:transform .45s cubic-bezier(.65,0,.25,1), width .45s cubic-bezier(.65,0,.25,1), height .45s cubic-bezier(.65,0,.25,1)}
   .tabs .thumb-ind::after{content:"";position:absolute;left:50%;bottom:calc(-12*var(--u));width:calc(12*var(--u));height:calc(12*var(--u));
     transform:translateX(-50%) rotate(45deg);background:#a26c2b;border-radius:calc(2*var(--u));z-index:-1}
   .tab{position:relative;z-index:1;font:inherit;font-family:var(--sans);cursor:pointer;text-align:left;
@@ -534,6 +534,43 @@
     background:rgba(255,251,248,.95);color:var(--ink);box-shadow:0 8px 18px rgba(120,80,40,.15)}
   .loc-open svg{width:15px;height:15px;color:var(--gold)}
   @media (max-width:860px){.loc-wrap{grid-template-columns:1fr}}
+
+  /* ---------- Tratamentos: celular ---------- */
+  @media (max-width:760px){
+    .band-mid .mid{--u:1px;padding:8px 16px 48px}
+    .tabs{grid-template-columns:1fr 1fr;width:100%;gap:6px;padding:6px;border-radius:20px}
+    .tabs .thumb-ind{border-radius:15px}
+    .tabs .thumb-ind::after{display:none}
+    .tabs .thumb-ind .prog{left:14px;right:14px;bottom:6px}
+    .tab{height:auto;min-height:66px;padding:10px 10px;gap:8px;border-radius:15px;align-items:center}
+    .tab .t-ico{width:34px;height:34px}
+    .tab .t-name{white-space:normal;font-size:13.5px;line-height:1.2}
+    .tab .t-meta{white-space:normal;font-size:8.5px;letter-spacing:.9px;margin-top:4px;line-height:1.3}
+    .panel{grid-template-columns:1fr;gap:26px;margin-top:22px}
+    .compare{border-radius:20px;max-height:72vh;max-width:520px;margin:0 auto}
+    .compare .handle span{width:46px;height:46px}
+    .compare .handle svg{width:20px;height:20px}
+    .compare .nav-btn{width:38px;height:38px;margin-top:-19px}
+    .compare .nav-btn svg{width:16px;height:16px}
+    .compare .prev{left:10px}.compare .next{right:10px}
+    .compare .lbl{height:26px;padding:0 12px;font-size:12px;bottom:12px}
+    .compare .lbl.l{left:12px}.compare .lbl.r{right:12px}
+    .compare .count{font-size:9.5px;letter-spacing:1.8px;padding:6px 12px;top:12px}
+    .info .kick{font-size:11px;letter-spacing:2.6px}
+    .info h3{font-size:30px;margin-top:10px}
+    .info > p{font-size:15.5px;line-height:1.65;max-width:none;margin-top:12px}
+    .info ul{gap:10px;margin-top:16px}
+    .info li{font-size:15px;align-items:flex-start;gap:10px}
+    .info li svg{width:17px;height:17px;margin-top:2px}
+    .info .thumbs-label{font-size:10px;letter-spacing:1.8px;margin-top:22px}
+    .thumbs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;max-width:none;margin-top:10px}
+    .thumb{width:100%;height:auto;aspect-ratio:1;border-radius:12px;border-width:2px}
+    .thumb.soon-slot svg{width:18px;height:18px}
+    .actions{flex-direction:column;gap:10px;margin-top:24px}
+    .actions .btn{width:100%;justify-content:center;height:52px;font-size:16px}
+    .act-main svg,.act-alt svg{width:18px;height:18px}
+    .info .note-cfo{font-size:11.5px;text-align:center;margin-top:14px}
+  }
 </style>
 </head>
 <body>
@@ -871,7 +908,11 @@ TRATAMENTOS.forEach((t, ti) => {
     const b = document.createElement('button');
     b.className = 'thumb'; b.type = 'button'; b.setAttribute('aria-label', 'Ver caso ' + (k + 1));
     b.innerHTML = '<img src="' + c.depois + '" alt="" loading="lazy">';
-    b.addEventListener('click', () => show(k));
+    b.addEventListener('click', () => {
+      show(k);
+      const cmp = p.querySelector('.compare'), r = cmp.getBoundingClientRect();
+      if (r.top < 0 || r.bottom > innerHeight) cmp.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
+    });
     thumbs.appendChild(b);
   });
   if (thumbs) for (let v = 0; v < (t.vagas || 0); v++) {
@@ -890,7 +931,8 @@ const ind = tabsEl.querySelector('.thumb-ind');
 const moveInd = () => {
   const sel = tabsEl.querySelector('.tab[aria-selected="true"]'); if (!sel) return;
   ind.style.width = sel.offsetWidth + 'px';
-  ind.style.transform = 'translateX(' + sel.offsetLeft + 'px)';
+  ind.style.height = sel.offsetHeight + 'px';
+  ind.style.transform = 'translate(' + sel.offsetLeft + 'px,' + sel.offsetTop + 'px)';
 };
 const activate = tab => {
   tabsEl.querySelectorAll('.tab').forEach(b => { b.setAttribute('aria-selected', b === tab ? 'true' : 'false'); b.tabIndex = b === tab ? 0 : -1; });
