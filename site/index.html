@@ -650,6 +650,8 @@
     .band-top{display:none}
     .m-hero{display:block;position:relative;min-height:min(178vw,920px);background:linear-gradient(180deg,#e9ccbf 0,#e9ccbf 12%,rgba(233,204,191,0) 22%) top/100% 100% no-repeat,url('assets/hero-mobile.jpg') 50% 100%/112% auto no-repeat,#e9ccbf;overflow:hidden;
       padding-top:env(safe-area-inset-top,0px)}
+    .m-hero::before{content:"";position:absolute;inset:0 0 auto;height:40%;pointer-events:none;z-index:1;
+      background:linear-gradient(180deg,rgba(236,208,194,.9) 0%,rgba(236,208,194,.72) 60%,rgba(236,208,194,0) 100%)}
     .m-hero::after{content:"";position:absolute;inset:auto 0 0;height:50px;background:linear-gradient(180deg,rgba(251,235,226,0),var(--mid));pointer-events:none}
     .m-top{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:18px max(20px,env(safe-area-inset-left,0px)) 0 max(14px,env(safe-area-inset-left,0px))}
     .m-logo{display:flex;align-items:center}
