@@ -686,6 +686,51 @@
   }
 
   @media (pointer:coarse){.compare input{pointer-events:none}}
+
+  /* ---------- Sobre a doutora no celular ---------- */
+  @media (max-width:760px){
+    .band-sobre{padding-top:48px}
+    .band-sobre::before{top:22px}
+    .band-sobre .art{width:100%}
+    .sobre{--u:1px;height:auto;display:flex;flex-direction:column;gap:0;padding:0 18px 40px}
+    .sobre > *{position:relative !important;left:auto !important;top:auto !important;transform:none}
+    .so-left{width:auto}
+    .so-kick{font-size:12px;letter-spacing:.32em}
+    .so-kick::after{width:46px}
+    .so-title{font-size:clamp(34px,10vw,44px);margin-top:14px}
+    .so-sub{font-size:16px;margin-top:10px}
+    .so-text{font-size:16px;line-height:1.6;margin-top:8px}
+    .ig-card{margin-top:24px;padding:22px 20px;border-radius:24px}
+    .ig-head{gap:16px}
+    .ig-av{width:84px;height:84px;padding:3px}
+    .ig-av img{border-width:3px}
+    .ig-name{font-size:18px}
+    .ig-real{font-size:13px;margin-top:3px}
+    .ig-stats{gap:16px;margin-top:10px}
+    .ig-stats div + div{padding-left:16px}
+    .ig-stats b{font-size:17px}
+    .ig-stats span{font-size:12px}
+    .ig-bio{gap:9px;margin-top:18px}
+    .ig-bio li{font-size:15px;gap:12px;align-items:flex-start}
+    .ig-bio svg{width:17px;height:17px;margin-top:2px}
+    .ig-follow{height:52px;font-size:16px;margin-top:20px;gap:12px}
+    .ig-follow svg{width:20px;height:20px}
+    .reel{display:block}
+    .sobre .reel.r1,.sobre .reel.r2{width:calc(50% - 6px);height:auto;aspect-ratio:9/16;border-radius:22px;margin-top:22px}
+    .sobre{flex-direction:row;flex-wrap:wrap;justify-content:space-between}
+    .so-left{flex:0 0 100%}
+    .reel .top{padding:10px;gap:7px}
+    .reel .top img{width:28px;height:28px}
+    .reel .top b{font-size:12px}
+    .reel .top i{display:none}
+    .reel .bot{font-size:12px;padding:10px 12px}
+    .reel .bot svg{width:10px;height:10px}
+    .reel .bot .bm{width:14px;height:14px}
+    .reel .snd{width:30px;height:30px;right:10px;bottom:40px}
+    .reel .snd svg{width:14px;height:14px}
+    .reel .ph b{font-size:15px}.reel .ph small{font-size:9px}
+    .polaroid,.so-card,.so-script{display:none !important}
+  }
 </style>
 </head>
 <body>
