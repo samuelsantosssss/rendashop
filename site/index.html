@@ -571,6 +571,24 @@
     .act-main svg,.act-alt svg{width:18px;height:18px}
     .info .note-cfo{font-size:11.5px;text-align:center;margin-top:14px}
   }
+
+  .info .short{display:none}
+  @media (max-width:760px){
+    .tab .t-meta{display:none}
+    .tab{min-height:58px;padding:8px 10px}
+    .tabs .thumb-ind .prog{bottom:5px}
+    .panel{display:flex;flex-direction:column;gap:0;margin-top:20px}
+    .panel .info{display:contents}
+    .panel .compare{order:1;width:100%}
+    .panel .info .thumbs-label{order:2;margin-top:18px}
+    .panel .thumbs{order:3}
+    .panel .info h3{order:4;font-size:26px;margin-top:24px}
+    .panel .info .short{order:5;display:block;font-size:16px;line-height:1.55;color:var(--ink-2);margin-top:8px}
+    .panel .actions{order:6;align-self:stretch;width:100%;margin-top:22px}
+    .panel .actions .btn{width:100%}
+    .panel .info .note-cfo{order:7}
+    .panel .info .kick,.panel .info > p:not(.short):not(.thumbs-label):not(.note-cfo),.panel .info ul{display:none}
+  }
 </style>
 </head>
 <body>
@@ -781,7 +799,7 @@
 /* ===== Tratamentos: edite textos e casos aqui ===== */
 const TRATAMENTOS = [
   {
-    id: 'protocolo', icone: 'assets/icones/protocolo.png', aba: 'Protocolo com Carga Imediata', destaque: 'Mais procurado',
+    id: 'protocolo', curto: 'Dentes fixos em poucos dias, sem dentadura móvel.', icone: 'assets/icones/protocolo.png', aba: 'Protocolo com Carga Imediata', destaque: 'Mais procurado',
     kicker: 'Mais procurado', titulo: 'Protocolo com <em>Carga Imediata</em>',
     texto: 'Para quem perdeu vários ou todos os dentes. Os implantes recebem uma prótese fixa logo nos primeiros dias, para você voltar a sorrir e mastigar com segurança, sem passar meses sem dentes. Atendimento no Centro de Suzano-SP.',
     itens: ['Dentes fixos, sem dentadura móvel', 'Mais firmeza para mastigar e falar', 'Sorriso natural, planejado para o seu rosto'],
@@ -800,7 +818,7 @@ const TRATAMENTOS = [
     ]
   },
   {
-    id: 'lentes', icone: 'assets/icones/lentes.png', aba: 'Lentes de Porcelana',
+    id: 'lentes', curto: 'Sorriso natural com lâminas finas de porcelana.', icone: 'assets/icones/lentes.png', aba: 'Lentes de Porcelana',
     kicker: 'Estética', titulo: 'Lentes de <em>Porcelana</em>',
     texto: 'Lâminas ultrafinas de porcelana que corrigem cor, formato e pequenos desalinhamentos, com brilho e translucidez de dente natural.',
     itens: ['Cor estável ao longo dos anos', 'Desgaste mínimo do dente', 'Resultado natural e sofisticado'],
@@ -810,7 +828,7 @@ const TRATAMENTOS = [
     ]
   },
   {
-    id: 'facetas', icone: 'assets/icones/facetas.png', aba: 'Facetas de Resina',
+    id: 'facetas', curto: 'Sorriso renovado em poucas sessões.', icone: 'assets/icones/facetas.png', aba: 'Facetas de Resina',
     kicker: 'Estética', titulo: 'Facetas de <em>Resina</em>',
     texto: 'Transformação estética em poucas sessões, com resinas de alta performance e acabamento natural.',
     itens: ['Resultado rápido', 'Ótimo custo-benefício', 'Ajustes simples quando preciso'],
@@ -828,7 +846,7 @@ const TRATAMENTOS = [
     ]
   },
   {
-    id: 'protese', icone: 'assets/icones/protese.png', aba: 'Prótese Dentária',
+    id: 'protese', curto: 'Função e estética para voltar a sorrir com confiança.', icone: 'assets/icones/protese.png', aba: 'Prótese Dentária',
     kicker: 'Reabilitação', titulo: 'Prótese <em>Dentária</em>',
     texto: 'Coroas, pontes e próteses que devolvem a mastigação, o conforto e a confiança para sorrir.',
     itens: ['Função e estética juntas', 'Conforto no dia a dia', 'Planejamento individual'],
@@ -880,6 +898,7 @@ TRATAMENTOS.forEach((t, ti) => {
       '<span class="kick">' + t.kicker + '</span>' +
       '<h3>' + t.titulo + '</h3>' +
       '<p>' + t.texto + '</p>' +
+      '<p class="short">' + t.curto + '</p>' +
       '<ul>' + t.itens.map(i => '<li>' + ico.check + i + '</li>').join('') + '</ul>' +
       (t.casos.length + (t.vagas || 0) > 1 ? '<p class="thumbs-label">' + (t.vagas ? 'Mais casos chegando em breve' : casosTxt(t.casos.length) + ' · escolha um paciente') + '</p><div class="thumbs"></div>' : '') +
       '<div class="actions">' +
