@@ -584,6 +584,28 @@
     .panel .info .kick,.panel .info > p:not(.short):not(.thumbs-label):not(.note-cfo),.panel .info ul{display:none}
     .panel .act-alt,.panel .info .note-cfo{display:none}
   }
+
+  /* ---------- Tratamentos no celular: foto em cima, abas à esquerda, casos e texto à direita ---------- */
+  @media (max-width:760px){
+    .band-mid .mid{display:grid;grid-template-columns:minmax(0,36%) minmax(0,1fr);column-gap:12px;align-items:start}
+    .band-mid #panels,.band-mid .panel:not([hidden]),.band-mid .panel .info{display:contents}
+    .band-mid .panel .compare{grid-column:1 / -1;grid-row:1;margin:0 0 16px;max-height:66vh}
+    .band-mid .tabs{grid-column:1;grid-row:2 / span 6;grid-template-columns:1fr;gap:4px;padding:5px;border-radius:18px;align-self:start}
+    .band-mid .tab{min-height:0;padding:9px 8px;gap:7px;border-radius:13px}
+    .band-mid .tabs .thumb-ind{border-radius:13px}
+    .band-mid .tab .t-ico{width:28px;height:28px}
+    .band-mid .tab .t-name{font-size:12.5px;line-height:1.2}
+    .band-mid .tabs .thumb-ind .prog{left:10px;right:10px;bottom:4px}
+    .band-mid .panel .info .thumbs-label{grid-column:2;grid-row:2;margin:2px 0 0;font-size:9px;letter-spacing:1.4px;line-height:1.4}
+    .band-mid .panel .thumbs{grid-column:2;grid-row:3;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:8px}
+    .band-mid .thumb{border-radius:10px}
+    .band-mid .panel .info h3{grid-column:2;grid-row:4;font-size:21px;line-height:1.15;margin-top:16px}
+    .band-mid .panel .info .short{grid-column:2;grid-row:5;font-size:14px;line-height:1.5;margin-top:6px}
+    .band-mid .panel .actions{grid-column:2;grid-row:6;margin-top:14px}
+    .band-mid .panel .actions .btn{height:46px;font-size:14px;padding:0 14px;gap:8px}
+    .band-mid .panel .actions .btn svg{width:15px;height:15px}
+    .band-mid .soon{font-size:10px}
+  }
 </style>
 </head>
 <body>
