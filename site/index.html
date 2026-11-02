@@ -643,11 +643,76 @@
   }
 
   @media (max-width:350px){.band-mid .tab .t-name{font-size:11.5px}.band-mid .tab{flex-basis:36px}.band-mid .tab .t-ico{width:32px;height:32px}.band-mid .tab .t-ico img{width:25px;height:25px}}
+
+  /* ---------- Hero no celular ---------- */
+  .m-hero,.m-heading{display:none}
+  @media (max-width:760px){
+    .band-top{display:none}
+    .m-hero{display:block;position:relative;min-height:min(178vw,920px);background:#e9cbbd url('assets/hero-mobile.jpg') 50% 100%/112% auto no-repeat;overflow:hidden;
+      padding-top:env(safe-area-inset-top,0px)}
+    .m-hero::before{content:"";position:absolute;inset:0 0 auto;height:62%;pointer-events:none;
+      background:linear-gradient(180deg,rgba(236,208,194,.92) 0%,rgba(236,208,194,.78) 45%,rgba(236,208,194,0) 100%)}
+    .m-hero::after{content:"";position:absolute;inset:auto 0 0;height:90px;background:linear-gradient(180deg,rgba(251,235,226,0),var(--mid));pointer-events:none}
+    .m-top{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:18px max(20px,env(safe-area-inset-left,0px)) 0 max(14px,env(safe-area-inset-left,0px))}
+    .m-logo{display:flex;align-items:center}
+    .m-logo img{width:58px;margin-right:-2px}
+    .m-logo b{display:block;font-family:var(--serif);font-weight:400;font-size:15.5px;color:#2a2320;letter-spacing:.02em;white-space:nowrap}
+    .m-logo small{display:block;font-family:var(--caps);font-weight:600;font-size:7px;letter-spacing:.3em;color:#3a2f28;margin-top:5px;white-space:nowrap}
+    .m-burger{width:44px;height:44px;border:0;background:none;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;gap:6px;cursor:pointer;padding:0}
+    .m-burger i{display:block;width:28px;height:2.5px;border-radius:2px;background:#5a3d28;transition:transform .3s,opacity .3s}
+    .m-burger[aria-expanded="true"] i:nth-child(1){transform:translateY(8.5px) rotate(45deg)}
+    .m-burger[aria-expanded="true"] i:nth-child(2){opacity:0}
+    .m-burger[aria-expanded="true"] i:nth-child(3){transform:translateY(-8.5px) rotate(-45deg)}
+    .m-copy{position:relative;z-index:2;padding:34px max(24px,env(safe-area-inset-left,0px)) 0}
+    .m-eyebrow{display:flex;align-items:center;gap:12px;font-family:var(--caps);font-weight:600;font-size:12px;letter-spacing:.32em;color:var(--gold);text-transform:uppercase}
+    .m-eyebrow::after{content:"";width:46px;height:1.5px;background:var(--gold);opacity:.85}
+    .m-title{margin-top:16px;font-family:var(--serif);font-weight:400;font-size:clamp(28px,8vw,38px);line-height:1.14;letter-spacing:-.015em;color:#231d1a;text-wrap:pretty}
+    .m-title em{font-style:italic;color:var(--gold)}
+    .m-cta{position:absolute;z-index:3;left:50%;bottom:28px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;height:52px;padding:0 24px;border-radius:999px;white-space:nowrap;
+      color:#fff7ee;font-weight:600;font-size:16px;background:linear-gradient(100deg,#c9914f 0%,#ab7330 50%,#8c5a22 100%);box-shadow:0 12px 26px rgba(90,55,20,.35)}
+    .m-cta svg{width:18px;height:18px}
+    .m-menu{position:absolute;z-index:4;top:calc(76px + env(safe-area-inset-top,0px));left:14px;right:14px;display:flex;flex-direction:column;padding:10px;border-radius:20px;
+      background:rgba(255,250,246,.97);box-shadow:0 20px 40px rgba(90,55,20,.25);border:1px solid rgba(168,115,47,.2)}
+    .m-menu[hidden]{display:none}
+    .m-menu a{padding:14px 14px;font-size:17px;color:var(--ink);border-radius:12px}
+    .m-menu a:active{background:rgba(168,115,47,.1)}
+    .m-menu .m-menu-cta{margin-top:6px;text-align:center;color:#fff7ee;font-weight:600;background:linear-gradient(100deg,#c9914f,#8c5a22)}
+    .m-heading{display:block;background:var(--mid);text-align:center;padding:26px 20px 6px}
+    .m-heading h2{font-family:var(--serif);font-weight:400;font-size:clamp(25px,7vw,32px);line-height:1.18;color:var(--ink);text-wrap:balance}
+    .m-heading h2 em{font-style:italic;color:var(--gold)}
+    .m-heading p{margin-top:12px;display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--caps);font-weight:600;font-size:9.5px;letter-spacing:.28em;color:#2a2320;text-transform:uppercase}
+    .m-heading p span{width:26px;height:1.5px;background:var(--gold);opacity:.85}
+    .band-mid .mid{padding-top:14px}
+  }
 </style>
 </head>
 <body>
 <div class="page">
   <!-- ================= ARTE DE CIMA ================= -->
+  <!-- ================= HERO CELULAR ================= -->
+  <section class="m-hero" aria-label="Dra. Vitória Cervigni">
+    <span class="anchor" id="inicio-m"></span>
+    <div class="m-top">
+      <a href="#inicio" class="m-logo" aria-label="Dra. Vitória Cervigni, início">
+        <img src="assets/monograma-vc.png" alt="">
+        <span><b>DRA. VITÓRIA CERVIGNI</b><small>ODONTOLOGIA ESPECIALIZADA</small></span>
+      </a>
+      <button class="m-burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="m-menu"><i></i><i></i><i></i></button>
+    </div>
+    <div class="m-copy">
+      <p class="m-eyebrow">Dra. Vitória Cervigni</p>
+      <h1 class="m-title">Odontologia estética com naturalidade, precisão&nbsp;e <em>sofisticação.</em></h1>
+    </div>
+    <a href="#" data-wa class="m-cta">Agendar avaliação <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+    <nav class="m-menu" id="m-menu" hidden aria-label="Menu">
+      <a href="#inicio">Início</a><a href="#tratamentos">Tratamentos</a><a href="#resultados">Resultados</a><a href="#sobre">Sobre a doutora</a><a href="#localizacao">Localização</a>
+      <a href="#" data-wa class="m-menu-cta">Agendar avaliação</a>
+    </nav>
+  </section>
+  <div class="m-heading">
+    <h2>Soluções completas para o <em>seu sorriso</em></h2>
+    <p><span></span>Com odontologia de excelência<span></span></p>
+  </div>
   <section class="band band-top mid-bg-fade">
     <div class="ext l" aria-hidden="true"></div>
     <div class="ext r" aria-hidden="true"></div>
@@ -1223,6 +1288,16 @@ function enableUploads() {
     const d = (s && s.exists && s.data()) || {};
     reels.forEach(r => { r.saved = d; const u = d[r.slot]?.url || IG_VIDEOS[r.slot]; if ((r.video?.src || null) !== (u ? new URL(u, location.href).href : null)) r.setVideo(u); });
   }, () => {});
+})();
+
+/* Menu do celular */
+(() => {
+  const btn = document.querySelector('.m-burger'), menu = document.getElementById('m-menu');
+  if (!btn) return;
+  const set = open => { btn.setAttribute('aria-expanded', String(open)); btn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu'); menu.hidden = !open; };
+  btn.addEventListener('click', () => set(menu.hidden));
+  menu.addEventListener('click', e => { if (e.target.closest('a')) set(false); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') set(false); });
 })();
 </script>
 </body>
