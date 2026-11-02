@@ -648,11 +648,9 @@
   .m-hero,.m-heading{display:none}
   @media (max-width:760px){
     .band-top{display:none}
-    .m-hero{display:block;position:relative;min-height:min(178vw,920px);background:#e9cbbd url('assets/hero-mobile.jpg') 50% 100%/112% auto no-repeat;overflow:hidden;
+    .m-hero{display:block;position:relative;min-height:min(178vw,920px);background:linear-gradient(180deg,#e9ccbf 0,#e9ccbf 12%,rgba(233,204,191,0) 22%) top/100% 100% no-repeat,url('assets/hero-mobile.jpg') 50% 100%/112% auto no-repeat,#e9ccbf;overflow:hidden;
       padding-top:env(safe-area-inset-top,0px)}
-    .m-hero::before{content:"";position:absolute;inset:0 0 auto;height:62%;pointer-events:none;
-      background:linear-gradient(180deg,rgba(236,208,194,.92) 0%,rgba(236,208,194,.78) 45%,rgba(236,208,194,0) 100%)}
-    .m-hero::after{content:"";position:absolute;inset:auto 0 0;height:90px;background:linear-gradient(180deg,rgba(251,235,226,0),var(--mid));pointer-events:none}
+    .m-hero::after{content:"";position:absolute;inset:auto 0 0;height:50px;background:linear-gradient(180deg,rgba(251,235,226,0),var(--mid));pointer-events:none}
     .m-top{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:18px max(20px,env(safe-area-inset-left,0px)) 0 max(14px,env(safe-area-inset-left,0px))}
     .m-logo{display:flex;align-items:center}
     .m-logo img{width:58px;margin-right:-2px}
@@ -668,7 +666,7 @@
     .m-eyebrow::after{content:"";width:46px;height:1.5px;background:var(--gold);opacity:.85}
     .m-title{margin-top:16px;font-family:var(--serif);font-weight:400;font-size:clamp(28px,8vw,38px);line-height:1.14;letter-spacing:-.015em;color:#231d1a;text-wrap:pretty}
     .m-title em{font-style:italic;color:var(--gold)}
-    .m-cta{position:absolute;z-index:3;left:50%;bottom:28px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;height:52px;padding:0 24px;border-radius:999px;white-space:nowrap;
+    .m-cta{position:absolute;z-index:3;left:50%;bottom:6px;transform:translateX(-50%);display:flex;align-items:center;gap:12px;height:52px;padding:0 24px;border-radius:999px;white-space:nowrap;
       color:#fff7ee;font-weight:600;font-size:16px;background:linear-gradient(100deg,#c9914f 0%,#ab7330 50%,#8c5a22 100%);box-shadow:0 12px 26px rgba(90,55,20,.35)}
     .m-cta svg{width:18px;height:18px}
     .m-menu{position:absolute;z-index:4;top:calc(76px + env(safe-area-inset-top,0px));left:14px;right:14px;display:flex;flex-direction:column;padding:10px;border-radius:20px;
