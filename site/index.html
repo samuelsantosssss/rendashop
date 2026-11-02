@@ -27,11 +27,6 @@
   a{color:inherit;text-decoration:none}
 
   .page{position:relative;width:100%;overflow:hidden;isolation:isolate}
-  .ext{position:absolute;top:0;bottom:0;width:50%;z-index:-2;background-size:100% 100%;background-repeat:no-repeat}
-  .ext.l{left:0;background-image:url('assets/edge-left.jpg')}
-  .ext.r{right:0;background-image:url('assets/edge-right.jpg')}
-  .ext-tint{position:absolute;inset:0;z-index:-1;
-    background:linear-gradient(90deg, rgba(243,227,215,.45), rgba(243,227,215,0) 25%, rgba(243,227,215,0) 75%, rgba(243,227,215,.45))}
 
   .art{position:relative;width:min(100%, var(--col));margin:0 auto;container-type:inline-size}
   .art > img{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
@@ -146,24 +141,110 @@
   .wa:hover{transform:scale(1.06)}
   .wa svg{width:28px;height:28px;color:#fff6ec}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.card{transition:none}}
+
+  /* ---------- Faixas (arte de cima / seção de tratamentos / arte de baixo) ---------- */
+  :root{--mid:#fbebe2;--mid-side:#f2ddd1}
+  .band{position:relative;width:100%;isolation:isolate;overflow:hidden}
+  .band .ext{position:absolute;top:0;bottom:0;width:50%;z-index:-2;background-size:100% 100%;background-repeat:no-repeat}
+  .band-top .ext.l{left:0;background-image:url('assets/edge-left-top.jpg')}
+  .band-top .ext.r{right:0;background-image:url('assets/edge-right-top.jpg')}
+  .band-bot .ext.l{left:0;background-image:url('assets/edge-left-bottom.jpg')}
+  .band-bot .ext.r{right:0;background-image:url('assets/edge-right-bottom.jpg')}
+  .band .ext-tint{position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(90deg, rgba(243,227,215,.45), rgba(243,227,215,0) 25%, rgba(243,227,215,0) 75%, rgba(243,227,215,.45))}
+  .mid-bg{background:var(--mid)}
+  /* emendas suaves entre as faixas */
+  .band-top::after,.band-bot::before{content:"";position:absolute;left:0;right:0;height:min(4vw,48px);z-index:3;pointer-events:none}
+  .band-top::after{bottom:0;background:var(--mid);-webkit-mask-image:linear-gradient(to bottom,transparent,#000);mask-image:linear-gradient(to bottom,transparent,#000)}
+  .band-bot::before{top:0;background:var(--mid);-webkit-mask-image:linear-gradient(to top,transparent,#000);mask-image:linear-gradient(to top,transparent,#000)}
+  .band .art{position:relative;z-index:4}
+  .band-top .art::before,.band-bot .art::before{content:"";position:absolute;left:0;right:0;height:4%;pointer-events:none}
+  .band-top .art::before{bottom:-1px;background:linear-gradient(to bottom,rgba(251,235,226,0),var(--mid))}
+  .band-bot .art::before{top:-1px;background:linear-gradient(to top,rgba(251,235,226,0),var(--mid))}
+  @media (min-width:1181px){
+    .band .art::before{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%)}
+  }
+  .band-top::after,.band-bot::before{height:min(7vw,90px)}
+  .shift{position:absolute;left:0;right:0;top:calc(-895*var(--u));height:calc(1536*var(--u))}
+
+  /* ---------- Seção de tratamentos ---------- */
+  .band-mid{position:relative;margin-block:-1px;z-index:1}
+  .mid{--u:calc(100cqw / 1024);position:relative;padding:calc(6*var(--u)) calc(56*var(--u)) calc(30*var(--u))}
+
+  .tabs{display:flex;justify-content:center;gap:calc(8*var(--u));flex-wrap:wrap}
+  .tab{font:inherit;font-family:var(--sans);font-weight:600;font-size:calc(11.4*var(--u));color:var(--ink-2);cursor:pointer;
+    height:calc(34*var(--u));padding:0 calc(18*var(--u));border-radius:999px;border:calc(1*var(--u)) solid rgba(168,115,47,.35);
+    background:rgba(255,250,246,.65);display:inline-flex;align-items:center;gap:calc(8*var(--u));transition:background .25s,color .25s,border-color .25s}
+  .tab:hover{border-color:var(--gold);color:var(--ink)}
+  .tab[aria-selected="true"]{color:#fff7ee;border-color:transparent;background:linear-gradient(100deg,#c9914f 0%,#ab7330 50%,#8c5a22 100%);
+    box-shadow:0 calc(6*var(--u)) calc(14*var(--u)) rgba(122,78,30,.25)}
+  .tab .star{font-family:var(--caps);font-size:calc(6.6*var(--u));letter-spacing:calc(1*var(--u));padding:calc(3*var(--u)) calc(7*var(--u));border-radius:999px;background:rgba(255,247,238,.22);border:1px solid rgba(255,247,238,.45)}
+  .tab:not([aria-selected="true"]) .star{background:rgba(168,115,47,.1);border-color:rgba(168,115,47,.3);color:var(--gold)}
+
+  .panel{display:grid;grid-template-columns:calc(372*var(--u)) 1fr;gap:calc(52*var(--u));align-items:center;margin-top:calc(30*var(--u))}
+  .panel[hidden]{display:none}
+
+  /* Antes e depois */
+  .compare{position:relative;width:100%;aspect-ratio:4/5;border-radius:calc(20*var(--u));overflow:hidden;background:#eadbd0;
+    box-shadow:0 calc(26*var(--u)) calc(50*var(--u)) rgba(120,80,40,.18);user-select:none;touch-action:pan-y}
+  .compare .layer{position:absolute;inset:0}
+  .compare img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+  .compare .after{clip-path:inset(0 0 0 50%)}
+  .compare .handle{position:absolute;top:0;bottom:0;left:50%;width:2px;margin-left:-1px;background:#fff8f1;box-shadow:0 0 12px rgba(232,170,96,.85);z-index:3;pointer-events:none}
+  .compare .handle span{position:absolute;top:50%;left:50%;width:calc(40*var(--u));height:calc(40*var(--u));transform:translate(-50%,-50%);border-radius:50%;
+    background:linear-gradient(100deg,#c9914f,#8c5a22);display:grid;place-items:center;box-shadow:0 4px 14px rgba(120,80,40,.35)}
+  .compare .handle svg{width:calc(18*var(--u));height:calc(18*var(--u));color:#fff7ee}
+  .compare input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:4;margin:0}
+  .compare .lbl{position:absolute;bottom:calc(14*var(--u));height:calc(22*var(--u));padding:0 calc(11*var(--u));border-radius:999px;display:grid;place-items:center;
+    font-size:calc(10*var(--u));font-weight:600;color:#fff7ee;z-index:2;pointer-events:none}
+  .compare .lbl.l{left:calc(14*var(--u));background:rgba(70,48,34,.6);backdrop-filter:blur(3px)}
+  .compare .lbl.r{right:calc(14*var(--u));background:linear-gradient(100deg,#c9914f,#9a6528)}
+  .compare .count{position:absolute;top:calc(14*var(--u));left:50%;transform:translateX(-50%);z-index:5;pointer-events:none;
+    font-family:var(--caps);font-weight:600;font-size:calc(7.5*var(--u));letter-spacing:calc(1.6*var(--u));color:#2a2320;background:rgba(255,250,246,.88);
+    padding:calc(5*var(--u)) calc(10*var(--u));border-radius:999px}
+  .compare .nav-btn{position:absolute;top:50%;z-index:5;width:calc(30*var(--u));height:calc(30*var(--u));margin-top:calc(-15*var(--u));border-radius:50%;border:0;cursor:pointer;
+    background:rgba(255,250,246,.92);display:grid;place-items:center;color:var(--ink);box-shadow:0 3px 10px rgba(120,80,40,.2)}
+  .compare .nav-btn svg{width:calc(13*var(--u));height:calc(13*var(--u))}
+  .compare .prev{left:calc(10*var(--u))}.compare .next{right:calc(10*var(--u))}
+  .soon{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(8*var(--u));text-align:center;
+    background:linear-gradient(140deg,#f6e7dc,#ead6c7);font-family:var(--caps);font-weight:600;font-size:calc(8.5*var(--u));letter-spacing:calc(2*var(--u));color:var(--muted,#6e5c50)}
+  .soon svg{width:calc(30*var(--u));height:calc(30*var(--u));color:var(--gold)}
+
+  /* Texto do tratamento */
+  .info .kick{display:inline-flex;align-items:center;gap:calc(10*var(--u));font-family:var(--caps);font-weight:600;font-size:calc(9.4*var(--u));letter-spacing:calc(2.6*var(--u));color:var(--gold);text-transform:uppercase}
+  .info .kick::after{content:"";width:calc(40*var(--u));height:1px;background:var(--gold);opacity:.75}
+  .info h3{font-family:var(--serif);font-weight:400;font-size:calc(31*var(--u));line-height:1.15;color:var(--ink);margin-top:calc(12*var(--u));letter-spacing:-.01em}
+  .info h3 em{font-style:italic;color:var(--gold)}
+  .info > p{font-size:calc(13*var(--u));line-height:1.6;color:var(--ink-2);margin-top:calc(14*var(--u));max-width:calc(420*var(--u))}
+  .info ul{list-style:none;margin-top:calc(16*var(--u));display:flex;flex-direction:column;gap:calc(7*var(--u))}
+  .info li{display:flex;align-items:center;gap:calc(9*var(--u));font-weight:700;font-size:calc(12.6*var(--u));color:var(--ink)}
+  .info li svg{width:calc(15*var(--u));height:calc(15*var(--u));color:var(--gold);flex:none}
+  .info .thumbs-label{margin-top:calc(22*var(--u));font-family:var(--caps);font-weight:600;font-size:calc(8*var(--u));letter-spacing:calc(1.8*var(--u));color:var(--muted,#6e5c50);text-transform:uppercase}
+  .thumbs{display:flex;gap:calc(9*var(--u));margin-top:calc(9*var(--u))}
+  .thumb{width:calc(54*var(--u));height:calc(54*var(--u));border-radius:calc(12*var(--u));overflow:hidden;padding:0;border:calc(2*var(--u)) solid transparent;cursor:pointer;
+    background:none;opacity:.7;transition:opacity .2s,border-color .2s,transform .2s}
+  .thumb img{width:100%;height:100%;object-fit:cover;object-position:50% 70%;display:block}
+  .thumb:hover{opacity:1;transform:translateY(-2px)}
+  .thumb[aria-current="true"]{opacity:1;border-color:var(--gold)}
+  .actions{display:flex;gap:calc(12*var(--u));margin-top:calc(24*var(--u))}
+  .actions .btn{position:relative}
+  .act-main{height:calc(40*var(--u));padding:0 calc(16*var(--u)) 0 calc(22*var(--u));gap:calc(14*var(--u));font-size:calc(12.4*var(--u));font-weight:600}
+  .act-main svg,.act-alt svg{width:calc(15*var(--u));height:calc(15*var(--u))}
+  .act-alt{height:calc(40*var(--u));padding:0 calc(20*var(--u));gap:calc(10*var(--u));font-size:calc(12*var(--u));font-weight:600}
+  .info .note-cfo{margin-top:calc(14*var(--u));font-size:calc(8.6*var(--u));color:var(--muted,#6e5c50)}
 </style>
 </head>
 <body>
 <div class="page">
-  <div class="ext l" aria-hidden="true"></div>
-  <div class="ext r" aria-hidden="true"></div>
-  <div class="ext-tint" aria-hidden="true"></div>
-
-  <div class="art">
-    <img src="assets/home-base.jpg" width="2048" height="3072" alt="">
-
-    <div class="ov">
-      <span class="anchor" id="inicio" style="top:0"></span>
-      <span class="anchor" id="tratamentos" style="top:34.6%"></span>
-      <span class="anchor" id="resultados" style="top:61.5%"></span>
-      <span class="anchor" id="sobre" style="top:76.6%"></span>
-
-      <!-- Cabeçalho -->
+  <!-- ================= ARTE DE CIMA ================= -->
+  <section class="band band-top mid-bg-fade">
+    <div class="ext l" aria-hidden="true"></div>
+    <div class="ext r" aria-hidden="true"></div>
+    <div class="ext-tint" aria-hidden="true"></div>
+    <div class="art">
+      <img src="assets/home-top.jpg" width="2048" height="1276" alt="">
+      <div class="ov">
+        <span class="anchor" id="inicio" style="top:0"></span>
       <header>
         <a href="#inicio" class="t logo" aria-label="Dra. Vitória Cervigni, início">
           <img src="assets/monograma-vc.png" alt="">
@@ -201,36 +282,31 @@
         <h2 class="t serif center trat-title">Soluções completas para o seu sorriso</h2>
         <p class="t center trat-sub">Tratamentos modernos e personalizados, com foco em estética, saúde e bem-estar.</p>
 
-        <a href="#" class="card" style="left:calc(47*var(--u))" data-trat="protocolo dentário com carga imediata">
-          <span class="badge">Mais procurado</span>
-          <h3>Protocolo com<br>Carga Imediata</h3>
-          <p>Dentes fixos sobre implantes<br>sem esperar meses.</p>
-          <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </a>
-        <a href="#" class="card" style="left:calc(236*var(--u))" data-trat="lentes de porcelana">
-          <h3 class="one">Lentes de Porcelana</h3>
-          <p>Cor, forma e brilho natural<br>com lâminas ultrafinas.</p>
-          <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </a>
-        <a href="#" class="card" style="left:calc(425*var(--u))" data-trat="uma avaliação personalizada">
-          <h3>Avaliação<br>Personalizada</h3>
-          <p>Planejamento completo do<br>seu sorriso, do início ao fim.</p>
-          <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </a>
-        <a href="#" class="card" style="left:calc(614*var(--u))" data-trat="prótese dentária">
-          <h3 class="one">Prótese Dentária</h3>
-          <p>Reposição dos dentes com<br>conforto, função e estética.</p>
-          <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </a>
-        <a href="#" class="card" style="left:calc(803*var(--u))" data-trat="facetas de resina">
-          <h3 class="one">Facetas de Resina</h3>
-          <p>Estética rápida, natural e<br>com ótimo custo-benefício.</p>
-          <span class="go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </a>
+      </main>
+      </div>
+    </div>
+  </section>
 
-        <a href="#" data-wa class="btn btn-gold all-cta">Ver todos os tratamentos
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+  <!-- ================= TRATAMENTOS (código) ================= -->
+  <section class="band band-mid mid-bg" id="tratamentos" aria-label="Tratamentos">
+    <div class="art">
+      <div class="mid">
+        <div class="tabs" role="tablist" aria-label="Tratamentos" id="tabs"></div>
+        <div id="panels"></div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ================= ARTE DE BAIXO ================= -->
+  <section class="band band-bot">
+    <div class="ext l" aria-hidden="true"></div>
+    <div class="ext r" aria-hidden="true"></div>
+    <div class="ext-tint" aria-hidden="true"></div>
+    <div class="art">
+      <img src="assets/home-bottom.jpg" width="2048" height="1282" alt="">
+      <div class="ov"><div class="shift">
+        <span class="anchor" id="resultados" style="top:calc(945*var(--u))"></span>
+        <span class="anchor" id="sobre" style="top:calc(1180*var(--u))"></span>
         <!-- Resultados -->
         <p class="t caps res-eyebrow">Resultados</p>
         <h2 class="t serif res-title">Sorrisos reais,<br>transformações <em>reais</em></h2>
@@ -253,9 +329,9 @@
         </ul>
         <a href="#" data-wa class="btn btn-line about-cta">Conheça minha trajetória
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
-      </main>
+      </div></div>
     </div>
-  </div>
+  </section>
 </div>
 
 <a class="wa" data-wa href="#" aria-label="Falar no WhatsApp">
@@ -263,6 +339,128 @@
 </a>
 
 <script>
+
+/* ===== Tratamentos: edite textos e casos aqui ===== */
+const TRATAMENTOS = [
+  {
+    id: 'protocolo', aba: 'Protocolo com Carga Imediata', destaque: 'Mais procurado',
+    kicker: 'Mais procurado', titulo: 'Protocolo com <em>Carga Imediata</em>',
+    texto: 'Para quem perdeu vários ou todos os dentes. Os implantes recebem uma prótese fixa logo nos primeiros dias, para você voltar a sorrir e mastigar com segurança, sem passar meses sem dentes.',
+    itens: ['Dentes fixos, sem dentadura móvel', 'Mais firmeza para mastigar e falar', 'Sorriso natural, planejado para o seu rosto'],
+    casos: [1, 2, 3, 4, 5].map(n => ({ antes: 'assets/casos/caso' + n + '-antes.jpg', depois: 'assets/casos/caso' + n + '-depois.jpg' }))
+  },
+  {
+    id: 'lentes', aba: 'Lentes de Porcelana',
+    kicker: 'Estética', titulo: 'Lentes de <em>Porcelana</em>',
+    texto: 'Lâminas ultrafinas de porcelana que corrigem cor, formato e pequenos desalinhamentos, com brilho e translucidez de dente natural.',
+    itens: ['Cor estável ao longo dos anos', 'Desgaste mínimo do dente', 'Resultado natural e sofisticado'],
+    casos: []
+  },
+  {
+    id: 'facetas', aba: 'Facetas de Resina',
+    kicker: 'Estética', titulo: 'Facetas de <em>Resina</em>',
+    texto: 'Transformação estética em poucas sessões, com resinas de alta performance e acabamento natural.',
+    itens: ['Resultado rápido', 'Ótimo custo-benefício', 'Ajustes simples quando preciso'],
+    casos: []
+  },
+  {
+    id: 'protese', aba: 'Prótese Dentária',
+    kicker: 'Reabilitação', titulo: 'Prótese <em>Dentária</em>',
+    texto: 'Coroas, pontes e próteses que devolvem a mastigação, o conforto e a confiança para sorrir.',
+    itens: ['Função e estética juntas', 'Conforto no dia a dia', 'Planejamento individual'],
+    casos: []
+  }
+];
+
+const ico = {
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>',
+  arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg>',
+  lr: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg>',
+  prev: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>',
+  next: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>',
+  cam: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.5-2h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>'
+};
+
+const tabsEl = document.getElementById('tabs'), panelsEl = document.getElementById('panels');
+
+TRATAMENTOS.forEach((t, ti) => {
+  const tab = document.createElement('button');
+  tab.className = 'tab'; tab.type = 'button'; tab.role = 'tab';
+  tab.id = 'tab-' + t.id; tab.setAttribute('aria-controls', 'panel-' + t.id);
+  tab.setAttribute('aria-selected', ti === 0 ? 'true' : 'false');
+  tab.innerHTML = t.aba + (t.destaque ? ' <span class="star">' + t.destaque + '</span>' : '');
+  tabsEl.appendChild(tab);
+
+  const p = document.createElement('div');
+  p.className = 'panel'; p.id = 'panel-' + t.id; p.role = 'tabpanel';
+  p.setAttribute('aria-labelledby', tab.id); p.hidden = ti !== 0;
+
+  const temCasos = t.casos.length > 0;
+  p.innerHTML =
+    '<div class="compare">' +
+      (temCasos
+        ? '<div class="layer before"><img alt="Antes do tratamento"></div>' +
+          '<div class="layer after"><img alt="Depois do tratamento"></div>' +
+          '<span class="count"></span>' +
+          '<span class="lbl l">Antes</span><span class="lbl r">Depois</span>' +
+          '<div class="handle"><span>' + ico.lr + '</span></div>' +
+          '<input type="range" min="0" max="100" value="50" id="cmp-' + t.id + '" aria-label="Comparar antes e depois">' +
+          (t.casos.length > 1 ? '<button class="nav-btn prev" type="button" aria-label="Caso anterior">' + ico.prev + '</button>' +
+                                '<button class="nav-btn next" type="button" aria-label="Próximo caso">' + ico.next + '</button>' : '')
+        : '<div class="soon">' + ico.cam + 'Casos em breve</div>') +
+    '</div>' +
+    '<div class="info">' +
+      '<span class="kick">' + t.kicker + '</span>' +
+      '<h3>' + t.titulo + '</h3>' +
+      '<p>' + t.texto + '</p>' +
+      '<ul>' + t.itens.map(i => '<li>' + ico.check + i + '</li>').join('') + '</ul>' +
+      (temCasos ? '<p class="thumbs-label">' + t.casos.length + ' casos reais · escolha um paciente</p><div class="thumbs"></div>' : '') +
+      '<div class="actions">' +
+        '<a href="#" class="btn btn-gold act-main" data-trat="' + t.aba.toLowerCase() + '">Quero esse resultado ' + ico.arrow + '</a>' +
+        '<a href="#resultados" class="btn btn-line act-alt">Ver resultados</a>' +
+      '</div>' +
+      (temCasos ? '<p class="note-cfo">Pacientes reais, imagens publicadas com autorização. Resultados variam de pessoa para pessoa.</p>' : '') +
+    '</div>';
+  panelsEl.appendChild(p);
+
+  if (!temCasos) return;
+  const before = p.querySelector('.before img'), after = p.querySelector('.after img');
+  const afterLayer = p.querySelector('.after'), handle = p.querySelector('.handle'), range = p.querySelector('input');
+  const count = p.querySelector('.count'), thumbs = p.querySelector('.thumbs');
+  let atual = 0;
+  const setPos = v => { afterLayer.style.clipPath = 'inset(0 0 0 ' + v + '%)'; handle.style.left = v + '%'; };
+  const show = i => {
+    atual = (i + t.casos.length) % t.casos.length;
+    before.src = t.casos[atual].antes; after.src = t.casos[atual].depois;
+    count.textContent = 'Caso ' + (atual + 1) + ' de ' + t.casos.length;
+    thumbs.querySelectorAll('.thumb').forEach((b, k) => b.setAttribute('aria-current', k === atual ? 'true' : 'false'));
+    range.value = 50; setPos(50);
+  };
+  t.casos.forEach((c, k) => {
+    const b = document.createElement('button');
+    b.className = 'thumb'; b.type = 'button'; b.setAttribute('aria-label', 'Ver caso ' + (k + 1));
+    b.innerHTML = '<img src="' + c.depois + '" alt="" loading="lazy">';
+    b.addEventListener('click', () => show(k));
+    thumbs.appendChild(b);
+  });
+  range.addEventListener('input', e => setPos(e.target.value));
+  p.querySelector('.prev')?.addEventListener('click', () => show(atual - 1));
+  p.querySelector('.next')?.addEventListener('click', () => show(atual + 1));
+  show(0);
+});
+
+tabsEl.addEventListener('click', e => {
+  const tab = e.target.closest('.tab'); if (!tab) return;
+  tabsEl.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-selected', b === tab ? 'true' : 'false'));
+  panelsEl.querySelectorAll('.panel').forEach(p => p.hidden = p.id !== tab.getAttribute('aria-controls'));
+});
+tabsEl.addEventListener('keydown', e => {
+  if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+  const tabs = [...tabsEl.querySelectorAll('.tab')], i = tabs.indexOf(document.activeElement);
+  const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length];
+  n.focus(); n.click();
+});
+
 /* ===== Edite aqui ===== */
 const CONFIG = {
   whatsapp: '5500000000000'   // DDI + DDD + número, só dígitos
