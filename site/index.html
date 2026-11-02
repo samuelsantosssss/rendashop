@@ -1111,7 +1111,7 @@ tabsEl.addEventListener('click', e => {
 const AUTO_MS = 6000;
 const prog = tabsEl.querySelector('.prog i');
 const midEl = document.querySelector('.band-mid .mid');
-let autoOn = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+let autoOn = !matchMedia('(prefers-reduced-motion: reduce)').matches && !matchMedia('(max-width: 760px)').matches;   // no celular, sem troca automática
 let hovering = false, visible = false;
 tabsEl.style.setProperty('--auto-ms', AUTO_MS + 'ms');
 const isPhone = matchMedia('(max-width: 760px)');
